@@ -1,0 +1,17 @@
+.text{
+  width: 100%;
+  text-align: center;
+}
+.textCard {
+  width: 90%;
+  padding: 10px;
+  height: 40px;
+}
+
+.mat-form-field-underline {
+  color: white !important;
+}
+
+.value {
+  font-weight: 600;
+}

@@ -1,0 +1,25 @@
+<mat-grid-list cols=1 rowHeight="160px">
+  <mat-grid-tile>
+    <mat-card class="textCard">
+      <mat-form-field class="text">
+        <mat-label>Description</mat-label>
+        <input matInput maxlength="100" [(ngModel)]="textPrompt">
+      </mat-form-field>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-slider [max]="10" [min]="1" [(ngModel)]="duration">
+    </mat-slider>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button (click)="generate()" mat-button> Generate </button>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <audio controls [src]="audioSrc"></audio>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+
