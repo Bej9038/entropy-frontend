@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import WaveSurfer from "wavesurfer.js";
 
 @Injectable({
   providedIn: 'root'
@@ -11,25 +12,18 @@ export class AudioService {
 
   constructor(private sanitizer: DomSanitizer) { }
 
-  displayAudio(data: number[][])
+  displayAudio(url: string)
   {
-    console.log("attempting to display audio")
-    let audioBuffer = this.audioContext.createBuffer(data.length, data[0].length, this.sampleRate);
-
-    for(let channel = 0; channel < data.length; channel++)
-    {
-      let buffering = audioBuffer.getChannelData(channel);
-      for(let i = 0; i < data[0].length; i++)
+    let wavesurfer = WaveSurfer.create(
       {
-        buffering[i] = data[channel][i];
+        container: '#waveform',
+        waveColor: '#ECEFF1',
+        progressColor: '#ECEFF1',
+        cursorWidth: 0,
+        interact: false
       }
-    }
-
-    let src = this.audioContext.createBufferSource()
-    src.buffer = audioBuffer
-    src.connect(this.audioContext.destination)
-    src.loop = true
-    src.start()
+    )
+    wavesurfer.load(url);
   }
 
   decodeBase64ToAudioURL(base64String: string) {
@@ -43,6 +37,7 @@ export class AudioService {
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
     console.log("returning audio url")
     let url = URL.createObjectURL(audioBlob)
+    this.displayAudio(url)
     console.log(url)
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }

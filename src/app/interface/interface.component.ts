@@ -27,6 +27,7 @@ export class InterfaceComponent implements OnInit {
   }
 
   generate(){
+    this.textPrompt = "";
     this.audioSrc = undefined;
 
     let id: string = "";
