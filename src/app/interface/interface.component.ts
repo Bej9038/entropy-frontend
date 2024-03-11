@@ -23,8 +23,7 @@ export class InterfaceComponent implements OnInit {
   constructor(private http: HttpClient, private audioService: AudioService) {}
 
   generate(){
-    console.log(this.textPrompt)
-    console.log(this.duration)
+    this.audioSrc = undefined;
 
     let id: string = "";
     const request = {
@@ -42,6 +41,7 @@ export class InterfaceComponent implements OnInit {
     });
 
     console.log("sending request to server")
+    console.log(this.entropy)
     this.http.post<any>(this.run_async_url, request, { headers })
       .subscribe(response =>
       {

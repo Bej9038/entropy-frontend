@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InputComponent } from './input/input.component';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
 import { InterfaceComponent } from './interface/interface.component';
@@ -17,7 +16,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent,
     InterfaceComponent,
     NavbarComponent,
   ],

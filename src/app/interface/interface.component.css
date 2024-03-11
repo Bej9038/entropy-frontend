@@ -1,17 +1,37 @@
 .text{
   width: 100%;
   text-align: center;
+  color: white;
 }
+
+.mat-form-field-label {
+  color: white !important;
+}
+
 .textCard {
   width: 90%;
   padding: 10px;
   height: 40px;
+  background-color: rgba(200, 200, 200, 0.2);
+  color: white;
+}
+
+.generateButton {
+  color: white;
+  font-size: 20px;
+  background-color: rgba(200, 200, 200, 0.2);
+  padding: 14px 40px;
+
 }
 
 .mat-form-field-underline {
-  color: white !important;
+  color: white;
 }
 
 .value {
   font-weight: 600;
+}
+
+.audioPlayer {
+  /*background-color: rgba(200, 200, 200, 0.2);*/
 }

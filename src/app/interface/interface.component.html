@@ -11,13 +11,15 @@
     <mat-slider [max]="10" [min]="1" [(ngModel)]="duration">
     </mat-slider>
   </mat-grid-tile>
+
   <mat-grid-tile>
-    <button (click)="generate()" mat-button> Generate </button>
+    <button class="generateButton" (click)="generate()" mat-button> Generate </button>
   </mat-grid-tile>
 
   <mat-grid-tile>
-    <audio controls [src]="audioSrc"></audio>
+    <audio class="audioPlayer" controls [src]="audioSrc"></audio>
   </mat-grid-tile>
+
 </mat-grid-list>
 
 
