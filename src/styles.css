@@ -33,14 +33,18 @@ body::before {
 }
 
 .mat-accent .mat-slider-track-fill {
-  background-color: white !important;
+  background-color: rgba(256, 256, 256, 0.8) !important;
+  right: 7px;
+}
+.mat-accent .mat-slider-track-background {
+  background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
 .mat-slider-thumb-label {
-  background-color: white !important;
+  background-color: rgba(256, 256, 256, 0.8) !important;
 
 }
 
 .mat-slider-thumb {
-  background-color: white !important;
+  background-color: rgba(256, 256, 256, 0.8) !important;
 }
