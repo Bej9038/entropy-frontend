@@ -1,26 +1,40 @@
-<mat-grid-list cols=1 rowHeight="160px">
-  <mat-grid-tile>
-    <mat-card class="textCard">
-      <mat-form-field class="text">
-        <mat-label>Description</mat-label>
-        <input matInput maxlength="100" [(ngModel)]="textPrompt">
-      </mat-form-field>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-slider [max]="10" [min]="1" [(ngModel)]="duration">
-    </mat-slider>
-  </mat-grid-tile>
+<mat-card class="textCard">
+  <mat-grid-list class="gridlist" cols=1 rowHeight="40px">
 
-  <mat-grid-tile>
-    <button class="generateButton" (click)="generate()" mat-button> Generate </button>
-  </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
 
-  <mat-grid-tile>
-    <audio class="audioPlayer" controls [src]="audioSrc"></audio>
-  </mat-grid-tile>
+    <mat-grid-tile rowspan="2" class="descriptionTile">
+        <mat-form-field class="text">
+          <mat-label>description</mat-label>
+          <input matInput maxlength="100" [(ngModel)]="textPrompt">
+        </mat-form-field>
+    </mat-grid-tile>
 
-</mat-grid-list>
+    <mat-grid-tile>
+      <mat-slider #slider max="10" min="1" [displayWith]="formatLabel">
+        <input matsliderthumb>
+      </mat-slider>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="label-container">
+        <label class="durationLabel">duration</label>
+        <label class="valueLabel">{{slider.value}}</label>
+      </div>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile rowspan="4" class="generateTile">
+      <button class="generateButton" (click)="generate()" mat-button> generate </button>
+    </mat-grid-tile>
+
+
+  </mat-grid-list>
+</mat-card>
+
+<audio #audioPlayer class="audioPlayer" controls [src]="audioSrc"></audio>
+
 
 
 

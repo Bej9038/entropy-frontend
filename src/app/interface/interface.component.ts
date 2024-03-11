@@ -22,6 +22,10 @@ export class InterfaceComponent implements OnInit {
   ngOnInit(): void {}
   constructor(private http: HttpClient, private audioService: AudioService) {}
 
+  formatLabel(value: number): string {
+    return `${value}`;
+  }
+
   generate(){
     this.audioSrc = undefined;
 

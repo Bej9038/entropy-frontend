@@ -1,10 +1,24 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+:root {
+  --greyscale: 100;
+  --alpha: 0.25;
+  --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), var(--alpha));
+  --translucent-font: rgba(256, 256, 256, 0.4);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background: url("assets/AdobeStock_716555249.jpeg");
   background-repeat: no-repeat;
-  background-size: 100vw 100vh;
-  background-position: center top;
+  /*background-size: 100vw 100vh;*/
+  /*background-position: center top;*/
+  background-position: center center;
+  background-size: cover;
 }
 
 body::before {
@@ -14,6 +28,19 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  background: rgba(0, 0, 0, 0.4); /* Black overlay with 50% opacity */
   z-index: 0;
+}
+
+.mat-accent .mat-slider-track-fill {
+  background-color: white !important;
+}
+
+.mat-slider-thumb-label {
+  background-color: white !important;
+
+}
+
+.mat-slider-thumb {
+  background-color: white !important;
 }
