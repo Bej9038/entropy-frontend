@@ -12,6 +12,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -19,18 +20,19 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     InterfaceComponent,
     NavbarComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MatCardModule,
-    MatInputModule,
-    MatSliderModule,
-    MatButtonToggleModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatToolbarModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        MatCardModule,
+        MatInputModule,
+        MatSliderModule,
+        MatButtonToggleModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatToolbarModule,
+        MatProgressBarModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

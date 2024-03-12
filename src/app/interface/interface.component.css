@@ -74,7 +74,6 @@
   color: var(--translucent-font);
 }
 
-
 .value {
   font-weight: 600;
 }
@@ -85,4 +84,10 @@
   right: 0;
   margin: auto;
   position: relative;
+}
+
+/* Progress Bar */
+
+.progressBar {
+  width: 80%;
 }

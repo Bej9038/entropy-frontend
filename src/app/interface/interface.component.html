@@ -1,32 +1,38 @@
 <mat-card class="textCard">
-  <mat-grid-list class="gridlist" cols=1 rowHeight="40px">
+  <mat-grid-list class="gridlist" cols=3 rowHeight="40px">
 
     <mat-grid-tile>
     </mat-grid-tile>
 
-    <mat-grid-tile rowspan="2" class="descriptionTile">
+    <mat-grid-tile colspan="3" rowspan="2" class="descriptionTile">
         <mat-form-field class="text">
           <mat-label>description</mat-label>
           <input matInput maxlength="100" [(ngModel)]="textPrompt">
         </mat-form-field>
     </mat-grid-tile>
 
-    <mat-grid-tile>
+    <mat-grid-tile colspan="1">
+
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1">
       <mat-slider #slider max="10" min="1" [displayWith]="formatLabel">
         <input matsliderthumb>
       </mat-slider>
+<!--      <div class="label-container">-->
+<!--        <label class="durationLabel">duration</label>-->
+<!--        <label class="valueLabel">{{slider.value}}</label>-->
+<!--      </div>-->
     </mat-grid-tile>
 
-    <mat-grid-tile>
-      <div class="label-container">
-        <label class="durationLabel">duration</label>
-        <label class="valueLabel">{{slider.value}}</label>
-      </div>
+    <mat-grid-tile colspan="1">
+
     </mat-grid-tile>
 
 
-    <mat-grid-tile rowspan="4" class="generateTile">
-      <button class="generateButton" (click)="generate()" mat-button> generate </button>
+    <mat-grid-tile colspan="3" rowspan="4" class="generateTile">
+      <button *ngIf="showGenerate" class="generateButton" (click)="generate()" mat-button> generate </button>
+      <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
     </mat-grid-tile>
 
 
