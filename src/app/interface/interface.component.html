@@ -1,7 +1,6 @@
 <mat-card class="textCard">
   <mat-grid-list class="gridlist" cols=3 rowHeight="100px">
-
-    <mat-grid-tile colspan="3" rowspan="2" class="descriptionTile">
+    <mat-grid-tile style="margin-top: 40px" colspan="3" rowspan="2" class="descriptionTile">
         <mat-form-field class="text">
           <mat-label>description</mat-label>
           <input matInput maxlength="100" [(ngModel)]="textPrompt">
@@ -12,7 +11,7 @@
       <app-key-select></app-key-select>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="1" rowspan="2">
+    <mat-grid-tile colspan="1" rowspan="1">
       <mat-slider #slider max="10" min="1" [displayWith]="formatLabel">
         <input matsliderthumb>
       </mat-slider>
@@ -22,20 +21,27 @@
 <!--      </div>-->
     </mat-grid-tile>
 
+
+
     <mat-grid-tile colspan="1" rowspan="2">
       <app-bpm-select></app-bpm-select>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-slider #slider max="10" min="1" [displayWith]="formatLabel">
+        <input matsliderthumb>
+      </mat-slider>
     </mat-grid-tile>
 
     <mat-grid-tile colspan="3" rowspan="2" class="generateTile">
       <button *ngIf="showGenerate" class="generateButton" (click)="generate()" mat-button> generate </button>
       <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+      <audio *ngIf="showAudio" class="audioPlayer" controls [src]="audioSrc"></audio>
     </mat-grid-tile>
-
 
   </mat-grid-list>
 </mat-card>
 
-<audio class="audioPlayer" controls [src]="audioSrc"></audio>
 
 
 

@@ -22,6 +22,7 @@ export class InterfaceComponent implements OnInit {
   progressBarMode: ProgressBarMode = "determinate";
   showProgressBar: boolean = false;
   showGenerate: boolean = true;
+  showAudio: boolean = false;
 
   ngOnInit(): void {}
   constructor(private http: HttpClient, private audioService: AudioService) {}
@@ -42,19 +43,14 @@ export class InterfaceComponent implements OnInit {
   generateTeardown()
   {
     this.showProgressBar = false;
-    this.showGenerate = true;
+    this.showGenerate = false;
+    this.showAudio = true;
     this.progressBarMode = "determinate";
   }
 
   generate(){
     this.generateSetup();
-
-    // this.sendReq()
-
-
-
-
-
+    this.sendReq()
   }
 
   sendReq()

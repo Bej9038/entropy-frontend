@@ -28,8 +28,12 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.43); /* Black overlay with 50% opacity */
   z-index: 0;
+  background: rgba(0, 0, 0, 0.2); /* Black overlay with 50% opacity */
+
+  /*background: radial-gradient(circle, transparent 10%, black 100%);*/
+  /*rgba(0, 0, 0, 0.2);*/
+
 }
 
 .mat-accent .mat-slider-track-fill {
