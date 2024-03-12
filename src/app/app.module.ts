@@ -13,12 +13,16 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { KeySelectComponent } from './key-select/key-select.component';
+import { BpmSelectComponent } from './bpm-select/bpm-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InterfaceComponent,
     NavbarComponent,
+    KeySelectComponent,
+    BpmSelectComponent,
   ],
     imports: [
         BrowserModule,

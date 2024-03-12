@@ -50,9 +50,8 @@
   padding: 14px 40px;
 }
 
-
 .mat-slider {
-  width: 250px;
+  width: 60%;
 }
 
 .mat-form-field-underline {
@@ -90,4 +89,9 @@
 
 .progressBar {
   width: 80%;
+}
+
+.keySelect {
+  /*height: 100% !important;*/
+  /*width: 100% !important;*/
 }
