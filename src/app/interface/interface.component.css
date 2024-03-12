@@ -78,11 +78,11 @@
 }
 
 .audioPlayer {
-  top: 80px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  position: relative;
+  /*top: 80px;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*margin: auto;*/
+  /*position: relative;*/
 }
 
 /* Progress Bar */

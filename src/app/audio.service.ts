@@ -36,9 +36,6 @@ export class AudioService {
     const byteArray = new Uint8Array(byteNumbers);
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
     console.log("returning audio url")
-    let url = URL.createObjectURL(audioBlob)
-    // this.displayAudio(url)
-    console.log(url)
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob));
   }
 }
