@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
+import {PromptService} from "../prompt.service";
 
 @Component({
   selector: 'app-interface',
@@ -11,7 +12,6 @@ import {ProgressBarMode} from "@angular/material/progress-bar";
   styleUrls: ['./interface.component.css']
 })
 export class InterfaceComponent implements OnInit {
-  textPrompt = '';
   duration = 5;
   stereo = true;
   entropy = 0.9;
@@ -25,7 +25,7 @@ export class InterfaceComponent implements OnInit {
   showAudio: boolean = false;
 
   ngOnInit(): void {}
-  constructor(private http: HttpClient, private audioService: AudioService) {}
+  constructor(private http: HttpClient, private audioService: AudioService, public promptService: PromptService) {}
 
   formatLabel(value: number): string {
     return `${value}`;
@@ -33,7 +33,7 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
-    this.textPrompt = "";
+    this.promptService.prompt = "";
     this.audioSrc = undefined;
     this.progressBarMode = "indeterminate";
     this.showProgressBar = true;
@@ -49,7 +49,7 @@ export class InterfaceComponent implements OnInit {
   }
 
   generate(){
-    this.generateSetup();
+    console.log(this.promptService.getCurrentPrompt())
     this.sendReq()
   }
 
@@ -58,12 +58,13 @@ export class InterfaceComponent implements OnInit {
     let id: string = "";
     const request = {
       "input": {
-        "text": this.textPrompt,
+        "text": this.promptService.getCurrentPrompt(),
         "entropy": this.entropy,
         "duration": this.duration,
         "stereo": this.stereo
       }
     }
+    this.generateSetup();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`
