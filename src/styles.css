@@ -8,6 +8,7 @@
   --translucent2: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.6);
   --translucent-accent: rgba(33, 142, 145, 0.2);
   --translucent-dark: rgba(256, 256, 256, 0.4);
+  --bar-size: 6px;
 }
 
 html, body {
