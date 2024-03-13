@@ -15,6 +15,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { KeySelectComponent } from './key-select/key-select.component';
 import { BpmSelectComponent } from './bpm-select/bpm-select.component';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BpmSelectComponent } from './bpm-select/bpm-select.component';
     NavbarComponent,
     KeySelectComponent,
     BpmSelectComponent,
+    SliderComponent,
   ],
     imports: [
         BrowserModule,

@@ -50,27 +50,8 @@
   padding: 14px 40px;
 }
 
-.mat-slider {
-  width: 60%;
-}
-
 .mat-form-field-underline {
   color: white;
-}
-
-.label-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.valueLabel {
-  margin-left: 140px;
-  width: 10px;
-  color: var(--translucent-dark);
-}
-.durationLabel {
-  margin-right: 10px;
-  color: var(--translucent-dark);
 }
 
 .value {
@@ -89,9 +70,4 @@
 
 .progressBar {
   width: 80%;
-}
-
-.keySelect {
-  /*height: 100% !important;*/
-  /*width: 100% !important;*/
 }
