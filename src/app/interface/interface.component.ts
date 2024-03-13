@@ -23,6 +23,11 @@ export class InterfaceComponent implements OnInit {
   showProgressBar: boolean = false;
   showGenerate: boolean = true;
   showAudio: boolean = false;
+  suggestionDescriptions: string[] = ["jazz trumpet solo",
+    "hip hop snare drum",
+    "dubstep bass loop",
+    "erie piano atmosphere",
+    "cinematic drum loop"];
 
   ngOnInit(): void {}
   constructor(private http: HttpClient, private audioService: AudioService, public promptService: PromptService) {}
