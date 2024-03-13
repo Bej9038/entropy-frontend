@@ -47,7 +47,7 @@
   font-size: 30px;
   font-weight: 600;
   /*background-color: var(--translucent);*/
-  padding: 14px 40px;
+  padding: 25px 50px;
 }
 
 .mat-form-field-underline {
@@ -70,4 +70,8 @@
 
 .progressBar {
   width: 80%;
+}
+
+.mat-button:active {
+  background-color: var(--translucent-accent);
 }

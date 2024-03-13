@@ -1,0 +1,9 @@
+<mat-grid-list class="gridlist" cols=1 rowHeight="50px" gutterSize='10px'>
+  <mat-grid-tile class="tile" colspan="1" rowspan="2">
+    <button [class.selected]="BPMSelected" (click)="toggleBPM()" class="keyButton" mat-flat-button> BPM </button>
+    <mat-form-field appearance="outline">
+      <mat-label>Value</mat-label>
+      <input [disabled]="!BPMSelected" matInput maxlength="3" [(ngModel)]="bpm">
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>

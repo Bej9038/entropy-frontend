@@ -1,0 +1,27 @@
+.gridlist {
+  width: 50vw;
+  height: 50vh;
+}
+
+.keyButton {
+  height: 50%;
+  /*width: 80px;*/
+  color: white;
+  background-color: var(--translucent);
+  margin: 5px;
+}
+
+.mat-form-field {
+  width: 20%;
+  text-align: center;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.selected {
+  background-color: var(--translucent-accent);
+}
+

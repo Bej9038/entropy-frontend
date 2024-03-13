@@ -16,6 +16,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { KeySelectComponent } from './key-select/key-select.component';
 import { BpmSelectComponent } from './bpm-select/bpm-select.component';
 import { SliderComponent } from './slider/slider.component';
+import {MatRippleModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -26,19 +27,20 @@ import { SliderComponent } from './slider/slider.component';
     BpmSelectComponent,
     SliderComponent,
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        MatCardModule,
-        MatInputModule,
-        MatSliderModule,
-        MatButtonToggleModule,
-        MatButtonModule,
-        MatGridListModule,
-        MatToolbarModule,
-        MatProgressBarModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatCardModule,
+    MatInputModule,
+    MatSliderModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatRippleModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

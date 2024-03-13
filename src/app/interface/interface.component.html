@@ -1,5 +1,5 @@
 <mat-card class="textCard">
-  <mat-grid-list class="gridlist" cols=3 rowHeight="100px">
+  <mat-grid-list class="gridlist" cols=3 rowHeight="128px">
     <mat-grid-tile style="margin-top: 40px" colspan="3" rowspan="2" class="descriptionTile">
         <mat-form-field class="text">
           <mat-label>description</mat-label>
@@ -16,14 +16,14 @@
     </mat-grid-tile>
 
     <mat-grid-tile colspan="1" rowspan="2">
-      <app-bpm-select #bpmSelectComponent></app-bpm-select>
+      <app-bpm-select></app-bpm-select>
     </mat-grid-tile>
 
     <mat-grid-tile colspan="1" rowspan="1">
       <app-slider name="entropy" [min]=0.9 [max]=1.4 [step]=0.01 [default]=1.0></app-slider>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="3" rowspan="2" class="generateTile">
+    <mat-grid-tile colspan="3" rowspan="1" class="generateTile">
       <button *ngIf="showGenerate" class="generateButton" (click)="generate()" mat-button> generate </button>
       <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
       <audio *ngIf="showAudio" class="audioPlayer" controls [src]="audioSrc"></audio>

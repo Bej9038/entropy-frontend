@@ -1,0 +1,19 @@
+.label-container {
+  display: flex;
+  justify-content: space-between;
+}
+.valueLabel {
+  color: var(--translucent-dark);
+}
+.nameLabel {
+  color: var(--translucent-dark);
+}
+
+.nameLabelContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-slider {
+  width: 200px;
+}
