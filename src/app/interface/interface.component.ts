@@ -50,9 +50,8 @@ export class InterfaceComponent implements OnInit {
 
   generate(){
     console.log(this.promptService.getCurrentPrompt())
-    this.generateSetup();
-
-    // this.sendReq()
+    // this.generateSetup();
+    this.sendReq()
   }
 
   sendReq()
