@@ -2,9 +2,10 @@
 
 :root {
   --greyscale: 100;
-  --alpha: 0.25;
-  --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), var(--alpha));
-  --translucent-font: rgba(256, 256, 256, 0.4);
+  --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.4);
+  --translucent2: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.6);
+  --translucent-accent: rgba(33, 142, 145, 0.2);
+  --translucent-dark: rgba(256, 256, 256, 0.4);
 }
 
 html, body {
@@ -13,7 +14,7 @@ html, body {
 }
 
 body {
-  background: url("assets/AdobeStock_716555249.jpeg");
+  background: url("assets/AdobeStock_245883875.jpeg");
   background-repeat: no-repeat;
   /*background-size: 100vw 100vh;*/
   /*background-position: center top;*/
@@ -29,7 +30,7 @@ body::before {
   right: 0;
   bottom: 0;
   z-index: 0;
-  background: rgba(0, 0, 0, 0.2); /* Black overlay with 50% opacity */
+  background: rgba(0, 0, 0, 0.4); /* Black overlay with 50% opacity */
 
   /*background: radial-gradient(circle, transparent 10%, black 100%);*/
   /*rgba(0, 0, 0, 0.2);*/
