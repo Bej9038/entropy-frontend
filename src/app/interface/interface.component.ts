@@ -15,10 +15,11 @@ export class InterfaceComponent implements OnInit {
   duration = 5;
   stereo = true;
   entropy = 0.9;
-  apiKey = "IP9F71H42CBD1KR6V3REJKLWUODX904XTKKPVPLG";
+  apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
   run_async_url: string = "https://api.runpod.ai/v2/y4bhqyz247xbh2/run";
   status_url: string = "https://api.runpod.ai/v2/y4bhqyz247xbh2/status/";
-  audioSrc: SafeUrl | undefined;
+  audioSrc1: SafeUrl | undefined;
+  audioSrc2: SafeUrl | undefined;
   progressBarMode: ProgressBarMode = "determinate";
   showProgressBar: boolean = false;
   showGenerate: boolean = true;
@@ -39,7 +40,8 @@ export class InterfaceComponent implements OnInit {
   generateSetup()
   {
     this.promptService.prompt = "";
-    this.audioSrc = undefined;
+    this.audioSrc1 = undefined;
+    this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
     this.showProgressBar = true;
     this.showGenerate = false;
@@ -56,18 +58,19 @@ export class InterfaceComponent implements OnInit {
   generate(){
     console.log(this.promptService.getCurrentPrompt())
     // this.generateSetup();
-    this.sendReq()
+    // this.sendReq()
   }
 
   sendReq()
   {
     let id: string = "";
-    const request = {
+    const req = {
       "input": {
         "text": this.promptService.getCurrentPrompt(),
         "entropy": this.entropy,
         "duration": this.duration,
-        "stereo": this.stereo
+        "stereo": this.stereo,
+        "ping": 0
       }
     }
     this.generateSetup();
@@ -77,7 +80,7 @@ export class InterfaceComponent implements OnInit {
     });
     console.log("sending request to server")
     console.log(this.entropy)
-    this.http.post<any>(this.run_async_url, request, { headers })
+    this.http.post<any>(this.run_async_url, req, { headers })
       .subscribe(response =>
       {
         id = response["id"];
@@ -85,13 +88,15 @@ export class InterfaceComponent implements OnInit {
 
     let intervalRef = setInterval(() => {
       console.log("checking status")
-      this.http.post<any>(this.status_url + id, request, { headers })
+      this.http.post<any>(this.status_url + id, req, { headers })
         .subscribe(response => {
           if(response["status"] == "COMPLETED")
           {
             console.log("request complete")
-            let base64 = response["output"]
-            this.audioSrc = this.audioService.decodeBase64ToAudioURL(base64)
+            let base641 = response["output"][0]
+            let base642 = response["output"][1]
+            this.audioSrc1 = this.audioService.decodeBase64ToAudioURL(base641)
+            this.audioSrc2 = this.audioService.decodeBase64ToAudioURL(base642)
             this.generateTeardown()
             clearInterval(intervalRef);
           }

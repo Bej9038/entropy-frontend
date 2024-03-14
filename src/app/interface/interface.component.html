@@ -21,13 +21,14 @@
     </mat-grid-tile>
 
     <mat-grid-tile colspan="1" rowspan="1">
-      <app-slider name="entropy" [min]=0.9 [max]=1.5 [step]=0.01 [default]=0.9></app-slider>
+      <app-slider name="entropy" [min]=0 [max]=2.0 [step]=0.1 [default]=1.0></app-slider>
     </mat-grid-tile>
 
     <mat-grid-tile colspan="3" rowspan="2" class="generateTile">
       <button *ngIf="showGenerate" class="generateButton" (click)="generate()" mat-button> generate </button>
       <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-      <audio *ngIf="showAudio" class="audioPlayer" controls [src]="audioSrc"></audio>
+      <audio *ngIf="showAudio" class="audioPlayer" controls [src]="audioSrc1"></audio>
+      <audio *ngIf="showAudio" class="audioPlayer" controls [src]="audioSrc2"></audio>
     </mat-grid-tile>
 
   </mat-grid-list>
