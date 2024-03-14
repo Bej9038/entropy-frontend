@@ -14,8 +14,13 @@
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="1">
-    <mat-error *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max')) && BPMSelected">
+    <mat-error *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))
+    && BPMSelected
+    && !numberInputControl.hasError('pattern')">
       error: 60 <= bpm <= 200
+    </mat-error>
+    <mat-error *ngIf="numberInputControl.hasError('pattern') && BPMSelected ">
+      error: bpm must be numeric
     </mat-error>
   </mat-grid-tile>
 </mat-grid-list>

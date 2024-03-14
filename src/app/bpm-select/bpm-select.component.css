@@ -14,11 +14,17 @@
 .mat-form-field {
   width: 20%;
   text-align: center;
+  margin: 5px;
 }
 
 ::ng-deep .mat-form-field-wrapper {
   margin: 0;
   padding: 0;
+}
+
+.mat-error {
+  margin-bottom: 30px;
+  font-size: 12px !important;
 }
 
 .selected {

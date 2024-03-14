@@ -12,9 +12,9 @@ export class BpmSelectComponent implements OnInit {
   bpmLimit: number = 60
   BPMSelected: boolean = true
   numberInputControl= new FormControl('', [
+    Validators.pattern('^[0-9]+$'),
     Validators.min(60),
     Validators.max(200),
-    // this.numberValidator,
   ]);
 
   dummyControl= new FormControl('', [
@@ -41,7 +41,7 @@ export class BpmSelectComponent implements OnInit {
   }
 
   numberValidator(control: FormControl): { [key: string]: any } | null {
-    const isNotANumber = isNaN(control.value);
-    return isNotANumber ? { 'notANumber': { value: control.value } } : null;
+    const isNumber = typeof control.value == 'number'
+    return isNumber ? { 'notANumber': { value: control.value } } : null;
   }
 }
