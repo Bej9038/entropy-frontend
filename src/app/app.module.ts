@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
 import { InterfaceComponent } from './interface/interface.component';
 import { AppComponent } from './app.component';
@@ -27,20 +27,21 @@ import {MatRippleModule} from "@angular/material/core";
     BpmSelectComponent,
     SliderComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MatCardModule,
-    MatInputModule,
-    MatSliderModule,
-    MatButtonToggleModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatRippleModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        MatCardModule,
+        MatInputModule,
+        MatSliderModule,
+        MatButtonToggleModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatRippleModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

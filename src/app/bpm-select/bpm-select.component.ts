@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PromptService} from "../prompt.service";
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bpm-select',
@@ -10,6 +11,14 @@ export class BpmSelectComponent implements OnInit {
   bpm: number = 120
   bpmLimit: number = 60
   BPMSelected: boolean = true
+  numberInputControl= new FormControl('', [
+    Validators.min(60),
+    Validators.max(200),
+    // this.numberValidator,
+  ]);
+
+  dummyControl= new FormControl('', [
+  ]);
 
   constructor(public promptService: PromptService) { }
 
@@ -29,5 +38,10 @@ export class BpmSelectComponent implements OnInit {
   toggleBPM()
   {
     this.BPMSelected = !this.BPMSelected;
+  }
+
+  numberValidator(control: FormControl): { [key: string]: any } | null {
+    const isNotANumber = isNaN(control.value);
+    return isNotANumber ? { 'notANumber': { value: control.value } } : null;
   }
 }
