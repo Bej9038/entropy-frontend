@@ -13,7 +13,7 @@
 
 .mat-form-field {
   width: 20%;
-  text-align: center;
+  /*text-align: center;*/
   margin: 5px;
 }
 
@@ -23,8 +23,11 @@
 }
 
 .mat-error {
-  margin-bottom: 30px;
+  position: absolute;
+  top: 90px;
+  /*margin-bottom: 30px;*/
   font-size: 12px !important;
+
 }
 
 .selected {

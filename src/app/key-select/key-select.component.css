@@ -19,3 +19,18 @@
   background-color: var(--translucent-accent);
 }
 
+/*.flex-container {*/
+/*  display: flex;*/
+/*  flex-direction: column; !* Stack the items vertically *!*/
+/*  gap: 10px; !* Mimics the gutterSize *!*/
+/*}*/
+
+/*.flex-item {*/
+/*  display: flex;*/
+/*  gap: 10px; !* Space between buttons *!*/
+/*}*/
+
+/*.keyButton {*/
+/*  flex: 1; !* Each button takes equal space *!*/
+/*  height: 50px; !* Mimics the rowHeight *!*/
+/*}*/
