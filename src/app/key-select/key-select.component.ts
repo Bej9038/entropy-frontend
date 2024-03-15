@@ -10,6 +10,7 @@ export class KeySelectComponent implements OnInit {
   selectedKeyId: number = 5;
   sharpSelected = false;
   idKeyMap: Map<number, string> = new Map<number, string>();
+  halfStepDownMap: Map<string, string> = new Map<string, string>();
 
   constructor(public reqService: ReqService) { }
 
@@ -22,6 +23,19 @@ export class KeySelectComponent implements OnInit {
     this.idKeyMap.set(5, "a")
     this.idKeyMap.set(6, "b")
     this.idKeyMap.set(7, "")
+
+    this.halfStepDownMap.set("c", "b")
+    this.halfStepDownMap.set("c#", "c")
+    this.halfStepDownMap.set("d", "c#")
+    this.halfStepDownMap.set("d#", "d")
+    this.halfStepDownMap.set("e", "d#")
+    this.halfStepDownMap.set("f", "e")
+    this.halfStepDownMap.set("f#", "f")
+    this.halfStepDownMap.set("g", "f#")
+    this.halfStepDownMap.set("g#", "g")
+    this.halfStepDownMap.set("a", "g#")
+    this.halfStepDownMap.set("a#", "a")
+    this.halfStepDownMap.set("b", "a#")
   }
 
   selectButton(id: number): void {
@@ -37,6 +51,7 @@ export class KeySelectComponent implements OnInit {
         {
             this.reqService.key += "#"
         }
+        this.reqService.key = this.halfStepDownMap.get(<string>this.reqService.key)
     }
   }
 
@@ -47,9 +62,11 @@ export class KeySelectComponent implements OnInit {
       if(this.sharpSelected)
       {
         this.reqService.key += "#"
+        this.reqService.key = this.halfStepDownMap.get(<string>this.reqService.key)
       }
       else {
         this.reqService.key = this.reqService.key?.slice(0, -1)
+        this.reqService.key = this.halfStepDownMap.get(<string>this.reqService.key)
       }
     }
   }
