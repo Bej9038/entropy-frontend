@@ -22,7 +22,7 @@ export class ReqService {
       {
         text += " "
       }
-      text += this.bpm
+      text += this.bpm + " bpm"
     }
     if(this.key != "")
     {
