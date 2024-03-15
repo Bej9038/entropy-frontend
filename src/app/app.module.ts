@@ -17,6 +17,7 @@ import { KeySelectComponent } from './key-select/key-select.component';
 import { BpmSelectComponent } from './bpm-select/bpm-select.component';
 import { SliderComponent } from './slider/slider.component';
 import {MatRippleModule} from "@angular/material/core";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatRippleModule} from "@angular/material/core";
         MatToolbarModule,
         MatProgressBarModule,
         MatRippleModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatIconModule
     ],
   providers: [],
   bootstrap: [AppComponent]

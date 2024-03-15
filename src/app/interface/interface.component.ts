@@ -5,6 +5,7 @@ import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../req.service";
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-interface',
@@ -22,7 +23,7 @@ export class InterfaceComponent implements OnInit {
   audioSrc2: SafeUrl | undefined;
   progressBarMode: ProgressBarMode = "determinate";
   showProgressBar: boolean = false;
-  showGenerate: boolean = true;
+  generating: boolean = false;
   showAudio: boolean = false;
   suggestionDescriptions: string[] = ["jazz trumpet solo",
     "hip hop snare drum",
@@ -33,10 +34,6 @@ export class InterfaceComponent implements OnInit {
   ngOnInit(): void {}
   constructor(private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
 
-  formatLabel(value: number): string {
-    return `${value}`;
-  }
-
   generateSetup()
   {
     this.reqService.description = "";
@@ -44,21 +41,33 @@ export class InterfaceComponent implements OnInit {
     this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
     this.showProgressBar = true;
-    this.showGenerate = false;
+    this.generating = true;
   }
 
   generateTeardown()
   {
     this.showProgressBar = false;
-    this.showGenerate = false;
-    this.showAudio = true;
+    this.generating = false;
     this.progressBarMode = "determinate";
   }
 
   generate(){
-    console.log(this.reqService.getReq())
-    // this.generateSetup();
-    // this.sendReq()
+    if(!this.generating)
+    {
+      console.log(this.reqService.getReq())
+      this.generateSetup();
+      // this.sendReq()
+    }
+    else
+    {
+      this.sendCancelReq()
+    }
+
+  }
+
+  sendCancelReq()
+  {
+    this.generateTeardown()
   }
 
   sendReq()
@@ -89,6 +98,7 @@ export class InterfaceComponent implements OnInit {
             let base642 = response["output"][1]
             this.audioSrc1 = this.audioService.decodeBase64ToAudioURL(base641)
             this.audioSrc2 = this.audioService.decodeBase64ToAudioURL(base642)
+            this.showAudio = true;
             this.generateTeardown()
             clearInterval(intervalRef);
           }
