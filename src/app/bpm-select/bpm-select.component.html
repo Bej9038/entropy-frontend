@@ -2,7 +2,7 @@
   <mat-grid-tile class="tile" colspan="1" rowspan="2">
     <button [class.selected]="BPMSelected" (click)="toggleBPM()" class="keyButton" mat-flat-button> bpm </button>
     <mat-form-field appearance="outline">
-      <mat-label>value</mat-label>
+<!--      <mat-label *ngIf="!BPMSelected">value</mat-label>-->
       <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"
              [(ngModel)]="bpm" (change)="updateBPM()">
     </mat-form-field>
@@ -16,8 +16,4 @@
         error: bpm must be numeric
       </mat-error>
   </mat-grid-tile>
-
-<!--  <mat-grid-tile colspan="1">-->
-
-<!--  </mat-grid-tile>-->
 </mat-grid-list>

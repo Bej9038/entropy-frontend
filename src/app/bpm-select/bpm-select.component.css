@@ -22,6 +22,14 @@
   padding: 0;
 }
 
+::ng-deep .mat-form-field-outline-start{
+  width: 100px !important;
+}
+
+::ng-deep .mat-form-field-outline-gap {
+  width: 0 !important;
+}
+
 .mat-error {
   position: absolute;
   top: 90px;

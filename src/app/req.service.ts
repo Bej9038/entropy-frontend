@@ -9,6 +9,7 @@ export class ReqService {
   key: string | undefined = "a"
   entropy: number = 1.1
   duration: number = 6
+  disableGeneration: boolean = false
 
   constructor() { }
 

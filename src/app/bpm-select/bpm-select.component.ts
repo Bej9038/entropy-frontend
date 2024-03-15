@@ -26,6 +26,13 @@ export class BpmSelectComponent implements OnInit {
   updateBPM()
   {
     this.reqService.bpm = this.bpm
+    if(this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern'))
+    {
+      this.reqService.disableGeneration = true
+    }
+    else {
+      this.reqService.disableGeneration = false
+    }
   }
 
   toggleBPM()
@@ -34,9 +41,19 @@ export class BpmSelectComponent implements OnInit {
     if(!this.BPMSelected)
     {
       this.reqService.bpm = ""
+      if(this.reqService.disableGeneration)
+      {
+        this.reqService.disableGeneration = false
+      }
     }
     else {
       this.reqService.bpm = this.bpm
+      if((this.numberInputControl.hasError('min') ||
+        this.numberInputControl.hasError('max') ||
+        this.numberInputControl.hasError('pattern')) && !this.reqService.disableGeneration)
+      {
+        this.reqService.disableGeneration = true
+      }
     }
   }
 }

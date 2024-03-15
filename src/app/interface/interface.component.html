@@ -1,15 +1,17 @@
 <mat-card class="textCard">
-  <div style="height: 40px"></div>
-  <mat-grid-list class="gridlist" cols=3 rowHeight="12vh">
-    <mat-grid-tile class="texttile" colspan="3" rowspan="2" class="descriptionTile">
-        <button class="generateButton" (click)="generate()" mat-button>
-          <mat-icon *ngIf="!generating">play_arrow</mat-icon>
-          <mat-icon *ngIf="generating">stop</mat-icon>
-        </button>
-        <mat-form-field class="text">
-          <mat-label>description</mat-label>
-          <input matInput maxlength="100" [(ngModel)]="reqService.description">
-        </mat-form-field>
+<!--  <div style="height: 40px"></div>-->
+  <mat-grid-list cols=3 rowHeight="12vh">
+    <mat-grid-tile class="texttile" colspan="3" rowspan="2">
+      <button [disabled]="reqService.disableGeneration" class="generateButton" (click)="generate()" mat-button>
+        <mat-icon *ngIf="!generating">play_arrow</mat-icon>
+        <mat-icon *ngIf="generating">stop</mat-icon>
+      </button>
+      <mat-form-field class="text">
+        <mat-label>description</mat-label>
+        <input [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
+      </mat-form-field>
+      <button [disabled]="true" class="generateButton" mat-button>
+      </button>
     </mat-grid-tile>
 
     <mat-grid-tile class="keySelect" colspan="1" rowspan="2">
@@ -27,13 +29,20 @@
     <mat-grid-tile colspan="1" rowspan="1">
       <app-slider name="entropy" [min]=0 [max]=2.0 [step]=0.1 [default]=1.0></app-slider>
     </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
 
-    <mat-grid-tile colspan="3" rowspan="2" class="generateTile">
-      <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-      <audio *ngIf="showAudio" class="audioPlayer" controls [src]="audioSrc1"></audio>
-      <audio *ngIf="showAudio" class="audioPlayer" controls [src]="audioSrc2"></audio>
+<mat-card class="textCard">
+  <mat-grid-list cols=2 rowHeight="10vh" >
+    <mat-grid-tile *ngIf="showProgressBar" colspan="2" rowspan="1">
+      <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
     </mat-grid-tile>
-
+    <mat-grid-tile *ngIf="showAudio" colspan="1" rowspan="1" class="generateTile">
+        <audio class="audioPlayer" controls [src]="audioSrc2"></audio>
+      </mat-grid-tile>
+    <mat-grid-tile *ngIf="showAudio" colspan="1" rowspan="1" class="generateTile">
+      <audio class="audioPlayer" controls [src]="audioSrc1"></audio>
+    </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
 
