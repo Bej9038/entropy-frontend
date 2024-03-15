@@ -3,6 +3,23 @@
   text-align: center;
   color: white;
   font-size: 32px;
+  height: 90.4px;
+}
+
+.generateButton {
+  color: white;
+  font-size: 32px;
+  font-weight: 600;
+  height: 62px;
+  top: 15px;
+  /*background-color: var(--translucent);*/
+  /*height: 20px;*/
+  padding-left: 32px;
+  padding-right: 32px;
+  border-top-left-radius: 50px !important;
+  border-bottom-left-radius: 50px !important;
+  border-top-right-radius: 0 !important; /* Adjust as needed */
+  border-bottom-right-radius: 0 !important;
 }
 
 .texttile {
@@ -11,6 +28,10 @@
 
 .mat-form-field-label {
   color: white !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  bottom: 0 !important;
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {
@@ -33,6 +54,10 @@
   color: var(--translucent-dark) !important;
 }
 
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
 .textCard {
   width: 90%;
   margin: 10px;
@@ -43,16 +68,6 @@
   background-color: var(--translucent);
   color: white;
   z-index: 10;
-}
-
-.generateButton {
-  color: white;
-  font-size: 32px;
-  font-weight: 600;
-  /*background-color: var(--translucent);*/
-  padding: 16px 32px;
-  /*width: 20px;*/
-  /*height: 20px;*/
 }
 
 .mat-form-field-underline {

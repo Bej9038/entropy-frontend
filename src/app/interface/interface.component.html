@@ -10,7 +10,7 @@
         <mat-label>description</mat-label>
         <input [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
       </mat-form-field>
-      <button [disabled]="true" class="generateButton" mat-button>
+      <button style="visibility: hidden" [disabled]="true" class="generateButton" mat-button>
       </button>
     </mat-grid-tile>
 
