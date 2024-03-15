@@ -13,7 +13,7 @@
 
 .mat-form-field {
   width: 20%;
-  /*text-align: center;*/
+  text-align: center;
   margin: 5px;
 }
 
@@ -49,4 +49,8 @@
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick
 {
   color: var(--translucent-accent);
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-gap {
+  /* border-top-color: transparent; */
 }

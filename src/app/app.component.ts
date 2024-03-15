@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "./audio.service";
-import {PromptService} from "./prompt.service";
+import {ReqService} from "./req.service";
 
 @Component({
   selector: 'app-root',

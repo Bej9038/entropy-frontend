@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PromptService} from "../prompt.service";
+import {ReqService} from "../req.service";
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -8,9 +8,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./bpm-select.component.css']
 })
 export class BpmSelectComponent implements OnInit {
-  bpm: number = 120
-  bpmLimit: number = 60
   BPMSelected: boolean = true
+  bpm: string = this.reqService.bpm
   numberInputControl= new FormControl('', [
     Validators.pattern('^[0-9]+$'),
     Validators.min(60),
@@ -19,28 +18,25 @@ export class BpmSelectComponent implements OnInit {
 
   dummyControl= new FormControl({value: '', disabled: true});
 
-  constructor(public promptService: PromptService) { }
+  constructor(public reqService: ReqService) { }
 
   ngOnInit(): void {
   }
 
-  getBPM() {
-    if(this.bpm >= 60)
-    {
-      return String(this.bpm);
-    }
-    else {
-      return "";
-    }
+  updateBPM()
+  {
+    this.reqService.bpm = this.bpm
   }
 
   toggleBPM()
   {
     this.BPMSelected = !this.BPMSelected;
-  }
-
-  numberValidator(control: FormControl): { [key: string]: any } | null {
-    const isNumber = typeof control.value == 'number'
-    return isNumber ? { 'notANumber': { value: control.value } } : null;
+    if(!this.BPMSelected)
+    {
+      this.reqService.bpm = ""
+    }
+    else {
+      this.reqService.bpm = this.bpm
+    }
   }
 }

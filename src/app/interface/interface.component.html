@@ -1,10 +1,10 @@
 <mat-card class="textCard">
   <div style="height: 40px"></div>
   <mat-grid-list class="gridlist" cols=3 rowHeight="12vh">
-    <mat-grid-tile style="margin-top: 0px" colspan="3" rowspan="2" class="descriptionTile">
+    <mat-grid-tile colspan="3" rowspan="2" class="descriptionTile">
         <mat-form-field class="text">
           <mat-label>description</mat-label>
-          <input matInput maxlength="100" [(ngModel)]="promptService.prompt">
+          <input matInput maxlength="100" [(ngModel)]="reqService.description">
         </mat-form-field>
     </mat-grid-tile>
 

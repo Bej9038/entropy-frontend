@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
-import {PromptService} from "../prompt.service";
+import {ReqService} from "../req.service";
 
 @Component({
   selector: 'app-interface',
@@ -31,7 +31,7 @@ export class InterfaceComponent implements OnInit {
     "cinematic drum loop"];
 
   ngOnInit(): void {}
-  constructor(private http: HttpClient, private audioService: AudioService, public promptService: PromptService) {}
+  constructor(private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
 
   formatLabel(value: number): string {
     return `${value}`;
@@ -39,7 +39,7 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
-    this.promptService.prompt = "";
+    this.reqService.description = "";
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
@@ -56,7 +56,7 @@ export class InterfaceComponent implements OnInit {
   }
 
   generate(){
-    console.log(this.promptService.getCurrentPrompt())
+    console.log(this.reqService.getReq())
     // this.generateSetup();
     // this.sendReq()
   }
@@ -64,15 +64,7 @@ export class InterfaceComponent implements OnInit {
   sendReq()
   {
     let id: string = "";
-    const req = {
-      "input": {
-        "text": this.promptService.getCurrentPrompt(),
-        "entropy": this.entropy,
-        "duration": this.duration,
-        "stereo": this.stereo,
-        "ping": 0
-      }
-    }
+    const req = this.reqService.getReq()
     this.generateSetup();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

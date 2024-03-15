@@ -3,7 +3,8 @@
     <button [class.selected]="BPMSelected" (click)="toggleBPM()" class="keyButton" mat-flat-button> bpm </button>
     <mat-form-field appearance="outline">
       <mat-label>value</mat-label>
-      <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3" [(ngModel)]="bpm">
+      <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"
+             [(ngModel)]="bpm" (change)="updateBPM()">
     </mat-form-field>
 
       <mat-error *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))
@@ -11,7 +12,7 @@
       && !numberInputControl.hasError('pattern')">
         error: 60 <= bpm <= 200
       </mat-error>
-      <mat-error *ngIf="numberInputControl.hasError('pattern') && BPMSelected ">
+      <mat-error *ngIf="numberInputControl.hasError('pattern') && BPMSelected">
         error: bpm must be numeric
       </mat-error>
   </mat-grid-tile>
