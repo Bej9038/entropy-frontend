@@ -17,8 +17,7 @@ export class BpmSelectComponent implements OnInit {
     Validators.max(200),
   ]);
 
-  dummyControl= new FormControl('', [
-  ]);
+  dummyControl= new FormControl({value: '', disabled: true});
 
   constructor(public promptService: PromptService) { }
 

@@ -4,13 +4,6 @@
     <mat-form-field appearance="outline">
       <mat-label>value</mat-label>
       <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3" [(ngModel)]="bpm">
-<!--      <mat-error *ngIf="numberInputControl.hasError('required')">-->
-<!--        This field is required.-->
-<!--      </mat-error>-->
-
-<!--      <mat-error *ngIf="numberInputControl.hasError('notANumber')">-->
-<!--        Please enter a valid number.-->
-<!--      </mat-error>-->
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="1">

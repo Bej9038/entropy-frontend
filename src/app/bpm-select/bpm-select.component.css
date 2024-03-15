@@ -31,3 +31,19 @@
   background-color: var(--translucent-accent);
 }
 
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: #f44336;
+}
+
+.mat-input-element {
+  caret-color: var(--translucent-dark);
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: var(--translucent-accent)
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick
+{
+  color: var(--translucent-accent);
+}
