@@ -6,7 +6,7 @@
   --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.4);
   --translucent2: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.6);
   --translucent-accent: rgba(144, 62, 49, .6);
-  --translucent-grey: rgba(200, 200, 200, 0.6);
+  --translucent-grey: rgba(200, 200, 200, 0.5);
   --translucent-dark: rgba(0, 0, 0, 0.3);
   --bar-size: 2px;
 }
@@ -69,7 +69,7 @@ body::before {
 }
 
 .mat-slider-thumb-label {
-  background-color: var(--translucent-grey) !important;
+  background-color: var(--translucent-dark) !important;
   color: black !important;
 
 }

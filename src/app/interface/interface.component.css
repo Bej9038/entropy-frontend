@@ -1,5 +1,25 @@
+@keyframes colorFade {
+  from {
+    color: var(--translucent-dark)
+  }
+  to {
+    color: var(--translucent-grey)
+  }
+}
+
+@keyframes opacityFade {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
 .text{
-  width: 40%;
+  width: 42%;
   text-align: center;
   color: white;
   font-size: 32px;
@@ -36,24 +56,29 @@
 
 ::ng-deep .mat-focused .mat-form-field-label {
   color: var(--translucent-grey) !important;
-  font-size: 24px !important;
 }
 
 ::ng-deep.mat-form-field-label {
   /*change color of underline when focused*/
   color: var(--translucent-dark) !important;
+  /*animation: colorFade 3s forwards !important;*/
 }
 
 ::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color: var(--translucent-dark) !important;
+  background-color: var(--white) !important;
   height: var(--bar-size) !important;
-  visibility: hidden;
+  /*visibility: hidden !important;*/
+  opacity: 0;
+  transform: scaleX(0.5);
+  animation: opacityFade 800ms cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
+
+
 ::ng-deep.mat-form-field-ripple {
   /*change color of underline when focused*/
   background-color: var(--white) !important;
-  visibility: visible !important;
+  visibility: hidden !important;
+  /*transition: fadeOut 2s;*/
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
@@ -125,6 +150,10 @@
 
 .hideAudio {
   visibility: hidden !important;
+}
+
+.valueLabel {
+  color: var(--translucent-grey);
 }
 
 .waveform

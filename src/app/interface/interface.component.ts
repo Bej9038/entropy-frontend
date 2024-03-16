@@ -5,6 +5,8 @@ import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../req.service";
 import WaveSurfer from "wavesurfer.js";
+import {state, transition, trigger, style, animate} from "@angular/animations";
+
 
 @Component({
   selector: 'app-interface',
