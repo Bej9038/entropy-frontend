@@ -5,6 +5,7 @@
   background-color: var(--translucent);
   color: white;
   font-family: 'Quando', serif !important;
+  /*font-size: 32px;*/
 }
 
 .img {

@@ -24,13 +24,14 @@ export class InterfaceComponent implements OnInit {
   showAudio: boolean = false;
   // showAudio: boolean = true;
   style = getComputedStyle(this.elementRef.nativeElement);
-  suggestionDescriptions: string[] = ["jazz trumpet solo",
+  placeholders: string[] = ["jazz trumpet solo",
     "hip hop snare drum",
     "dubstep bass loop",
     "erie piano atmosphere",
     "cinematic drum loop"];
   current_id: string = "";
   missing_id: boolean = false;
+  placeholder: string = this.placeholders[0]
 
   // @ts-ignore
   @ViewChild('waveform1') waveform1Element: ElementRef;
@@ -38,6 +39,13 @@ export class InterfaceComponent implements OnInit {
   @ViewChild('waveform2') waveform2Element: ElementRef;
 
   ngOnInit(): void {
+    let i = Math.floor(Math.random() * this.placeholders.length)
+    console.log(i)
+    let seconds = 10
+    setInterval(() => {
+      this.placeholder = this.placeholders[i];
+      i = Math.floor(Math.random() * this.placeholders.length)
+    }, seconds * 1000);
   }
 
   constructor(private elementRef: ElementRef, private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
@@ -59,6 +67,10 @@ export class InterfaceComponent implements OnInit {
     this.generating = false;
     this.progressBarMode = "determinate";
     this.current_id = "";
+  }
+
+  selectPlaceholder() {
+    this.reqService.description = this.placeholder
   }
 
   generate(){

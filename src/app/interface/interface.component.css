@@ -117,13 +117,12 @@
   height: var(--bar-size) !important;
 }
 
-/*.mat-button:active {*/
-/*  background-color: var(--translucent-accent);*/
-/*}*/
-
-/*.showAudio {*/
-/*  visibility: visible !important;*/
-/*}*/
+::ng-deep .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label
+{
+  transform: none !important;
+  width: 100% !important;
+  font-size: 32px !important;
+}
 
 .hideAudio {
   visibility: hidden !important;
