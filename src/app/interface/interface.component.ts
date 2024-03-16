@@ -6,6 +6,8 @@ import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../req.service";
 import WaveSurfer from "wavesurfer.js";
 import {state, transition, trigger, style, animate} from "@angular/animations";
+import {MatRipple} from "@angular/material/core";
+import {MatCard} from "@angular/material/card";
 
 
 @Component({
@@ -39,6 +41,8 @@ export class InterfaceComponent implements OnInit {
   @ViewChild('waveform1') waveform1Element: ElementRef;
   // @ts-ignore
   @ViewChild('waveform2') waveform2Element: ElementRef;
+  // @ts-ignore
+  @ViewChild(MatRipple) ripple: MatRipple;
 
   ngOnInit(): void {
     let i = Math.floor(Math.random() * this.placeholders.length)
@@ -65,6 +69,7 @@ export class InterfaceComponent implements OnInit {
 
   generateTeardown()
   {
+    this.reqService.disableGeneration = false;
     this.showProgressBar = false;
     this.generating = false;
     this.progressBarMode = "determinate";
@@ -76,11 +81,15 @@ export class InterfaceComponent implements OnInit {
   }
 
   generate(){
-
+    const rippleConfig = {
+      centered: true,
+      radius: 800,
+    };
+    this.ripple.launch(0, 0, rippleConfig)
     if(!this.generating)
     {
       this.generateSetup();
-      this.sendReq()
+      // this.sendReq()
     }
     else
     {

@@ -1,9 +1,9 @@
-<mat-card class="textCard">
+<mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
 <!--  <div style="height: 40px"></div>-->
   <mat-grid-list cols=3 rowHeight="12vh">
     <mat-grid-tile class="texttile" colspan="3" rowspan="2">
 <!--      <mat-card style="background-color: rgba(0,0,0,0); width: 100%; align-items: center !important;">-->
-      <button [disabled]="reqService.disableGeneration || missing_id || reqService.description == ''" class="generateButton" (click)="generate()" mat-button>
+      <button disableRipple [disabled]="reqService.disableGeneration || reqService.description == ''" class="generateButton" (click)="generate()" mat-button>
         <mat-icon *ngIf="!generating">play_arrow</mat-icon>
         <mat-icon *ngIf="generating">stop</mat-icon>
       </button>

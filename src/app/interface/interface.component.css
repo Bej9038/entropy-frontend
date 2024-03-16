@@ -34,20 +34,34 @@
   color: white;
   font-size: 32px;
   font-weight: 600;
-  height: 62px;
-  top: 12px;
+  height: 60px;
+  top: 16px;
   /*background-color: var(--translucent);*/
   /*height: 20px;*/
   padding-left: 32px;
   padding-right: 32px;
-  border-top-left-radius: 50px !important;
-  border-bottom-left-radius: 50px !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
+  /*border-top-left-radius: 50px !important;*/
+  /*border-bottom-left-radius: 50px !important;*/
+  /*border-top-right-radius: 0 !important;*/
+  /*border-bottom-right-radius: 0 !important;*/
+}
+
+/*::ng-deep .mat-ripple .mat-button-ripple*/
+/*{*/
+/*  height: 200% !important;*/
+/*  width: 200% !important;*/
+/*}*/
+
+.material-icons {
+  font-size: 32px !important;
+  display: flex;
+  align-items: center;
+  width: 32px;
+  height: 32px;
 }
 
 .texttile {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
@@ -61,6 +75,7 @@
 ::ng-deep.mat-form-field-label {
   /*change color of underline when focused*/
   color: var(--translucent-dark) !important;
+  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
   /*animation: colorFade 3s forwards !important;*/
 }
 
