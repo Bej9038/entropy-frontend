@@ -1,6 +1,4 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 :root {
   --greyscale: 100;
@@ -9,6 +7,16 @@
   --translucent-accent: rgba(33, 142, 145, 0.2);
   --translucent-dark: rgba(256, 256, 256, 0.4);
   --bar-size: 6px;
+}
+
+* {
+  /*font-family: 'Quando', serif !important;*/
+  /*font-weight: 9000 !important;*/
+  /*font-style: normal;*/
+  /*font-family: "Poppins", sans-serif;*/
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
 }
 
 html, body {
@@ -23,7 +31,7 @@ body {
   /*background-position: center top;*/
   background-position: center center;
   background-size: cover;
-  /*font-family: 'Neon Fonts', sans-serif !important;*/
+
 }
 
 body::before {

@@ -30,6 +30,7 @@ export class InterfaceComponent implements OnInit {
     "erie piano atmosphere",
     "cinematic drum loop"];
   current_id: string = "";
+  missing_id: boolean = false;
 
   // @ts-ignore
   @ViewChild('waveform1') waveform1Element: ElementRef;
@@ -43,7 +44,8 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
-    this.reqService.description = "";
+    console.log(this.reqService.getReq())
+    // this.reqService.description = "";
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
@@ -63,7 +65,6 @@ export class InterfaceComponent implements OnInit {
 
     if(!this.generating)
     {
-      console.log(this.reqService.getReq())
       this.generateSetup();
       this.sendReq()
     }
@@ -75,6 +76,7 @@ export class InterfaceComponent implements OnInit {
 
   sendCancelReq()
   {
+    this.missing_id = true;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`
@@ -86,6 +88,7 @@ export class InterfaceComponent implements OnInit {
       .subscribe(response =>
       {
         this.current_id = response["id"];
+        this.missing_id = false;
       });
     this.generateTeardown()
   }

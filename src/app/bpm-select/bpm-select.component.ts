@@ -26,13 +26,7 @@ export class BpmSelectComponent implements OnInit {
   updateBPM()
   {
     this.reqService.bpm = this.bpm
-    if(this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern'))
-    {
-      this.reqService.disableGeneration = true
-    }
-    else {
-      this.reqService.disableGeneration = false
-    }
+    this.reqService.disableGeneration = this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern');
   }
 
   toggleBPM()

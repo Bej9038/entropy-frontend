@@ -4,4 +4,10 @@
   height: 72px;
   background-color: var(--translucent);
   color: white;
+  font-family: 'Quando', serif !important;
+}
+
+.img {
+  height: 50px;
+  padding-right: 16px;
 }

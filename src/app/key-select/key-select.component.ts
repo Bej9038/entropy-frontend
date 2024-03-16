@@ -7,7 +7,7 @@ import {ReqService} from "../req.service";
   styleUrls: ['./key-select.component.css']
 })
 export class KeySelectComponent implements OnInit {
-  selectedKeyId: number = 5;
+  selectedKeyId: number = 7;
   sharpSelected = false;
   idKeyMap: Map<number, string> = new Map<number, string>();
   halfStepDownMap: Map<string, string> = new Map<string, string>();
@@ -36,6 +36,7 @@ export class KeySelectComponent implements OnInit {
     this.halfStepDownMap.set("a", "g#")
     this.halfStepDownMap.set("a#", "a")
     this.halfStepDownMap.set("b", "a#")
+    this.halfStepDownMap.set("", "")
   }
 
   selectButton(id: number): void {
