@@ -47,7 +47,7 @@
 }
 
 .mat-input-element {
-  caret-color: var(--translucent-dark);
+  caret-color: var(--translucent-accent);
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {

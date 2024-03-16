@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../req.service";
-import {MatIconModule} from '@angular/material/icon';
+import WaveSurfer from "wavesurfer.js";
 
 @Component({
   selector: 'app-interface',
@@ -13,26 +12,33 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrls: ['./interface.component.css']
 })
 export class InterfaceComponent implements OnInit {
-  duration = 5;
-  stereo = true;
-  entropy = 0.9;
   apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
-  run_async_url: string = "https://api.runpod.ai/v2/y4bhqyz247xbh2/run";
-  status_url: string = "https://api.runpod.ai/v2/y4bhqyz247xbh2/status/";
+  run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
+  status: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
+  cancel: string = "https://api.runpod.ai/v2/ket19ilq3a6nb9/cancel/";
   audioSrc1: SafeUrl | undefined;
   audioSrc2: SafeUrl | undefined;
   progressBarMode: ProgressBarMode = "determinate";
   showProgressBar: boolean = false;
   generating: boolean = false;
   showAudio: boolean = false;
+  // showAudio: boolean = true;
+  style = getComputedStyle(this.elementRef.nativeElement);
   suggestionDescriptions: string[] = ["jazz trumpet solo",
     "hip hop snare drum",
     "dubstep bass loop",
     "erie piano atmosphere",
     "cinematic drum loop"];
 
-  ngOnInit(): void {}
-  constructor(private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
+  // @ts-ignore
+  @ViewChild('waveform1') waveform1Element: ElementRef;
+  // @ts-ignore
+  @ViewChild('waveform2') waveform2Element: ElementRef;
+
+  ngOnInit(): void {
+  }
+
+  constructor(private elementRef: ElementRef, private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
 
   generateSetup()
   {
@@ -52,17 +58,17 @@ export class InterfaceComponent implements OnInit {
   }
 
   generate(){
+
     if(!this.generating)
     {
       console.log(this.reqService.getReq())
       this.generateSetup();
-      // this.sendReq()
+      this.sendReq()
     }
     else
     {
       this.sendCancelReq()
     }
-
   }
 
   sendCancelReq()
@@ -80,8 +86,7 @@ export class InterfaceComponent implements OnInit {
       'Authorization': `Bearer ${this.apiKey}`
     });
     console.log("sending request to server")
-    console.log(this.entropy)
-    this.http.post<any>(this.run_async_url, req, { headers })
+    this.http.post<any>(this.run_async, req, { headers })
       .subscribe(response =>
       {
         id = response["id"];
@@ -89,7 +94,7 @@ export class InterfaceComponent implements OnInit {
 
     let intervalRef = setInterval(() => {
       console.log("checking status")
-      this.http.post<any>(this.status_url + id, req, { headers })
+      this.http.post<any>(this.status + id, req, { headers })
         .subscribe(response => {
           if(response["status"] == "COMPLETED")
           {
@@ -99,10 +104,49 @@ export class InterfaceComponent implements OnInit {
             this.audioSrc1 = this.audioService.decodeBase64ToAudioURL(base641)
             this.audioSrc2 = this.audioService.decodeBase64ToAudioURL(base642)
             this.showAudio = true;
-            this.generateTeardown()
-            clearInterval(intervalRef);
+            this.waitForElementsAndInitWaveSurfer(intervalRef)
           }
         });
     }, 1000);
+  }
+
+  initWaveSurfer()
+  {
+    let wavesurfer1 = WaveSurfer.create(
+      {
+        container: this.waveform1Element.nativeElement,
+        waveColor: this.style.getPropertyValue("--translucent-accent").trim(),
+        progressColor: '#ECEFF1',
+        cursorWidth: 0,
+        interact: false
+      }
+    )
+    wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
+
+    let wavesurfer2 = WaveSurfer.create(
+      {
+        container: this.waveform2Element.nativeElement,
+        waveColor: this.style.getPropertyValue("--translucent-accent").trim(),
+        progressColor: '#ECEFF1',
+        cursorWidth: 0,
+        interact: false
+      }
+    )
+    wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
+  }
+
+  waitForElementsAndInitWaveSurfer(intervalRef: any) {
+    const checkAndInit = () => {
+      if (this.waveform1Element && this.waveform1Element.nativeElement &&
+        this.waveform2Element && this.waveform2Element.nativeElement) {
+        this.initWaveSurfer()
+        this.generateTeardown()
+        clearInterval(intervalRef);
+      } else {
+        setTimeout(checkAndInit, 50); // Check again in 50ms
+      }
+    };
+
+    checkAndInit();
   }
 }

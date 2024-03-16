@@ -38,10 +38,12 @@
       <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
     </mat-grid-tile>
     <mat-grid-tile *ngIf="showAudio" colspan="1" rowspan="1" class="generateTile">
-        <audio class="audioPlayer" controls [src]="audioSrc2"></audio>
+<!--        <audio class="audioPlayer" controls [src]="audioSrc2"></audio>-->
+      <div class="waveform" id="waveform1" #waveform1></div>
       </mat-grid-tile>
     <mat-grid-tile *ngIf="showAudio" colspan="1" rowspan="1" class="generateTile">
-      <audio class="audioPlayer" controls [src]="audioSrc1"></audio>
+<!--      <audio class="audioPlayer" controls [src]="audioSrc1"></audio>-->
+      <div class="waveform" id="waveform2" #waveform2></div>
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>

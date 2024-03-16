@@ -6,6 +6,10 @@
   height: 90.4px;
 }
 
+::ng-deep .mat-input-element {
+  caret-color: var(--translucent-accent);
+}
+
 .generateButton {
   color: white;
   font-size: 32px;
@@ -35,8 +39,8 @@
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label*/
   color: var(--translucent-dark) !important;
+  font-size: 24px !important;
 }
 
 ::ng-deep.mat-form-field-underline {
@@ -116,3 +120,21 @@
 /*.mat-button:active {*/
 /*  background-color: var(--translucent-accent);*/
 /*}*/
+
+/*.showAudio {*/
+/*  visibility: visible !important;*/
+/*}*/
+
+.hideAudio {
+  visibility: hidden !important;
+}
+
+.waveform
+{
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0;
+  right: 0;
+  width: 360px;
+}

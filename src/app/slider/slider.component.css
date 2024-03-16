@@ -7,6 +7,7 @@
 }
 .nameLabel {
   color: var(--translucent-dark);
+  /*font-size: 20px;*/
 }
 
 .nameLabelContainer {
