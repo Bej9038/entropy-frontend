@@ -24,6 +24,14 @@ html, body {
   margin: 0;
 }
 
+.svg {
+  background-image: url("assets/image.svg");
+  height: 50px;
+  width: 50px;
+  margin-right: 16px;
+  color: red;
+}
+
 body {
   background: url("assets/AdobeStock_716555249.jpeg");
   background-repeat: no-repeat;
