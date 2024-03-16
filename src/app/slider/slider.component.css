@@ -3,10 +3,10 @@
   justify-content: space-between;
 }
 .valueLabel {
-  color: var(--translucent-dark);
+  color: var(--translucent-grey);
 }
 .nameLabel {
-  color: var(--translucent-dark);
+  color: var(--translucent-grey);
   /*font-size: 20px;*/
 }
 

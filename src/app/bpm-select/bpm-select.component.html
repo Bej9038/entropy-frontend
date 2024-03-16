@@ -4,7 +4,7 @@
     <mat-form-field appearance="outline">
 <!--      <mat-label *ngIf="!BPMSelected">value</mat-label>-->
       <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"
-             [(ngModel)]="bpm" (change)="updateBPM()">
+             [(ngModel)]="bpm" (input)="updateBPM()">
     </mat-form-field>
 
       <mat-error *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))

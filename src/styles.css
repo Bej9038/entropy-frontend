@@ -2,11 +2,13 @@
 
 :root {
   --greyscale: 100;
+  --white: white;
   --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.4);
   --translucent2: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.6);
-  --translucent-accent: rgba(33, 142, 145, 0.2);
-  --translucent-dark: rgba(50, 50, 50, 0.6);
-  --bar-size: 6px;
+  --translucent-accent: rgba(144, 62, 49, .6);
+  --translucent-grey: rgba(200, 200, 200, 0.6);
+  --translucent-dark: rgba(0, 0, 0, 0.3);
+  --bar-size: 2px;
 }
 
 * {
@@ -58,18 +60,20 @@ body::before {
 }
 
 .mat-accent .mat-slider-track-fill {
-  background-color: rgba(256, 256, 256, 0.8) !important;
-  right: 7px;
+  background-color: var(--white) !important;
+  /*right: 7px;*/
 }
 .mat-accent .mat-slider-track-background {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: var(--translucent-dark) !important;
+  height: var(--bar-size) !important;
 }
 
 .mat-slider-thumb-label {
-  background-color: rgba(256, 256, 256, 0.8) !important;
+  background-color: var(--translucent-grey) !important;
+  color: black !important;
 
 }
 
 .mat-slider-thumb {
-  background-color: rgba(256, 256, 256, 0.8) !important;
+  background-color: var(--white) !important;
 }

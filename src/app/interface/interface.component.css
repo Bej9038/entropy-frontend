@@ -1,5 +1,5 @@
 .text{
-  width: 50%;
+  width: 40%;
   text-align: center;
   color: white;
   font-size: 32px;
@@ -7,7 +7,7 @@
 }
 
 ::ng-deep .mat-input-element {
-  caret-color: var(--translucent-accent);
+  caret-color: var(--white);
 }
 
 .generateButton {
@@ -15,7 +15,7 @@
   font-size: 32px;
   font-weight: 600;
   height: 62px;
-  top: 15px;
+  top: 12px;
   /*background-color: var(--translucent);*/
   /*height: 20px;*/
   padding-left: 32px;
@@ -27,11 +27,7 @@
 }
 
 .texttile {
-  margin-top: 30px;
-}
-
-.mat-form-field-label {
-  color: white !important;
+  margin-top: 0px;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
@@ -39,18 +35,8 @@
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {
-  color: var(--translucent-dark) !important;
+  color: var(--translucent-grey) !important;
   font-size: 24px !important;
-}
-
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color: rgba(256, 256, 256, 0.8) !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  /*change color of underline when focused*/
-  background-color: rgba(256, 256, 256, 0.3) !important;
 }
 
 ::ng-deep.mat-form-field-label {
@@ -58,13 +44,25 @@
   color: var(--translucent-dark) !important;
 }
 
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: var(--translucent-dark) !important;
+  height: var(--bar-size) !important;
+  visibility: hidden;
+}
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: var(--white) !important;
+  visibility: visible !important;
+}
+
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
   padding-bottom: 0 !important;
 }
 
 .textCard {
-  width: 90%;
-  margin: 10px;
+  width: 80%;
+  margin: 10px auto;
   position: relative;
   left: 0;
   right: 0;
@@ -122,6 +120,7 @@
   transform: none !important;
   width: 100% !important;
   font-size: 32px !important;
+
 }
 
 .hideAudio {
