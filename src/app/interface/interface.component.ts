@@ -15,7 +15,7 @@ export class InterfaceComponent implements OnInit {
   apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
   run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
   status: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
-  cancel: string = "https://api.runpod.ai/v2/ket19ilq3a6nb9/cancel/";
+  cancel: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
   audioSrc1: SafeUrl | undefined;
   audioSrc2: SafeUrl | undefined;
   progressBarMode: ProgressBarMode = "determinate";
@@ -29,6 +29,7 @@ export class InterfaceComponent implements OnInit {
     "dubstep bass loop",
     "erie piano atmosphere",
     "cinematic drum loop"];
+  current_id: string = "";
 
   // @ts-ignore
   @ViewChild('waveform1') waveform1Element: ElementRef;
@@ -55,6 +56,7 @@ export class InterfaceComponent implements OnInit {
     this.showProgressBar = false;
     this.generating = false;
     this.progressBarMode = "determinate";
+    this.current_id = "";
   }
 
   generate(){
@@ -73,12 +75,23 @@ export class InterfaceComponent implements OnInit {
 
   sendCancelReq()
   {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.apiKey}`
+    });
+    console.log("cancelling request")
+    let req = {"input": {}}
+    console.log(this.current_id)
+    this.http.post<any>(this.cancel + this.current_id, req, { headers })
+      .subscribe(response =>
+      {
+        this.current_id = response["id"];
+      });
     this.generateTeardown()
   }
 
   sendReq()
   {
-    let id: string = "";
     const req = this.reqService.getReq()
     this.generateSetup();
     const headers = new HttpHeaders({
@@ -89,12 +102,12 @@ export class InterfaceComponent implements OnInit {
     this.http.post<any>(this.run_async, req, { headers })
       .subscribe(response =>
       {
-        id = response["id"];
+        this.current_id = response["id"];
       });
 
     let intervalRef = setInterval(() => {
       console.log("checking status")
-      this.http.post<any>(this.status + id, req, { headers })
+      this.http.post<any>(this.status + this.current_id, req, { headers })
         .subscribe(response => {
           if(response["status"] == "COMPLETED")
           {
@@ -105,6 +118,11 @@ export class InterfaceComponent implements OnInit {
             this.audioSrc2 = this.audioService.decodeBase64ToAudioURL(base642)
             this.showAudio = true;
             this.waitForElementsAndInitWaveSurfer(intervalRef)
+          }
+          else if(response["status"] == "CANCELLED")
+          {
+            // this.generateTeardown()
+            clearInterval(intervalRef);
           }
         });
     }, 1000);
@@ -143,7 +161,7 @@ export class InterfaceComponent implements OnInit {
         this.generateTeardown()
         clearInterval(intervalRef);
       } else {
-        setTimeout(checkAndInit, 50); // Check again in 50ms
+        setTimeout(checkAndInit, 50);
       }
     };
 
