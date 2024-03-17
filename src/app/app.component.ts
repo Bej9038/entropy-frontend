@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "./audio.service";
 import {ReqService} from "./req.service";
@@ -16,9 +16,43 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {}
 
+  // @ts-ignore
+  @ViewChild("navbar", { read: ElementRef }) navbarElement: ElementRef;
+  // @ts-ignore
+  @ViewChild("interface", { read: ElementRef }) interfaceElement: ElementRef;
+
 
   ngOnInit(): void {
     // this.startPeriodicRequest()
+  }
+
+  ngAfterViewInit(): void {
+    // this.checkOverlap()
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.checkOverlap();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkOverlap();
+  }
+
+  checkOverlap() {
+    let navbar = this.navbarElement.nativeElement
+    let inter = this.interfaceElement.nativeElement
+
+    if (navbar.offsetTop + navbar.offsetHeight > inter.offsetTop) {
+      console.log("overlap")
+      navbar.classList.add('invisible');
+      navbar.classList.remove('opaque');
+    }
+    else if(navbar.offsetTop + navbar.offsetHeight < inter.offsetTop){
+      navbar.classList.add('opaque');
+      navbar.classList.remove('invisible');
+    }
   }
 
   ngOnDestroy(): void {

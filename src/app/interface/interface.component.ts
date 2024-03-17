@@ -43,6 +43,14 @@ export class InterfaceComponent implements OnInit {
   @ViewChild('waveform2') waveform2Element: ElementRef;
   // @ts-ignore
   @ViewChild(MatRipple) ripple: MatRipple;
+  // @ts-ignore
+  @ViewChild('outline') textOutline: ElementRef;
+  // @ts-ignore
+  @ViewChild('slider') sliderElement: ElementRef;
+  // @ts-ignore
+  @ViewChild('key') keyElement: ElementRef;
+  // @ts-ignore
+  @ViewChild('bpm') bpmElement: ElementRef;
 
   ngOnInit(): void {
     let i = Math.floor(Math.random() * this.placeholders.length)

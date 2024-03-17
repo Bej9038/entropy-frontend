@@ -9,6 +9,7 @@
   --translucent-grey-2: rgba(200, 200, 200, 0.25);
   --translucent-dark: rgba(0, 0, 0, 0.3);
   --bar-size: 2px;
+  min-height: 127.2px;
 }
 
 * {
@@ -19,6 +20,7 @@
   font-family: "Quicksand", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
+  /*overflow: hidden;*/
 }
 
 html, body {
@@ -41,7 +43,6 @@ body {
   /*background-position: center top;*/
   background-position: center center;
   background-size: cover;
-
 }
 
 body::before {
@@ -71,6 +72,7 @@ body::before {
 .mat-slider-thumb-label {
   background-color: var(--translucent-dark) !important;
   color: black !important;
+  z-index: 200 !important;
 
 }
 
