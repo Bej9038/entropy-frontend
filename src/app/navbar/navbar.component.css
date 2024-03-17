@@ -1,15 +1,16 @@
 .mat-toolbar {
   position: relative;
   z-index: 10 !important;
-  height: 72px;
+  /*height: 72px;*/
+  height: 3.1rem;
   background-color: var(--translucent);
   color: white;
   font-family: 'Quando', serif !important;
-  /*font-size: 32px;*/
+  font-size: 1.2rem;
 }
 
 .img {
-  height: 50px;
+  height: 1.9rem;
   padding-right: 16px;
 }
 

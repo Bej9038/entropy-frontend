@@ -47,7 +47,7 @@ export class InterfaceComponent implements OnInit {
   ngOnInit(): void {
     let i = Math.floor(Math.random() * this.placeholders.length)
     console.log(i)
-    let seconds = 10
+    let seconds = 5
     setInterval(() => {
       this.placeholder = this.placeholders[i];
       i = Math.floor(Math.random() * this.placeholders.length)
