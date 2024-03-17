@@ -1,13 +1,13 @@
 <mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
 <!--  <div style="height: 40px"></div>-->
   <mat-grid-list cols=3 rowHeight="12vh">
-    <mat-grid-tile class="texttile" colspan="3" rowspan="2">
+    <mat-grid-tile class="textTile" colspan="3" rowspan="2">
 <!--      <mat-card style="background-color: rgba(0,0,0,0); width: 100%; align-items: center !important;">-->
       <button disableRipple [disabled]="reqService.disableGeneration || reqService.description == ''" class="generateButton" (click)="generate()" mat-button>
         <mat-icon *ngIf="!generating">play_arrow</mat-icon>
         <mat-icon *ngIf="generating">stop</mat-icon>
       </button>
-      <mat-form-field @fadeIn class="text">
+      <mat-form-field @fadeIn class="textBar">
         <mat-label>{{reqService.description == "" ? placeholder: ""}}</mat-label>
         <input (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
       </mat-form-field>

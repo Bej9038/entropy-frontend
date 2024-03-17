@@ -18,11 +18,11 @@
 }
 
 
-.text{
-  width: 50%;
+.textBar {
+  width: 64%;
   text-align: center;
   color: white;
-  font-size: 32px;
+  font-size: 1.6rem;
   height: 90.4px;
 }
 
@@ -32,14 +32,16 @@
 
 .generateButton {
   color: white;
-  font-size: 32px;
-  font-weight: 600;
-  height: 60px;
-  top: 16px;
+  font-size: 1.6rem;
+  /*font-weight: 600;*/
+  height: 50px;
+  width: 50px;
+  margin: 16px;
+  /*top: 16px;*/
   /*background-color: var(--translucent);*/
   /*height: 20px;*/
-  padding-left: 32px;
-  padding-right: 32px;
+  /*padding-left: 24px;*/
+  /*padding-right: 24px;*/
   /*border-top-left-radius: 50px !important;*/
   /*border-bottom-left-radius: 50px !important;*/
   /*border-top-right-radius: 0 !important;*/
@@ -60,7 +62,7 @@
   height: 32px;
 }
 
-.texttile {
+.textTile {
   margin-top: 0;
 }
 
@@ -159,8 +161,7 @@
 {
   transform: none !important;
   width: 100% !important;
-  font-size: 32px !important;
-
+  font-size: 1.6rem !important;
 }
 
 .hideAudio {
