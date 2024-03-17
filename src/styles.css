@@ -10,6 +10,7 @@
   --translucent-dark: rgba(0, 0, 0, 0.3);
   --bar-size: 2px;
   min-height: 127.2px;
+  min-width: 328.4px !important;
 }
 
 * {
@@ -53,6 +54,10 @@ body::before {
   right: 0;
   bottom: 0;
   z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw; /* Ensure it spans the full viewport width */
+  min-height: 100vh;
   background: rgba(0, 0, 0, 0.4); /* Black overlay with 50% opacity */
 
   /*background: radial-gradient(circle, transparent 10%, black 100%);*/
