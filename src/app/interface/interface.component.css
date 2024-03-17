@@ -24,9 +24,12 @@
   color: white;
   font-size: 1.8rem;
   height: 60px;
-  bottom: 16px;
   margin: 0 auto;
   flex-grow: 1;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  bottom: 20px;
 }
 
 ::ng-deep .mat-input-element {
