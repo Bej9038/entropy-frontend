@@ -22,9 +22,9 @@
   /*width: 60%;*/
   text-align: center;
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   height: 60px;
-  bottom: 10px;
+  bottom: 16px;
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -35,19 +35,20 @@
 
 .generateButton {
   color: white;
-  font-size: 1.6rem;
+  font-size: 2rem;
   /*font-weight: 600;*/
   /*height: 50px;*/
   width: 50px;
-  min-width: 50px !important;
+  min-width: 50px;
   height: auto;
   margin: 16px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /*top: 16px;*/
   /*background-color: var(--translucent);*/
   /*height: 20px;*/
-  /*padding-left: 24px;*/
-  /*padding-right: 24px;*/
   /*border-top-left-radius: 50px !important;*/
   /*border-bottom-left-radius: 50px !important;*/
   /*border-top-right-radius: 0 !important;*/
@@ -61,11 +62,16 @@
 /*}*/
 
 .material-icons {
-  font-size: 32px !important;
-  display: flex;
-  align-items: center;
+  font-size: 1.8rem !important;
+  horiz-align: center;
   width: 32px;
   height: 32px;
+}
+
+.mat-button-wrapper {
+  horiz-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .textOutline {
@@ -173,7 +179,7 @@
 {
   transform: none !important;
   width: 100% !important;
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
 }
 
 .hideAudio {
