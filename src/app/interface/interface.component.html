@@ -1,6 +1,6 @@
 <mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
 <!--  <div style="height: 40px"></div>-->
-  <mat-grid-list cols=3 rowHeight="12vh">
+  <mat-grid-list cols=3 rowHeight="8vh">
     <mat-grid-tile class="textTile" colspan="3" rowspan="2">
       <div class="textOutline">
         <button disableRipple [disabled]="reqService.disableGeneration || reqService.description == ''" class="generateButton" (click)="generate()" mat-button>
@@ -9,26 +9,26 @@
         </button>
         <mat-form-field @fadeIn class="textBar">
           <mat-label>{{reqService.description == "" ? placeholder: ""}}</mat-label>
-          <input (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
+          <input (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
         </mat-form-field>
         <button style="visibility: hidden" [disabled]="true" class="generateButton" mat-button>
         </button>
       </div>
     </mat-grid-tile>
 
-    <mat-grid-tile class="keySelect" colspan="1" rowspan="2">
+    <mat-grid-tile class="keySelect" colspan="1" rowspan="4">
       <app-key-select></app-key-select>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="1" rowspan="1">
+    <mat-grid-tile colspan="1" rowspan="2">
       <app-slider name="duration" [min]=1 [max]=10 [step]=1 [default]=6></app-slider>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="1" rowspan="2">
+    <mat-grid-tile colspan="1" rowspan="4">
       <app-bpm-select></app-bpm-select>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="1" rowspan="1">
+    <mat-grid-tile colspan="1" rowspan="2">
       <app-slider name="entropy" [min]=0 [max]=2.0 [step]=0.1 [default]=1.0></app-slider>
     </mat-grid-tile>
   </mat-grid-list>

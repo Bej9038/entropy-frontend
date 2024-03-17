@@ -65,18 +65,18 @@
 /*}*/
 
 .material-icons {
-  font-size: 1.6rem !important;
+  font-size: 2rem !important;
   horiz-align: center;
-  vertical-align: center;
+  vertical-align: middle;
   width: 32px;
   height: 32px;
 }
 
-.mat-button-wrapper {
+::ng-deep .mat-button-wrapper {
   horiz-align: center;
-  vertical-align: center;
+  vertical-align: middle;
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
 }
 
 .textOutline {
