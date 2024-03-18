@@ -3,6 +3,7 @@
 
   <mat-form-field class="bpm-flexitem bpm-form"  floatLabel="never">
       <mat-label *ngIf="bpm == '' && BPMSelected">120</mat-label>
+      <mat-label *ngIf="!BPMSelected">no bpm</mat-label>
       <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"
              [(ngModel)]="bpm" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" (input)="updateBPM()">
   </mat-form-field>
