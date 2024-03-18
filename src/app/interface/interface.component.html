@@ -7,7 +7,7 @@
           <mat-icon *ngIf="!generating">play_arrow</mat-icon>
           <mat-icon *ngIf="generating">stop</mat-icon>
         </button>
-        <mat-form-field @fadeIn class="textBar">
+        <mat-form-field class="textBar">
           <mat-label #label>{{reqService.description == "" ? placeholder: ""}}</mat-label>
           <input (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
         </mat-form-field>
@@ -17,12 +17,12 @@
 
   <div class="controls-cont">
     <div class="controls-row">
-      <app-key-select></app-key-select>
-      <div class="slider-col">
+      <app-key-select class="flexitem"></app-key-select>
+      <div class="slider-col flexitem">
         <app-slider name="duration" [min]=1 [max]=10 [step]=1 [default]=6></app-slider>
         <app-slider name="entropy" [min]=0 [max]=2.0 [step]=0.1 [default]=1.0></app-slider>
       </div>
-      <app-bpm-select></app-bpm-select>
+      <app-bpm-select class="flexitem"></app-bpm-select>
     </div>
   </div>
 
