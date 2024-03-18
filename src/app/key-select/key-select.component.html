@@ -1,39 +1,31 @@
-<mat-grid-list class="gridlist" cols=1 rowHeight="50px" gutterSize='10px'>
-  <mat-grid-tile class="tile" colspan="1">
-    <button [class.selected]="selectedKeyId == 0" (click)="selectButton(0)" class="keyButton" mat-flat-button> C </button>
-    <button [class.selected]="selectedKeyId == 1" (click)="selectButton(1)" class="keyButton" mat-flat-button> D </button>
-    <button [class.selected]="selectedKeyId == 2" (click)="selectButton(2)" class="keyButton" mat-flat-button> E </button>
-    <button [class.selected]="selectedKeyId == 3" (click)="selectButton(3)" class="keyButton" mat-flat-button> F </button>
-  </mat-grid-tile>
+<div #keyContainer class="key-container">
+  <div class="flex-row">
+    <button *ngFor="let key of row1"
+            [class.selected]="selectedKeyId == key.id"
+            (click)="selectButton(key.id)"
+            class="keyButton"
+            mat-flat-button>
+      {{ key.label }}
+    </button>
+  </div>
+  <div class="flex-row">
+    <button *ngFor="let key of row2"
+            [class.selected]="selectedKeyId == key.id"
+            (click)="selectButton(key.id)"
+            class="keyButton"
+            mat-flat-button>
+      {{ key.label }}
+    </button>
+  </div>
 
-  <mat-grid-tile class="tile" colspan="1">
-    <button [class.selected]="selectedKeyId == 4" (click)="selectButton(4)" class="keyButton" mat-flat-button> G </button>
-    <button [class.selected]="selectedKeyId == 5" (click)="selectButton(5)" class="keyButton" mat-flat-button> A </button>
-    <button [class.selected]="selectedKeyId == 6" (click)="selectButton(6)" class="keyButton" mat-flat-button> B </button>
-  </mat-grid-tile>
-
-  <mat-grid-tile class="tile" colspan="1">
+  <div class="flex-row">
     <button [class.selected]="sharpSelected" (click)="toggleSharp()" class="keyButton" mat-flat-button> # </button>
-    <button [class.selected]="selectedKeyId == 7" (click)="selectButton(7)" class="keyButton" mat-flat-button> no key </button>
-  </mat-grid-tile>
-</mat-grid-list>
-
-<!--<div class="flex-container">-->
-<!--  <div class="flex-item">-->
-<!--    <button [class.selected]="selectedKeyId == 0" (click)="selectButton(0)" class="keyButton" mat-flat-button> C </button>-->
-<!--    <button [class.selected]="selectedKeyId == 1" (click)="selectButton(1)" class="keyButton" mat-flat-button> D </button>-->
-<!--    <button [class.selected]="selectedKeyId == 2" (click)="selectButton(2)" class="keyButton" mat-flat-button> E </button>-->
-<!--    <button [class.selected]="selectedKeyId == 3" (click)="selectButton(3)" class="keyButton" mat-flat-button> F </button>-->
-<!--  </div>-->
-
-<!--  <div class="flex-item">-->
-<!--    <button [class.selected]="selectedKeyId == 4" (click)="selectButton(4)" class="keyButton" mat-flat-button> G </button>-->
-<!--    <button [class.selected]="selectedKeyId == 5" (click)="selectButton(5)" class="keyButton" mat-flat-button> A </button>-->
-<!--    <button [class.selected]="selectedKeyId == 6" (click)="selectButton(6)" class="keyButton" mat-flat-button> B </button>-->
-<!--  </div>-->
-
-<!--  <div class="flex-item">-->
-<!--    <button [class.selected]="sharpSelected" (click)="toggleSharp()" class="keyButton" mat-flat-button> # </button>-->
-<!--    <button [class.selected]="selectedKeyId == 7" (click)="selectButton(7)" class="keyButton" mat-flat-button> no key </button>-->
-<!--  </div>-->
-<!--</div>-->
+    <button *ngFor="let key of row3"
+            [class.selected]="selectedKeyId == key.id"
+            (click)="selectButton(key.id)"
+            class="keyButton"
+            mat-flat-button>
+      {{ key.label }}
+    </button>
+  </div>
+</div>

@@ -1,19 +1,19 @@
-<mat-grid-list class="gridlist" cols=1 rowHeight="50px" gutterSize='10px'>
-  <mat-grid-tile class="tile" colspan="1" rowspan="2">
-    <button [class.selected]="BPMSelected" (click)="toggleBPM()" class="keyButton" mat-flat-button> bpm </button>
-    <mat-form-field appearance="outline">
-<!--      <mat-label *ngIf="!BPMSelected">value</mat-label>-->
-      <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"
-             [(ngModel)]="bpm" (input)="updateBPM()">
-    </mat-form-field>
+<!--<mat-grid-list class="gridlist" cols=1 rowHeight="50px" gutterSize='10px'>-->
+<!--  <mat-grid-tile class="tile" colspan="1" rowspan="2">-->
+<!--    <button [class.selected]="BPMSelected" (click)="toggleBPM()" class="keyButton" mat-flat-button> bpm </button>-->
+<!--    <mat-form-field appearance="outline">-->
+<!--&lt;!&ndash;      <mat-label *ngIf="!BPMSelected">value</mat-label>&ndash;&gt;-->
+<!--      <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"-->
+<!--             [(ngModel)]="bpm" (input)="updateBPM()">-->
+<!--    </mat-form-field>-->
 
-      <mat-error *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))
-      && BPMSelected
-      && !numberInputControl.hasError('pattern')">
-        error: 60 <= bpm <= 200
-      </mat-error>
-      <mat-error *ngIf="numberInputControl.hasError('pattern') && BPMSelected">
-        error: bpm must be numeric
-      </mat-error>
-  </mat-grid-tile>
-</mat-grid-list>
+<!--      <mat-error *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))-->
+<!--      && BPMSelected-->
+<!--      && !numberInputControl.hasError('pattern')">-->
+<!--        error: 60 <= bpm <= 200-->
+<!--      </mat-error>-->
+<!--      <mat-error *ngIf="numberInputControl.hasError('pattern') && BPMSelected">-->
+<!--        error: bpm must be numeric-->
+<!--      </mat-error>-->
+<!--  </mat-grid-tile>-->
+<!--</mat-grid-list>-->
