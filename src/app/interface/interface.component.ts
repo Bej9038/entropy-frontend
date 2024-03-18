@@ -51,15 +51,38 @@ export class InterfaceComponent implements OnInit {
   @ViewChild('key') keyElement: ElementRef;
   // @ts-ignore
   @ViewChild('bpm') bpmElement: ElementRef;
+  // @ts-ignore
+  @ViewChild('label', { read: ElementRef }) textLabel: ElementRef;
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit(): void {
     let i = Math.floor(Math.random() * this.placeholders.length)
-    console.log(i)
     let seconds = 5
-    setInterval(() => {
-      this.placeholder = this.placeholders[i];
-      i = Math.floor(Math.random() * this.placeholders.length)
-    }, seconds * 1000);
+    let self = this
+    this.textLabel.nativeElement.style.opacity = 0;
+    this.textLabel.nativeElement.style.transition="all 800ms cubic-bezier(0.25, 0.8, 0.25, 1)"
+    setTimeout(function() {
+      self.textLabel.nativeElement.style.opacity = 1;
+      setInterval(() => {
+        self.textLabel.nativeElement.style.opacity = 0;
+        setTimeout(function() {
+          self.placeholder = self.placeholders[i];
+          self.textLabel.nativeElement.style.opacity = 1;
+        }, 500);
+
+        // let x = -1
+        // while(x == i)
+        // {
+          i = Math.floor(Math.random() * self.placeholders.length)
+        // }
+        // i = x
+        console.log(i)
+      }, seconds * 1000);
+    }, 500);
+
   }
 
   constructor(private elementRef: ElementRef, private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}

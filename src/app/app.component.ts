@@ -14,7 +14,8 @@ export class AppComponent {
   apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
   runsync: string = "https://api.runpod.ai/v2/y4bhqyz247xbh2/runsync";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   // @ts-ignore
   @ViewChild("navbar", { read: ElementRef }) navbarElement: ElementRef;
@@ -27,7 +28,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit(): void {
-    // this.checkOverlap()
+    this.checkOverlap()
   }
 
   @HostListener('window:scroll', [])

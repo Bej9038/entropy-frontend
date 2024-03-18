@@ -18,6 +18,7 @@ import { BpmSelectComponent } from './bpm-select/bpm-select.component';
 import { SliderComponent } from './slider/slider.component';
 import {MatRippleModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import {MatIconModule} from "@angular/material/icon";
         ReactiveFormsModule,
         MatIconModule
     ],
-  providers: [],
+  providers: [provideAnimations()],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
