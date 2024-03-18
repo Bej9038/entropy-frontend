@@ -28,11 +28,12 @@ export class InterfaceComponent implements OnInit {
   showAudio: boolean = false;
   // showAudio: boolean = true;
   style = getComputedStyle(this.elementRef.nativeElement);
-  placeholders: string[] = ["jazz trumpet solo",
+  placeholders: string[] = ["jazz trumpet",
     "hip hop snare drum",
-    "dubstep bass loop",
-    "erie piano atmosphere",
-    "cinematic drum loop"];
+    "fluttering bass sound",
+    "erie piano melody",
+    "cinematic drum loop",
+    "violin melody", "hi-hat top loop"];
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
@@ -60,10 +61,10 @@ export class InterfaceComponent implements OnInit {
 
   ngAfterViewInit(): void {
     let i = Math.floor(Math.random() * this.placeholders.length)
-    let seconds = 5
+    let seconds = 10
     let self = this
     this.textLabel.nativeElement.style.opacity = 0;
-    this.textLabel.nativeElement.style.transition="all 800ms cubic-bezier(0.25, 0.8, 0.25, 1)"
+    this.textLabel.nativeElement.style.transition="opacity 500ms cubic-bezier(0.25, 0.8, 0.25, 1)"
     setTimeout(function() {
       self.textLabel.nativeElement.style.opacity = 1;
       setInterval(() => {
@@ -81,7 +82,7 @@ export class InterfaceComponent implements OnInit {
         // i = x
         console.log(i)
       }, seconds * 1000);
-    }, 500);
+    }, 300);
 
   }
 
