@@ -1,10 +1,10 @@
 
 <div class="bpm-container">
 
-  <mat-form-field class="bpm-flexitem bpm-form" appearance="outline">
-<!--      <mat-label *ngIf="!BPMSelected">value</mat-label>-->
+  <mat-form-field class="bpm-flexitem bpm-form"  floatLabel="never">
+      <mat-label *ngIf="bpm == '' && BPMSelected">120</mat-label>
       <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"
-             [(ngModel)]="bpm" (input)="updateBPM()">
+             [(ngModel)]="bpm" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" (input)="updateBPM()">
   </mat-form-field>
 <!--  <div class="bpm-flexitem mat-error" style="color: var(&#45;&#45;translucent-grey); height: 1rem" *ngIf="!numberInputControl.hasError('pattern') &&-->
 <!--  !numberInputControl.hasError('min') &&-->

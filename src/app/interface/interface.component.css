@@ -36,8 +36,8 @@
   flex-grow: 1;
 }
 
-::ng-deep .mat-form-field-wrapper {
-  bottom: 23px;
+::ng-deep .textBar .mat-form-field-wrapper {
+  bottom: 6px;
 }
 
 ::ng-deep .mat-input-element {
@@ -213,6 +213,10 @@
 
 ::ng-deep .mat-progress-bar {
   height: var(--bar-size) !important;
+}
+
+.mat-form-field {
+  line-height: normal !important;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label
