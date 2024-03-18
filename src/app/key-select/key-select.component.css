@@ -13,8 +13,6 @@
 ::ng-deep .mat-button-wrapper {
   display: flex;
   justify-content: center;
-  /*height: 36px;*/
-  /*width: 36px;*/
 }
 
 .selected {
