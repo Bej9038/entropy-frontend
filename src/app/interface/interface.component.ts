@@ -28,10 +28,12 @@ export class InterfaceComponent implements OnInit {
   style = getComputedStyle(this.elementRef.nativeElement);
   placeholders: string[] = ["jazz trumpet",
     "hip hop snare drum",
-    "fluttering bass sound",
+    "pulsing chord sound",
     "erie piano melody",
-    "cinematic drum loop",
-    "violin melody", "hi-hat top loop"];
+    "cinematic impact",
+    "kick drum",
+    "violin melody", "hi-hat top loop",
+    "sustained electronic synth arp"];
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
