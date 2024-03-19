@@ -161,20 +161,16 @@ export class InterfaceComponent implements OnInit {
     let intervalRef = setInterval(() => {
       console.log("checking status")
       this.http.post<any>(this.status + this.current_id, req, { headers })
-        .subscribe(response => {
-          if(response["status"] == "COMPLETED")
-          {
+        .subscribe(async response => {
+          if (response["status"] == "COMPLETED") {
             console.log("request complete")
             let base641 = response["output"][0]
             let base642 = response["output"][1]
-            this.audioSrc1 = this.audioService.decodeBase64ToAudioURL(base641, 1)
-            this.audioSrc2 = this.audioService.decodeBase64ToAudioURL(base642, 2)
+            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base641, 1)
+            this.audioSrc2 = await this.audioService.decodeBase64ToAudioURL(base642, 2)
             this.showAudio = true;
             this.waitForElementsAndInitWaveSurfer(intervalRef)
-          }
-          else if(response["status"] == "CANCELLED")
-          {
-            // this.generateTeardown()
+          } else if (response["status"] == "CANCELLED") {
             clearInterval(intervalRef);
           }
         });
@@ -216,7 +212,7 @@ export class InterfaceComponent implements OnInit {
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
     const checkAndInit = () => {
       if (this.waveform1Element && this.waveform1Element.nativeElement &&
-        this.waveform2Element && this.waveform2Element.nativeElement && this.audioSrc1 != undefined && this.audioSrc2 != undefined) {
+        this.waveform2Element && this.waveform2Element.nativeElement) {
         this.initWaveSurfer()
         this.generateTeardown()
         clearInterval(intervalRef);

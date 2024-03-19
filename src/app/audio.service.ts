@@ -26,9 +26,8 @@ export class AudioService {
     }
   }
 
-  decodeBase64ToAudioURL(base64String: string, audioId: number) {
+  async decodeBase64ToAudioURL(base64String: string, audioId: number) {
     console.log("decoding audio")
-    const buffer = new AudioBuffer(2, )
     const byteCharacters = atob(base64String);
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {
@@ -43,10 +42,8 @@ export class AudioService {
     }
     else if(audioId == 2)
     {
-    //   this.src2.buffer = await this.audioContext.decodeAudioData(byteArray.buffer);
-    // }
-    console.log("returning url")
-    // console.log(URL.createObjectURL(audioBlob))
+      this.src2.buffer = await this.audioContext.decodeAudioData(byteArray.buffer);
+    }
     return this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob));
   }
 }
