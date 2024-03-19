@@ -29,46 +29,20 @@
       </div>
     </div>
   </div>
-
-
-
-<!--    </mat-grid-tile>-->
-<!--    <mat-grid-tile colspan="3" rowspan="4">-->
-<!---->
-<!--    </mat-grid-tile>-->
-
-<!--    <mat-grid-tile #key class="keySelect" colspan="1" rowspan="4">-->
-<!--&lt;!&ndash;      <app-key-select></app-key-select>&ndash;&gt;-->
-<!--    </mat-grid-tile>-->
-
-<!--    <mat-grid-tile #slider colspan="1" rowspan="2">-->
-<!--      <app-slider name="duration" [min]=1 [max]=10 [step]=1 [default]=6></app-slider>-->
-<!--    </mat-grid-tile>-->
-
-<!--    <mat-grid-tile #bpm colspan="1" rowspan="4">-->
-<!--&lt;!&ndash;      <app-bpm-select></app-bpm-select>&ndash;&gt;-->
-<!--    </mat-grid-tile>-->
-
-<!--    <mat-grid-tile colspan="1" rowspan="2">-->
-<!--      <app-slider name="entropy" [min]=0 [max]=2.0 [step]=0.1 [default]=1.0></app-slider>-->
-<!--    </mat-grid-tile>-->
-<!--  </mat-grid-list>-->
 </mat-card>
 
 <mat-card class="textCard">
-  <mat-grid-list cols=2 rowHeight="10vh" >
-    <mat-grid-tile *ngIf="showProgressBar" colspan="2" rowspan="1">
+  <div class="audio-container">
+    <div *ngIf="showProgressBar">
       <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-    </mat-grid-tile>
-    <mat-grid-tile *ngIf="showAudio" colspan="1" rowspan="1" class="generateTile">
-<!--        <audio class="audioPlayer" controls [src]="audioSrc2"></audio>-->
-      <div class="waveform" id="waveform1" #waveform1></div>
-      </mat-grid-tile>
-    <mat-grid-tile *ngIf="showAudio" colspan="1" rowspan="1" class="generateTile">
-<!--      <audio class="audioPlayer" controls [src]="audioSrc1"></audio>-->
-      <div class="waveform" id="waveform2" #waveform2></div>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+    <div class="waveform" *ngIf="showAudio">
+      <div  id="waveform1" #waveform1></div>
+    </div>
+    <div class="waveform" *ngIf="showAudio">
+      <div  id="waveform2" #waveform2></div>
+    </div>
+  </div>
 </mat-card>
 
 

@@ -25,8 +25,8 @@ export class InterfaceComponent implements OnInit {
   progressBarMode: ProgressBarMode = "determinate";
   showProgressBar: boolean = false;
   generating: boolean = false;
-  showAudio: boolean = false;
-  // showAudio: boolean = true;
+  // showAudio: boolean = false;
+  showAudio: boolean = true;
   style = getComputedStyle(this.elementRef.nativeElement);
   placeholders: string[] = ["jazz trumpet",
     "hip hop snare drum",
@@ -56,7 +56,6 @@ export class InterfaceComponent implements OnInit {
   @ViewChild('label', { read: ElementRef }) textLabel: ElementRef;
 
   ngOnInit() {
-
   }
 
   ngAfterViewInit(): void {
@@ -83,7 +82,7 @@ export class InterfaceComponent implements OnInit {
         console.log(i)
       }, seconds * 1000);
     }, 300);
-
+    this.initWaveSurfer()
   }
 
   constructor(private elementRef: ElementRef, private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
@@ -188,27 +187,33 @@ export class InterfaceComponent implements OnInit {
 
   initWaveSurfer()
   {
+    let color = this.style.getPropertyValue("--translucent-dark").trim()
     let wavesurfer1 = WaveSurfer.create(
       {
         container: this.waveform1Element.nativeElement,
-        waveColor: this.style.getPropertyValue("--translucent-accent").trim(),
+        waveColor: color,
         progressColor: '#ECEFF1',
         cursorWidth: 0,
-        interact: false
+        interact: false,
+        fillParent: true,
+        sampleRate: 48000
       }
     )
-    wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
-
+    // wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
+    wavesurfer1.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
     let wavesurfer2 = WaveSurfer.create(
       {
         container: this.waveform2Element.nativeElement,
-        waveColor: this.style.getPropertyValue("--translucent-accent").trim(),
+        waveColor: color,
         progressColor: '#ECEFF1',
         cursorWidth: 0,
-        interact: false
+        interact: false,
+        fillParent: true,
+        sampleRate: 48000
       }
     )
-    wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
+    // wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
+    wavesurfer2.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
   }
 
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
@@ -222,7 +227,6 @@ export class InterfaceComponent implements OnInit {
         setTimeout(checkAndInit, 50);
       }
     };
-
     checkAndInit();
   }
 }

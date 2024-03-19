@@ -188,12 +188,21 @@
   font-weight: 600;
 }
 
-.audioPlayer {
-  /*top: 80px;*/
+.waveform
+{
+  /*position: absolute;*/
+  /*margin-right: auto;*/
+  /*margin-left: auto;*/
   /*left: 0;*/
   /*right: 0;*/
-  /*margin: auto;*/
-  /*position: relative;*/
+  width: 100% !important;
+}
+.audio-container {
+  display: flex;
+  flex-direction: row;
+  /*align-content: center;*/
+  /*align-items: center;*/
+  justify-content: space-around;
 }
 
 .progressBar {
@@ -242,12 +251,3 @@
   color: var(--translucent-grey);
 }
 
-.waveform
-{
-  position: absolute;
-  margin-right: auto;
-  margin-left: auto;
-  left: 0;
-  right: 0;
-  width: 360px;
-}
