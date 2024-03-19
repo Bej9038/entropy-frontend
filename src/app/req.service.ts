@@ -32,6 +32,7 @@ export class ReqService {
       }
       text += this.key
     }
+    console.log(text)
     return {
       "input": {
         "text":  text,

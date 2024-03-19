@@ -88,7 +88,6 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
-    console.log(this.reqService.getReq())
     this.reqService.description = "";
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
@@ -118,7 +117,6 @@ export class InterfaceComponent implements OnInit {
     this.ripple.launch(0, 0, rippleConfig)
     if(!this.generating)
     {
-      this.generateSetup();
       this.sendReq()
     }
     else
@@ -149,6 +147,7 @@ export class InterfaceComponent implements OnInit {
   sendReq()
   {
     const req = this.reqService.getReq()
+    this.generateSetup();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`

@@ -3,7 +3,7 @@
 <!--  <mat-grid-list cols=3 rowHeight="8vh">-->
 <!--    <mat-grid-tile style="z-index: 100" class="textTile" colspan="3" rowspan="2">-->
       <div #outline class="textOutline" >
-        <button disableRipple [disabled]="reqService.disableGeneration || reqService.description == ''" class="generateButton" (click)="generate()" mat-button>
+        <button disableRipple [disabled]="!generating && (reqService.disableGeneration || reqService.description == '')" class="generateButton" (click)="generate()" mat-button>
           <mat-icon *ngIf="!generating">play_arrow</mat-icon>
           <mat-icon *ngIf="generating">stop</mat-icon>
         </button>
