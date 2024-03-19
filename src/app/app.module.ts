@@ -19,7 +19,6 @@ import { SliderComponent } from './slider/slider.component';
 import {MatRippleModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { WaveformComponent } from './waveform/waveform.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { WaveformComponent } from './waveform/waveform.component';
     KeySelectComponent,
     BpmSelectComponent,
     SliderComponent,
-    WaveformComponent,
   ],
     imports: [
         BrowserModule,

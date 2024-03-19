@@ -77,12 +77,12 @@ export class InterfaceComponent implements OnInit {
           i = Math.floor(Math.random() * self.placeholders.length)
         // }
         // i = x
-        console.log(i)
+        // console.log(i)
       }, seconds * 1000);
     }, 300);
   }
 
-  constructor(private elementRef: ElementRef, private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
+  constructor(private elementRef: ElementRef, private http: HttpClient, public audioService: AudioService, public reqService: ReqService) {}
 
   generateSetup()
   {
@@ -167,8 +167,8 @@ export class InterfaceComponent implements OnInit {
             console.log("request complete")
             let base641 = response["output"][0]
             let base642 = response["output"][1]
-            this.audioSrc1 = this.audioService.decodeBase64ToAudioURL(base641)
-            this.audioSrc2 = this.audioService.decodeBase64ToAudioURL(base642)
+            this.audioSrc1 = this.audioService.decodeBase64ToAudioURL(base641, 1)
+            this.audioSrc2 = this.audioService.decodeBase64ToAudioURL(base642, 2)
             this.showAudio = true;
             this.waitForElementsAndInitWaveSurfer(intervalRef)
           }
@@ -198,7 +198,6 @@ export class InterfaceComponent implements OnInit {
       }
     )
     wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
-    // wavesurfer1.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
     let wavesurfer2 = WaveSurfer.create(
       {
         container: this.waveform2Element.nativeElement,
@@ -212,13 +211,12 @@ export class InterfaceComponent implements OnInit {
       }
     )
     wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
-    // wavesurfer2.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
   }
 
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
     const checkAndInit = () => {
       if (this.waveform1Element && this.waveform1Element.nativeElement &&
-        this.waveform2Element && this.waveform2Element.nativeElement) {
+        this.waveform2Element && this.waveform2Element.nativeElement && this.audioSrc1 != undefined && this.audioSrc2 != undefined) {
         this.initWaveSurfer()
         this.generateTeardown()
         clearInterval(intervalRef);

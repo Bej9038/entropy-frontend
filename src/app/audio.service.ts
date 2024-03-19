@@ -6,27 +6,23 @@ import WaveSurfer from "wavesurfer.js";
   providedIn: 'root'
 })
 export class AudioService {
-  // add ctx options + sr
   audioContext = new AudioContext();
-  sampleRate = 44100;
+  src1 = this.audioContext.createBufferSource()
+  src2 = this.audioContext.createBufferSource()
 
-  constructor(private sanitizer: DomSanitizer) { }
-
-  displayAudio(url: string)
-  {
-    let wavesurfer = WaveSurfer.create(
-      {
-        container: '#waveform',
-        waveColor: '#ECEFF1',
-        progressColor: '#ECEFF1',
-        cursorWidth: 0,
-        interact: false
-      }
-    )
-    wavesurfer.load(url);
+  constructor(private sanitizer: DomSanitizer) {
+    this.src1.connect(this.audioContext.destination)
+    this.src2.connect(this.audioContext.destination)
   }
 
-  decodeBase64ToAudioURL(base64String: string) {
+  playAudio(audioId: number): void
+  {
+    console.log(audioId)
+    this.src1.start()
+    this.src2.start()
+  }
+
+  async decodeBase64ToAudioURL(base64String: string, audioId: number) {
     console.log("decoding audio")
     const byteCharacters = atob(base64String);
     const byteNumbers = new Array(byteCharacters.length);
@@ -35,7 +31,17 @@ export class AudioService {
     }
     const byteArray = new Uint8Array(byteNumbers);
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
-    console.log("returning audio url")
+
+    // if(audioId == 1)
+    // {
+    //   this.src1.buffer = await this.audioContext.decodeAudioData(byteArray.buffer);
+    // }
+    // else if(audioId == 2)
+    // {
+    //   this.src2.buffer = await this.audioContext.decodeAudioData(byteArray.buffer);
+    // }
+    console.log("returning url")
+    console.log(URL.createObjectURL(audioBlob))
     return this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob));
   }
 }
