@@ -17,13 +17,18 @@ export class AudioService {
 
   playAudio(audioId: number): void
   {
-    console.log(audioId)
-    this.src1.start()
-    this.src2.start()
+    if(audioId == 1)
+    {
+      this.src1.start()
+    }
+    else if(audioId == 2) {
+      this.src2.start()
+    }
   }
 
-  async decodeBase64ToAudioURL(base64String: string, audioId: number) {
+  decodeBase64ToAudioURL(base64String: string, audioId: number) {
     console.log("decoding audio")
+    const buffer = new AudioBuffer(2, )
     const byteCharacters = atob(base64String);
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {
@@ -32,16 +37,16 @@ export class AudioService {
     const byteArray = new Uint8Array(byteNumbers);
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
 
-    // if(audioId == 1)
-    // {
-    //   this.src1.buffer = await this.audioContext.decodeAudioData(byteArray.buffer);
-    // }
-    // else if(audioId == 2)
-    // {
+    if(audioId == 1)
+    {
+      this.src1.buffer = await this.audioContext.decodeAudioData(byteArray.buffer);
+    }
+    else if(audioId == 2)
+    {
     //   this.src2.buffer = await this.audioContext.decodeAudioData(byteArray.buffer);
     // }
     console.log("returning url")
-    console.log(URL.createObjectURL(audioBlob))
+    // console.log(URL.createObjectURL(audioBlob))
     return this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob));
   }
 }

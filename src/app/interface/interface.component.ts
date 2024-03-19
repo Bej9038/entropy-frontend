@@ -87,7 +87,7 @@ export class InterfaceComponent implements OnInit {
   generateSetup()
   {
     console.log(this.reqService.getReq())
-    // this.reqService.description = "";
+    this.reqService.description = "";
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
