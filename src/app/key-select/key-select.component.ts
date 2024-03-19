@@ -29,7 +29,7 @@ export class KeySelectComponent implements OnInit {
     { id: 6, label: 'B' },
   ];
   row3_large: Key[] = [
-    { id: 7, label: 'B' },
+    { id: 7, label: '_' },
   ];
 
   row1_small: Key[] = [

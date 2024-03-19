@@ -32,15 +32,19 @@
 </mat-card>
 
 <mat-card class="textCard">
+
   <div class="audio-container">
-    <div *ngIf="showProgressBar">
-      <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+<!--    <div *ngIf="showProgressBar">-->
+<!--      <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>-->
+<!--    </div>-->
+    <div class="waveform-cont">
+      <div *ngIf="showAudio" class="waveform" id="waveform1" #waveform1></div>
     </div>
-    <div class="waveform" *ngIf="showAudio">
-      <div  id="waveform1" #waveform1></div>
-    </div>
-    <div class="waveform" *ngIf="showAudio">
-      <div  id="waveform2" #waveform2></div>
+<!--    <div *ngIf="showProgressBar">-->
+<!--      <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>-->
+<!--    </div>-->
+    <div class="waveform-cont">
+      <div *ngIf="showAudio" class="waveform" id="waveform2" #waveform2></div>
     </div>
   </div>
 </mat-card>

@@ -1,13 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../req.service";
 import WaveSurfer from "wavesurfer.js";
-import {state, transition, trigger, style, animate} from "@angular/animations";
 import {MatRipple} from "@angular/material/core";
-import {MatCard} from "@angular/material/card";
 
 
 @Component({
@@ -25,8 +23,8 @@ export class InterfaceComponent implements OnInit {
   progressBarMode: ProgressBarMode = "determinate";
   showProgressBar: boolean = false;
   generating: boolean = false;
-  // showAudio: boolean = false;
-  showAudio: boolean = true;
+  showAudio: boolean = false;
+  // showAudio: boolean = true;
   style = getComputedStyle(this.elementRef.nativeElement);
   placeholders: string[] = ["jazz trumpet",
     "hip hop snare drum",
@@ -82,7 +80,6 @@ export class InterfaceComponent implements OnInit {
         console.log(i)
       }, seconds * 1000);
     }, 300);
-    this.initWaveSurfer()
   }
 
   constructor(private elementRef: ElementRef, private http: HttpClient, private audioService: AudioService, public reqService: ReqService) {}
@@ -120,7 +117,7 @@ export class InterfaceComponent implements OnInit {
     if(!this.generating)
     {
       this.generateSetup();
-      // this.sendReq()
+      this.sendReq()
     }
     else
     {
@@ -150,7 +147,6 @@ export class InterfaceComponent implements OnInit {
   sendReq()
   {
     const req = this.reqService.getReq()
-    this.generateSetup();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`
@@ -188,6 +184,7 @@ export class InterfaceComponent implements OnInit {
   initWaveSurfer()
   {
     let color = this.style.getPropertyValue("--translucent-dark").trim()
+    let height = 50
     let wavesurfer1 = WaveSurfer.create(
       {
         container: this.waveform1Element.nativeElement,
@@ -196,11 +193,12 @@ export class InterfaceComponent implements OnInit {
         cursorWidth: 0,
         interact: false,
         fillParent: true,
-        sampleRate: 48000
+        sampleRate: 48000,
+        height: height
       }
     )
-    // wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
-    wavesurfer1.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
+    wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
+    // wavesurfer1.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
     let wavesurfer2 = WaveSurfer.create(
       {
         container: this.waveform2Element.nativeElement,
@@ -209,11 +207,12 @@ export class InterfaceComponent implements OnInit {
         cursorWidth: 0,
         interact: false,
         fillParent: true,
-        sampleRate: 48000
+        sampleRate: 48000,
+        height: height
       }
     )
-    // wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
-    wavesurfer2.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
+    wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
+    // wavesurfer2.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
   }
 
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
