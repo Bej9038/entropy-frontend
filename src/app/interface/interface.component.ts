@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
@@ -39,6 +39,9 @@ export class InterfaceComponent implements OnInit {
   placeholder: string = this.placeholders[0]
   debug = true
 
+  wavesurfer1: WaveSurfer | undefined;
+  wavesurfer2: WaveSurfer | undefined;
+
   // @ts-ignore
   @ViewChild('waveform1') waveform1Element: ElementRef;
   // @ts-ignore
@@ -57,6 +60,11 @@ export class InterfaceComponent implements OnInit {
   @ViewChild('label', { read: ElementRef }) textLabel: ElementRef;
 
   ngOnInit() {
+    if(this.debug)
+    {
+      this.showAudio = true
+      this.showProgressBar = false
+    }
   }
 
   ngAfterViewInit(): void {
@@ -83,7 +91,7 @@ export class InterfaceComponent implements OnInit {
         // console.log(i)
       }, seconds * 1000);
     }, 300);
-    // this.initWaveSurfer()
+    this.initWaveSurfer()
   }
 
   constructor(private elementRef: ElementRef, private http: HttpClient, public audioService: AudioService, public reqService: ReqService) {}
@@ -190,7 +198,7 @@ export class InterfaceComponent implements OnInit {
   {
     let color = this.style.getPropertyValue("--translucent-dark").trim()
     let height = 72;
-    let wavesurfer1 = WaveSurfer.create(
+    this.wavesurfer1 = WaveSurfer.create(
       {
         container: this.waveform1Element.nativeElement,
         waveColor: color,
@@ -204,12 +212,12 @@ export class InterfaceComponent implements OnInit {
     )
     if(this.debug)
     {
-      wavesurfer1.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
+      this.wavesurfer1.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
     }
     else {
-      wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
+      this.wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
     }
-    let wavesurfer2 = WaveSurfer.create(
+    this.wavesurfer2 = WaveSurfer.create(
       {
         container: this.waveform2Element.nativeElement,
         waveColor: color,
@@ -223,10 +231,19 @@ export class InterfaceComponent implements OnInit {
     )
     if(this.debug)
     {
-      wavesurfer2.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
+      this.wavesurfer2.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
     }
     else {
-      wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
+      this.wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: Event) {
+    if(this.wavesurfer1 && this.wavesurfer2)
+    {
+      this.wavesurfer1.setOptions({})
+      this.wavesurfer2.setOptions({})
     }
   }
 

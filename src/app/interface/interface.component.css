@@ -200,14 +200,16 @@
 }
 
 .waveform {
-  padding: 16px;
+  /*padding: 16px;*/
+  /*margin: 16px;*/
+  width: 100%;
 }
 
 .audio-container {
   display: flex;
   flex-direction: row;
-  /*align-content: center;*/
-  /*align-items: center;*/
+  align-content: center;
+  align-items: center;
   justify-content: space-around;
 }
 
