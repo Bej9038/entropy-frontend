@@ -27,13 +27,16 @@ export class InterfaceComponent implements OnInit {
   // showAudio: boolean = true;
   style = getComputedStyle(this.elementRef.nativeElement);
   placeholders: string[] = ["jazz trumpet",
-    "hip hop snare drum",
-    "pulsing chord sound",
-    "erie piano melody",
+    "hip-hop snare drum",
+    "pulsing chords loop",
+    "dramatic piano melody",
     "cinematic impact",
     "kick drum",
     "violin melody", "hi-hat top loop",
-    "sustained electronic synth arp"];
+    "sustained electronic synth arp",
+    "distorted neuro reese bass loop" +
+    ""
+  ];
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]

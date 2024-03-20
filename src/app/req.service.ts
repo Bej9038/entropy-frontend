@@ -16,14 +16,19 @@ export class ReqService {
 
   getReq()
   {
-    let text = this.description
+    let text = this.description.replace(new RegExp('[-]', 'g'), " ");
+    text = text.replace(new RegExp('[,.]', 'g'), "");
     if(this.bpm)
     {
       if(text != "")
       {
         text += " "
       }
-      text += "loop " + this.bpm + " bpm"
+      if(!text.includes("loop"))
+      {
+        text += "loop "
+      }
+      text += this.bpm + " bpm"
     }
 
     if(this.key != "")
