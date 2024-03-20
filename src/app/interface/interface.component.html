@@ -34,19 +34,20 @@
 <mat-card class="textCard">
 
   <div class="audio-container">
-<!--    <div *ngIf="showProgressBar">-->
-<!--      <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>-->
-<!--    </div>-->
     <div class="waveform-cont">
+      <div class="progress-bar-container">
+        <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+      </div>
       <div *ngIf="showAudio" class="waveform" id="waveform1" #waveform1></div>
       <button (click)="audioService.playAudio(1)" *ngIf="showAudio" mat-button>
         <mat-icon>play_arrow</mat-icon>
       </button>
     </div>
-<!--    <div *ngIf="showProgressBar">-->
-<!--      <mat-progress-bar  class="progressBar" [mode]="progressBarMode"></mat-progress-bar>-->
-<!--    </div>-->
+
     <div class="waveform-cont">
+      <div class="progress-bar-container" >
+        <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+      </div>
       <div *ngIf="showAudio" class="waveform" id="waveform2" #waveform2></div>
       <button (click)="audioService.playAudio(2)" *ngIf="showAudio" mat-button>
         <mat-icon>play_arrow</mat-icon>

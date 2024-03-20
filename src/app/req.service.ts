@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 export class ReqService {
   description: string = ""
   bpm: string = ""
-  key: string | undefined = "a"
+  key: string | undefined = ""
   entropy: number = 1.1
   duration: number = 6
   disableGeneration: boolean = false

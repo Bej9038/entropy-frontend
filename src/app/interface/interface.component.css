@@ -195,6 +195,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 .waveform {
@@ -209,31 +211,73 @@
   justify-content: space-around;
 }
 
-.progressBar {
-  width: 50%;
-  background-color: transparent;
+.progress-bar-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  align-content: center;
+  background: linear-gradient(to right,
+  rgba(100, 100, 100, 0) 0%,
+  rgba(100, 100, 100, 0.05) 25%,
+  rgba(100, 100, 100, 0.05) 75%,
+  rgba(100, 100, 100, 0) 100%);
+  border-radius: 8px;
 }
 
+/*::ng-deep .mat-progress-bar::before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  top: 0;*/
+/*  bottom: 0;*/
+/*  pointer-events: none; !* This prevents the overlay from interfering with user interaction *!*/
+/*  background: linear-gradient(to right,*/
+/*  rgba(100, 100, 100, 0) 0%,*/
+/*  rgba(100, 100, 100, 1) 15%,*/
+/*  rgba(100, 100, 100, 1) 85%,*/
+/*  rgba(100, 100, 100, 0) 100%);*/
+/*  !*border-radius: 8px;*!*/
+/*}*/
+
+.progressBar {
+  width: 90%;
+}
+
+
 ::ng-deep #mat-progress-bar-0 {
-  display: none;
+  display: none !important;
+}
+
+::ng-deep #mat-progress-bar-1 {
+  display: none !important;
 }
 
 ::ng-deep .mat-progress-bar-buffer {
-  background-image: none !important;
-  background-color: transparent !important;
+  /*background-image: none !important;*/
+  /*background-color: var(--translucent-dark) !important;*/
+  background: linear-gradient(to right,
+  rgba(80, 80, 80, 0) 0%,
+  rgba(0, 0, 0, 0.3) 20%,
+  rgba(0, 0, 0, 0.3) 80%,
+  rgba(80, 80, 80, 0) 100%);
 }
 
 ::ng-deep .mat-progress-bar-fill::after {
-  background-color: var(--translucent-accent) !important;
+  background-color: var(--white) !important;
 }
 
-::ng-deep .mat-progress-bar-background {
+::ng-deep .mat-progress-bar-background mat-progress-bar-element {
   background-image: none !important;
-  background-color: transparent !important;
+  background-color: var(--translucent-dark) !important;
 }
 
 ::ng-deep .mat-progress-bar {
-  height: var(--bar-size) !important;
+  height: 2px !important;
 }
 
 .mat-form-field {

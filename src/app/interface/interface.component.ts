@@ -117,7 +117,8 @@ export class InterfaceComponent implements OnInit {
     this.ripple.launch(0, 0, rippleConfig)
     if(!this.generating)
     {
-      this.sendReq()
+      this.generateSetup();
+      // this.sendReq()
     }
     else
     {

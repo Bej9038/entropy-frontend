@@ -1,15 +1,30 @@
 app-interface {
-  position: absolute;
-  top: 15%;
-  left: 0;
-  right: 0;
-  margin: auto;
+  /*position: relative;*/
+  /*position: absolute;*/
+  /*top: 15%;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*margin: auto;*/
   width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   /*height: 40%;*/
+}
+
+app-navbar {
+  position: absolute;
+  width: 100%;
+}
+
+.interface-cont {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 .invisible {
