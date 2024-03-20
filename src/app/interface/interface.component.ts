@@ -197,17 +197,22 @@ export class InterfaceComponent implements OnInit {
   initWaveSurfer()
   {
     let color = this.style.getPropertyValue("--translucent-dark").trim()
+    let cursorColor = this.style.getPropertyValue("--white").trim()
     let height = 72;
+    let interact = true
     this.wavesurfer1 = WaveSurfer.create(
       {
         container: this.waveform1Element.nativeElement,
         waveColor: color,
-        progressColor: '#ECEFF1',
-        cursorWidth: 0,
-        interact: false,
+        progressColor: "none",
+        cursorWidth: 2,
+        cursorColor: cursorColor,
+        interact: interact,
         fillParent: true,
         sampleRate: 48000,
-        height: height
+        height: height,
+        dragToSeek: true,
+        autoScroll: true
       }
     )
     if(this.debug)
@@ -221,12 +226,15 @@ export class InterfaceComponent implements OnInit {
       {
         container: this.waveform2Element.nativeElement,
         waveColor: color,
-        progressColor: '#ECEFF1',
-        cursorWidth: 0,
-        interact: false,
+        progressColor: "none",
+        cursorWidth: 2,
+        cursorColor: cursorColor,
+        interact: interact,
         fillParent: true,
         sampleRate: 48000,
-        height: height
+        height: height,
+        dragToSeek: true,
+        autoScroll: true
       }
     )
     if(this.debug)

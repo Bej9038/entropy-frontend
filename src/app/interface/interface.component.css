@@ -189,7 +189,7 @@
 {
   height: 100px;
   width: 100%;
-  margin: 16px 16px 16px 16px;
+  margin: 4px;
   border: 2px solid var(--translucent-grey-2);
   border-radius: 8px;
   display: flex;
@@ -199,10 +199,22 @@
   align-items: center;
 }
 
+.button-cont {
+  position: absolute;
+  z-index: 2;
+}
+
+.playButton {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+}
+
 .waveform {
+  z-index: 1;
   /*padding: 16px;*/
   /*margin: 16px;*/
-  width: 100%;
+  width: 90%;
 }
 
 .audio-container {
