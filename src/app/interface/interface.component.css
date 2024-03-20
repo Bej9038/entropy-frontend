@@ -189,7 +189,7 @@
 {
   height: 100px;
   width: 100%;
-  margin: 16px 32px 16px 32px;
+  margin: 16px 16px 16px 16px;
   border: 2px solid var(--translucent-grey-2);
   border-radius: 8px;
   display: flex;
@@ -249,11 +249,7 @@
 }
 
 
-::ng-deep #mat-progress-bar-0 {
-  display: none !important;
-}
-
-::ng-deep #mat-progress-bar-1 {
+::ng-deep [id^="mat-progress-bar-"] {
   display: none !important;
 }
 

@@ -35,9 +35,9 @@
 
   <div class="audio-container">
     <div class="waveform-cont">
-      <div class="progress-bar-container">
+<!--      <div class="progress-bar-container">-->
         <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-      </div>
+<!--      </div>-->
       <div *ngIf="showAudio" class="waveform" id="waveform1" #waveform1></div>
       <button (click)="audioService.playAudio(1)" *ngIf="showAudio" mat-button>
         <mat-icon>play_arrow</mat-icon>
@@ -45,9 +45,9 @@
     </div>
 
     <div class="waveform-cont">
-      <div class="progress-bar-container" >
+<!--      <div class="progress-bar-container" >-->
         <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-      </div>
+<!--      </div>-->
       <div *ngIf="showAudio" class="waveform" id="waveform2" #waveform2></div>
       <button (click)="audioService.playAudio(2)" *ngIf="showAudio" mat-button>
         <mat-icon>play_arrow</mat-icon>
