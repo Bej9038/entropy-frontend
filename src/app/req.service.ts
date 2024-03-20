@@ -10,6 +10,7 @@ export class ReqService {
   entropy: number = 1.1
   duration: number = 6
   disableGeneration: boolean = false
+  // loop: False;
 
   constructor() { }
 
@@ -22,8 +23,9 @@ export class ReqService {
       {
         text += " "
       }
-      text += this.bpm + " bpm"
+      text += "loop " + this.bpm + " bpm"
     }
+
     if(this.key != "")
     {
       if(text != "")

@@ -8,7 +8,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./bpm-select.component.css']
 })
 export class BpmSelectComponent implements OnInit {
-  BPMSelected: boolean = false
+  loopSelected: boolean = false
+  // oneShotSelected: boolean true
   bpm: string = this.reqService.bpm
   numberInputControl= new FormControl('', [
     Validators.pattern('^[0-9]+$'),
@@ -34,10 +35,32 @@ export class BpmSelectComponent implements OnInit {
     this.reqService.disableGeneration = this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern');
   }
 
+  // toggleOneShot()
+  // {
+  //   this.loopSelected = !this.loopSelected;
+  //   if(!this.loopSelected)
+  //   {
+  //     this.reqService.bpm = ""
+  //     if(this.reqService.disableGeneration)
+  //     {
+  //       this.reqService.disableGeneration = false
+  //     }
+  //   }
+  //   else {
+  //     this.reqService.bpm = this.bpm
+  //     if((this.numberInputControl.hasError('min') ||
+  //       this.numberInputControl.hasError('max') ||
+  //       this.numberInputControl.hasError('pattern')) && !this.reqService.disableGeneration)
+  //     {
+  //       this.reqService.disableGeneration = true
+  //     }
+  //   }
+  // }
+
   toggleBPM()
   {
-    this.BPMSelected = !this.BPMSelected;
-    if(!this.BPMSelected)
+    this.loopSelected = !this.loopSelected;
+    if(!this.loopSelected)
     {
       this.reqService.bpm = ""
       if(this.reqService.disableGeneration)

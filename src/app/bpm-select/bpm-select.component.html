@@ -2,9 +2,9 @@
 <div class="bpm-container">
 
   <mat-form-field class="bpm-flexitem bpm-form"  floatLabel="never">
-      <mat-label *ngIf="bpm == '' && BPMSelected">120</mat-label>
-      <mat-label *ngIf="!BPMSelected">no bpm</mat-label>
-      <input [disabled]="!BPMSelected" [formControl]="BPMSelected ? numberInputControl : dummyControl" matInput maxlength="3"
+      <mat-label *ngIf="bpm == '' && loopSelected">120</mat-label>
+      <mat-label *ngIf="!loopSelected">no bpm</mat-label>
+      <input [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" matInput maxlength="3"
              [(ngModel)]="bpm" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" (input)="updateBPM()">
   </mat-form-field>
 <!--  <div class="bpm-flexitem mat-error" style="color: var(&#45;&#45;translucent-grey); height: 1rem" *ngIf="!numberInputControl.hasError('pattern') &&-->
@@ -13,16 +13,19 @@
 
   <div class="error-cont">
     <mat-error class="bpm-flexitem" *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))
-  && BPMSelected
+  && loopSelected
   && !numberInputControl.hasError('pattern')">
   error: 60 <= bpm <= 200
   </mat-error>
-  <mat-error class="bpm-flexitem" *ngIf="numberInputControl.hasError('pattern') && BPMSelected">
+  <mat-error class="bpm-flexitem" *ngIf="numberInputControl.hasError('pattern') && loopSelected">
     error: bpm must be numeric
   </mat-error>
 </div>
 
-<button class="bpm-flexitem keyButton" [class.selected]="BPMSelected" (click)="toggleBPM()" mat-flat-button> bpm </button>
-
+  <div class="button-cont">
+    <button class="bpm-flexitem keyButton" [class.selected]="loopSelected" (click)="toggleBPM()" mat-flat-button> loop </button>
+    <button class="bpm-flexitem keyButton" [class.selected]="!loopSelected" (click)="toggleBPM()" mat-flat-button> one shot </button>
+    <!--  <button class="bpm-flexitem keyButton" [class.selected]="BPMSelected" (click)="toggleLoop() "mat-flat-button> loop </button>-->
+  </div>
 
 </div>
