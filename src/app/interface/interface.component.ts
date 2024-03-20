@@ -37,7 +37,8 @@ export class InterfaceComponent implements OnInit {
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
-  debug = true
+  // debug = true
+  debug = false
 
   wavesurfer1: WaveSurfer | undefined;
   wavesurfer2: WaveSurfer | undefined;
@@ -98,6 +99,7 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
+    this.showAudio = false
     this.reqService.description = "";
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
