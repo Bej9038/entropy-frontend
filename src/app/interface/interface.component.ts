@@ -40,8 +40,8 @@ export class InterfaceComponent implements OnInit {
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
-  debug = true
-  // debug = false
+  // debug = true
+  debug = false
 
   wavesurfer1: WaveSurfer | undefined;
   wavesurfer2: WaveSurfer | undefined;

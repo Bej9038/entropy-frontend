@@ -10,39 +10,38 @@ export class ReqService {
   entropy: number = 1.1
   duration: number = 6
   disableGeneration: boolean = false
-  // loop: False;
+  loop: boolean = false;
 
   constructor() { }
 
-  getReq()
+  reformatDescription()
   {
     let text = this.description.replace(new RegExp('[-]', 'g'), " ");
     text = text.replace(new RegExp('[,.]', 'g'), "");
+
+    if(this.loop && !text.includes("loop"))
+    {
+      text += " loop";
+    }
+
     if(this.bpm)
     {
-      if(text != "")
-      {
-        text += " "
-      }
-      if(!text.includes("loop"))
-      {
-        text += "loop "
-      }
-      text += this.bpm + " bpm"
+      text += " " + this.bpm + " bpm"
     }
 
     if(this.key != "")
     {
-      if(text != "")
-      {
-        text += " "
-      }
-      text += this.key
+      text += " " + this.key
     }
     console.log(text)
+    return text
+  }
+
+  getReq()
+  {
     return {
       "input": {
-        "text":  text,
+        "text":  this.reformatDescription(),
         "entropy": this.entropy,
         "duration": this.duration,
         "stereo": 1,
