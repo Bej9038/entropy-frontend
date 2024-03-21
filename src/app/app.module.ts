@@ -20,6 +20,7 @@ import {MatRippleModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { RlhfComponent } from './rlhf/rlhf.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -31,22 +32,23 @@ import { RlhfComponent } from './rlhf/rlhf.component';
     SliderComponent,
     RlhfComponent,
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        MatCardModule,
-        MatInputModule,
-        MatSliderModule,
-        MatButtonToggleModule,
-        MatButtonModule,
-        MatGridListModule,
-        MatToolbarModule,
-        MatProgressBarModule,
-        MatRippleModule,
-        ReactiveFormsModule,
-        MatIconModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatCardModule,
+    MatInputModule,
+    MatSliderModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatRippleModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatMenuModule
+  ],
   providers: [provideAnimations()],
   bootstrap: [AppComponent]
 })
