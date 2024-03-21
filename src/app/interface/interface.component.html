@@ -47,9 +47,6 @@
         <button class="playButton" *ngIf="showAudio" mat-button>
           <mat-icon>download</mat-icon>
         </button>
-        <button class="playButton" *ngIf="showAudio" mat-button>
-          <mat-icon>thumb_up_alt</mat-icon>
-        </button>
       </div>
     </div>
 
@@ -65,13 +62,12 @@
         <button class="playButton" *ngIf="showAudio" mat-button>
           <mat-icon>download</mat-icon>
         </button>
-        <button class="playButton" *ngIf="showAudio" mat-button>
-          <mat-icon>thumb_up_alt</mat-icon>
-        </button>
       </div>
     </div>
   </div>
 </mat-card>
+
+<app-rlhf class="rlhf" *ngIf="showAudio"></app-rlhf>
 
 
 
