@@ -6,7 +6,14 @@ import WaveSurfer from "wavesurfer.js";
   providedIn: 'root'
 })
 export class AudioService {
-  audioContext = new AudioContext();
+  sampleRate = 48000
+  // audioContext = new AudioContext();
+  audioContext = new OfflineAudioContext({
+    numberOfChannels: 2,
+    length: 10 * this.sampleRate,
+    sampleRate: this.sampleRate
+  });
+
   // @ts-ignore
   buffer1: AudioBuffer;
   // @ts-ignore
@@ -14,6 +21,9 @@ export class AudioService {
 
   src1 = this.audioContext.createBufferSource()
   src2 = this.audioContext.createBufferSource()
+
+  url1: undefined | SafeUrl = undefined
+  url2: undefined | SafeUrl = undefined
 
   src1_isPlaying = false
   src2_isPlaying = false
@@ -78,22 +88,41 @@ export class AudioService {
     }
   }
 
-  async decodeBase64ToAudioURL(base64String: string, audioId: number) {
+  downloadAudio(audioId:number)
+  {
+    if(audioId == 1)
+    {
+
+    }
+    else if(audioId == 2)
+    {
+
+    }
+  }
+
+  async decodeBase64ToAudioURL(base64: string, audioId: number) {
     console.log("decoding audio")
-    const byteCharacters = atob(base64String);
+    const byteArray = this.convertBase64FileToRaw(base64)
+    const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
+    const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob))
+    if(audioId == 1) {
+      this.url1 = url
+      this.buffer1 = await this.audioContext.decodeAudioData(byteArray.buffer);
+    }
+    else if(audioId == 2) {
+      this.url2 = url
+      this.buffer2 = await this.audioContext.decodeAudioData(byteArray.buffer);
+    }
+    return url;
+  }
+
+  convertBase64FileToRaw(base64: string)
+  {
+    const byteCharacters = atob(base64);
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {
       byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
-    const byteArray = new Uint8Array(byteNumbers);
-    const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
-
-    if(audioId == 1) {
-      this.buffer1 = await this.audioContext.decodeAudioData(byteArray.buffer);
-    }
-    else if(audioId == 2) {
-      this.buffer2 = await this.audioContext.decodeAudioData(byteArray.buffer);
-    }
-    return this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob));
+    return new Uint8Array(byteNumbers);
   }
 }
