@@ -40,6 +40,7 @@ export class InterfaceComponent implements OnInit {
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
+
   // debug = true
   debug = false
 
@@ -95,7 +96,10 @@ export class InterfaceComponent implements OnInit {
         // console.log(i)
       }, seconds * 1000);
     }, 300);
-    // this.initWaveSurfer()
+    if(this.debug)
+    {
+      this.initWaveSurfer()
+    }
   }
 
   constructor(private elementRef: ElementRef, private http: HttpClient, public audioService: AudioService, public reqService: ReqService) {}
@@ -244,7 +248,7 @@ export class InterfaceComponent implements OnInit {
     )
     if(this.debug)
     {
-      this.wavesurfer2.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
+      this.wavesurfer2.load("assets/KSHMR Electric Guitar Chords 01 (75, Bm).wav");
     }
     else {
       this.wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);

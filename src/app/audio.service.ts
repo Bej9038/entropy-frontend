@@ -89,10 +89,10 @@ export class AudioService {
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
 
     if(audioId == 1) {
-      this.buffer2 = await this.audioContext.decodeAudioData(byteArray.buffer);
+      this.buffer1 = await this.audioContext.decodeAudioData(byteArray.buffer);
     }
     else if(audioId == 2) {
-      this.buffer1 = await this.audioContext.decodeAudioData(byteArray.buffer);
+      this.buffer2 = await this.audioContext.decodeAudioData(byteArray.buffer);
     }
     return this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob));
   }
