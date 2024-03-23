@@ -35,13 +35,10 @@
 
   <div class="audio-container">
     <div class="waveform-cont">
-<!--      <div class="progress-bar-container">-->
         <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-<!--      </div>-->
       <div *ngIf="showAudio" class="waveform" id="waveform1" #waveform1></div>
 
-<!--      <div class="button-cont">-->
-        <button class="playButton" (click)="audioService.playAudio(1)" *ngIf="showAudio" mat-button>
+        <button class="playButton" (click)="audioService.playOrPause(1)" *ngIf="showAudio" mat-button>
           <mat-icon>play_arrow</mat-icon>
         </button>
         <button class="menu-button" mat-icon-button [matMenuTriggerFor]="menu1" aria-label="Example icon-button with a menu">
@@ -51,22 +48,17 @@
         <mat-menu yPosition="above" class="download-menu" #menu1>
           <button *ngIf="showAudio" mat-button>
             download
-<!--            <mat-icon class="dl-icon">download</mat-icon>-->
           </button>
         </mat-menu>
 
-<!--      </div>-->
 
     </div>
 
     <div class="waveform-cont">
-<!--      <div class="progress-bar-container" >-->
         <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-<!--      </div>-->
       <div *ngIf="showAudio" class="waveform" id="waveform2" #waveform2></div>
 
-<!--      <div class="button-cont">-->
-        <button class="playButton" (click)="audioService.playAudio(2)" *ngIf="showAudio" mat-button>
+        <button class="playButton" (click)="audioService.playOrPause(2)" *ngIf="showAudio" mat-button>
           <mat-icon>play_arrow</mat-icon>
         </button>
 
@@ -77,7 +69,6 @@
         <mat-menu yPosition="above" class="download-menu" #menu2>
           <button *ngIf="showAudio" mat-button>
             download
-<!--            <mat-icon class="dl-icon">download</mat-icon>-->
           </button>
         </mat-menu>
     </div>

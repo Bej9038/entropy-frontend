@@ -95,7 +95,7 @@ export class InterfaceComponent implements OnInit {
         // console.log(i)
       }, seconds * 1000);
     }, 300);
-    this.initWaveSurfer()
+    // this.initWaveSurfer()
   }
 
   constructor(private elementRef: ElementRef, private http: HttpClient, public audioService: AudioService, public reqService: ReqService) {}
