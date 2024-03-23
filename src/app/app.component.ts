@@ -1,7 +1,6 @@
 import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AudioService} from "./audio.service";
-import {ReqService} from "./req.service";
+import {AuthConfig, OAuthModule, OAuthService} from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +13,31 @@ export class AppComponent {
   apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
   runsync: string = "https://api.runpod.ai/v2/y4bhqyz247xbh2/runsync";
 
-  constructor(private http: HttpClient) {
+  authConfig: AuthConfig = {
+    issuer: 'https://accounts.google.com',
+    redirectUri: window.location.origin,
+    clientId: '258339538727-1o90t8a1p24levr40c5u750rvlj005ot.apps.googleusercontent.com',
+    scope: 'openid profile email',
+    showDebugInformation: true,
+  };
+
+
+  constructor(private http: HttpClient, private oauthService: OAuthService) {
+    this.oauthService.configure(this.authConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin()
+    this.login()
+
+    //   .then(() => {
+    //   if (this.oauthService.hasValidAccessToken()) {
+    //     let claims = this.oauthService.getIdentityClaims();
+    //     if (claims) {
+    //       console.log(claims);
+    //     }
+    //   }
+    //   else {
+    //     this.oauthService.initImplicitFlow();
+    //   }
+    // });
   }
 
   // @ts-ignore
@@ -22,6 +45,9 @@ export class AppComponent {
   // @ts-ignore
   @ViewChild("interface", { read: ElementRef }) interfaceElement: ElementRef;
 
+  login() {
+    this.oauthService.initImplicitFlow();
+  }
 
   ngOnInit(): void {
     // this.startPeriodicRequest()

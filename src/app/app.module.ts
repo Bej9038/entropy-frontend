@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {importProvidersFrom, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +21,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { RlhfComponent } from './rlhf/rlhf.component';
 import {MatMenuModule} from "@angular/material/menu";
+import {provideOAuthClient} from "angular-oauth2-oidc";
 
 @NgModule({
   declarations: [
@@ -47,9 +48,12 @@ import {MatMenuModule} from "@angular/material/menu";
     MatRippleModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
   ],
-  providers: [provideAnimations()],
+  providers: [
+    provideAnimations(),
+    provideOAuthClient(),
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
