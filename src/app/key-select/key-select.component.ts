@@ -83,24 +83,24 @@ export class KeySelectComponent implements OnInit {
     this.halfStepDownMap.set("", "")
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.checkKeyContainerSize();
-  }
-  checkKeyContainerSize(): void {
-    // const width = this.keyContainer.nativeElement.offsetWidth;
-    // const minWidthThreshold = 296;
-    // if (width < 296 && this.row1 == this.row1_large) {
-    //   this.row1 = this.row1_small
-    //   this.row2 = this.row2_small
-    //   this.row3 = this.row3_small
-    // }
-    // else if (width >= 222 && this.row1 == this.row1_small) {
-    //   this.row1 = this.row1_large
-    //   this.row2 = this.row2_large
-    //   this.row3 = this.row3_large
-    // }
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: Event): void {
+  //   this.checkKeyContainerSize();
+  // }
+  // checkKeyContainerSize(): void {
+  //   // const width = this.keyContainer.nativeElement.offsetWidth;
+  //   // const minWidthThreshold = 296;
+  //   // if (width < 296 && this.row1 == this.row1_large) {
+  //   //   this.row1 = this.row1_small
+  //   //   this.row2 = this.row2_small
+  //   //   this.row3 = this.row3_small
+  //   // }
+  //   // else if (width >= 222 && this.row1 == this.row1_small) {
+  //   //   this.row1 = this.row1_large
+  //   //   this.row2 = this.row2_large
+  //   //   this.row3 = this.row3_large
+  //   // }
+  // }
 
 
   selectButton(id: number): void {

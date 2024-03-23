@@ -26,9 +26,10 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  width: 100%;
 }
 
-.key-row {
+.flex-row {
   display: flex;
   flex-direction: row;
   justify-content: center;

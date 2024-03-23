@@ -16,6 +16,10 @@
   /*font-size: 1rem;*/
 }
 
-.mat-slider {
-  width: 200px;
+::ng-deep .mat-slider {
+  width: 100% !important;
+}
+
+::ng-deep .mat-slider-horizontal {
+  min-width: 0 !important;
 }
