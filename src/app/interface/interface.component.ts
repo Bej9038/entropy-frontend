@@ -107,7 +107,7 @@ export class InterfaceComponent implements OnInit {
   generateSetup()
   {
     this.showAudio = false
-    this.reqService.description = "";
+    // this.reqService.description = "";
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
@@ -117,6 +117,7 @@ export class InterfaceComponent implements OnInit {
 
   generateTeardown()
   {
+    this.reqService.description = "";
     this.reqService.disableGeneration = false;
     this.showProgressBar = false;
     this.generating = false;

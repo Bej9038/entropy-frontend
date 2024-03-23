@@ -8,8 +8,8 @@
           <mat-icon *ngIf="generating">stop</mat-icon>
         </button>
         <mat-form-field class="textBar">
-          <mat-label #label>{{reqService.description == "" || generating ? placeholder: ""}}</mat-label>
-          <input (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
+          <mat-label #label>{{reqService.description == "" ? placeholder : ""}}</mat-label>
+          <input class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
         </mat-form-field>
         <button style="visibility: hidden" [disabled]="true" class="generateButton" mat-button>
         </button>
@@ -75,7 +75,8 @@
   </div>
 </mat-card>
 
-<app-rlhf class="rlhf" *ngIf="showAudio"></app-rlhf>
+<!--<app-rlhf class="rlhf" *ngIf="showAudio"></app-rlhf>-->
+<app-rlhf class="rlhf"></app-rlhf>
 
 
 

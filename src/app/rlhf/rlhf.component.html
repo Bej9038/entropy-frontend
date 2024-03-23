@@ -1,20 +1,20 @@
   <div class="rlhf-cont">
     <div class="button-cont">
-      <button class="rlhfButton" mat-button>
+      <button [ngClass]="{'up': rhsUp, 'down': lhsUp}" (mouseenter)="onRhs()" (mouseleave)="reset()" class="rlhfButton up" mat-button>
         <mat-icon>thumb_up_alt</mat-icon>
       </button>
-      <button class="rlhfButton" mat-button>
-        <mat-icon>thumb_down_alt</mat-icon>
-      </button>
+<!--      <button [ngClass]="{'down': rhsDown || lhsUp}" (mouseenter)="onRhsDown()" (mouseleave)="reset()" class="rlhfButton down" mat-button>-->
+<!--        <mat-icon>thumb_down_alt</mat-icon>-->
+<!--      </button>-->
     </div>
 
     <div class="button-cont">
-      <button class="rlhfButton" mat-button>
+      <button [ngClass]="{'up': lhsUp, 'down': rhsUp}" (mouseenter)="onLhs()" (mouseleave)="reset()" class="rlhfButton up" mat-button>
         <mat-icon>thumb_up_alt</mat-icon>
       </button>
-      <button class="rlhfButton" mat-button>
-        <mat-icon>thumb_down_alt</mat-icon>
-      </button>
+<!--      <button [ngClass]="{'down': lhsDown || rhsUp}" (mouseenter)="onLhsDown()" (mouseleave)="reset()" class="rlhfButton down" mat-button>-->
+<!--        <mat-icon>thumb_down_alt</mat-icon>-->
+<!--      </button>-->
     </div>
   </div>
 <div class="desc-cont">
