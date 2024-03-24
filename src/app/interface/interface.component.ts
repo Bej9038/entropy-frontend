@@ -40,6 +40,8 @@ export class InterfaceComponent implements OnInit {
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
+  lhsUp = false
+  rhsUp = false
 
   debug = true
   // debug = false
@@ -277,5 +279,21 @@ export class InterfaceComponent implements OnInit {
       }
     };
     checkAndInit();
+  }
+
+  onRhs()
+  {
+    this.rhsUp = true
+    this.lhsUp = false
+  }
+  onLhs()
+  {
+    this.rhsUp = false
+    this.lhsUp = true
+  }
+
+  reset() {
+    this.rhsUp = false
+    this.lhsUp = false
   }
 }
