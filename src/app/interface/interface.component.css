@@ -182,6 +182,12 @@
   align-content: center;
 }
 
+::ng-deep .rlhf {
+  width: 100% !important;
+  /*position: absolute;*/
+  /*top: 488.4px;*/
+}
+
 /*.app-slider {*/
 /*  width: 100%;*/
 /*}*/
@@ -205,9 +211,7 @@
   align-items: center;
 }
 
-::ng-deep .rlhf {
-  width: 80% !important;
-}
+
 
 .button-cont {
 

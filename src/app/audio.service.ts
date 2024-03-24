@@ -7,12 +7,12 @@ import WaveSurfer from "wavesurfer.js";
 })
 export class AudioService {
   sampleRate = 48000
-  // audioContext = new AudioContext();
-  audioContext = new OfflineAudioContext({
-    numberOfChannels: 2,
-    length: 10 * this.sampleRate,
-    sampleRate: this.sampleRate
-  });
+  audioContext = new AudioContext();
+  // audioContext = new OfflineAudioContext({
+  //   numberOfChannels: 2,
+  //   length: 10 * this.sampleRate,
+  //   sampleRate: this.sampleRate
+  // });
 
   // @ts-ignore
   buffer1: AudioBuffer;

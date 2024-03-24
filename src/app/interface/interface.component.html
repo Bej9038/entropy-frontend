@@ -1,7 +1,4 @@
 <mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
-<!--  <div style="height: 40px"></div>-->
-<!--  <mat-grid-list cols=3 rowHeight="8vh">-->
-<!--    <mat-grid-tile style="z-index: 100" class="textTile" colspan="3" rowspan="2">-->
       <div #outline class="textOutline" >
         <button disableRipple [disabled]="!generating && (reqService.disableGeneration || reqService.description == '')" class="generateButton" (click)="generate()" mat-button>
           <mat-icon *ngIf="!generating">play_arrow</mat-icon>
@@ -72,9 +69,9 @@
         </mat-menu>
     </div>
   </div>
+  <app-rlhf class="rlhf" *ngIf="showAudio"></app-rlhf>
 </mat-card>
 
-<app-rlhf class="rlhf" *ngIf="showAudio"></app-rlhf>
 <!--<app-rlhf class="rlhf"></app-rlhf>-->
 
 
