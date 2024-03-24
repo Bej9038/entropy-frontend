@@ -111,7 +111,6 @@ export class InterfaceComponent implements OnInit {
   generateSetup()
   {
     this.showAudio = false
-    // this.reqService.description = "";
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
@@ -197,8 +196,8 @@ export class InterfaceComponent implements OnInit {
             console.log("request complete")
             let base641 = response["output"][0]
             let base642 = response["output"][1]
-            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base641, 1)
-            this.audioSrc2 = await this.audioService.decodeBase64ToAudioURL(base642, 2)
+            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base641, 1, this.reqService.description)
+            this.audioSrc2 = await this.audioService.decodeBase64ToAudioURL(base642, 2, this.reqService.description)
             this.showAudio = true;
             this.waitForElementsAndInitWaveSurfer(intervalRef)
           } else if (response["status"] == "CANCELLED") {

@@ -29,6 +29,8 @@ export class AudioService {
   src1_isPlaying = false
   src2_isPlaying = false
 
+  current_prompt = ""
+
   src1_time = 0
   src2_time = 0
 
@@ -92,13 +94,13 @@ export class AudioService {
   downloadAudio(audioId:number)
   {
     if(audioId == 1) {
-      this.downloadBlob(this.src1, this.reqService.description)
+      this.downloadBlob(this.url1, this.current_prompt)
     }
     else if(audioId == 2) {
-      this.downloadBlob(this.src2, this.reqService.description)
+      this.downloadBlob(this.url2, this.current_prompt)
     }
   }
-  downloadBlob(url: SafeUrl, filename: string) {
+  downloadBlob(url: SafeUrl | undefined, filename: string) {
     const a = document.createElement('a');
     a.href = (url as any).changingThisBreaksApplicationSecurity;
     a.download = filename || 'download';
@@ -107,8 +109,9 @@ export class AudioService {
     document.body.removeChild(a);
   }
 
-  async decodeBase64ToAudioURL(base64: string, audioId: number) {
+  async decodeBase64ToAudioURL(base64: string, audioId: number, description: string) {
     console.log("decoding audio")
+    this.current_prompt = description
     const byteArray = this.convertBase64FileToRaw(base64)
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
     const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob))
