@@ -37,6 +37,8 @@ export class InterfaceComponent implements OnInit {
     "distorted neuro reese bass loop" +
     ""
   ];
+  cursorColor = this.style.getPropertyValue("--translucent-grey-2").trim()
+  newCursorColor = this.style.getPropertyValue("--white").trim()
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
@@ -209,16 +211,16 @@ export class InterfaceComponent implements OnInit {
   initWaveSurfer()
   {
     let color = this.style.getPropertyValue("--translucent-dark").trim()
-    let cursorColor = this.style.getPropertyValue("--white").trim()
     let height = 72;
     let interact = true
+    let cursorWidth = 2;
     this.wavesurfer1 = WaveSurfer.create(
       {
         container: this.waveform1Element.nativeElement,
         waveColor: color,
         progressColor: "none",
-        cursorWidth: 2,
-        cursorColor: cursorColor,
+        cursorWidth: cursorWidth,
+        cursorColor: this.cursorColor,
         interact: interact,
         fillParent: true,
         sampleRate: 48000,
@@ -239,8 +241,8 @@ export class InterfaceComponent implements OnInit {
         container: this.waveform2Element.nativeElement,
         waveColor: color,
         progressColor: "none",
-        cursorWidth: 2,
-        cursorColor: cursorColor,
+        cursorWidth: cursorWidth,
+        cursorColor: this.cursorColor,
         interact: interact,
         fillParent: true,
         sampleRate: 48000,
@@ -283,17 +285,33 @@ export class InterfaceComponent implements OnInit {
 
   onRhs()
   {
+
     this.rhsUp = true
     this.lhsUp = false
+    if(this.wavesurfer1 && this.wavesurfer2)
+    {
+      this.wavesurfer1.setOptions({cursorColor: this.newCursorColor})
+      this.wavesurfer2.setOptions({cursorColor: this.cursorColor})
+    }
   }
   onLhs()
   {
     this.rhsUp = false
     this.lhsUp = true
+    if(this.wavesurfer1 && this.wavesurfer2)
+    {
+      this.wavesurfer1.setOptions({cursorColor: this.cursorColor})
+      this.wavesurfer2.setOptions({cursorColor: this.newCursorColor})
+    }
   }
 
   reset() {
     this.rhsUp = false
     this.lhsUp = false
+    if(this.wavesurfer1 && this.wavesurfer2)
+    {
+      this.wavesurfer1.setOptions({cursorColor: this.cursorColor})
+      this.wavesurfer2.setOptions({cursorColor: this.cursorColor})
+    }
   }
 }

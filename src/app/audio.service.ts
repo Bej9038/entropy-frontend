@@ -90,12 +90,10 @@ export class AudioService {
 
   downloadAudio(audioId:number)
   {
-    if(audioId == 1)
-    {
+    if(audioId == 1) {
 
     }
-    else if(audioId == 2)
-    {
+    else if(audioId == 2) {
 
     }
   }
