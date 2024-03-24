@@ -31,44 +31,39 @@
 <mat-card class="textCard">
   <div class="audio-container">
 
-
-
-
-<!--  <div class="button-cont">-->
-    <div class="lhsButtons" (mouseenter)="onRhs()" (mouseleave)="reset()">
+    <div class="waveform-component" (mouseenter)="onRhs()" (mouseleave)="reset()">
       <div class="waveform-cont" [ngClass]="{'up': rhsUp, 'down': lhsUp}">
         <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
         <div *ngIf="showAudio" class="waveform" id="waveform1" #waveform1></div>
       </div>
 
-
-      <button [ngClass]="{'playButton up': rhsUp, 'playButton down': lhsUp}" (click)="audioService.playOrPause(1)" *ngIf="showAudio" mat-button>
-        <mat-icon>play_arrow</mat-icon>
-      </button>
-      <button [ngClass]="{'playButton up': rhsUp, 'playButton down': lhsUp}" (click)="audioService.downloadAudio(1)" mat-button>
-        <mat-icon>download</mat-icon>
-      </button>
+      <div class="button-cont">
+        <button class="playButton" [ngClass]="{'up': rhsUp, 'down': lhsUp}" (click)="audioService.playOrPause(1)" *ngIf="showAudio" mat-button>
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button class="playButton" [ngClass]="{'up': rhsUp, 'down': lhsUp}" (click)="audioService.downloadAudio(1)" mat-button>
+          <mat-icon>download</mat-icon>
+        </button>
+      </div>
     </div>
-    <div class="rhsButtons" (mouseenter)="onLhs()" (mouseleave)="reset()">
+
+    <div class="waveform-component" (mouseenter)="onLhs()" (mouseleave)="reset()">
       <div class="waveform-cont" [ngClass]="{'up': lhsUp, 'down': rhsUp}">
         <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
         <div *ngIf="showAudio" class="waveform" id="waveform2" #waveform2></div>
       </div>
 
-
-      <button [ngClass]="{'playButton up': lhsUp, 'playButton down': rhsUp}"  (click)="audioService.playOrPause(2)" *ngIf="showAudio" mat-button>
-        <mat-icon>play_arrow</mat-icon>
-      </button>
-      <button [ngClass]="{'playButton up': lhsUp, 'playButton down': rhsUp}"  (click)="audioService.downloadAudio(2)" mat-button>
-        <mat-icon>download</mat-icon>
-      </button>
+      <div class="button-cont">
+        <button class="playButton" [ngClass]="{'up': lhsUp, 'down': rhsUp}"  (click)="audioService.playOrPause(2)" *ngIf="showAudio" mat-button>
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+        <button class="playButton" [ngClass]="{'up': lhsUp, 'down': rhsUp}"  (click)="audioService.downloadAudio(2)" mat-button>
+          <mat-icon>download</mat-icon>
+        </button>
+      </div>
     </div>
+
   </div>
-
-<!--  </div>-->
-
-
-
 <!--  <app-rlhf class="rlhf" *ngIf="showAudio"></app-rlhf>-->
 </mat-card>
 
