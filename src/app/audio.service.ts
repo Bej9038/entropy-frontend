@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import WaveSurfer from "wavesurfer.js";
+import {ReqService} from "./req.service";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class AudioService {
   src1_time = 0
   src2_time = 0
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private reqService: ReqService) {
     this.src1.connect(this.audioContext.destination)
     this.src2.connect(this.audioContext.destination)
   }
@@ -91,11 +92,19 @@ export class AudioService {
   downloadAudio(audioId:number)
   {
     if(audioId == 1) {
-
+      this.downloadBlob(this.src1, this.reqService.description)
     }
     else if(audioId == 2) {
-
+      this.downloadBlob(this.src2, this.reqService.description)
     }
+  }
+  downloadBlob(url: SafeUrl, filename: string) {
+    const a = document.createElement('a');
+    a.href = (url as any).changingThisBreaksApplicationSecurity;
+    a.download = filename || 'download';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   async decodeBase64ToAudioURL(base64: string, audioId: number) {

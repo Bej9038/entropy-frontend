@@ -45,8 +45,8 @@ export class InterfaceComponent implements OnInit {
   lhsUp = false
   rhsUp = false
 
-  debug = true
-  // debug = false
+  // debug = true
+  debug = false
 
   wavesurfer1: WaveSurfer | undefined;
   wavesurfer2: WaveSurfer | undefined;
