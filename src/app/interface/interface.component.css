@@ -205,6 +205,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom: 4px;
 }
 
 .waveform-component {
@@ -361,7 +362,7 @@
 }
 
 ::ng-deep .mat-progress-bar-fill::after {
-  background-color: var(--white) !important;
+  background-color: var(--translucent-grey-2) !important;
 }
 
 ::ng-deep .mat-progress-bar-background mat-progress-bar-element {

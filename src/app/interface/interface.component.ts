@@ -26,16 +26,13 @@ export class InterfaceComponent implements OnInit {
   showAudio: boolean = false;
   // showAudio: boolean = true;
   style = getComputedStyle(this.elementRef.nativeElement);
-  placeholders: string[] = ["jazz trumpet",
-    "hip-hop snare drum",
-    "pulsing chords loop",
-    "dramatic piano melody",
-    "cinematic impact",
+  placeholders: string[] = ["acoustic hi-hat top loop",
+    "trap snare drum",
+    "pulsing synth chords",
     "kick drum",
-    "violin melody", "hi-hat top loop",
-    "sustained electronic synth arp",
-    "distorted neuro reese bass loop" +
-    ""
+    "orchestral violin melody",
+    "sustained electronic arp",
+    "neuro reese bass"
   ];
   cursorColor = this.style.getPropertyValue("--translucent-grey-2").trim()
   newCursorColor = this.style.getPropertyValue("--white").trim()
