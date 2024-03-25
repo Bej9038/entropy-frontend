@@ -6,6 +6,7 @@ import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../req.service";
 import WaveSurfer from "wavesurfer.js";
 import {MatRipple} from "@angular/material/core";
+import {FirebaseService} from "../firebase.service";
 
 
 @Component({
@@ -103,7 +104,11 @@ export class InterfaceComponent implements OnInit {
     }
   }
 
-  constructor(private elementRef: ElementRef, private http: HttpClient, public audioService: AudioService, public reqService: ReqService) {}
+  constructor(private elementRef: ElementRef,
+              private http: HttpClient,
+              public audioService: AudioService,
+              public reqService: ReqService,
+              public firebase: FirebaseService) {}
 
   generateSetup()
   {

@@ -1,14 +1,12 @@
 <mat-toolbar>
-<!--  <div class="flex">-->
-<!--    <div>-->
-      <img src="assets/image (8).svg" class="img">
-      Entropy Audio
-<!--    </div>-->
-<!---->
-<!--    <button style="right: 16px" mat-button>-->
-<!--      <mat-icon>-->
-<!--        account_circle-->
-<!--      </mat-icon>-->
-<!--    </button>-->
-<!--  </div>-->
+  <div style="display: flex; align-items: center">
+    <img src="assets/image (8).svg" class="img">
+    <span class="txt">Entropy Audio</span>
+  </div>
+
+  <button (click)="firebase.authenticateUser()" mat-button>
+    <mat-icon>
+      person
+    </mat-icon>
+  </button>
 </mat-toolbar>

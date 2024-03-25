@@ -19,7 +19,6 @@ import { SliderComponent } from './slider/slider.component';
 import {MatRippleModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { RlhfComponent } from './rlhf/rlhf.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {provideOAuthClient} from "angular-oauth2-oidc";
 
@@ -31,7 +30,6 @@ import {provideOAuthClient} from "angular-oauth2-oidc";
     KeySelectComponent,
     BpmSelectComponent,
     SliderComponent,
-    RlhfComponent,
   ],
   imports: [
     BrowserModule,
