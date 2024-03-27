@@ -21,6 +21,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {MatMenuModule} from "@angular/material/menu";
 import {provideOAuthClient} from "angular-oauth2-oidc";
+import {MatSnackBar, matSnackBarAnimations, MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {provideOAuthClient} from "angular-oauth2-oidc";
     ReactiveFormsModule,
     MatIconModule,
     MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [
     provideAnimations(),

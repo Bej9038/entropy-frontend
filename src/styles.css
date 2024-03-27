@@ -2,14 +2,14 @@
 
 :root {
   --greyscale: 100;
-  --white: white;
+  --white: #ffffff;
   --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.4);
-  --translucent-accent: rgba(144, 62, 49, .6);
   --translucent-grey: rgba(200, 200, 200, 0.5);
   --translucent-grey-2: rgba(200, 200, 200, 0.25);
   --translucent-dark: rgb(53, 53, 54);
   --background-color: rgba(43, 43, 44, 0.7);
   --bar-size: 2px;
+  --warning: rgb(164, 19, 19);
 
   min-height: 127.2px;
   min-width: 328.4px !important;

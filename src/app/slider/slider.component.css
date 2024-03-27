@@ -23,3 +23,23 @@
 ::ng-deep .mat-slider-horizontal {
   min-width: 0 !important;
 }
+
+entropyColor {
+  background-color: #ffad33;
+}
+
+::ng-deep.mat-snack-bar-container {
+  background-color: var(--translucent-dark) !important;
+  color: var(--white);
+  text-align: center;
+}
+
+::ng-deep.mat-simple-snackbar {
+  flex-direction: column !important;
+  justify-content: space-between;
+}
+
+::ng-deep.mat-simple-snackbar-action {
+  color: var(--warning);
+  margin-top: 4px !important;
+}

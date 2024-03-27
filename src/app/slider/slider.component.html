@@ -1,7 +1,7 @@
 <mat-slider thumbLabel
             [(ngModel)]= "value"
             [max]="max" [min]="min" [step]="step" [value]="default"
-            (change)="sliderChange()">
+            (input)="sliderChange()">
   <input matsliderthumb>
 </mat-slider>
 <div class="label-container">
