@@ -17,6 +17,15 @@
   font-size: 1.2rem;
 }
 
+/*.version {*/
+/*  vertical-align:center;*/
+/*  text-align: center;*/
+/*  font-family: 'Quando', serif !important;*/
+/*  font-size: 1.5rem;*/
+/*  color: var(--translucent-dark);*/
+/*  margin-left: 4px;*/
+/*}*/
+
 .img {
   height: 1.9rem;
   padding-right: 16px;

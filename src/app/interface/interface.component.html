@@ -6,7 +6,9 @@
         </button>
         <mat-form-field class="textBar">
           <mat-label #label>{{reqService.description == "" ? placeholder : ""}}</mat-label>
-          <input class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
+<!--          <input class="input" (keydown.arrowRight)="clearInterval(this.phInterval); nextPlaceholder()" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">-->
+            <input class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" matInput maxlength="100" [(ngModel)]="reqService.description">
+
         </mat-form-field>
         <button style="visibility: hidden" [disabled]="true" class="generateButton" mat-button>
         </button>

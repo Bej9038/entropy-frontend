@@ -22,6 +22,13 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import {MatMenuModule} from "@angular/material/menu";
 import {provideOAuthClient} from "angular-oauth2-oidc";
 import {MatSnackBar, matSnackBarAnimations, MatSnackBarModule} from "@angular/material/snack-bar";
+import {provideFirebaseApp} from "@angular/fire/app";
+import {provideAuth} from "@angular/fire/auth";
+import {initializeApp} from "firebase/app";
+import {getAuth} from "firebase/auth";
+import {provideFirestore} from "@angular/fire/firestore";
+import {getFirestore} from "firebase/firestore";
+import {environment} from "../environments/environment.prod";
 
 @NgModule({
   declarations: [
@@ -48,11 +55,24 @@ import {MatSnackBar, matSnackBarAnimations, MatSnackBarModule} from "@angular/ma
     ReactiveFormsModule,
     MatIconModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    provideFirebaseApp(() => initializeApp({
+      apiKey: "AIzaSyAiWFiU9YsUoHgUvjlXcxKuvFS6rH4yfp0",
+      authDomain: "entropy-413416.firebaseapp.com",
+      databaseURL: "https://entropy-413416-default-rtdb.firebaseio.com",
+      projectId: "entropy-413416",
+      storageBucket: "entropy-413416.appspot.com",
+      messagingSenderId: "258339538727",
+      appId: "1:258339538727:web:af059ca999220afb340b02",
+      measurementId: "G-F3H0KERXES"
+    })),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [
     provideAnimations(),
     provideOAuthClient(),
+
     ],
   bootstrap: [AppComponent]
 })

@@ -42,6 +42,7 @@ export class InterfaceComponent implements OnInit {
   placeholder: string = this.placeholders[0]
   lhsUp = false
   rhsUp = false
+  phInterval: any = undefined;
 
   // debug = true
   debug = false
@@ -75,6 +76,14 @@ export class InterfaceComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.nextPlaceholder()
+    if(this.debug)
+    {
+      this.initWaveSurfer()
+    }
+  }
+
+  nextPlaceholder() {
     let i = Math.floor(Math.random() * this.placeholders.length)
     let seconds = 10
     let self = this
@@ -82,26 +91,16 @@ export class InterfaceComponent implements OnInit {
     this.textLabel.nativeElement.style.transition="opacity 500ms cubic-bezier(0.25, 0.8, 0.25, 1)"
     setTimeout(function() {
       self.textLabel.nativeElement.style.opacity = 1;
-      setInterval(() => {
+      self.phInterval = setInterval(() => {
         self.textLabel.nativeElement.style.opacity = 0;
         setTimeout(function() {
           self.placeholder = self.placeholders[i];
           self.textLabel.nativeElement.style.opacity = 1;
         }, 500);
-
-        // let x = -1
-        // while(x == i)
-        // {
-          i = Math.floor(Math.random() * self.placeholders.length)
-        // }
-        // i = x
-        // console.log(i)
+        i = Math.floor(Math.random() * self.placeholders.length)
       }, seconds * 1000);
+
     }, 300);
-    if(this.debug)
-    {
-      this.initWaveSurfer()
-    }
   }
 
   constructor(private elementRef: ElementRef,
