@@ -1,8 +1,8 @@
 <mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
       <div #outline class="textOutline" >
         <button disableRipple="true" [disabled]="!generating && (reqService.disableGeneration || reqService.description == '')" class="generateButton" (click)="generate()" mat-button>
-          <mat-icon *ngIf="!generating">play_arrow</mat-icon>
-          <mat-icon *ngIf="generating">stop</mat-icon>
+          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': reqService.description == ''}" *ngIf="!generating">play_arrow</mat-icon>
+          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': reqService.description == ''}" *ngIf="generating">stop</mat-icon>
         </button>
 
         <mat-form-field appearance="fill" class="textBar">
