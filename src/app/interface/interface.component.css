@@ -35,12 +35,12 @@
   caret-color: var(--white) !important;
   color: var(--white) !important;
   font-size: 1.8rem !important;
-  /*height: 0 !important;*/
   text-align: center !important;
 }
 
 ::ng-deep.mat-mdc-form-field {
   display: flex !important;
+  margin-bottom: 4px !important;
 }
 
 ::ng-deep.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after{
@@ -73,9 +73,9 @@
 
 .generateButton {
   font-size: 2rem;
-  width: 60px;
-  min-width: 60px;
-  height: auto;
+  width: 56px;
+  min-width: 56px;
+  height: 56px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
