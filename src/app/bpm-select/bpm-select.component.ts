@@ -25,6 +25,7 @@ export class BpmSelectComponent implements OnInit {
   selectPlaceholder() {
     this.reqService.bpm = "120"
     this.bpm = "120"
+    this.checkRipple()
   }
 
   ngOnInit(): void {

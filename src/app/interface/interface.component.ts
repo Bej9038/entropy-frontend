@@ -143,6 +143,7 @@ export class InterfaceComponent implements OnInit {
 
   selectPlaceholder() {
     this.reqService.description = this.placeholder
+    this.checkRipple()
   }
 
   generate(){
