@@ -1,30 +1,10 @@
-@keyframes colorFade {
-  from {
-    color: var(--translucent-dark)
-  }
-  to {
-    color: var(--translucent-grey)
-  }
-}
 
-@keyframes opacityFade {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 /* FORM FIELD */
 
 .textBar {
-  /*width: 60%;*/
-  text-align: center;
   color: white;
   font-size: 1.8rem;
-  /*height: 100px;*/
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -41,6 +21,12 @@
   font-size: 0 !important;
   height: 0 !important;
   display: none;
+}
+
+::ng-deep.mat-mdc-form-field-infix {
+  width: 100% !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 
@@ -365,3 +351,21 @@
   color: var(--translucent-grey);
 }
 
+@keyframes colorFade {
+  from {
+    color: var(--translucent-dark)
+  }
+  to {
+    color: var(--translucent-grey)
+  }
+}
+
+@keyframes opacityFade {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
