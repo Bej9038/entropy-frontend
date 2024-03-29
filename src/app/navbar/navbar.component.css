@@ -1,12 +1,12 @@
 ::ng-deep .mat-toolbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
+  justify-content: space-between !important;
+  align-items: center !important;
+  align-content: center !important;
   position: sticky!important;
-  z-index: 0;
-  background-color: var(--translucent);
-  color: var(--white)
+  z-index: 0 !important;
+  background-color: var(--translucent) !important;
+  color: var(--white) !important;
 
 }
 
@@ -16,15 +16,6 @@
   font-family: 'Quando', serif !important;
   font-size: 1.2rem;
 }
-
-/*.version {*/
-/*  vertical-align:center;*/
-/*  text-align: center;*/
-/*  font-family: 'Quando', serif !important;*/
-/*  font-size: 1.5rem;*/
-/*  color: var(--translucent-dark);*/
-/*  margin-left: 4px;*/
-/*}*/
 
 .img {
   height: 1.9rem;
