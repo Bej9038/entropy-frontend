@@ -69,6 +69,10 @@ html, body {
 
 /*}*/
 
+.mat-mdc-unelevated-button {
+  letter-spacing: normal !important;
+}
+
 .mat-accent .mat-slider-track-fill {
   background-color: var(--white) !important;
   /*right: 7px;*/
