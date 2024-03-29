@@ -211,6 +211,8 @@ export class InterfaceComponent implements OnInit {
   initWaveSurfer()
   {
     let color = this.style.getPropertyValue("--translucent-dark").trim()
+    let color2 = this.style.getPropertyValue("--none").trim()
+
     let height = 72;
     let interact = true
     let cursorWidth = 2;
@@ -218,7 +220,7 @@ export class InterfaceComponent implements OnInit {
       {
         container: this.waveform1Element.nativeElement,
         waveColor: color,
-        progressColor: "none",
+        progressColor: color2,
         cursorWidth: cursorWidth,
         cursorColor: this.cursorColor,
         interact: interact,
@@ -240,7 +242,7 @@ export class InterfaceComponent implements OnInit {
       {
         container: this.waveform2Element.nativeElement,
         waveColor: color,
-        progressColor: "none",
+        progressColor: color2,
         cursorWidth: cursorWidth,
         cursorColor: this.cursorColor,
         interact: interact,

@@ -46,8 +46,9 @@ entropyColor {
   border: none !important;
 }
 
-::ng-deep.mdc-slider__thumb-knob {
-
+::ng-deep.mat-mdc-slider {
+  width: 100% !important;
+  margin: 0 !important;
 }
 
 ::ng-deep.mat-mdc-slider .mdc-slider__track--inactive {

@@ -10,6 +10,7 @@
   --translucent-dark-2: rgba(53, 53, 54, .35);
   --translucent-dark-3: rgba(53, 53, 54, .1);
   --background-color: rgba(43, 43, 44, 0.7);
+  --none: rgba(53, 53, 54, 1);
   --line-size: 2px;
   --line-size-2: 4px;
   --warning: rgb(164, 19, 19);
