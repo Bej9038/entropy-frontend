@@ -1,4 +1,13 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
@@ -7,6 +16,7 @@ import {ReqService} from "../req.service";
 import WaveSurfer from "wavesurfer.js";
 import {MatRipple} from "@angular/material/core";
 import {FirebaseService} from "../firebase.service";
+import {DOCUMENT} from "@angular/common";
 
 
 @Component({
@@ -35,6 +45,7 @@ export class InterfaceComponent implements OnInit {
     "sustained electronic arp",
     "neuro reese bass"
   ];
+  rootStyle = getComputedStyle(this.document.documentElement);
   cursorColor = this.style.getPropertyValue("--translucent-grey-2").trim()
   newCursorColor = this.style.getPropertyValue("--white").trim()
   current_id: string = "";
@@ -107,7 +118,8 @@ export class InterfaceComponent implements OnInit {
               private http: HttpClient,
               public audioService: AudioService,
               public reqService: ReqService,
-              public firebase: FirebaseService) {}
+              public firebase: FirebaseService,
+              @Inject(DOCUMENT) private document: Document) {}
 
   generateSetup()
   {
@@ -304,6 +316,18 @@ export class InterfaceComponent implements OnInit {
     {
       this.wavesurfer1.setOptions({cursorColor: this.cursorColor})
       this.wavesurfer2.setOptions({cursorColor: this.newCursorColor})
+    }
+  }
+
+  checkRipple(){
+    if(this.reqService.description != "")
+    {
+      const whiteValue = this.rootStyle.getPropertyValue('--white').trim();
+      this.document.documentElement.style.setProperty('--ripple', whiteValue);
+    }
+    else {
+      const dark = this.rootStyle.getPropertyValue('--transluscent-dark').trim();
+      this.document.documentElement.style.setProperty('--ripple', dark);
     }
   }
 

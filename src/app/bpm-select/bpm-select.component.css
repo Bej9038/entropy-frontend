@@ -73,9 +73,11 @@
   color: #f44336;
 }
 
-/*::ng-deep .bpm-add {*/
-/*   !important;*/
-/*}*/
+::ng-deep .bpm-form .mdc-text-field--filled .mdc-line-ripple::before{
+  border-bottom-width: var(--line-size) !important;
+  border-bottom-color: var(--ripple2) !important;
+  border-radius: 4px !important;
+}
 
 ::ng-deep.mdc-text-field--filled .mdc-text-field__input .bpm-add {
   font-size: 1.2rem !important;

@@ -36,6 +36,9 @@
   color: var(--white) !important;
   font-size: 1.8rem !important;
   text-align: center !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 ::ng-deep.mdc-text-field--filled .mdc-floating-label {
@@ -49,14 +52,14 @@
 }
 
 ::ng-deep.mdc-text-field--filled .mdc-line-ripple::after{
-  border-width: var(--line-size);
+  border-bottom-width: var(--line-size) !important;
   border-bottom-color: var(--white) !important;
   border-radius: 4px;
 }
 
 ::ng-deep.mdc-text-field--filled .mdc-line-ripple::before{
-  border-width: var(--line-size);
-  border-bottom-color: var(--translucent-dark) !important;
+  border-bottom-width: var(--line-size) !important;
+  border-bottom-color: var(--ripple) !important;
   border-radius: 4px;
 }
 

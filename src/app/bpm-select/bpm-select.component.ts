@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ReqService} from "../req.service";
 import { FormControl, Validators } from '@angular/forms';
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-bpm-select',
@@ -16,10 +17,10 @@ export class BpmSelectComponent implements OnInit {
     Validators.min(60),
     Validators.max(200),
   ]);
-
+  rootStyle = getComputedStyle(this.document.documentElement);
   dummyControl= new FormControl({value: '', disabled: true});
 
-  constructor(public reqService: ReqService) { }
+  constructor(public reqService: ReqService, @Inject(DOCUMENT) private document: Document) { }
 
   selectPlaceholder() {
     this.reqService.bpm = "120"
@@ -33,29 +34,20 @@ export class BpmSelectComponent implements OnInit {
   {
     this.reqService.bpm = this.bpm
     this.reqService.disableGeneration = this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern');
+    this.checkRipple()
   }
 
-  // toggleOneShot()
-  // {
-  //   this.loopSelected = !this.loopSelected;
-  //   if(!this.loopSelected)
-  //   {
-  //     this.reqService.bpm = ""
-  //     if(this.reqService.disableGeneration)
-  //     {
-  //       this.reqService.disableGeneration = false
-  //     }
-  //   }
-  //   else {
-  //     this.reqService.bpm = this.bpm
-  //     if((this.numberInputControl.hasError('min') ||
-  //       this.numberInputControl.hasError('max') ||
-  //       this.numberInputControl.hasError('pattern')) && !this.reqService.disableGeneration)
-  //     {
-  //       this.reqService.disableGeneration = true
-  //     }
-  //   }
-  // }
+  checkRipple(){
+    if(this.reqService.bpm != "")
+    {
+      const whiteValue = this.rootStyle.getPropertyValue('--white').trim();
+      this.document.documentElement.style.setProperty('--ripple2', whiteValue);
+    }
+    else {
+      const dark = this.rootStyle.getPropertyValue('--transluscent-dark').trim();
+      this.document.documentElement.style.setProperty('--ripple2', dark);
+    }
+  }
 
   toggleBPM()
   {
