@@ -1,22 +1,3 @@
-@keyframes colorFade {
-  from {
-    color: var(--translucent-dark)
-  }
-  to {
-    color: var(--translucent-grey)
-  }
-}
-
-@keyframes opacityFade {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 ::ng-deep .mat-grid-tile {
   overflow: visible;
 }
