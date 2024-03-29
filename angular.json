@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "entropy-frontend:build:production"
+              "buildTarget": "entropy-frontend:build:production"
             },
             "development": {
-              "browserTarget": "entropy-frontend:build:development"
+              "buildTarget": "entropy-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "entropy-frontend:build"
+            "buildTarget": "entropy-frontend:build"
           }
         },
         "test": {

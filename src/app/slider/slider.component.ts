@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ReqService} from "../req.service";
-import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import {MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-slider',

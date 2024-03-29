@@ -1,7 +1,7 @@
 
 <div class="bpm-container">
 
-  <mat-form-field class="bpm-flexitem bpm-form"  floatLabel="never">
+  <mat-form-field class="bpm-flexitem bpm-form" >
       <mat-label *ngIf="bpm == '' && loopSelected">120</mat-label>
       <mat-label *ngIf="!loopSelected">no bpm</mat-label>
       <input [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" matInput maxlength="3"
