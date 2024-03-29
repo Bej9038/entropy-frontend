@@ -48,10 +48,12 @@
 }
 
 .error-cont {
-  height: .8rem;
-  min-height: .8rem;
-  max-height: .8rem;
-  margin: 5px;
+  height: 16px;
+  /*min-height: .8rem;*/
+  /*max-height: .8rem;*/
+  margin-top: 5px;
+  margin-bottom: 9px;
+  font-size: 14px;
 }
 
 .button-cont {

@@ -13,14 +13,14 @@
 
   <div class="error-cont">
     <mat-error class="bpm-flexitem" *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))
-  && loopSelected
-  && !numberInputControl.hasError('pattern')">
-  error: 60 <= bpm <= 200
-  </mat-error>
-  <mat-error class="bpm-flexitem" *ngIf="numberInputControl.hasError('pattern') && loopSelected">
-    error: bpm must be numeric
-  </mat-error>
-</div>
+    && loopSelected
+    && !numberInputControl.hasError('pattern')">
+    error: 60 <= bpm <= 200
+    </mat-error>
+    <mat-error class="bpm-flexitem" *ngIf="numberInputControl.hasError('pattern') && loopSelected">
+      error: bpm must be numeric
+    </mat-error>
+  </div>
 
   <div class="button-cont">
     <button class="bpm-flexitem keyButton" [class.selected]="loopSelected" (click)="toggleBPM(); reqService.loop=true" mat-flat-button> loop </button>
