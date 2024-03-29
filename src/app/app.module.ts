@@ -29,7 +29,6 @@ import {getAuth} from "firebase/auth";
 import {provideFirestore} from "@angular/fire/firestore";
 import {getFirestore} from "firebase/firestore";
 import {environment} from "../environments/environment.prod";
-
 @NgModule({
   declarations: [
     AppComponent,
