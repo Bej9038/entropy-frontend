@@ -2,7 +2,7 @@ import {Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulatio
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
-import {ProgressBarMode} from "@angular/material/progress-bar";
+import {LegacyProgressBarMode as ProgressBarMode} from "@angular/material/legacy-progress-bar";
 import {ReqService} from "../req.service";
 import WaveSurfer from "wavesurfer.js";
 import {MatRipple} from "@angular/material/core";
