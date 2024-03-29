@@ -7,7 +7,7 @@ export class ReqService {
   description: string = ""
   bpm: string = ""
   key: string | undefined = ""
-  entropy: number = .9
+  entropy: number = 0.9
   duration: number = 5
   disableGeneration: boolean = false
   loop: boolean = false;

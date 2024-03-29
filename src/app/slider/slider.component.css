@@ -16,15 +16,6 @@
   /*font-size: 1rem;*/
 }
 
-::ng-deep .mat-slider {
-  /*transition: all 8000ms cubic-bezier(0.25, 0.8, 0.25, 1);*/
-  width: 100% !important;
-}
-
-::ng-deep .mat-slider-horizontal {
-  min-width: 0 !important;
-}
-
 entropyColor {
   background-color: #ffad33;
 }
@@ -43,4 +34,34 @@ entropyColor {
 ::ng-deep.mat-simple-snackbar-action {
   color: var(--warning);
   margin-top: 4px !important;
+}
+
+/* SLIDER */
+
+::ng-deep .mat-mdc-slider .mdc-slider__thumb-knob {
+  background-color: var(--white) !important;
+  border-color: var(--white) !important;
+}
+::ng-deep.mat-mdc-slider .mdc-slider__track--inactive {
+  background-color: var(--translucent-dark-2) !important;
+  opacity: 1 !important;
+  height: var(--line-size-2) !important;
+}
+
+::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
+  border-color: var(--white) !important;
+  opacity: 1 !important;
+  height: var(--line-size-2) !important;
+}
+
+::ng-deep.mdc-slider__thumb--with-indicator {
+  color: var(--white) !important;
+}
+
+::ng-deep.mat-mdc-slider .mat-ripple .mat-mdc-slider-focus-ripple, .mat-mdc-slider .mat-ripple .mat-mdc-slider-active-ripple{
+  background-color: var(--translucent-dark-3) !important;
+}
+
+::ng-deep.mat-mdc-slider .mat-ripple .mat-mdc-slider-active-ripple, .mat-mdc-slider .mat-ripple .mat-mdc-slider-active-ripple{
+  background-color: var(--translucent-dark-3) !important;
 }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ReqService} from "../req.service";
 import {MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSliderModule} from "@angular/material/slider";
 
 @Component({
   selector: 'app-slider',
@@ -21,6 +22,7 @@ export class SliderComponent implements OnInit {
   ngOnInit(): void {
     this.value = this.name == "entropy" ? this.reqService.entropy : this.reqService.duration;
   }
+
 
   sliderChange(): void {
     if(this.name == "entropy")

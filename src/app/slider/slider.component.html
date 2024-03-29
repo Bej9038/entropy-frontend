@@ -1,9 +1,9 @@
-<mat-slider thumbLabel
-            [(ngModel)]= "value"
-            [max]="max" [min]="min" [step]="step" value="default"
+<mat-slider [(ngModel)]= "value"
+            [max]="max" [min]="min" [step]="step"
             (input)="sliderChange()">
-  <input matsliderthumb>
+  <input matSliderThumb>
 </mat-slider>
+
 <div class="label-container">
   <mat-label class="valueLabel">{{min}}</mat-label>
   <mat-label class="valueLabel">{{max}}</mat-label>
