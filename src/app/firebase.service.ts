@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
-import {Auth, getAuth, User, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "@angular/fire/auth";
-import {FirebaseApp} from "@angular/fire/app";
+// import { initializeApp } from "firebase/app";
+// import { getFirestore } from "firebase/firestore";
+// import { collection, addDoc } from "firebase/firestore";
+// import {Auth, getAuth, User, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "@angular/fire/auth";
+// import {FirebaseApp} from "@angular/fire/app";
 
 
 @Injectable({
@@ -22,53 +22,53 @@ export class FirebaseService {
   //   measurementId: "G-F3H0KERXES"
   // };
 
-  db = getFirestore(this.app);
-  auth = getAuth(this.app)
+  // db = getFirestore(this.app);
+  // auth = getAuth(this.app)
+  //
+  // constructor(private app: FirebaseApp) {
+  // }
 
-  constructor(private app: FirebaseApp) {
-  }
-
-  createUser()
-  {
-    createUserWithEmailAndPassword(this.auth, "bej9@cornell.edu", "Highlandj710!")
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user)
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode)
-        console.log(errorMessage)
-      });
-  }
-
+  // createUser()
+  // {
+  //   createUserWithEmailAndPassword(this.auth, "bej9@cornell.edu", "Highlandj710!")
+  //     .then((userCredential) => {
+  //       const user = userCredential.user;
+  //       console.log(user)
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.log(errorCode)
+  //       console.log(errorMessage)
+  //     });
+  // }
+  //
   signInUser() {
-    signInWithEmailAndPassword(this.auth, "bej9@cornell.edu", "Highlandj710!")
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user)
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode)
-        console.log(errorMessage)
-      });
+    // signInWithEmailAndPassword(this.auth, "bej9@cornell.edu", "Highlandj710!")
+    //   .then((userCredential) => {
+    //     const user = userCredential.user;
+    //     console.log(user)
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorCode)
+    //     console.log(errorMessage)
+    //   });
   }
-
+  //
   async storePreferenceData() {
-    console.log("writing preference data")
-    try {
-      const docRef = await addDoc(collection(this.db, "preference_data"), {
-        prompt: "x",
-        audio0: "x",
-        audio1: "x",
-        reward: 1.0
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+    // console.log("writing preference data")
+    // try {
+    //   const docRef = await addDoc(collection(this.db, "preference_data"), {
+    //     prompt: "x",
+    //     audio0: "x",
+    //     audio1: "x",
+    //     reward: 1.0
+    //   });
+    //   console.log("Document written with ID: ", docRef.id);
+    // } catch (e) {
+    //   console.error("Error adding document: ", e);
+    // }
   }
 }
