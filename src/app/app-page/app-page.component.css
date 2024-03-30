@@ -1,13 +1,3 @@
-@keyframes opacityFade {
-  from {
-    /*transform: scale(0.99);*/
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 app-interface {
   /*position: relative;*/
   /*position: absolute;*/
@@ -37,6 +27,11 @@ app-navbar:hover {
 }
 
 .interface-cont {
+  /*background-image: url('src/assets/AdobeStock_2387440.jpeg');*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center center;*/
+  /*background-size: cover;*/
+  /*background-attachment: fixed;*/
   height: 100%;
   display: flex;
   flex-direction: column;

@@ -33,13 +33,13 @@ import routeConfig from "./routes";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
-  signInOptions: [
+    signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
-  tosUrl: '<your-tos-link>',
-  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
-  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+    tosUrl: '<your-tos-link>',
+    privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+    credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
 };
 
 @NgModule({
