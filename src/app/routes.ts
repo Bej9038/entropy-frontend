@@ -14,4 +14,5 @@ const routeConfig: Routes = [
     title: "Entropy"
   }
 ]
+
 export default routeConfig;

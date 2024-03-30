@@ -28,7 +28,7 @@ import { environment} from "../environments/environment";
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {AppPageComponent} from "./app-page/app-page.component";
-import {provideRouter, RouterLink, RouterOutlet} from "@angular/router";
+import {PreloadAllModules, provideRouter, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import routeConfig from "./routes";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -73,13 +73,14 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    RouterModule.forRoot(routeConfig, { preloadingStrategy: PreloadAllModules }), // Use PreloadAllModules here
     RouterOutlet,
     RouterLink,
   ],
   providers: [
     provideAnimations(),
     provideOAuthClient(),
-    provideRouter(routeConfig)
+    // provideRouter(routeConfig)
   ],
   exports: [
     NavbarComponent,
