@@ -6,8 +6,8 @@
   height: 100%;
   width: 100%;
 
-  background-image: url('src/assets/AdobeStock_74755985.jpeg');
-  /*background-image: url('src/assets/AdobeStock_2387440.jpeg');*/
+  /*background-image: url('src/assets/AdobeStock_74755985.jpeg');*/
+  background-image: url('src/assets/AdobeStock_2387440.jpeg');
   /*background-image: url('src/assets/AdobeStock_374806029.jpeg');*/
   /*background-image: url('src/assets/AdobeStock_696681233.jpeg');*/
   background-repeat: no-repeat;
@@ -20,5 +20,5 @@
   color: var(--translucent-dark);
   text-align: center;
   font-size: 120px;
-  padding-bottom: 280px;
+  padding-bottom: 300px;
 }
