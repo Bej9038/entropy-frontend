@@ -28,7 +28,7 @@ import { environment} from "../environments/environment";
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {AppPageComponent} from "./app-page/app-page.component";
-import {provideRouter, RouterOutlet} from "@angular/router";
+import {provideRouter, RouterLink, RouterOutlet} from "@angular/router";
 import routeConfig from "./routes";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -74,6 +74,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     RouterOutlet,
+    RouterLink,
   ],
   providers: [
     provideAnimations(),

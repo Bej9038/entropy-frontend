@@ -4,14 +4,14 @@ import {AppPageComponent} from "./app-page/app-page.component";
 
 const routeConfig: Routes = [
   {
+    path: "",
+    component: HomePageComponent,
+    title: "Entropy AI"
+  },
+  {
     path: "entropy",
     component: AppPageComponent,
     title: "Entropy"
-  },
-  {
-    path: "",
-    component: HomePageComponent,
-    title: "Entropy Audio"
   }
 ]
 export default routeConfig;
