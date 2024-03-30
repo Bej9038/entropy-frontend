@@ -69,8 +69,10 @@
   color: var(--translucent-dark);
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-  color: #f44336;
+::ng-deep.mat-mdc-form-field-error{
+  /*color: var(--warning) !important;*/
+  /*color: var(--color-accent) !important;*/
+
 }
 
 ::ng-deep .bpm-form .mdc-text-field--filled .mdc-line-ripple::before{

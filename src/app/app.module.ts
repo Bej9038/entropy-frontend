@@ -1,6 +1,6 @@
-import {importProvidersFrom, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule} from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
 import { InterfaceComponent } from './interface/interface.component';
 import { AppComponent } from './app.component';
@@ -9,26 +9,39 @@ import { MatInputModule} from "@angular/material/input";
 import { MatSliderModule} from "@angular/material/slider";
 import { MatButtonToggleModule} from "@angular/material/button-toggle";
 import { MatButtonModule} from "@angular/material/button";
-import {MatGridListModule} from "@angular/material/grid-list";
+import { MatGridListModule} from "@angular/material/grid-list";
 import { NavbarComponent } from './navbar/navbar.component';
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { MatToolbarModule} from "@angular/material/toolbar";
+import { MatProgressBarModule} from "@angular/material/progress-bar";
 import { KeySelectComponent } from './key-select/key-select.component';
 import { BpmSelectComponent } from './bpm-select/bpm-select.component';
 import { SliderComponent } from './slider/slider.component';
-import {MatRippleModule} from "@angular/material/core";
-import {MatIconModule} from "@angular/material/icon";
+import { MatRippleModule} from "@angular/material/core";
+import { MatIconModule} from "@angular/material/icon";
 import { provideAnimations } from '@angular/platform-browser/animations';
-import {MatMenuModule} from "@angular/material/menu";
-import {provideOAuthClient} from "angular-oauth2-oidc";
-import {MatSnackBar, matSnackBarAnimations, MatSnackBarModule} from "@angular/material/snack-bar";
-// import {provideFirebaseApp} from "@angular/fire/app";
-// import {AuthModule, provideAuth} from "@angular/fire/auth";
-// import {initializeApp} from "firebase/app";
-// import {Auth, getAuth} from "firebase/auth";
-// import {provideFirestore} from "@angular/fire/firestore";
-// import {getFirestore} from "firebase/firestore";
-import {environment} from "../environments/environment.prod";
+import { MatMenuModule } from "@angular/material/menu";
+import { provideOAuthClient } from "angular-oauth2-oidc";
+import { AngularFireModule} from "@angular/fire/compat";
+import { MatSnackBarModule} from "@angular/material/snack-bar";
+import { firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
+import { environment} from "../environments/environment";
+import { AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {HomePageComponent} from "./home-page/home-page.component";
+import {AppPageComponent} from "./app-page/app-page.component";
+import {provideRouter, RouterOutlet} from "@angular/router";
+import routeConfig from "./routes";
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  tosUrl: '<your-tos-link>',
+  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +50,8 @@ import {environment} from "../environments/environment.prod";
     KeySelectComponent,
     BpmSelectComponent,
     SliderComponent,
+    AppPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -54,25 +69,21 @@ import {environment} from "../environments/environment.prod";
     ReactiveFormsModule,
     MatIconModule,
     MatMenuModule,
-    MatSnackBarModule
-    // provideFirebaseApp(() => initializeApp({
-    //   apiKey: "AIzaSyAiWFiU9YsUoHgUvjlXcxKuvFS6rH4yfp0",
-    //   authDomain: "entropy-413416.firebaseapp.com",
-    //   databaseURL: "https://entropy-413416-default-rtdb.firebaseio.com",
-    //   projectId: "entropy-413416",
-    //   storageBucket: "entropy-413416.appspot.com",
-    //   messagingSenderId: "258339538727",
-    //   appId: "1:258339538727:web:af059ca999220afb340b02",
-    //   measurementId: "G-F3H0KERXES"
-    // })),
-    // provideAuth(() => getAuth()),
-    // provideFirestore(() => getFirestore())
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    RouterOutlet,
   ],
   providers: [
     provideAnimations(),
     provideOAuthClient(),
-
-    ],
+    provideRouter(routeConfig)
+  ],
+  exports: [
+    NavbarComponent,
+    InterfaceComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

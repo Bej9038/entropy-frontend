@@ -1,11 +1,12 @@
 import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthConfig, OAuthModule, OAuthService} from 'angular-oauth2-oidc';
+import {RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'entropy-frontend';
@@ -20,7 +21,6 @@ export class AppComponent {
     scope: 'openid profile email',
     showDebugInformation: true,
   };
-
 
   constructor(private http: HttpClient, private oauthService: OAuthService) {
     this.oauthService.configure(this.authConfig);
@@ -40,10 +40,7 @@ export class AppComponent {
     // });
   }
 
-  // @ts-ignore
-  @ViewChild("navbar", { read: ElementRef }) navbarElement: ElementRef;
-  // @ts-ignore
-  @ViewChild("interface", { read: ElementRef }) interfaceElement: ElementRef;
+
 
   login() {
     this.oauthService.initImplicitFlow();
@@ -51,35 +48,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     // this.startPeriodicRequest()
-  }
-
-  ngAfterViewInit(): void {
-    this.checkOverlap()
-  }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.checkOverlap();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.checkOverlap();
-  }
-
-  checkOverlap() {
-    let navbar = this.navbarElement.nativeElement
-    let inter = this.interfaceElement.nativeElement
-
-    if (navbar.offsetTop + navbar.offsetHeight > inter.offsetTop) {
-      console.log("overlap")
-      navbar.classList.add('invisible');
-      navbar.classList.remove('opaque');
-    }
-    else if(navbar.offsetTop + navbar.offsetHeight < inter.offsetTop){
-      navbar.classList.add('opaque');
-      navbar.classList.remove('invisible');
-    }
   }
 
   ngOnDestroy(): void {

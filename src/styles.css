@@ -14,6 +14,7 @@
   --line-size: 2px;
   --line-size-2: 4px;
   --warning: rgb(164, 19, 19);
+  --color-accent: rgba(127, 102, 239, 0.8);
   --ripple: var(--translucent-dark);
   --ripple2: var(--translucent-dark);
   min-height: 127.2px;
