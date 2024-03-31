@@ -4,11 +4,19 @@
       <span class="txt">Entropy Audio </span>
   </a>
 
+  <div class="entropy-links" *ngIf="router.url == '/'">
+    <button mat-button class="header-buttons">Mission</button>
+    <button mat-button class="header-buttons">Technology</button>
+    <button mat-button class="header-buttons">Company</button>
+  </div>
+
 <!--  <mat-tab-group>-->
 <!--    <mat-tab label="First"> Content 1 </mat-tab>-->
 <!--    <mat-tab label="Second"> Content 2 </mat-tab>-->
 <!--    <mat-tab label="Third"> Content 3 </mat-tab>-->
 <!--  </mat-tab-group>-->
+
+
 <!--  <button (click)="firebase.signInUser()" mat-button>-->
 <!--    <mat-icon>-->
 <!--      person-->
