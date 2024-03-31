@@ -13,10 +13,10 @@ import {AudioService} from "../audio.service";
 import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../req.service";
-import WaveSurfer from "wavesurfer.js";
 import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {WaveboxComponent} from "../wavebox/wavebox.component";
 
 
 @Component({
@@ -29,14 +29,14 @@ export class InterfaceComponent implements OnInit {
   run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
   status: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
   cancel: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
+  audioSrc0: SafeUrl | undefined;
   audioSrc1: SafeUrl | undefined;
-  audioSrc2: SafeUrl | undefined;
   progressBarMode: ProgressBarMode = "determinate";
   showProgressBar: boolean = false;
   generating: boolean = false;
   showAudio: boolean = false;
   // showAudio: boolean = true;
-  style = getComputedStyle(this.elementRef.nativeElement);
+
   placeholders: string[] = ["acoustic hi-hat top loop",
     "trap snare drum",
     "pulsing synth chords",
@@ -45,26 +45,22 @@ export class InterfaceComponent implements OnInit {
     "sustained electronic arp",
     "neuro reese bass"
   ];
-  rootStyle = getComputedStyle(this.document.documentElement);
-  cursorColor = this.style.getPropertyValue("--translucent-grey-2").trim()
-  newCursorColor = this.style.getPropertyValue("--white").trim()
   current_id: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
-  lhsUp = false
-  rhsUp = false
   phInterval: any = undefined;
 
   // debug = true
   debug = false
 
-  wavesurfer1: WaveSurfer | undefined;
-  wavesurfer2: WaveSurfer | undefined;
+  rootStyle = getComputedStyle(this.document.documentElement);
+  white = this.rootStyle.getPropertyValue("--white").trim()
+  dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
 
   // @ts-ignore
-  @ViewChild('waveform1') waveform1Element: ElementRef;
+  @ViewChild('wavebox0') wavebox0: WaveboxComponent
   // @ts-ignore
-  @ViewChild('waveform2') waveform2Element: ElementRef;
+  @ViewChild('wavebox1') wavebox1: WaveboxComponent;
   // @ts-ignore
   @ViewChild(MatRipple) ripple: MatRipple;
   // @ts-ignore
@@ -88,10 +84,11 @@ export class InterfaceComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.nextPlaceholder()
-    if(this.debug)
-    {
-      this.initWaveSurfer()
-    }
+    // if(this.debug)
+    // {
+    //   this.wavebox0.initWaveSurfer(undefined);
+    //   this.wavebox1.initWaveSurfer(undefined);
+    // }
   }
 
   nextPlaceholder() {
@@ -123,11 +120,11 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
-    this.wavesurfer1 = undefined;
-    this.wavesurfer2 = undefined;
+    this.wavebox0.reset()
+    this.wavebox1.reset()
     this.showAudio = false
+    this.audioSrc0 = undefined;
     this.audioSrc1 = undefined;
-    this.audioSrc2 = undefined;
     this.progressBarMode = "indeterminate";
     this.showProgressBar = true;
     this.generating = true;
@@ -212,8 +209,8 @@ export class InterfaceComponent implements OnInit {
             console.log("request complete")
             let base641 = response["output"][0]
             let base642 = response["output"][1]
-            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base641, 1, this.reqService.description)
-            this.audioSrc2 = await this.audioService.decodeBase64ToAudioURL(base642, 2, this.reqService.description)
+            this.audioSrc0 = await this.audioService.decodeBase64ToAudioURL(base641, 1, this.reqService.description)
+            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base642, 2, this.reqService.description)
             this.showAudio = true;
             this.waitForElementsAndInitWaveSurfer(intervalRef)
           } else if (response["status"] == "CANCELLED") {
@@ -223,80 +220,11 @@ export class InterfaceComponent implements OnInit {
     }, 1000);
   }
 
-  initWaveSurfer()
-  {
-    if(this.wavesurfer1 && this.wavesurfer2)
-    {
-      console.log("preventing duplicate waveform generation")
-      return
-    }
-
-    let color = this.style.getPropertyValue("--translucent-dark").trim()
-    let color2 = this.style.getPropertyValue("--none").trim()
-
-    let height = 72;
-    let interact = true
-    let cursorWidth = 2;
-    this.wavesurfer1 = WaveSurfer.create(
-      {
-        container: this.waveform1Element.nativeElement,
-        waveColor: color,
-        progressColor: color2,
-        cursorWidth: cursorWidth,
-        cursorColor: this.cursorColor,
-        interact: interact,
-        fillParent: true,
-        sampleRate: 48000,
-        height: height,
-        dragToSeek: true,
-        autoScroll: true
-      }
-    )
-    if(this.debug)
-    {
-      this.wavesurfer1.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
-    }
-    else {
-      this.wavesurfer1.load((this.audioSrc1 as any).changingThisBreaksApplicationSecurity);
-    }
-    this.wavesurfer2 = WaveSurfer.create(
-      {
-        container: this.waveform2Element.nativeElement,
-        waveColor: color,
-        progressColor: color2,
-        cursorWidth: cursorWidth,
-        cursorColor: this.cursorColor,
-        interact: interact,
-        fillParent: true,
-        sampleRate: 48000,
-        height: height,
-        dragToSeek: true,
-        autoScroll: true
-      }
-    )
-    if(this.debug)
-    {
-      this.wavesurfer2.load("assets/KSHMR Electric Guitar Chords 01 (75, Bm).wav");
-    }
-    else {
-      this.wavesurfer2.load((this.audioSrc2 as any).changingThisBreaksApplicationSecurity);
-    }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event?: Event) {
-    if(this.wavesurfer1 && this.wavesurfer2)
-    {
-      this.wavesurfer1.setOptions({})
-      this.wavesurfer2.setOptions({})
-    }
-  }
-
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
     const checkAndInit = () => {
-      if (this.waveform1Element && this.waveform1Element.nativeElement &&
-        this.waveform2Element && this.waveform2Element.nativeElement) {
-        this.initWaveSurfer()
+      if (this.wavebox0 && this.wavebox1) {
+        this.wavebox0.initWaveSurfer(this.audioSrc0)
+        this.wavebox1.initWaveSurfer(this.audioSrc1)
         this.generateTeardown()
         clearInterval(intervalRef);
       } else {
@@ -306,47 +234,13 @@ export class InterfaceComponent implements OnInit {
     checkAndInit();
   }
 
-  onRhs()
-  {
-
-    this.rhsUp = true
-    this.lhsUp = false
-    if(this.wavesurfer1 && this.wavesurfer2)
-    {
-      this.wavesurfer1.setOptions({cursorColor: this.newCursorColor})
-      this.wavesurfer2.setOptions({cursorColor: this.cursorColor})
-    }
-  }
-  onLhs()
-  {
-    this.rhsUp = false
-    this.lhsUp = true
-    if(this.wavesurfer1 && this.wavesurfer2)
-    {
-      this.wavesurfer1.setOptions({cursorColor: this.cursorColor})
-      this.wavesurfer2.setOptions({cursorColor: this.newCursorColor})
-    }
-  }
-
   checkRipple(){
     if(this.reqService.description != "")
     {
-      const whiteValue = this.rootStyle.getPropertyValue('--white').trim();
-      this.document.documentElement.style.setProperty('--ripple', whiteValue);
+      this.document.documentElement.style.setProperty('--ripple', this.white);
     }
     else {
-      const dark = this.rootStyle.getPropertyValue('--transluscent-dark').trim();
-      this.document.documentElement.style.setProperty('--ripple', dark);
-    }
-  }
-
-  reset() {
-    this.rhsUp = false
-    this.lhsUp = false
-    if(this.wavesurfer1 && this.wavesurfer2)
-    {
-      this.wavesurfer1.setOptions({cursorColor: this.cursorColor})
-      this.wavesurfer2.setOptions({cursorColor: this.cursorColor})
+      this.document.documentElement.style.setProperty('--ripple', this.dark);
     }
   }
 }
