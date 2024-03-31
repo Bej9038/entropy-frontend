@@ -4,16 +4,6 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyAiWFiU9YsUoHgUvjlXcxKuvFS6rH4yfp0",
-    authDomain: "entropy-413416.firebaseapp.com",
-    databaseURL: "https://entropy-413416-default-rtdb.firebaseio.com",
-    projectId: "entropy-413416",
-    storageBucket: "entropy-413416.appspot.com",
-    messagingSenderId: "258339538727",
-    appId: "1:258339538727:web:af059ca999220afb340b02",
-    measurementId: "G-F3H0KERXES"
-  }
 };
 
 /*

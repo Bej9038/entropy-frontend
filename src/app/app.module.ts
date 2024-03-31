@@ -24,12 +24,11 @@ import { provideOAuthClient } from "angular-oauth2-oidc";
 import { AngularFireModule} from "@angular/fire/compat";
 import { MatSnackBarModule} from "@angular/material/snack-bar";
 import { firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
-import { environment} from "../environments/environment";
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {AppPageComponent} from "./pages/app-page/app-page.component";
 import {PreloadAllModules, provideRouter, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
-import routeConfig from "./routes";
+import {routeConfig, firebaseConfig} from "./config";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {
   MatExpansionModule,
@@ -37,6 +36,7 @@ import {
   MatExpansionPanelDescription,
   MatExpansionPanelTitle
 } from "@angular/material/expansion";
+import {WaveboxComponent} from "./wavebox/wavebox.component";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -58,7 +58,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     BpmSelectComponent,
     SliderComponent,
     AppPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    WaveboxComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +78,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatIconModule,
     MatMenuModule,
     MatSnackBarModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     RouterModule.forRoot(routeConfig, {preloadingStrategy: PreloadAllModules}), // Use PreloadAllModules here
@@ -88,7 +89,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatExpansionPanel,
     MatExpansionPanelTitle,
     MatExpansionPanelDescription,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   providers: [
     provideAnimations(),

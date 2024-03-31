@@ -16,6 +16,7 @@ import {ReqService} from "../req.service";
 import WaveSurfer from "wavesurfer.js";
 import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 
 @Component({
@@ -117,10 +118,13 @@ export class InterfaceComponent implements OnInit {
               private http: HttpClient,
               public audioService: AudioService,
               public reqService: ReqService,
-              @Inject(DOCUMENT) private document: Document) {}
+              @Inject(DOCUMENT) private document: Document,
+              private firestore: AngularFirestore) {}
 
   generateSetup()
   {
+    this.wavesurfer1 = undefined;
+    this.wavesurfer2 = undefined;
     this.showAudio = false
     this.audioSrc1 = undefined;
     this.audioSrc2 = undefined;
@@ -221,6 +225,12 @@ export class InterfaceComponent implements OnInit {
 
   initWaveSurfer()
   {
+    if(this.wavesurfer1 && this.wavesurfer2)
+    {
+      console.log("preventing duplicate waveform generation")
+      return
+    }
+
     let color = this.style.getPropertyValue("--translucent-dark").trim()
     let color2 = this.style.getPropertyValue("--none").trim()
 
