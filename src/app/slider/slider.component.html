@@ -1,7 +1,7 @@
 <mat-slider [(ngModel)]= "value"
             [max]="max" [min]="min" [step]="step"
             (input)="sliderChange()">
-  <input matSliderThumb>
+  <input [value]="name == 'entropy' ? reqService.entropy : reqService.duration" matSliderThumb>
 </mat-slider>
 
 <div class="label-container">

@@ -13,14 +13,12 @@ export class SliderComponent implements OnInit {
   @Input() min: number = 0;
   @Input() max: number = 0;
   @Input() step: number = 1;
-  @Input() default: number = this.min;
   value: number = 0;
   entropyWarning: boolean = false;
 
   constructor(public reqService: ReqService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.value = this.name == "entropy" ? this.reqService.entropy : this.reqService.duration;
   }
 
 
