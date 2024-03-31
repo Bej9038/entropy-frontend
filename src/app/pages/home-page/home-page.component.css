@@ -34,6 +34,16 @@
   border-radius: 8px;
 }
 
+.try-button {
+  /*animation: opacityFade 300ms forwards;*/
+  /*width: 140px;*/
+  /*height: 60px;*/
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  color: var(--white);
+  font-size: 1.8rem;
+}
 
 video {
   position: absolute;
@@ -57,17 +67,6 @@ video {
   font-weight: 500;
   letter-spacing: 8px;
   opacity: .74;
-}
-
-.try-button {
-  /*animation: opacityFade 300ms forwards;*/
-  /*width: 140px;*/
-  /*height: 60px;*/
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  color: var(--white);
-  font-size: 1.8rem;
 }
 
 

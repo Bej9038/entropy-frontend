@@ -22,5 +22,5 @@
 <!--      person-->
 <!--    </mat-icon>-->
 <!--  </button>-->
-  <button style="color: white" mat-button (click)="signOut()">Sign Out</button>
+  <a *ngIf="signedIn" routerLink="/" style="color: white" mat-button (click)="signOut()">Sign Out</a>
 </mat-toolbar>

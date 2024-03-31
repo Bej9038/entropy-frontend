@@ -10,9 +10,18 @@ import {Router} from "@angular/router";
 })
 export class NavbarComponent implements OnInit {
 
+  signedIn = false;
+
   constructor(private auth: AngularFireAuth, public router: Router) { }
 
   ngOnInit(): void {
+    this.auth.authState.subscribe(user => {
+      if (user) {
+        this.signedIn = true
+      } else {
+        this.signedIn = false
+      }
+    });
   }
 
   signOut(): void {
