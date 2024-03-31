@@ -58,11 +58,20 @@ export class AudioService {
     this.init_new_buffer_src()
     if(audioId == 0)
     {
-      console.log("playing 0")
+      if(this.src0_isPlaying)
+      {
+        this.src0.stop()
+      }
+
       this.src0_isPlaying = true
       this.src0.start()
     }
     else if(audioId == 1) {
+      if(this.src1_isPlaying)
+      {
+        this.src1.stop()
+      }
+
       this.src1_isPlaying = true
       this.src1.start()
     }
