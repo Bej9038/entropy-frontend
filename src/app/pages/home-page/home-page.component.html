@@ -2,12 +2,12 @@
 <!--  <source src="assets/AdobeStock_390393754_Video_HD_Preview.mp4" type="video/mp4">-->
 <!--</video>-->
 <div class="home-container">
-  <span class="text"> ENTROPY </span>
+  <span  class="text"> ENTROPY </span>
 <!--  <span class="text"> THE FUTURE OF AUDIO </span>-->
   <mat-card class="signinCard">
     <firebase-ui
       (signInSuccessWithAuthResult)="onSignIn()">
     </firebase-ui>
-    <a routerLink="/entropy" *ngIf="signedIn">continue</a>
+    <a class="try-button" mat-button routerLink="/entropy" *ngIf="signedIn"> Start Creating </a>
   </mat-card>
 </div>
