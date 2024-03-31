@@ -4,7 +4,7 @@
   <mat-form-field class="bpm-flexitem bpm-form" >
       <mat-label class="bpm-add" *ngIf="bpm == '' && loopSelected">120</mat-label>
       <mat-label class="bpm-add" *ngIf="!loopSelected">no bpm</mat-label>
-      <input matInput style="font-size: 1.2rem !important;" [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" maxlength="3"
+      <input class="bpm-add" matInput style="font-size: 1.2rem !important;" [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" maxlength="3"
              [(ngModel)]="bpm" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" (input)="updateBPM()">
   </mat-form-field>
 <!--  <div class="bpm-flexitem mat-error" style="color: var(&#45;&#45;translucent-grey); height: 1rem" *ngIf="!numberInputControl.hasError('pattern') &&-->

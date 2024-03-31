@@ -20,21 +20,6 @@ entropyColor {
   background-color: #ffad33;
 }
 
-::ng-deep.mat-snack-bar-container {
-  background-color: var(--translucent-dark) !important;
-  color: var(--white);
-  text-align: center;
-}
-
-::ng-deep.mat-simple-snackbar {
-  flex-direction: column !important;
-  justify-content: space-between;
-}
-
-::ng-deep.mat-simple-snackbar-action {
-  margin-top: 4px !important;
-}
-
 /* SLIDER */
 
 ::ng-deep.mat-mdc-slider .mdc-slider__thumb-knob {

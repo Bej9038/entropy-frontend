@@ -81,9 +81,9 @@
   border-radius: 4px !important;
 }
 
-::ng-deep.mdc-text-field--filled .mdc-text-field__input .bpm-add {
-  font-size: 1.2rem !important;
-}
+/*::ng-deep.mdc-text-field--filled .mdc-text-field__input .bpm-add {*/
+/*  font-size: 1.2rem !important;*/
+/*}*/
 
 ::ng-deep.mdc-text-field--filled .mdc-floating-label .bpm-add {
   font-size: 1.2rem !important;

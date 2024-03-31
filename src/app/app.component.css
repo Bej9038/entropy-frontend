@@ -10,6 +10,35 @@ app-navbar {
   margin-right: 0 !important;
 }
 
-::ng-deep.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
+::ng-deep.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action{
   color: var(--color-accent) !important;
+  margin-bottom: 12px !important;
+  /*bottom: 100px;*/
+}
+/*::ng-deep .mat-mdc-snack-bar-label mdc-snackbar__label{*/
+/*  height: 200px !important;*/
+/*}*/
+
+
+::ng-deep.mat-snack-bar-container {
+  background-color: var(--translucent-dark) !important;
+  color: var(--white);
+  text-align: center;
+}
+
+::ng-deep.mat-simple-snackbar {
+  flex-direction: column !important;
+  justify-content: space-between;
+}
+
+::ng-deep.mat-simple-snackbar-action {
+  margin-top: 4px !important;
+}
+
+::ng-deep.mat-mdc-simple-snack-bar{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-content: center;
+  align-items: center;
 }
