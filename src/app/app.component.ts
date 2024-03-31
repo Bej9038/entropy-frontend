@@ -22,6 +22,12 @@ export class AppComponent {
     showDebugInformation: true,
   };
 
+  // @ts-ignore
+  @ViewChild("navbar", { read: ElementRef }) navbarElement: ElementRef;
+  // @ts-ignore
+  @ViewChild("interface", { read: ElementRef }) interfaceElement: ElementRef;
+
+
   constructor(private http: HttpClient, private oauthService: OAuthService) {
     this.oauthService.configure(this.authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin()
@@ -83,5 +89,33 @@ export class AppComponent {
       });
   }
 
+  // ngAfterViewInit(): void {
+  //   this.checkOverlap()
+  // }
+  //
+  // @HostListener('window:scroll', [])
+  // onWindowScroll() {
+  //   this.checkOverlap();
+  // }
+  //
+  // @HostListener('window:resize', ['$event'])
+  // onResize() {
+  //   this.checkOverlap();
+  // }
+  //
+  // checkOverlap() {
+  //   let navbar = this.navbarElement.nativeElement
+  //   let inter = this.interfaceElement.nativeElement
+  //
+  //   if (navbar.offsetTop + navbar.offsetHeight > inter.offsetTop) {
+  //     console.log("overlap")
+  //     navbar.classList.add('invisible');
+  //     navbar.classList.remove('opaque');
+  //   }
+  //   else if(navbar.offsetTop + navbar.offsetHeight < inter.offsetTop){
+  //     navbar.classList.add('opaque');
+  //     navbar.classList.remove('invisible');
+  //   }
+  // }
 
 }

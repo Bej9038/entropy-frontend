@@ -4,10 +4,10 @@
       <span class="txt">Entropy Audio </span>
   </a>
 
-  <div class="entropy-links" *ngIf="router.url == '/'">
-    <button mat-button class="header-buttons">Mission</button>
-    <button mat-button class="header-buttons">Technology</button>
-    <button mat-button class="header-buttons">Company</button>
+  <div class="homepage-links" *ngIf="router.url == '/'">
+    <a routerLink="mission" mat-button class="header-buttons">Mission</a>
+    <a routerLink="tech" mat-button class="header-buttons">Technology</a>
+    <a routerLink="news" mat-button class="header-buttons">News</a>
   </div>
 
 <!--  <mat-tab-group>-->
