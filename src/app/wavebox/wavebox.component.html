@@ -1,0 +1,15 @@
+<div class="waveform-component" (mouseenter)="onFocus()" (mouseleave)="unFocus()">
+  <div [ngClass]="{'up': focused && enabled}" class="waveform-cont">
+    <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+      <div *ngIf="enabled" class="waveform" #waveform></div>
+  </div>
+
+  <div class="button-cont">
+    <button class="playButton"  (click)="audioService.playOrPause(audioID)" mat-button>
+      <mat-icon [ngClass]="{'up': focused && enabled}">play_arrow</mat-icon>
+    </button>
+    <button class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>
+      <mat-icon [ngClass]="{'up': focused && enabled}">download</mat-icon>
+    </button>
+  </div>
+</div>

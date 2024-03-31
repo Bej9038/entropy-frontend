@@ -32,7 +32,6 @@ entropyColor {
 }
 
 ::ng-deep.mat-simple-snackbar-action {
-  color: var(--warning);
   margin-top: 4px !important;
 }
 
@@ -73,5 +72,6 @@ entropyColor {
 }
 
 ::ng-deep.mat-mdc-slider .mat-ripple .mat-mdc-slider-active-ripple, .mat-mdc-slider .mat-ripple .mat-mdc-slider-active-ripple{
-  background-color: var(--translucent-dark-3) !important;
+  background-color: var(--color-accent) !important;
+  opacity: .25;
 }

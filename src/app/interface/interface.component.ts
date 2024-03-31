@@ -32,10 +32,8 @@ export class InterfaceComponent implements OnInit {
   audioSrc0: SafeUrl | undefined;
   audioSrc1: SafeUrl | undefined;
   progressBarMode: ProgressBarMode = "determinate";
-  showProgressBar: boolean = false;
   generating: boolean = false;
   showAudio: boolean = false;
-  // showAudio: boolean = true;
 
   placeholders: string[] = ["acoustic hi-hat top loop",
     "trap snare drum",
@@ -50,8 +48,8 @@ export class InterfaceComponent implements OnInit {
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
 
-  debug = true
-  // debug = false
+  // debug = true
+  debug = false
 
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
@@ -78,7 +76,6 @@ export class InterfaceComponent implements OnInit {
     if(this.debug)
     {
       this.showAudio = true
-      this.showProgressBar = false
     }
   }
 
@@ -120,13 +117,11 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
-    this.wavebox0.reset()
-    this.wavebox1.reset()
+    this.wavebox0.init()
+    this.wavebox1.init()
     this.showAudio = false
     this.audioSrc0 = undefined;
     this.audioSrc1 = undefined;
-    this.progressBarMode = "indeterminate";
-    this.showProgressBar = true;
     this.generating = true;
   }
 
@@ -134,7 +129,6 @@ export class InterfaceComponent implements OnInit {
   {
     this.reqService.description = "";
     this.reqService.disableGeneration = false;
-    this.showProgressBar = false;
     this.generating = false;
     this.progressBarMode = "determinate";
     this.current_id = "";

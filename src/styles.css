@@ -14,8 +14,8 @@
   --none: rgba(53, 53, 54, 1);
   --line-size: 2px;
   --line-size-2: 4px;
-  --warning: rgb(164, 19, 19);
-  --color-accent: rgba(127, 102, 239, 0.8);
+  --color-accent: rgba(222, 123, 106, 0.6);
+  /*--color-accent: #ff4040;*/
   --ripple: var(--translucent-dark);
   --ripple2: var(--translucent-dark);
   min-height: 127.2px;
@@ -65,5 +65,6 @@ html, body {
 .mat-mdc-unelevated-button {
   letter-spacing: normal !important;
 }
+
 
 

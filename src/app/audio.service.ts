@@ -7,99 +7,89 @@ import {ReqService} from "./req.service";
   providedIn: 'root'
 })
 export class AudioService {
-  sampleRate = 48000
   audioContext = new AudioContext();
-  // audioContext = new OfflineAudioContext({
-  //   numberOfChannels: 2,
-  //   length: 10 * this.sampleRate,
-  //   sampleRate: this.sampleRate
-  // });
 
+  // @ts-ignore
+  buffer0: AudioBuffer;
   // @ts-ignore
   buffer1: AudioBuffer;
-  // @ts-ignore
-  buffer2: AudioBuffer;
 
+  src0 = this.audioContext.createBufferSource()
   src1 = this.audioContext.createBufferSource()
-  src2 = this.audioContext.createBufferSource()
 
+  url0: undefined | SafeUrl = undefined
   url1: undefined | SafeUrl = undefined
-  url2: undefined | SafeUrl = undefined
 
+  src0_isPlaying = false
   src1_isPlaying = false
-  src2_isPlaying = false
 
   current_prompt = ""
 
+  src0_time = 0
   src1_time = 0
-  src2_time = 0
 
   constructor(private sanitizer: DomSanitizer, private reqService: ReqService) {
+    this.src0.connect(this.audioContext.destination)
     this.src1.connect(this.audioContext.destination)
-    this.src2.connect(this.audioContext.destination)
   }
 
   init_new_buffer_src() {
+    this.src0 = this.audioContext.createBufferSource()
     this.src1 = this.audioContext.createBufferSource()
-    this.src2 = this.audioContext.createBufferSource()
+    this.src0.connect(this.audioContext.destination)
     this.src1.connect(this.audioContext.destination)
-    this.src2.connect(this.audioContext.destination)
+    this.src0.buffer = this.buffer0
     this.src1.buffer = this.buffer1
-    this.src2.buffer = this.buffer2
   }
 
   playOrPause(audioId: number) {
-    if(audioId == 1)
+    console.log(audioId)
+    if(audioId == 0)
+    {
+      this.src0_isPlaying ? this.pauseAudio(0) : this.playAudio(0)
+    }
+    else if(audioId == 1)
     {
       this.src1_isPlaying ? this.pauseAudio(1) : this.playAudio(1)
-    }
-    else if(audioId == 2)
-    {
-      this.src2_isPlaying ? this.pauseAudio(2) : this.playAudio(2)
     }
   }
 
   playAudio(audioId: number): void
   {
     this.init_new_buffer_src()
-    if(audioId == 1)
+    if(audioId == 0)
     {
-      this.src1_isPlaying = true
-      if(this.src2_isPlaying) {
-        this.pauseAudio(2)
-      }
-      this.src1.start()
+      this.src0_isPlaying = true
+      this.src0.start()
     }
-    else if(audioId == 2) {
-      this.src2_isPlaying = true
-      if(this.src1_isPlaying) {
-        this.pauseAudio(1)
-      }
-      this.src2.start()
+    else if(audioId == 1) {
+      this.src1_isPlaying = true
+      this.src1.start()
     }
   }
 
   pauseAudio(audioId: number) {
-    if(audioId == 1)
+    if(audioId == 0)
     {
+      this.src0_isPlaying = false
+      this.src0.stop()
+    }
+    else if(audioId == 1) {
       this.src1_isPlaying = false
       this.src1.stop()
-    }
-    else if(audioId == 2) {
-      this.src2_isPlaying = false
-      this.src2.stop()
     }
   }
 
   downloadAudio(audioId:number)
   {
-    if(audioId == 1) {
+    if(audioId == 0) {
+      this.downloadBlob(this.url0, this.current_prompt)
+    }
+    else if(audioId == 1) {
       this.downloadBlob(this.url1, this.current_prompt)
     }
-    else if(audioId == 2) {
-      this.downloadBlob(this.url2, this.current_prompt)
-    }
   }
+
   downloadBlob(url: SafeUrl | undefined, filename: string) {
     const a = document.createElement('a');
     a.href = (url as any).changingThisBreaksApplicationSecurity;
@@ -109,20 +99,25 @@ export class AudioService {
     document.body.removeChild(a);
   }
 
+  assignbuffer(audioId: number, buffer: any, url: any)
+  {
+    if(audioId == 0) {
+      this.url0 = url
+      this.buffer0 = buffer
+    }
+    else if(audioId == 1) {
+      this.url1 = url
+      this.buffer1 = buffer
+    }
+  }
+
   async decodeBase64ToAudioURL(base64: string, audioId: number, description: string) {
     console.log("decoding audio")
     this.current_prompt = description
     const byteArray = this.convertBase64FileToRaw(base64)
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
     const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob))
-    if(audioId == 1) {
-      this.url1 = url
-      this.buffer1 = await this.audioContext.decodeAudioData(byteArray.buffer);
-    }
-    else if(audioId == 2) {
-      this.url2 = url
-      this.buffer2 = await this.audioContext.decodeAudioData(byteArray.buffer);
-    }
+    this.assignbuffer(audioId, await this.audioContext.decodeAudioData(byteArray.buffer), url)
     return url;
   }
 

@@ -9,3 +9,7 @@ app-navbar {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
+
+::ng-deep.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
+  color: var(--color-accent) !important;
+}
