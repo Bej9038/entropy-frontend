@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @Component({
@@ -22,6 +23,10 @@ export class NavbarComponent implements OnInit {
         this.signedIn = false
       }
     });
+  }
+
+  openMenu() {
+
   }
 
   signOut(): void {

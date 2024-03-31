@@ -31,6 +31,12 @@ import {AppPageComponent} from "./pages/app-page/app-page.component";
 import {PreloadAllModules, provideRouter, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import routeConfig from "./routes";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
+import {
+  MatExpansionModule,
+  MatExpansionPanel,
+  MatExpansionPanelDescription,
+  MatExpansionPanelTitle
+} from "@angular/material/expansion";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -79,6 +85,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     RouterLink,
     MatTabGroup,
     MatTab,
+    MatExpansionPanel,
+    MatExpansionPanelTitle,
+    MatExpansionPanelDescription,
+    MatExpansionModule
   ],
   providers: [
     provideAnimations(),

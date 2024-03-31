@@ -17,10 +17,15 @@
 <!--  </mat-tab-group>-->
 
 
-<!--  <button (click)="firebase.signInUser()" mat-button>-->
-<!--    <mat-icon>-->
-<!--      person-->
-<!--    </mat-icon>-->
-<!--  </button>-->
-  <a *ngIf="signedIn" routerLink="/" style="color: white" mat-button (click)="signOut()">Sign Out</a>
+  <button [matMenuTriggerFor]="menu" *ngIf="signedIn" class="profile-button" mat-button (click)="openMenu()">
+    <mat-icon>
+      person
+    </mat-icon>
+  </button>
+
+  <mat-menu #menu class="matMenu">
+    <button class="menu-item" mat-menu-item> account </button>
+    <button class="menu-item" mat-menu-item> view credits </button>
+    <a class="menu-item" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
+  </mat-menu>
 </mat-toolbar>

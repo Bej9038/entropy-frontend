@@ -40,7 +40,20 @@
   justify-content: center;
 }
 
+::ng-deep.matMenu {
+  background-color: var(--translucent) !important;
+}
+
+::ng-deep.menu-item {
+  color: var(--white) !important;
+}
+
 .header-buttons {
   color: var(--white) !important;
   margin: 32px;
+}
+
+.profile-button {
+  color: white !important;
+
 }
