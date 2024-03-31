@@ -48,6 +48,7 @@
   color: var(--white) !important;
 }
 
+
 .header-buttons {
   color: var(--white) !important;
   margin: 32px;
@@ -55,5 +56,4 @@
 
 .profile-button {
   color: white !important;
-
 }

@@ -50,8 +50,8 @@ export class InterfaceComponent implements OnInit {
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
 
-  // debug = true
-  debug = false
+  debug = true
+  // debug = false
 
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
@@ -84,11 +84,11 @@ export class InterfaceComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.nextPlaceholder()
-    // if(this.debug)
-    // {
-    //   this.wavebox0.initWaveSurfer(undefined);
-    //   this.wavebox1.initWaveSurfer(undefined);
-    // }
+    if(this.debug)
+    {
+      this.wavebox0.initWaveSurfer(undefined, this.debug);
+      this.wavebox1.initWaveSurfer(undefined, this.debug);
+    }
   }
 
   nextPlaceholder() {
@@ -223,8 +223,8 @@ export class InterfaceComponent implements OnInit {
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
     const checkAndInit = () => {
       if (this.wavebox0 && this.wavebox1) {
-        this.wavebox0.initWaveSurfer(this.audioSrc0)
-        this.wavebox1.initWaveSurfer(this.audioSrc1)
+        this.wavebox0.initWaveSurfer(this.audioSrc0, this.debug)
+        this.wavebox1.initWaveSurfer(this.audioSrc1, this.debug)
         this.generateTeardown()
         clearInterval(intervalRef);
       } else {
