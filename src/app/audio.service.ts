@@ -43,7 +43,6 @@ export class AudioService {
   }
 
   playOrPause(audioId: number) {
-    console.log(audioId)
     if(audioId == 0)
     {
       this.src0_isPlaying ? this.pauseAudio(0) : this.playAudio(0)
@@ -59,6 +58,7 @@ export class AudioService {
     this.init_new_buffer_src()
     if(audioId == 0)
     {
+      console.log("playing 0")
       this.src0_isPlaying = true
       this.src0.start()
     }

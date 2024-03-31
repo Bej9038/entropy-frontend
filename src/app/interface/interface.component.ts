@@ -201,10 +201,10 @@ export class InterfaceComponent implements OnInit {
         .subscribe(async response => {
           if (response["status"] == "COMPLETED") {
             console.log("request complete")
-            let base641 = response["output"][0]
-            let base642 = response["output"][1]
-            this.audioSrc0 = await this.audioService.decodeBase64ToAudioURL(base641, 1, this.reqService.description)
-            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base642, 2, this.reqService.description)
+            let base64_0 = response["output"][0]
+            let base64_1 = response["output"][1]
+            this.audioSrc0 = await this.audioService.decodeBase64ToAudioURL(base64_0, 0, this.reqService.description)
+            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base64_1, 1, this.reqService.description)
             this.showAudio = true;
             this.waitForElementsAndInitWaveSurfer(intervalRef)
           } else if (response["status"] == "CANCELLED") {

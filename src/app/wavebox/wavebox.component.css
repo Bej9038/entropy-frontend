@@ -109,4 +109,5 @@ mat-progress-bar {
 ::ng-deep.mdc-linear-progress__bar-inner{
   border-radius: 8px;
   border-color: var(--color-accent) !important;
+  opacity: .5;
 }
