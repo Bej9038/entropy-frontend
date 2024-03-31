@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FirebaseService} from "../firebase.service";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 
 @Component({
@@ -9,9 +9,14 @@ import {FirebaseService} from "../firebase.service";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public firebase: FirebaseService) { }
+  constructor(private auth: AngularFireAuth) { }
 
   ngOnInit(): void {
   }
 
+  signOut(): void {
+    this.auth.signOut().then(() => {
+      console.log("User signed out successfully");
+    });
+  }
 }

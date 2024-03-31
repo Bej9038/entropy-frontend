@@ -7,10 +7,10 @@
   --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.4);
   --translucent-grey: rgba(200, 200, 200, 0.5);
   --translucent-grey-2: rgba(200, 200, 200, 0.25);
-  --translucent-dark: rgba(53, 53, 54, .8);
-  --translucent-dark-2: rgba(53, 53, 54, .35);
-  --translucent-dark-3: rgba(53, 53, 54, .1);
-  --background-color: rgba(43, 43, 44, 0.7);
+  --translucent-dark: rgba(49, 51, 54, .7);
+  --translucent-dark-2: rgb(49, 51, 54, .35);
+  --translucent-dark-3: rgba(49, 51, 54, .1);
+  --background-color: rgb(43, 43, 44);
   --none: rgba(53, 53, 54, 1);
   --line-size: 2px;
   --line-size-2: 4px;

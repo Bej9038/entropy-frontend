@@ -1,6 +1,8 @@
 .home-container {
   display: flex;
   justify-content: center;
+  align-content: center;
+  align-items: center;
   flex-direction: column;
 
   height: 100%;
@@ -16,8 +18,36 @@
   background-attachment: fixed;
 }
 
+.signinCard {
+  width: 400px;
+  height: 220px;
+  padding-top: 32px;
+  position: relative;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--translucent);
+  color: white;
+  border-radius: 8px;
+}
+
+
+video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+
+
 .text {
   color: var(--translucent-dark);
+  z-index: 5;
   text-align: center;
   font-size: 120px;
   padding-bottom: 300px;

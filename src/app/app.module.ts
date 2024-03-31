@@ -30,6 +30,7 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {AppPageComponent} from "./app-page/app-page.component";
 import {PreloadAllModules, provideRouter, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import routeConfig from "./routes";
+import {MatTab, MatTabGroup} from "@angular/material/tabs";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -73,9 +74,11 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    RouterModule.forRoot(routeConfig, { preloadingStrategy: PreloadAllModules }), // Use PreloadAllModules here
+    RouterModule.forRoot(routeConfig, {preloadingStrategy: PreloadAllModules}), // Use PreloadAllModules here
     RouterOutlet,
     RouterLink,
+    MatTabGroup,
+    MatTab,
   ],
   providers: [
     provideAnimations(),

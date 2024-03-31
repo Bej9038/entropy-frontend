@@ -43,7 +43,7 @@
         <button class="playButton"  (click)="audioService.playOrPause(1)" mat-button>
           <mat-icon [ngClass]="{'up': rhsUp && showAudio}">play_arrow</mat-icon>
         </button>
-        <button class="playButton"  (click)="audioService.downloadAudio(1); firebase.storePreferenceData()" mat-button>
+        <button class="playButton"  (click)="audioService.downloadAudio(1);" mat-button>
           <mat-icon [ngClass]="{'up': rhsUp && showAudio}">download</mat-icon>
         </button>
       </div>
@@ -59,7 +59,7 @@
         <button class="playButton" (click)="audioService.playOrPause(2)" mat-button>
           <mat-icon [ngClass]="{'up': lhsUp && showAudio}">play_arrow</mat-icon>
         </button>
-        <button class="playButton"   (click)="audioService.downloadAudio(2); firebase.storePreferenceData()" mat-button>
+        <button class="playButton"   (click)="audioService.downloadAudio(2);" mat-button>
           <mat-icon [ngClass]="{'up': lhsUp && showAudio}">download</mat-icon>
         </button>
       </div>

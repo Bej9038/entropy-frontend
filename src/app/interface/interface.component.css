@@ -153,15 +153,13 @@
   align-content: center;
 }
 
-
-
 .flexitem {
   width: 33%;
 }
 
-
 .textCard {
-  width: 75%;
+  /*width: 75%;*/
+  width: 750px;
   padding: 16px;
   position: relative;
   left: 0;
