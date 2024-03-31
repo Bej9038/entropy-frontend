@@ -19,9 +19,9 @@ export class SliderComponent implements OnInit {
   constructor(public reqService: ReqService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.value = this.name == 'entropy' ? this.reqService.entropy : this.reqService.duration
   }
-
-
+  
   sliderChange(): void {
     if(this.name == "entropy")
     {

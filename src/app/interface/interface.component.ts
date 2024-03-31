@@ -48,8 +48,8 @@ export class InterfaceComponent implements OnInit {
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
 
-  // debug = true
   debug = false
+  // debug = true
 
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
@@ -127,10 +127,11 @@ export class InterfaceComponent implements OnInit {
 
   generateTeardown()
   {
+    this.wavebox0.cancelGen();
+    this.wavebox1.cancelGen();
     this.reqService.description = "";
     this.reqService.disableGeneration = false;
     this.generating = false;
-    this.progressBarMode = "determinate";
     this.current_id = "";
   }
 
@@ -150,6 +151,7 @@ export class InterfaceComponent implements OnInit {
       if(this.debug)
       {
         this.generateSetup();
+        this.reqService.getReq();
       }
       else {
         this.sendReq()

@@ -39,6 +39,8 @@ export class ReqService {
 
   getReq()
   {
+      console.log(this.duration);
+      console.log(this.entropy);
     return {
       "input": {
         "text":  this.reformatDescription(),
@@ -47,6 +49,6 @@ export class ReqService {
         "stereo": 1,
         "ping": 0
       }
-    }
+    };
   }
 }

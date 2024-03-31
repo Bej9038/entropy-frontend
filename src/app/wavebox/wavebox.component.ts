@@ -48,7 +48,12 @@ export class WaveboxComponent implements OnInit {
   init() {
     this.wavesurfer = undefined;
     this.showProgressBar = true;
-    // this.progressBarMode = "indeterminate";
+  }
+
+  cancelGen()
+  {
+    this.wavesurfer = undefined;
+    this.showProgressBar = false;
   }
 
   initWaveSurfer(src: any, debug:boolean)
