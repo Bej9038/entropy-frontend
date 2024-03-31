@@ -1,0 +1,11 @@
+{
+  "projects": {
+    "default": "entropy-413416"
+  },
+  "targets": {},
+  "etags": {
+    "entropy-413416": {
+      "extensionInstances": {}
+    }
+  }
+}
