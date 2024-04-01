@@ -17,6 +17,7 @@ import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {WaveboxComponent} from "../wavebox/wavebox.component";
+import {FirestoreService} from "../firestore.service";
 
 
 @Component({
@@ -31,11 +32,10 @@ export class InterfaceComponent implements OnInit {
   cancel: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
   audioSrc0: SafeUrl | undefined;
   audioSrc1: SafeUrl | undefined;
-  progressBarMode: ProgressBarMode = "determinate";
   generating: boolean = false;
   showAudio: boolean = false;
-
-  placeholders: string[] = ["acoustic hi-hat top loop",
+  placeholders: string[] =
+    ["acoustic hi-hat top loop",
     "trap snare drum",
     "pulsing synth chords",
     "kick drum",
@@ -47,10 +47,8 @@ export class InterfaceComponent implements OnInit {
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
-
   debug = false
   // debug = true
-
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
@@ -71,6 +69,13 @@ export class InterfaceComponent implements OnInit {
   @ViewChild('bpm') bpmElement: ElementRef;
   // @ts-ignore
   @ViewChild('label', { read: ElementRef }) textLabel: ElementRef;
+
+  constructor(private elementRef: ElementRef,
+              private http: HttpClient,
+              public audioService: AudioService,
+              public reqService: ReqService,
+              @Inject(DOCUMENT) private document: Document,
+              private firestore: FirestoreService) {}
 
   ngOnInit() {
     if(this.debug)
@@ -107,13 +112,6 @@ export class InterfaceComponent implements OnInit {
 
     }, 300);
   }
-
-  constructor(private elementRef: ElementRef,
-              private http: HttpClient,
-              public audioService: AudioService,
-              public reqService: ReqService,
-              @Inject(DOCUMENT) private document: Document,
-              private firestore: AngularFirestore) {}
 
   generateSetup()
   {
@@ -186,6 +184,7 @@ export class InterfaceComponent implements OnInit {
   {
     const req = this.reqService.getReq()
     this.generateSetup();
+    this.firestore.storePrompt(req)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`
