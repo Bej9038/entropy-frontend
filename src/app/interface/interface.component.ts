@@ -9,15 +9,15 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AudioService} from "../audio.service";
+import {AudioService} from "../services/audio.service";
 import {SafeUrl} from "@angular/platform-browser";
 import {ProgressBarMode} from "@angular/material/progress-bar";
-import {ReqService} from "../req.service";
+import {ReqService} from "../services/req.service";
 import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {WaveboxComponent} from "../wavebox/wavebox.component";
-import {FirestoreService} from "../firestore.service";
+import {FirestoreService} from "../services/firestore.service";
 
 
 @Component({

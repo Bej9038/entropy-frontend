@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener, Inject, Input, OnInit, ViewChild} from '@angular/core';
-import {AudioService} from "../audio.service";
+import {AudioService} from "../services/audio.service";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import WaveSurfer from "wavesurfer.js";
 import {DOCUMENT} from "@angular/common";

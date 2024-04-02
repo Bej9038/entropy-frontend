@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ReqService} from "../req.service";
+import {ReqService} from "../services/req.service";
 import {MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSliderModule} from "@angular/material/slider";
 

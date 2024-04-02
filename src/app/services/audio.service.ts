@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import WaveSurfer from "wavesurfer.js";
 import {ReqService} from "./req.service";
 
 @Injectable({

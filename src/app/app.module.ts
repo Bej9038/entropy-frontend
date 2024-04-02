@@ -28,7 +28,7 @@ import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {AppPageComponent} from "./pages/app-page/app-page.component";
 import {PreloadAllModules, provideRouter, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
-import {routeConfig, firebaseConfig} from "./config";
+import {routeConfig, firebaseConfig} from "./configs";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {
   MatExpansionModule,

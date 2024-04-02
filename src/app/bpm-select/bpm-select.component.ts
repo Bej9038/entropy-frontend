@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ReqService} from "../req.service";
+import {ReqService} from "../services/req.service";
 import { FormControl, Validators } from '@angular/forms';
 import {DOCUMENT} from "@angular/common";
 
