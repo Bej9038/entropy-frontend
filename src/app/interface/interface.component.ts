@@ -35,13 +35,13 @@ export class InterfaceComponent implements OnInit {
   generating: boolean = false;
   showAudio: boolean = false;
   placeholders: string[] =
-    ["acoustic hi-hat top loop",
+    [
+      "acoustic hi-hat top loop",
     "trap snare drum",
     "pulsing synth chords",
     "kick drum",
     "distorted cinematic drum loop",
     "sustained electronic arp",
-    "distorted neuro reese bass"
   ];
   current_id: string = "";
   missing_id: boolean = false;

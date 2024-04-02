@@ -9,12 +9,12 @@ export const routeConfig: Routes = [
   {
     path: "",
     component: HomePageComponent,
-    title: "Entropy"
+    title: "Entropy Audio"
   },
   {
     path: "entropy",
     component: AppPageComponent,
-    title: "Entropy"
+    title: "Entropy Audio"
   },
   {
     path: "mission",
