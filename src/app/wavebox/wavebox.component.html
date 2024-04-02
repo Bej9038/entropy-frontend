@@ -5,10 +5,10 @@
   </div>
 
   <div class="button-cont">
-    <button class="playButton"  (click)="audioService.playOrPause(audioID)" mat-button>
+    <button [disabled]="!enabled" class="playButton"  (click)="audioService.playOrPause(audioID)" mat-button>
       <mat-icon [ngClass]="{'up': focused && enabled}">play_arrow</mat-icon>
     </button>
-    <button class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>
+    <button [disabled]="!enabled" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>
       <mat-icon [ngClass]="{'up': focused && enabled}">download</mat-icon>
     </button>
   </div>
