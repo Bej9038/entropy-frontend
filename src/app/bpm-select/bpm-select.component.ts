@@ -10,7 +10,6 @@ import {DOCUMENT} from "@angular/common";
 })
 export class BpmSelectComponent implements OnInit {
   loopSelected: boolean = false
-  // oneShotSelected: boolean true
   bpm: string = this.reqService.bpm
   numberInputControl= new FormControl('', [
     Validators.pattern('^[0-9]+$'),
@@ -56,13 +55,19 @@ export class BpmSelectComponent implements OnInit {
     if(!this.loopSelected)
     {
       this.reqService.bpm = ""
+      this.checkRipple()
       if(this.reqService.disableGeneration)
       {
         this.reqService.disableGeneration = false
       }
     }
     else {
+      if(this.bpm == "")
+      {
+        this.bpm = "120"
+      }
       this.reqService.bpm = this.bpm
+      this.checkRipple()
       if((this.numberInputControl.hasError('min') ||
         this.numberInputControl.hasError('max') ||
         this.numberInputControl.hasError('pattern')) && !this.reqService.disableGeneration)
