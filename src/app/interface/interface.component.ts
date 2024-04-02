@@ -39,9 +39,9 @@ export class InterfaceComponent implements OnInit {
     "trap snare drum",
     "pulsing synth chords",
     "kick drum",
-    "orchestral violin melody",
+    "distorted cinematic drum loop",
     "sustained electronic arp",
-    "neuro reese bass"
+    "futuristic neuro bass"
   ];
   current_id: string = "";
   missing_id: boolean = false;

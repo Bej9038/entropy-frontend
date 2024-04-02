@@ -5,6 +5,7 @@
   --greyscale: 100;
   --white: #ffffff;
   --translucent: rgba(var(--greyscale), var(--greyscale), var(--greyscale), 0.4);
+  --test: #414142;
   --translucent-grey: rgba(200, 200, 200, 0.5);
   --translucent-grey-2: rgba(200, 200, 200, 0.25);
   --translucent-dark: rgba(49, 51, 54, .7);
