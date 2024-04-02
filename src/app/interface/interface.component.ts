@@ -1,21 +1,16 @@
 import {
   Component,
   ElementRef,
-  HostListener,
   Inject,
   OnInit,
-  Renderer2,
   ViewChild,
-  ViewEncapsulation
 } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../services/audio.service";
 import {SafeUrl} from "@angular/platform-browser";
-import {ProgressBarMode} from "@angular/material/progress-bar";
 import {ReqService} from "../services/req.service";
 import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {WaveboxComponent} from "../wavebox/wavebox.component";
 import {FirestoreService} from "../services/firestore.service";
 
@@ -34,9 +29,8 @@ export class InterfaceComponent implements OnInit {
   audioSrc1: SafeUrl | undefined;
   generating: boolean = false;
   showAudio: boolean = false;
-  placeholders: string[] =
-    [
-      "acoustic hi-hat top loop",
+  placeholders: string[] = [
+    "acoustic hi-hat top loop",
     "trap snare drum",
     "pulsing synth chords",
     "kick drum",
@@ -189,12 +183,18 @@ export class InterfaceComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.apiKey}`
     });
+
     console.log("sending request to server")
+
+    // get confirmation with request id
+
     this.http.post<any>(this.run_async, req, { headers })
       .subscribe(response =>
       {
         this.current_id = response["id"];
       });
+
+    // send request and wait for
 
     let intervalRef = setInterval(() => {
       console.log("checking status")
@@ -216,17 +216,17 @@ export class InterfaceComponent implements OnInit {
   }
 
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
-    const checkAndInit = () => {
-      if (this.wavebox0 && this.wavebox1) {
+    // const checkAndInit = () => {
+    //   if (this.wavebox0 && this.wavebox1) {
         this.wavebox0.initWaveSurfer(this.audioSrc0, this.debug)
         this.wavebox1.initWaveSurfer(this.audioSrc1, this.debug)
         this.generateTeardown()
         clearInterval(intervalRef);
-      } else {
-        setTimeout(checkAndInit, 50);
-      }
-    };
-    checkAndInit();
+      // } else {
+      //   setTimeout(checkAndInit, 50);
+      // }
+    // };
+    // checkAndInit();
   }
 
   checkRipple(){

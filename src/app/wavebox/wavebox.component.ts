@@ -58,11 +58,6 @@ export class WaveboxComponent implements OnInit {
 
   initWaveSurfer(src: any, debug:boolean)
   {
-    if(this.wavesurfer)
-    {
-      console.log("preventing duplicate waveform generation")
-      return
-    }
     this.showProgressBar = false;
     let height = 72;
     let interact = false;
