@@ -194,12 +194,15 @@ export class InterfaceComponent implements OnInit {
           if (response["status"] == "COMPLETED") {
             console.log("request complete")
             let i = 0
-            this.waveboxes.forEach(wb => {
+
+            for(let i = 0; i < this.num_waveboxes; i++)
+            {
+              let wb = this.waveboxes.toArray()[i]
               let base64 = response["output"][i]
               let url = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
               wb.initWaveSurfer(url, this.debug)
-              i++
-            })
+            }
+
             this.stateService.setState(GenerationState.Displaying);
             clearInterval(intervalRef);
             this.currentReqId = ""
