@@ -192,28 +192,24 @@ export class InterfaceComponent implements OnInit {
       this.http.post<any>(this.status + this.currentReqId, req, { headers })
         .subscribe(async response => {
           if (response["status"] == "COMPLETED") {
-            console.log("request complete")
-            let i = 0
-
-            for(let i = 0; i < this.num_waveboxes; i++)
-            {
-              let wb = this.waveboxes.toArray()[i]
-              let base64 = response["output"][i]
-              let url = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
-              wb.initWaveSurfer(url, this.debug)
+            if(this.stateService.getCurrentState() != GenerationState.Displaying){
+              console.log("request complete")
+              for(let i = 0; i < this.num_waveboxes; i++)
+              {
+                let wb = this.waveboxes.toArray()[i]
+                let base64 = response["output"][i]
+                let url = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
+                wb.initWaveSurfer(url, this.debug)
+              }
+              this.stateService.setState(GenerationState.Displaying);
+              clearInterval(intervalRef);
+              this.currentReqId = ""
             }
-
-            this.stateService.setState(GenerationState.Displaying);
-            clearInterval(intervalRef);
-            this.currentReqId = ""
           } else if (response["status"] == "CANCELLED") {
             clearInterval(intervalRef);
           }
-          else if (response["status"] == "COMPLETED" && this.stateService.getCurrentState() == GenerationState.Displaying) {
-            console.log("repeat interval caught")
-          }
         });
-    }, 1000);
+    }, 2000);
   }
 
   checkRipple(){

@@ -26,7 +26,7 @@ export class WaveboxComponent implements OnInit {
   noColor = this.rootStyle.getPropertyValue("--none").trim()
 
   constructor(public audioService: AudioService,
-              public state: StateService,
+              public stateService: StateService,
               @Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {}
@@ -48,29 +48,29 @@ export class WaveboxComponent implements OnInit {
 
   initWaveSurfer(src: any, debug:boolean)
   {
-    let height = 72;
-    let interact = false;
-    let cursorWidth = 2;
-    this.wavesurfer = WaveSurfer.create(
-      {
-        container: this.waveform.nativeElement,
-        waveColor: this.dark,
-        progressColor: this.noColor,
-        cursorWidth: 0,
-        interact: interact,
-        fillParent: true,
-        sampleRate: 48000,
-        height: height,
-        dragToSeek: true,
-        autoScroll: true
+    if(this.stateService.getCurrentState() != GenerationState.Displaying) {
+      let height = 72;
+      let interact = false;
+      let cursorWidth = 2;
+      this.wavesurfer = WaveSurfer.create(
+        {
+          container: this.waveform.nativeElement,
+          waveColor: this.dark,
+          progressColor: this.noColor,
+          cursorWidth: 0,
+          interact: interact,
+          fillParent: true,
+          sampleRate: 48000,
+          height: height,
+          dragToSeek: true,
+          autoScroll: true
+        }
+      )
+      if (debug) {
+        this.wavesurfer.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
+      } else {
+        this.wavesurfer.load((src as any).changingThisBreaksApplicationSecurity);
       }
-    )
-    if(debug)
-    {
-      this.wavesurfer.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
-    }
-    else {
-      this.wavesurfer.load((src as any).changingThisBreaksApplicationSecurity);
     }
   }
 
