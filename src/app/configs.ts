@@ -34,7 +34,7 @@ export const routeConfig: Routes = [
 ];
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAiWFiU9YsUoHgUvjlXcxKuvFS6rH4yfp0",
+    apiKey: "AIzaSyAiWFiU9YsUoHgUvjlXcxKuvFS6rH4yfp0",
     authDomain: "entropy-413416.firebaseapp.com",
     databaseURL: "https://entropy-413416-default-rtdb.firebaseio.com",
     projectId: "entropy-413416",

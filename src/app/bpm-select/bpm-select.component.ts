@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ReqService} from "../services/req.service";
-import { FormControl, Validators } from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {DOCUMENT} from "@angular/common";
+import {GenerationState, StateService} from "../services/state.service";
 
 @Component({
   selector: 'app-bpm-select',
@@ -19,7 +20,9 @@ export class BpmSelectComponent implements OnInit {
   rootStyle = getComputedStyle(this.document.documentElement);
   dummyControl= new FormControl({value: '', disabled: true});
 
-  constructor(public reqService: ReqService, @Inject(DOCUMENT) private document: Document) { }
+  constructor(public reqService: ReqService,
+              public stateService: StateService,
+              @Inject(DOCUMENT) private document: Document) { }
 
   selectPlaceholder() {
     this.reqService.bpm = "120"
@@ -33,7 +36,13 @@ export class BpmSelectComponent implements OnInit {
   updateBPM()
   {
     this.reqService.bpm = this.bpm
-    this.reqService.disableGeneration = this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern');
+    if(this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern'))
+    {
+      this.stateService.setState(GenerationState.Error)
+    }
+    else if(this.stateService.getCurrentState() == GenerationState.Error) {
+      this.stateService.setState(GenerationState.Idle);
+    }
     this.checkRipple()
   }
 
@@ -56,9 +65,9 @@ export class BpmSelectComponent implements OnInit {
     {
       this.reqService.bpm = ""
       this.checkRipple()
-      if(this.reqService.disableGeneration)
+      if(this.stateService.getCurrentState() == GenerationState.Error)
       {
-        this.reqService.disableGeneration = false
+        this.stateService.setState(GenerationState.Idle)
       }
     }
     else {
@@ -70,9 +79,10 @@ export class BpmSelectComponent implements OnInit {
       this.checkRipple()
       if((this.numberInputControl.hasError('min') ||
         this.numberInputControl.hasError('max') ||
-        this.numberInputControl.hasError('pattern')) && !this.reqService.disableGeneration)
+        this.numberInputControl.hasError('pattern')) && this.stateService.getCurrentState() != GenerationState.Error)
       {
-        this.reqService.disableGeneration = true
+        this.stateService.setState(GenerationState.Error)
+
       }
     }
   }

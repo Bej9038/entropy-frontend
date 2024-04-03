@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild,} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../services/audio.service";
 import {SafeUrl} from "@angular/platform-browser";
@@ -13,6 +7,7 @@ import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
 import {WaveboxComponent} from "../wavebox/wavebox.component";
 import {FirestoreService} from "../services/firestore.service";
+import {GenerationState, StateService} from "../services/state.service";
 
 
 @Component({
@@ -21,14 +16,11 @@ import {FirestoreService} from "../services/firestore.service";
   styleUrls: ['./interface.component.css']
 })
 export class InterfaceComponent implements OnInit {
-  apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
   run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
   status: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
   cancel: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
-  audioSrc0: SafeUrl | undefined;
-  audioSrc1: SafeUrl | undefined;
-  generating: boolean = false;
-  showAudio: boolean = false;
+  audioUrl0: SafeUrl | undefined;
+  audioUrl1: SafeUrl | undefined;
   placeholders: string[] = [
     "acoustic hi-hat top loop",
     "trap snare drum",
@@ -69,21 +61,24 @@ export class InterfaceComponent implements OnInit {
               public audioService: AudioService,
               public reqService: ReqService,
               @Inject(DOCUMENT) private document: Document,
-              private firestore: FirestoreService) {}
+              private firestore: FirestoreService,
+              public stateService: StateService) {}
 
   ngOnInit() {
     if(this.debug)
     {
-      this.showAudio = true
+      this.stateService.setState(GenerationState.Displaying);
     }
+    this.firestore.accessGopher()
+    this.stateService.setState(GenerationState.Idle)
   }
 
   ngAfterViewInit(): void {
     this.nextPlaceholder()
     if(this.debug)
     {
-      this.wavebox0.initWaveSurfer(undefined, this.debug);
-      this.wavebox1.initWaveSurfer(undefined, this.debug);
+      this.wavebox0.initWaveSurfer(undefined, this.debug)
+      this.wavebox1.initWaveSurfer(undefined, this.debug)
     }
   }
 
@@ -111,19 +106,13 @@ export class InterfaceComponent implements OnInit {
   {
     this.wavebox0.init()
     this.wavebox1.init()
-    this.showAudio = false
-    this.audioSrc0 = undefined;
-    this.audioSrc1 = undefined;
-    this.generating = true;
+    this.audioUrl0 = undefined;
+    this.audioUrl1 = undefined;
   }
 
   generateTeardown()
   {
-    this.wavebox0.cancelGen();
-    this.wavebox1.cancelGen();
-    this.reqService.description = "";
-    this.reqService.disableGeneration = false;
-    this.generating = false;
+    // this.reqService.disableGeneration = false;
     this.current_id = "";
   }
 
@@ -138,7 +127,7 @@ export class InterfaceComponent implements OnInit {
       radius: 800,
     };
     this.ripple.launch(0, 0, rippleConfig)
-    if(!this.generating)
+    if(this.stateService.getCurrentState() != GenerationState.Generating)
     {
       if(this.debug)
       {
@@ -146,11 +135,13 @@ export class InterfaceComponent implements OnInit {
         this.reqService.getReq();
       }
       else {
+        this.stateService.setState(GenerationState.Generating);
         this.sendReq()
       }
     }
     else
     {
+      this.stateService.setState(GenerationState.Idle);
       this.sendCancelReq()
     }
   }
@@ -160,7 +151,7 @@ export class InterfaceComponent implements OnInit {
     this.missing_id = true;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.apiKey}`
+      'Authorization': `Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF`
     });
     console.log("cancelling request")
     let req = {"input": {}}
@@ -179,9 +170,12 @@ export class InterfaceComponent implements OnInit {
     const req = this.reqService.getReq()
     this.generateSetup();
     this.firestore.storePrompt(req)
+    // console.log(this.firestore.gopher)
+    const x = this.firestore.gopher
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.apiKey}`
+      'Authorization': `Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF`
     });
 
     console.log("sending request to server")
@@ -204,10 +198,11 @@ export class InterfaceComponent implements OnInit {
             console.log("request complete")
             let base64_0 = response["output"][0]
             let base64_1 = response["output"][1]
-            this.audioSrc0 = await this.audioService.decodeBase64ToAudioURL(base64_0, 0, this.reqService.description)
-            this.audioSrc1 = await this.audioService.decodeBase64ToAudioURL(base64_1, 1, this.reqService.description)
-            this.showAudio = true;
+            this.audioUrl0 = await this.audioService.decodeBase64ToAudioURL(base64_0, 0, this.reqService.description)
+            this.audioUrl1 = await this.audioService.decodeBase64ToAudioURL(base64_1, 1, this.reqService.description)
             this.waitForElementsAndInitWaveSurfer(intervalRef)
+            this.stateService.setState(GenerationState.Displaying);
+            clearInterval(intervalRef);
           } else if (response["status"] == "CANCELLED") {
             clearInterval(intervalRef);
           }
@@ -218,10 +213,10 @@ export class InterfaceComponent implements OnInit {
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
     // const checkAndInit = () => {
     //   if (this.wavebox0 && this.wavebox1) {
-        this.wavebox0.initWaveSurfer(this.audioSrc0, this.debug)
-        this.wavebox1.initWaveSurfer(this.audioSrc1, this.debug)
+        this.wavebox0.initWaveSurfer(this.audioUrl0, this.debug)
+        this.wavebox1.initWaveSurfer(this.audioUrl1, this.debug)
         this.generateTeardown()
-        clearInterval(intervalRef);
+        this.stateService.setState(GenerationState.Displaying);
       // } else {
       //   setTimeout(checkAndInit, 50);
       // }
@@ -238,4 +233,6 @@ export class InterfaceComponent implements OnInit {
       this.document.documentElement.style.setProperty('--ripple', this.dark);
     }
   }
+
+  protected readonly GenerationState = GenerationState;
 }

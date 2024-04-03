@@ -1,13 +1,13 @@
 <mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
       <div #outline class="textOutline" >
-        <button disableRipple="true" [disabled]="!generating && (reqService.disableGeneration || reqService.description == '')" class="generateButton" (click)="generate()" mat-button>
-          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': reqService.description == ''}" *ngIf="!generating">play_arrow</mat-icon>
-          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': reqService.description == ''}" *ngIf="generating">stop</mat-icon>
+        <button disableRipple="true" [disabled]="stateService.getCurrentState() != GenerationState.Generating && (stateService.getCurrentState() == GenerationState.Error || reqService.description == '')" class="generateButton" (click)="generate()" mat-button>
+          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': stateService.getCurrentState() == GenerationState.Error || reqService.description == ''}" *ngIf="stateService.getCurrentState() != GenerationState.Generating">play_arrow</mat-icon>
+          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': stateService.getCurrentState() == GenerationState.Error || reqService.description == ''}" *ngIf="stateService.getCurrentState() == GenerationState.Generating">stop</mat-icon>
         </button>
 
         <mat-form-field appearance="fill" class="textBar">
           <mat-label #label>{{reqService.description == "" ? placeholder : ""}}</mat-label>
-          <input (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="reqService.disableGeneration" maxlength="100" [(ngModel)]="reqService.description">
+          <input (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description">
         </mat-form-field>
 
         <button style="visibility: hidden" [disabled]="true" class="generateButton" mat-button>
@@ -32,8 +32,8 @@
 
 <mat-card class="textCard" style="padding-bottom: 0">
   <div class="audio-container">
-    <app-wavebox #wavebox0 [audioID]="0" [enabled]="showAudio"></app-wavebox>
-    <app-wavebox #wavebox1 [audioID]="1" [enabled]="showAudio"></app-wavebox>
+    <app-wavebox #wavebox0 [audioID]="0" [enabled]="stateService.getCurrentState() == GenerationState.Displaying"></app-wavebox>
+    <app-wavebox #wavebox1 [audioID]="1" [enabled]="stateService.getCurrentState() != GenerationState.Displaying"></app-wavebox>
 <!--    <app-wavebox #wavebox2 [audioID]="2"></app-wavebox>-->
 <!--    <app-wavebox #wavebox3 [audioID]="3"></app-wavebox>-->
   </div>

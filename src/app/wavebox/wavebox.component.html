@@ -1,7 +1,7 @@
 <div class="waveform-component" (mouseenter)="onFocus()" (mouseleave)="unFocus()">
   <div [ngClass]="{'up': focused && enabled}" class="waveform-cont">
-    <mat-progress-bar *ngIf="showProgressBar" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-      <div *ngIf="enabled" class="waveform" #waveform></div>
+    <mat-progress-bar *ngIf="state.getCurrentState() == GenerationState.Generating" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+      <div class="waveform" #waveform></div>
   </div>
 
   <div class="button-cont">

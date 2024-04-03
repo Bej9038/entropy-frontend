@@ -8,6 +8,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 export class FirestoreService {
 
   currentUser: any | undefined = undefined;
+  gopher: any | undefined = undefined;
 
   constructor(private firestore: AngularFirestore, private auth: AngularFireAuth) {
     this.auth.authState.subscribe(user => {
@@ -28,5 +29,15 @@ export class FirestoreService {
       "user": this.currentUser.email
     }
     this.firestore.collection("prompts").add(data)
+  }
+
+  accessGopher()
+  {
+    this.firestore.collection("gopher")
+      .doc("N23bBnhGNa2Ei0Wa1wBb")
+      .get().subscribe(doc => {
+        // @ts-ignore
+      this.gopher = doc.data()["value"]
+      })
   }
 }

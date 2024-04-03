@@ -3,6 +3,7 @@ import {AudioService} from "../services/audio.service";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import WaveSurfer from "wavesurfer.js";
 import {DOCUMENT} from "@angular/common";
+import {GenerationState, StateService} from "../services/state.service";
 
 
 @Component({
@@ -17,7 +18,6 @@ export class WaveboxComponent implements OnInit {
   @ViewChild('waveform') waveform: ElementRef;
   wavesurfer: WaveSurfer | undefined;
   focused = false;
-  showProgressBar = false;
   progressBarMode: ProgressBarMode = "indeterminate";
 
   rootStyle = getComputedStyle(this.document.documentElement);
@@ -26,7 +26,9 @@ export class WaveboxComponent implements OnInit {
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
   noColor = this.rootStyle.getPropertyValue("--none").trim()
 
-  constructor(public audioService: AudioService, @Inject(DOCUMENT) private document: Document) {}
+  constructor(public audioService: AudioService,
+              public state: StateService,
+              @Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {}
 
@@ -47,18 +49,15 @@ export class WaveboxComponent implements OnInit {
 
   init() {
     this.wavesurfer = undefined;
-    this.showProgressBar = true;
   }
 
   cancelGen()
   {
     this.wavesurfer = undefined;
-    this.showProgressBar = false;
   }
 
   initWaveSurfer(src: any, debug:boolean)
   {
-    this.showProgressBar = false;
     let height = 72;
     let interact = false;
     let cursorWidth = 2;
@@ -92,4 +91,6 @@ export class WaveboxComponent implements OnInit {
       this.wavesurfer.setOptions({})
     }
   }
+
+  protected readonly GenerationState = GenerationState;
 }
