@@ -135,7 +135,7 @@
 
 .textCard {
   /*width: 75%;*/
-  width: 750px;
+  width: var(--interface-width);
   padding: 16px;
   position: relative;
   left: 0;
