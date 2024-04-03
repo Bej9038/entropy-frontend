@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild,} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, QueryList, ViewChild, ViewChildren,} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../services/audio.service";
 import {SafeUrl} from "@angular/platform-browser";
@@ -29,6 +29,8 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic arp",
   ];
+  num_waveboxes = 2;
+  waveboxes_ids: number[] = [];
   currentReqId: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
@@ -40,9 +42,7 @@ export class InterfaceComponent implements OnInit {
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
 
   // @ts-ignore
-  @ViewChild('wavebox0') wavebox0: WaveboxComponent
-  // @ts-ignore
-  @ViewChild('wavebox1') wavebox1: WaveboxComponent;
+  @ViewChildren("wavebox") waveboxes: QueryList<WaveboxComponent>;
   // @ts-ignore
   @ViewChild(MatRipple) ripple: MatRipple;
   // @ts-ignore
@@ -62,23 +62,25 @@ export class InterfaceComponent implements OnInit {
               public reqService: ReqService,
               @Inject(DOCUMENT) private document: Document,
               private firestore: FirestoreService,
-              public stateService: StateService) {}
+              public stateService: StateService) {
+    for(let i = 0; i < this.num_waveboxes; i++) {
+      this.waveboxes_ids.push(i)
+    }
+  }
 
   ngOnInit() {
-    if(this.debug)
-    {
-      this.stateService.setState(GenerationState.Displaying);
-    }
     this.firestore.accessGopher()
     this.stateService.setState(GenerationState.Idle)
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.nextPlaceholder()
     if(this.debug)
     {
-      this.wavebox0.initWaveSurfer(undefined, this.debug)
-      this.wavebox1.initWaveSurfer(undefined, this.debug)
+      this.stateService.setState(GenerationState.Displaying);
+      this.waveboxes.forEach(wb => {
+        wb.initWaveSurfer(undefined, this.debug)
+      })
     }
   }
 
@@ -104,8 +106,9 @@ export class InterfaceComponent implements OnInit {
 
   generateSetup()
   {
-    this.wavebox0.init()
-    this.wavebox1.init()
+    this.waveboxes.forEach(wb => {
+      wb.initialize()
+    })
     this.audioUrl0 = undefined;
     this.audioUrl1 = undefined;
   }
@@ -190,11 +193,13 @@ export class InterfaceComponent implements OnInit {
         .subscribe(async response => {
           if (response["status"] == "COMPLETED") {
             console.log("request complete")
-            let base64_0 = response["output"][0]
-            let base64_1 = response["output"][1]
-            this.audioUrl0 = await this.audioService.decodeBase64ToAudioURL(base64_0, 0, this.reqService.description)
-            this.audioUrl1 = await this.audioService.decodeBase64ToAudioURL(base64_1, 1, this.reqService.description)
-            this.waitForElementsAndInitWaveSurfer(intervalRef)
+            let i = 0
+            this.waveboxes.forEach(wb => {
+              let base64 = response["output"][i]
+              let url = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
+              wb.initWaveSurfer(url, this.debug)
+              i++
+            })
             this.stateService.setState(GenerationState.Displaying);
             clearInterval(intervalRef);
             this.currentReqId = ""
@@ -206,11 +211,6 @@ export class InterfaceComponent implements OnInit {
           }
         });
     }, 1000);
-  }
-
-  waitForElementsAndInitWaveSurfer(intervalRef: any) {
-    this.wavebox0.initWaveSurfer(this.audioUrl0, this.debug)
-    this.wavebox1.initWaveSurfer(this.audioUrl1, this.debug)
   }
 
   checkRipple(){

@@ -8,8 +8,8 @@
     <button [disabled]="state.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.playOrPause(audioID)" mat-button>
       <mat-icon [ngClass]="{'up': focused && state.getCurrentState() == GenerationState.Displaying}">play_arrow</mat-icon>
     </button>
-    <button [disabled]="state.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>
-      <mat-icon [ngClass]="{'up': focused && state.getCurrentState() == GenerationState.Displaying}">download</mat-icon>
-    </button>
+<!--    <button [disabled]="state.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>-->
+<!--      <mat-icon [ngClass]="{'up': focused && state.getCurrentState() == GenerationState.Displaying}">download</mat-icon>-->
+<!--    </button>-->
   </div>
 </div>

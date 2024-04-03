@@ -12,7 +12,7 @@ export const routeConfig: Routes = [
     title: "Entropy Audio"
   },
   {
-    path: "entropy",
+    path: "app",
     component: AppPageComponent,
     title: "Entropy Audio"
   },

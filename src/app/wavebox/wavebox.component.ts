@@ -42,7 +42,7 @@ export class WaveboxComponent implements OnInit {
     }
   }
 
-  init() {
+  initialize() {
     this.wavesurfer?.destroy()
   }
 
