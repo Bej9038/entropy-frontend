@@ -13,6 +13,7 @@ export enum GenerationState {
 export class StateService {
 
   state = GenerationState.Idle;
+  prev = GenerationState.Idle;
 
   constructor() { }
 
@@ -20,8 +21,16 @@ export class StateService {
     return this.state;
   }
 
+  getPreviousState(): GenerationState {
+    return this.prev
+  }
+
   setState(state: GenerationState) {
-    this.state = state;
-    console.log("State: " + GenerationState[this.state])
+    if(this.state != state)
+    {
+      this.prev = this.state
+      this.state = state;
+      console.log("State: " + GenerationState[this.state])
+    }
   }
 }

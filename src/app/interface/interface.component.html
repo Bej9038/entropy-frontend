@@ -32,8 +32,8 @@
 
 <mat-card class="textCard" style="padding-bottom: 0">
   <div class="audio-container">
-    <app-wavebox #wavebox0 [audioID]="0" [enabled]="stateService.getCurrentState() == GenerationState.Displaying"></app-wavebox>
-    <app-wavebox #wavebox1 [audioID]="1" [enabled]="stateService.getCurrentState() != GenerationState.Displaying"></app-wavebox>
+    <app-wavebox #wavebox0 [audioID]="0"></app-wavebox>
+    <app-wavebox #wavebox1 [audioID]="1"></app-wavebox>
 <!--    <app-wavebox #wavebox2 [audioID]="2"></app-wavebox>-->
 <!--    <app-wavebox #wavebox3 [audioID]="3"></app-wavebox>-->
   </div>

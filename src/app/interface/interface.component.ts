@@ -29,7 +29,7 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic arp",
   ];
-  current_id: string = "";
+  currentReqId: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
@@ -110,12 +110,6 @@ export class InterfaceComponent implements OnInit {
     this.audioUrl1 = undefined;
   }
 
-  generateTeardown()
-  {
-    // this.reqService.disableGeneration = false;
-    this.current_id = "";
-  }
-
   selectPlaceholder() {
     this.reqService.description = this.placeholder
     this.checkRipple()
@@ -155,14 +149,14 @@ export class InterfaceComponent implements OnInit {
     });
     console.log("cancelling request")
     let req = {"input": {}}
-    console.log(this.current_id)
-    this.http.post<any>(this.cancel + this.current_id, req, { headers })
+    console.log(this.currentReqId)
+    this.http.post<any>(this.cancel + this.currentReqId, req, { headers })
       .subscribe(response =>
       {
-        this.current_id = response["id"];
+        this.currentReqId = response["id"];
         this.missing_id = false;
       });
-    this.generateTeardown()
+    this.currentReqId = "";
   }
 
   sendReq()
@@ -185,14 +179,14 @@ export class InterfaceComponent implements OnInit {
     this.http.post<any>(this.run_async, req, { headers })
       .subscribe(response =>
       {
-        this.current_id = response["id"];
+        this.currentReqId = response["id"];
       });
 
     // send request and wait for
 
     let intervalRef = setInterval(() => {
       console.log("checking status")
-      this.http.post<any>(this.status + this.current_id, req, { headers })
+      this.http.post<any>(this.status + this.currentReqId, req, { headers })
         .subscribe(async response => {
           if (response["status"] == "COMPLETED") {
             console.log("request complete")
@@ -203,25 +197,20 @@ export class InterfaceComponent implements OnInit {
             this.waitForElementsAndInitWaveSurfer(intervalRef)
             this.stateService.setState(GenerationState.Displaying);
             clearInterval(intervalRef);
+            this.currentReqId = ""
           } else if (response["status"] == "CANCELLED") {
             clearInterval(intervalRef);
+          }
+          else if (response["status"] == "COMPLETED" && this.stateService.getCurrentState() == GenerationState.Displaying) {
+            console.log("repeat interval caught")
           }
         });
     }, 1000);
   }
 
   waitForElementsAndInitWaveSurfer(intervalRef: any) {
-    // const checkAndInit = () => {
-    //   if (this.wavebox0 && this.wavebox1) {
-        this.wavebox0.initWaveSurfer(this.audioUrl0, this.debug)
-        this.wavebox1.initWaveSurfer(this.audioUrl1, this.debug)
-        this.generateTeardown()
-        this.stateService.setState(GenerationState.Displaying);
-      // } else {
-      //   setTimeout(checkAndInit, 50);
-      // }
-    // };
-    // checkAndInit();
+    this.wavebox0.initWaveSurfer(this.audioUrl0, this.debug)
+    this.wavebox1.initWaveSurfer(this.audioUrl1, this.debug)
   }
 
   checkRipple(){

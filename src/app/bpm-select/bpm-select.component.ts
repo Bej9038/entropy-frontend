@@ -41,7 +41,7 @@ export class BpmSelectComponent implements OnInit {
       this.stateService.setState(GenerationState.Error)
     }
     else if(this.stateService.getCurrentState() == GenerationState.Error) {
-      this.stateService.setState(GenerationState.Idle);
+      this.stateService.setState(this.stateService.getPreviousState());
     }
     this.checkRipple()
   }
@@ -67,7 +67,7 @@ export class BpmSelectComponent implements OnInit {
       this.checkRipple()
       if(this.stateService.getCurrentState() == GenerationState.Error)
       {
-        this.stateService.setState(GenerationState.Idle)
+        this.stateService.setState(this.stateService.getPreviousState());
       }
     }
     else {
@@ -82,7 +82,6 @@ export class BpmSelectComponent implements OnInit {
         this.numberInputControl.hasError('pattern')) && this.stateService.getCurrentState() != GenerationState.Error)
       {
         this.stateService.setState(GenerationState.Error)
-
       }
     }
   }

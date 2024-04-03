@@ -13,7 +13,6 @@ import {GenerationState, StateService} from "../services/state.service";
 })
 export class WaveboxComponent implements OnInit {
   @Input() audioID = 0;
-  @Input() enabled = false;
   // @ts-ignore
   @ViewChild('waveform') waveform: ElementRef;
   wavesurfer: WaveSurfer | undefined;
@@ -43,17 +42,8 @@ export class WaveboxComponent implements OnInit {
     }
   }
 
-  enable(enable: boolean) {
-    this.enabled = enable
-  }
-
   init() {
-    this.wavesurfer = undefined;
-  }
-
-  cancelGen()
-  {
-    this.wavesurfer = undefined;
+    this.wavesurfer?.destroy()
   }
 
   initWaveSurfer(src: any, debug:boolean)

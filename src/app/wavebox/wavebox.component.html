@@ -1,15 +1,15 @@
 <div class="waveform-component" (mouseenter)="onFocus()" (mouseleave)="unFocus()">
-  <div [ngClass]="{'up': focused && enabled}" class="waveform-cont">
+  <div [ngClass]="{'up': focused && state.getCurrentState() == GenerationState.Displaying}" class="waveform-cont">
     <mat-progress-bar *ngIf="state.getCurrentState() == GenerationState.Generating" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-      <div class="waveform" #waveform></div>
+    <div class="waveform" #waveform></div>
   </div>
 
   <div class="button-cont">
-    <button [disabled]="!enabled" class="playButton"  (click)="audioService.playOrPause(audioID)" mat-button>
-      <mat-icon [ngClass]="{'up': focused && enabled}">play_arrow</mat-icon>
+    <button [disabled]="state.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.playOrPause(audioID)" mat-button>
+      <mat-icon [ngClass]="{'up': focused && state.getCurrentState() == GenerationState.Displaying}">play_arrow</mat-icon>
     </button>
-    <button [disabled]="!enabled" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>
-      <mat-icon [ngClass]="{'up': focused && enabled}">download</mat-icon>
+    <button [disabled]="state.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>
+      <mat-icon [ngClass]="{'up': focused && state.getCurrentState() == GenerationState.Displaying}">download</mat-icon>
     </button>
   </div>
 </div>
