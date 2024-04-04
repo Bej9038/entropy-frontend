@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, OnInit, QueryList, ViewChild, ViewChildren,} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, QueryList, Renderer2, ViewChild, ViewChildren,} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../services/audio.service";
 import {SafeUrl} from "@angular/platform-browser";
@@ -61,8 +61,9 @@ export class InterfaceComponent implements OnInit {
               public reqService: ReqService,
               @Inject(DOCUMENT) private document: Document,
               private firestore: FirestoreService,
-              public stateService: StateService) {
-    this.setNumWaveboxes(2)
+              public stateService: StateService,
+              private renderer: Renderer2) {
+    this.setNumWaveboxes(4)
   }
 
   ngOnInit() {
@@ -117,9 +118,15 @@ export class InterfaceComponent implements OnInit {
 
   setNumWaveboxes(numBoxes: number)
   {
+    this.waveboxe_ids = []
     for(let i = 0; i < numBoxes; i++) {
       this.waveboxe_ids.push(i)
     }
+  }
+
+  hideWaveboxesExcept(id: number)
+  {
+    this.waveboxe_ids = this.waveboxe_ids.filter(number => id == number)
   }
 
   generate(){

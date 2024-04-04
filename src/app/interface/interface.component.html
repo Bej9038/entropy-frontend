@@ -32,7 +32,7 @@
 
 <mat-card class="textCard" style="padding-bottom: 0">
   <div class="audio-container">
-    <app-wavebox #wavebox *ngFor="let audioID of waveboxe_ids" [audioID]="audioID"></app-wavebox>
+    <app-wavebox #wavebox *ngFor="let audioID of waveboxe_ids" [audioID]="audioID" [parent]="this"></app-wavebox>
   </div>
 </mat-card>
 

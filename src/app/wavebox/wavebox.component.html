@@ -1,10 +1,9 @@
-<div class="waveform-component" >
+<div class="waveform-component">
   <div (mouseenter)="onFocus()"
        (mouseleave)="unFocus()"
-       (click)="selectWavebox()"
-       [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying, 'grabbing': grabbing}"
+       [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying}"
        class="waveform-cont">
-    <div (mousedown)="onMouseDown()" (mouseup)="onMouseUp()" class="cover"></div>
+    <div [ngClass]="{'grabbing': grabbing}" (click)="selectWavebox()" (mousedown)="onMouseDown()" (mouseup)="onMouseUp()" class="cover"></div>
     <mat-progress-bar *ngIf="stateService.getCurrentState() == GenerationState.Generating" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
     <div class="waveform" #waveform></div>
   </div>
