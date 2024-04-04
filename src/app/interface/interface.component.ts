@@ -37,8 +37,6 @@ export class InterfaceComponent implements OnInit {
   run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
   status: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
   cancel: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
-  audioUrl0: SafeUrl | undefined;
-  audioUrl1: SafeUrl | undefined;
   placeholders: string[] = [
     "acoustic hi-hat top loop",
     "trap snare drum",
@@ -121,13 +119,11 @@ export class InterfaceComponent implements OnInit {
     }, 300);
   }
 
-  generateSetup()
+  clearWaveboxes()
   {
     this.waveboxes.forEach(wb => {
       wb.initialize()
     })
-    this.audioUrl0 = undefined;
-    this.audioUrl1 = undefined;
   }
 
   selectPlaceholder() {
@@ -141,6 +137,11 @@ export class InterfaceComponent implements OnInit {
     for(let i = 0; i < this.num_waveboxes; i++) {
       this.wavebox_ids.push(i)
     }
+  }
+
+  resetWaveboxes() {
+    this.setNumWaveboxes()
+    this.clearWaveboxes()
   }
 
   hideWaveboxesExcept(id: number)
@@ -158,7 +159,7 @@ export class InterfaceComponent implements OnInit {
     {
       if(this.debug)
       {
-        this.generateSetup();
+        this.clearWaveboxes();
         this.reqService.getReq();
       }
       else {
@@ -195,7 +196,7 @@ export class InterfaceComponent implements OnInit {
   sendReq()
   {
     const req = this.reqService.getReq()
-    this.generateSetup();
+    this.clearWaveboxes();
     this.firestore.storePrompt(req)
     // console.log(this.firestore.gopher)
     const x = this.firestore.gopher
