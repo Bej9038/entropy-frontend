@@ -72,6 +72,7 @@ export class WaveboxComponent implements OnInit {
     else
     {
       this.audioService.downloadAudio(this.audioID)
+      this.parent.setNumWaveboxes()
     }
   }
 

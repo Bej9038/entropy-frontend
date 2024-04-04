@@ -4,6 +4,7 @@ export enum GenerationState {
   Idle,
   Generating,
   Displaying,
+  Selected,
   Error
 }
 

@@ -47,6 +47,7 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic arp",
   ];
+  num_waveboxes = 2;
   wavebox_ids: number[] = [];
   currentReqId: string = "";
   missing_id: boolean = false;
@@ -81,7 +82,7 @@ export class InterfaceComponent implements OnInit {
               private firestore: FirestoreService,
               public stateService: StateService,
               private renderer: Renderer2) {
-    this.setNumWaveboxes(2)
+    this.setNumWaveboxes()
   }
 
   ngOnInit() {
@@ -134,10 +135,10 @@ export class InterfaceComponent implements OnInit {
     this.checkRipple()
   }
 
-  setNumWaveboxes(numBoxes: number)
+  setNumWaveboxes()
   {
     this.wavebox_ids = []
-    for(let i = 0; i < numBoxes; i++) {
+    for(let i = 0; i < this.num_waveboxes; i++) {
       this.wavebox_ids.push(i)
     }
   }
