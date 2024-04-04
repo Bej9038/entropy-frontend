@@ -35,8 +35,8 @@ export class InterfaceComponent implements OnInit {
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
-  debug = false
-  // debug = true
+  // debug = false
+  debug = true
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()

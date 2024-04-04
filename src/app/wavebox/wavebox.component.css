@@ -1,18 +1,14 @@
 .playButton {
   width: 36px;
   height: 36px;
-  /*min-width: 36px;*/
-  /*position: absolute;*/
-  /*z-index: 2;*/
-  color: var(--translucent-grey-2);
-  /*background-color: var(--translucent-dark);*/
-}
-
-.button-cont {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-bottom: 4px;
+  min-width: 36px;
+  position: absolute;
+  z-index: 2;
+  color: var(--white);
+  /*left: 50%;*/
+  /*top: 50%;*/
+  /*transform: translate(-50%,-50%);*/
+  background-color: var(--translucent-dark);
 }
 
 .waveform-component {
@@ -21,7 +17,8 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  margin: 0 16px;
+  /*margin: 0 16px;*/
+  margin: 0 16px 16px 16px;
 }
 
 
