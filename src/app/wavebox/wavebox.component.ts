@@ -22,6 +22,7 @@ export class WaveboxComponent implements OnInit {
   focused = false;
   progressBarMode: ProgressBarMode = "indeterminate";
   grabbing = false;
+  selected = false;
   rootStyle = getComputedStyle(this.document.documentElement);
   grey = this.rootStyle.getPropertyValue("--translucent-grey-2").trim()
   white = this.rootStyle.getPropertyValue("--white").trim()
@@ -63,7 +64,15 @@ export class WaveboxComponent implements OnInit {
 
   selectWavebox()
   {
-    this.parent.hideWaveboxesExcept(this.audioID)
+    if(!this.selected)
+    {
+      this.parent.hideWaveboxesExcept(this.audioID)
+      this.selected = true;
+    }
+    else
+    {
+      this.audioService.downloadAudio(this.audioID)
+    }
   }
 
   initWaveSurfer(src: any, debug:boolean)

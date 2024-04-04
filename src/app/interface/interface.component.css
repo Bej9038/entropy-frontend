@@ -176,16 +176,15 @@
 .audio-container {
   display: flex;
   flex-direction: row;
-  align-content: center;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  /*align-content: center;*/
+  /*align-items: center;*/
+  justify-content: center;
+  /*flex-wrap: wrap;*/
   /*width: 100%;*/
 }
 
 app-wavebox {
   width: 50%;
-  animation: fadeOut 500ms ease-in-out forwards;
 }
 
 .mat-form-field {

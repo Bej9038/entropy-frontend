@@ -10,11 +10,11 @@
 
 <!--  <div class="button-cont">-->
 <!--    <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>-->
-  <button [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>
+  <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying && !selected" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>
     <mat-icon [ngClass]="{'up': stateService.getCurrentState() == GenerationState.Displaying}">play_arrow</mat-icon>
   </button>
-<!--    <button [disabled]="state.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>-->
-<!--      <mat-icon [ngClass]="{'up': focused && state.getCurrentState() == GenerationState.Displaying}">download</mat-icon>-->
-<!--    </button>-->
+<!--  <button *ngIf="selected"[disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>-->
+<!--    <mat-icon [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying}">download</mat-icon>-->
+<!--  </button>-->
 <!--  </div>-->
 </div>

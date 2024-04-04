@@ -8,12 +8,30 @@ import {DOCUMENT} from "@angular/common";
 import {WaveboxComponent} from "../wavebox/wavebox.component";
 import {FirestoreService} from "../services/firestore.service";
 import {GenerationState, StateService} from "../services/state.service";
+import {animate, transition, style, stagger, query, trigger} from "@angular/animations";
 
 
 @Component({
   selector: 'app-interface',
   templateUrl: './interface.component.html',
-  styleUrls: ['./interface.component.css']
+  styleUrls: ['./interface.component.css'],
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(':leave', [
+            animate('.5s ease-out', style({ opacity: 0, height: 0, width: '0%', padding: "0", margin: "0"}))
+        ], { optional: true }),
+
+      ])
+    ]),
+    // trigger('centerBox', [
+    //   transition('* => *', [
+    //     query(':leave', [
+    //       animate('1s ease-out', style({ width: '80%'}))
+    //     ], { optional: true })
+    //   ])
+    // ])
+  ],
 })
 export class InterfaceComponent implements OnInit {
   run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
@@ -29,13 +47,13 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic arp",
   ];
-  waveboxe_ids: number[] = [];
+  wavebox_ids: number[] = [];
   currentReqId: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
-  // debug = false
-  debug = true
+  debug = false
+  // debug = true
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
@@ -63,7 +81,7 @@ export class InterfaceComponent implements OnInit {
               private firestore: FirestoreService,
               public stateService: StateService,
               private renderer: Renderer2) {
-    this.setNumWaveboxes(4)
+    this.setNumWaveboxes(2)
   }
 
   ngOnInit() {
@@ -118,15 +136,15 @@ export class InterfaceComponent implements OnInit {
 
   setNumWaveboxes(numBoxes: number)
   {
-    this.waveboxe_ids = []
+    this.wavebox_ids = []
     for(let i = 0; i < numBoxes; i++) {
-      this.waveboxe_ids.push(i)
+      this.wavebox_ids.push(i)
     }
   }
 
   hideWaveboxesExcept(id: number)
   {
-    this.waveboxe_ids = this.waveboxe_ids.filter(number => id == number)
+    this.wavebox_ids = this.wavebox_ids.filter(number => id == number)
   }
 
   generate(){
@@ -205,7 +223,7 @@ export class InterfaceComponent implements OnInit {
           if (response["status"] == "COMPLETED") {
             if(this.stateService.getCurrentState() != GenerationState.Displaying){
               console.log("request complete")
-              for(let i = 0; i < this.waveboxe_ids.length; i++)
+              for(let i = 0; i < this.wavebox_ids.length; i++)
               {
                 let wb = this.waveboxes.toArray()[i]
                 let base64 = response["output"][i]
