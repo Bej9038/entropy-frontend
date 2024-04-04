@@ -52,6 +52,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+
     // this.startPeriodicRequest()
   }
 
