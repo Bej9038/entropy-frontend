@@ -18,17 +18,17 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  /*margin: 0 16px;*/
-  margin: 0px 16px 16px 16px;
+  margin: 16px;
+  /*margin: 0px 16px 16px 16px;*/
 }
 
 
 .waveform-cont
 {
   position: relative;
-  height: 74px;
+  height: 76px;
   width: 100%;
-  margin: 4px;
+  margin: -1.6px;
   border: var(--line-size) solid var(--translucent-grey-2);
   border-radius: 8px;
   display: flex;
