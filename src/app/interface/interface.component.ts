@@ -29,8 +29,7 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic arp",
   ];
-  num_waveboxes = 2;
-  waveboxes_ids: number[] = [];
+  waveboxe_ids: number[] = [];
   currentReqId: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
@@ -63,9 +62,7 @@ export class InterfaceComponent implements OnInit {
               @Inject(DOCUMENT) private document: Document,
               private firestore: FirestoreService,
               public stateService: StateService) {
-    for(let i = 0; i < this.num_waveboxes; i++) {
-      this.waveboxes_ids.push(i)
-    }
+    this.setNumWaveboxes(2)
   }
 
   ngOnInit() {
@@ -77,10 +74,10 @@ export class InterfaceComponent implements OnInit {
     this.nextPlaceholder()
     if(this.debug)
     {
-      this.stateService.setState(GenerationState.Displaying);
       this.waveboxes.forEach(wb => {
         wb.initWaveSurfer(undefined, this.debug)
       })
+      this.stateService.setState(GenerationState.Displaying);
     }
   }
 
@@ -116,6 +113,13 @@ export class InterfaceComponent implements OnInit {
   selectPlaceholder() {
     this.reqService.description = this.placeholder
     this.checkRipple()
+  }
+
+  setNumWaveboxes(numBoxes: number)
+  {
+    for(let i = 0; i < numBoxes; i++) {
+      this.waveboxe_ids.push(i)
+    }
   }
 
   generate(){
@@ -194,7 +198,7 @@ export class InterfaceComponent implements OnInit {
           if (response["status"] == "COMPLETED") {
             if(this.stateService.getCurrentState() != GenerationState.Displaying){
               console.log("request complete")
-              for(let i = 0; i < this.num_waveboxes; i++)
+              for(let i = 0; i < this.waveboxe_ids.length; i++)
               {
                 let wb = this.waveboxes.toArray()[i]
                 let base64 = response["output"][i]
