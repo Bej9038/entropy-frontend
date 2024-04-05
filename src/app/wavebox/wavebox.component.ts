@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, Inject, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {AudioService} from "../services/audio.service";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import WaveSurfer from "wavesurfer.js";
@@ -41,20 +41,22 @@ export class WaveboxComponent implements OnInit {
     this.focused = true;
   }
 
-  onMouseDown()
-  {
-    this.grabbing = true;
-  }
-
-  onMouseUp()
-  {
-    this.grabbing = false;
-  }
-
   unFocus() {
     this.focused = false;
     if(this.wavesurfer) {
       this.wavesurfer.setOptions({cursorColor: this.grey})
+    }
+  }
+
+  onMouseDown() {
+    if(this.stateService.getCurrentState() == GenerationState.Displaying || this.stateService.getCurrentState() == GenerationState.Selected) {
+      this.grabbing = true
+    }
+  }
+
+  onMouseUp() {
+    if(this.stateService.getCurrentState() == GenerationState.Displaying || this.stateService.getCurrentState() == GenerationState.Selected) {
+      this.grabbing = false
     }
   }
 
@@ -64,14 +66,15 @@ export class WaveboxComponent implements OnInit {
 
   selectWavebox()
   {
-    if(!this.selected)
+    if(this.stateService.getCurrentState() == GenerationState.Displaying)
     {
+      this.stateService.setState(GenerationState.Selected)
       this.parent.hideWaveboxesExcept(this.audioID)
-      this.selected = true;
     }
-    else
+    else if(this.stateService.getCurrentState() == GenerationState.Selected)
     {
       this.audioService.downloadAudio(this.audioID)
+      this.stateService.setState(GenerationState.Idle)
       this.parent.resetWaveboxes()
     }
   }
@@ -79,9 +82,9 @@ export class WaveboxComponent implements OnInit {
   initWaveSurfer(src: any, debug:boolean)
   {
     if(this.stateService.getCurrentState() != GenerationState.Displaying) {
-      let height = 72;
-      let interact = false;
-      let cursorWidth = 2;
+      let height = 72
+      let interact = false
+      let cursorWidth = 2
       this.wavesurfer = WaveSurfer.create(
         {
           container: this.waveform.nativeElement,

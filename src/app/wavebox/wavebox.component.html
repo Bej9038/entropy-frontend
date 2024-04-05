@@ -1,16 +1,21 @@
 <div class="waveform-component">
   <div (mouseenter)="onFocus()"
        (mouseleave)="unFocus()"
-       [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying}"
+       [ngClass]="{'up': focused && (stateService.getCurrentState() == GenerationState.Displaying || stateService.getCurrentState() == GenerationState.Selected)}"
        class="waveform-cont">
-    <div [ngClass]="{'grabbing': grabbing}" (click)="selectWavebox()" (mousedown)="onMouseDown()" (mouseup)="onMouseUp()" class="cover"></div>
+    <div
+      [ngClass]="{'grabbing': grabbing, 'grab': stateService.getCurrentState() == GenerationState.Displaying || stateService.getCurrentState() == GenerationState.Selected}"
+      (click)="selectWavebox()"
+      (mousedown)="onMouseDown()"
+      (mouseup)="onMouseUp()"
+      class="cover"></div>
     <mat-progress-bar *ngIf="stateService.getCurrentState() == GenerationState.Generating" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
     <div class="waveform" #waveform></div>
   </div>
 
 <!--  <div class="button-cont">-->
 <!--    <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>-->
-  <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying && !selected" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>
+  <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>
     <mat-icon [ngClass]="{'up': stateService.getCurrentState() == GenerationState.Displaying}">play_arrow</mat-icon>
   </button>
 <!--  <button *ngIf="selected"[disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>-->

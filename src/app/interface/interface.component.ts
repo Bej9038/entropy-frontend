@@ -119,20 +119,18 @@ export class InterfaceComponent implements OnInit {
     }, 300);
   }
 
-  clearWaveboxes()
-  {
-    this.waveboxes.forEach(wb => {
-      wb.initialize()
-    })
-  }
-
   selectPlaceholder() {
     this.reqService.description = this.placeholder
     this.checkRipple()
   }
 
-  setNumWaveboxes()
-  {
+  clearWaveboxeVisuals() {
+    this.waveboxes.forEach(wb => {
+      wb.initialize()
+    })
+  }
+
+  setNumWaveboxes() {
     this.wavebox_ids = []
     for(let i = 0; i < this.num_waveboxes; i++) {
       this.wavebox_ids.push(i)
@@ -141,11 +139,10 @@ export class InterfaceComponent implements OnInit {
 
   resetWaveboxes() {
     this.setNumWaveboxes()
-    this.clearWaveboxes()
+    this.clearWaveboxeVisuals()
   }
 
-  hideWaveboxesExcept(id: number)
-  {
+  hideWaveboxesExcept(id: number) {
     this.wavebox_ids = this.wavebox_ids.filter(number => id == number)
   }
 
@@ -159,7 +156,7 @@ export class InterfaceComponent implements OnInit {
     {
       if(this.debug)
       {
-        this.clearWaveboxes();
+        this.clearWaveboxeVisuals();
         this.reqService.getReq();
       }
       else {
@@ -196,7 +193,7 @@ export class InterfaceComponent implements OnInit {
   sendReq()
   {
     const req = this.reqService.getReq()
-    this.clearWaveboxes();
+    this.clearWaveboxeVisuals();
     this.firestore.storePrompt(req)
     // console.log(this.firestore.gopher)
     const x = this.firestore.gopher

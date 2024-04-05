@@ -31,7 +31,7 @@ export class StateService {
     {
       this.prev = this.state
       this.state = state;
-      console.log("State: " + GenerationState[this.state])
+      console.log("entering state: " + GenerationState[this.state])
     }
   }
 }
