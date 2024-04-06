@@ -18,14 +18,14 @@ import {animate, transition, style, query, trigger} from "@angular/animations";
     trigger('listAnimation', [
       transition('* => *', [
         query(':leave', [
-          animate('.5s ease-out', style({ opacity: 0, height: 0, width: '0%'}))
+          animate('.5s ease-out', style({ opacity: 0, width: '0%'}))
         ], { optional: true }),
         query(':enter', [
           style({ opacity: 0, width: 0}),
           animate('.5s ease-out', style({ opacity: 1, width: "*"}))
         ], { optional: true }),
       ]),
-    ]),
+    ])
   ]
 })
 export class InterfaceComponent implements OnInit {
@@ -131,7 +131,6 @@ export class InterfaceComponent implements OnInit {
   }
 
   resetWaveboxes() {
-    // this.wavebox_ids = []
     this.setNumWaveboxes()
     this.clearWaveboxeVisuals()
   }
@@ -243,9 +242,8 @@ export class InterfaceComponent implements OnInit {
     }, 2000);
   }
 
-  checkRipple(){
-    if(this.reqService.description != "")
-    {
+  checkRipple() {
+    if(this.reqService.description != "") {
       this.document.documentElement.style.setProperty('--ripple', this.white);
     }
     else {

@@ -187,6 +187,10 @@ app-wavebox {
   width: 50%;
 }
 
+.noWidth {
+  width: 0 !important;
+}
+
 .mat-form-field {
   line-height: normal !important;
   display: flex !important;

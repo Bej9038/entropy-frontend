@@ -34,7 +34,6 @@ export class WaveboxComponent implements OnInit {
               @Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {
-
   }
 
   onFocus() {

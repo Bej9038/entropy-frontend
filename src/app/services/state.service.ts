@@ -5,6 +5,7 @@ export enum GenerationState {
   Generating,
   Displaying,
   Selected,
+  // Transition,
   Error,
 }
 
