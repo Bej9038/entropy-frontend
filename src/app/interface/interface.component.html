@@ -32,7 +32,7 @@
 
 <mat-card class="textCard">
   <div class="audio-container" [@listAnimation]="wavebox_ids.length">
-      <app-wavebox #wavebox *ngFor="let audioID of wavebox_ids" [audioID]="audioID" [parent]="this" ></app-wavebox>
+      <app-wavebox #wavebox *ngFor="let audioID of wavebox_ids" [audioID]="audioID" [parent]="this"></app-wavebox>
   </div>
 </mat-card>
 

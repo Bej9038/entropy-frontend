@@ -18,19 +18,15 @@ import {animate, transition, style, query, trigger} from "@angular/animations";
     trigger('listAnimation', [
       transition('* => *', [
         query(':leave', [
-            animate('.5s ease-out', style({ opacity: 0, height: 0, width: '0%', padding: "0", margin: "0"}))
+          animate('.5s ease-out', style({ opacity: 0, height: 0, width: '0%'}))
         ], { optional: true }),
-
-      ])
+        query(':enter', [
+          style({ opacity: 0, width: 0}),
+          animate('.5s ease-out', style({ opacity: 1, width: "*"}))
+        ], { optional: true }),
+      ]),
     ]),
-    // trigger('centerBox', [
-    //   transition('* => *', [
-    //     query(':leave', [
-    //       animate('1s ease-out', style({ width: '80%'}))
-    //     ], { optional: true })
-    //   ])
-    // ])
-  ],
+  ]
 })
 export class InterfaceComponent implements OnInit {
   run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
@@ -77,10 +73,10 @@ export class InterfaceComponent implements OnInit {
               private firestore: FirestoreService,
               public stateService: StateService
   ) {
-    this.setNumWaveboxes()
   }
 
   ngOnInit() {
+    this.setNumWaveboxes()
     this.firestore.accessGopher()
     this.stateService.setState(GenerationState.Idle)
   }
@@ -135,6 +131,7 @@ export class InterfaceComponent implements OnInit {
   }
 
   resetWaveboxes() {
+    // this.wavebox_ids = []
     this.setNumWaveboxes()
     this.clearWaveboxeVisuals()
   }

@@ -15,8 +15,8 @@ export class StateService {
 
   state = GenerationState.Idle;
   prev = GenerationState.Idle;
-  debug = true;
-  // debug = false;
+  // debug = true;
+  debug = false;
 
   constructor() { }
 

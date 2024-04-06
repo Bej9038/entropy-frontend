@@ -11,7 +11,7 @@ app-interface {
   align-items: center;
   gap: 10px;
   /*height: 40%;*/
-  animation: opacityFade 500ms forwards;
+  animation: opacityFade ease-in 500ms forwards;
 }
 
 
