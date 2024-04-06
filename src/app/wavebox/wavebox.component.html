@@ -15,7 +15,7 @@
 
 <!--  <div class="button-cont">-->
 <!--    <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>-->
-  <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>
+  <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.pauseAndPlay(audioID)" mat-button>
     <mat-icon [ngClass]="{'up': stateService.getCurrentState() == GenerationState.Displaying}">play_arrow</mat-icon>
   </button>
 <!--  <button *ngIf="selected"[disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>-->

@@ -8,95 +8,56 @@ import {FirestoreService} from "./firestore.service";
 })
 export class AudioService {
   audioContext = new AudioContext();
-
-  // @ts-ignore
-  buffer0: AudioBuffer;
-  // @ts-ignore
-  buffer1: AudioBuffer;
-
-  src0 = this.audioContext.createBufferSource()
-  src1 = this.audioContext.createBufferSource()
-
-  url0: undefined | SafeUrl = undefined
-  url1: undefined | SafeUrl = undefined
-
-  src0_isPlaying = false
-  src1_isPlaying = false
-
   current_prompt = ""
+  num_sources = 4
 
-  src0_time = 0
-  src1_time = 0
+  buffers: Map<number, AudioBuffer> = new Map<number, AudioBuffer>();
+  srcs: Map<number, AudioBufferSourceNode> = new Map<number, AudioBufferSourceNode>();
+  urls: Map<number, SafeUrl> = new Map<number, SafeUrl>();
+  isPlaying: Map<number, boolean> = new Map<number, boolean>([[0,false], [1,false], [2,false], [3,false]]);
 
   constructor(private sanitizer: DomSanitizer, private firestore: FirestoreService) {
-    this.src0.connect(this.audioContext.destination)
-    this.src1.connect(this.audioContext.destination)
   }
 
-  init_new_buffer_src() {
-    this.src0 = this.audioContext.createBufferSource()
-    this.src1 = this.audioContext.createBufferSource()
-    this.src0.connect(this.audioContext.destination)
-    this.src1.connect(this.audioContext.destination)
-    this.src0.buffer = this.buffer0
-    this.src1.buffer = this.buffer1
+  initBufferSources() {
+    for(let i = 0; i < this.num_sources; i++)
+    {
+      this.srcs.set(i, this.audioContext.createBufferSource())
+      // @ts-ignore
+      this.srcs.get(i).connect(this.audioContext.destination)
+      // @ts-ignore
+      this.srcs.get(i).buffer = this.buffers.get(i)
+    }
   }
 
-  playOrPause(audioId: number) {
-    if(audioId == 0)
-    {
-      this.src0_isPlaying ? this.pauseAudio(0) : this.playAudio(0)
+  pauseAndPlay(audioId: number) {
+    if(this.isPlaying.get(audioId)) {
+      this.pauseAudio()
+    } else {
+      this.pauseAudio()
+      this.playAudio(audioId)
     }
-    else if(audioId == 1)
-    {
-      this.src1_isPlaying ? this.pauseAudio(1) : this.playAudio(1)
-    }
+
   }
 
   playAudio(audioId: number): void
   {
-    this.init_new_buffer_src()
-    if(audioId == 0)
-    {
-      if(this.src0_isPlaying)
-      {
-        this.src0.stop()
-      }
+    this.initBufferSources()
+    this.isPlaying.set(audioId, true)
+    this.srcs.get(audioId)?.start()
+  }
 
-      this.src0_isPlaying = true
-      this.src0.start()
-    }
-    else if(audioId == 1) {
-      if(this.src1_isPlaying)
-      {
-        this.src1.stop()
+  pauseAudio() {
+    for(let i = 0; i < this.num_sources; i++) {
+      if(this.isPlaying.get(i)) {
+        this.isPlaying.set(i, false)
+        this.srcs.get(i)?.stop()
       }
-
-      this.src1_isPlaying = true
-      this.src1.start()
     }
   }
 
-  pauseAudio(audioId: number) {
-    if(audioId == 0)
-    {
-      this.src0_isPlaying = false
-      this.src0.stop()
-    }
-    else if(audioId == 1) {
-      this.src1_isPlaying = false
-      this.src1.stop()
-    }
-  }
-
-  downloadAudio(audioId:number)
-  {
-    if(audioId == 0) {
-      this.downloadBlob(this.url0, this.current_prompt)
-    }
-    else if(audioId == 1) {
-      this.downloadBlob(this.url1, this.current_prompt)
-    }
+  downloadAudio(audioId:number) {
+    this.downloadBlob(this.urls.get(audioId), this.current_prompt)
   }
 
   downloadBlob(url: SafeUrl | undefined, filename: string) {
@@ -108,16 +69,10 @@ export class AudioService {
     document.body.removeChild(a);
   }
 
-  assignbuffer(audioId: number, buffer: any, url: any)
+  assignBufferUrl(audioId: number, buffer: any, url: any)
   {
-    if(audioId == 0) {
-      this.url0 = url
-      this.buffer0 = buffer
-    }
-    else if(audioId == 1) {
-      this.url1 = url
-      this.buffer1 = buffer
-    }
+    this.urls.set(audioId, url)
+    this.buffers.set(audioId, buffer)
   }
 
   async decodeBase64ToAudioURL(base64: string, audioId: number, prompt: string) {
@@ -127,7 +82,9 @@ export class AudioService {
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
     const filename = this.firestore.storePreferenceAudio(audioBlob, prompt)
     const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob))
-    this.assignbuffer(audioId, await this.audioContext.decodeAudioData(byteArray.buffer), url)
+
+    this.assignBufferUrl(audioId, await this.audioContext.decodeAudioData(byteArray.buffer), url)
+
     return {
       "url": url,
       "filename": filename

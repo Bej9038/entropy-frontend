@@ -44,7 +44,7 @@ entropyColor {
 ::ng-deep .mat-mdc-slider .mdc-slider__track--active_fill {
   border-color: var(--white) !important;
   opacity: 1 !important;
-  height: var(--line-size-2) !important;
+  /*border-width: 20px !important;*/
 }
 
 ::ng-deep.mdc-slider__thumb--with-indicator {
@@ -60,3 +60,5 @@ entropyColor {
   background-color: var(--color-accent) !important;
   opacity: .25;
 }
+
+

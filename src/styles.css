@@ -13,8 +13,8 @@
   --translucent-dark-3: rgba(49, 51, 54, .1);
   --background-color: rgb(43, 43, 44);
   --none: rgba(53, 53, 54, 1);
-  --line-size: 2px;
-  --line-size-2: 4px;
+  --line-size: 2.8px;
+  --line-size-2: 3.8px;
   --color-accent: rgba(222, 123, 106, 0.6);
   /*--color-accent: #ff4040;*/
   --ripple: var(--translucent-dark);
