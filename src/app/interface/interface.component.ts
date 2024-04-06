@@ -228,7 +228,7 @@ export class InterfaceComponent implements OnInit {
               {
                 let wb = this.waveboxes.toArray()[i]
                 let base64 = response["output"][i]
-                let res = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
+                let res = await this.audioService.decodeBase64ToAudioURL(base64, i, req.input.text)
                 wb.initWaveSurfer(res["url"])
                 wb.filename = res["filename"]
               }

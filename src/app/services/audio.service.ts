@@ -120,12 +120,12 @@ export class AudioService {
     }
   }
 
-  async decodeBase64ToAudioURL(base64: string, audioId: number, description: string) {
+  async decodeBase64ToAudioURL(base64: string, audioId: number, prompt: string) {
     console.log("decoding audio")
-    this.current_prompt = description
+    this.current_prompt = prompt
     const byteArray = this.convertBase64FileToRaw(base64)
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
-    const filename = this.firestore.storePreferenceAudio(audioBlob, description)
+    const filename = this.firestore.storePreferenceAudio(audioBlob, prompt)
     const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob))
     this.assignbuffer(audioId, await this.audioContext.decodeAudioData(byteArray.buffer), url)
     return {
