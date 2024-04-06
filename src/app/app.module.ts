@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, isDevMode} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
@@ -37,6 +37,7 @@ import {
   MatExpansionPanelTitle
 } from "@angular/material/expansion";
 import {WaveboxComponent} from "./wavebox/wavebox.component";
+// import { ServiceWorkerModule } from '@angular/service-worker';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -90,6 +91,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatExpansionPanelTitle,
     MatExpansionPanelDescription,
     MatExpansionModule,
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   enabled: !isDevMode(),
+    //   registrationStrategy: 'registerWhenStable:30000'
+    // }),
   ],
   providers: [
     provideAnimations(),

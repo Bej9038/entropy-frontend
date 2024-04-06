@@ -5,7 +5,8 @@
   align-content: center !important;
   position: absolute !important;
   z-index: 10 !important;
-  background-color: var(--test) !important;
+  /*background-color: var(--test) !important;*/
+  background-color: rgba(0,0,0,0)!important;
   color: var(--white) !important;
 }
 
@@ -29,19 +30,23 @@
 }
 
 .homepage-links {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  width: 500px;
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  /*width: 500px;*/
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 ::ng-deep.matMenu {
   background-color: var(--translucent) !important;
+  /*left: 100px !important;*/
+  transform: translateX(22.51px) !important;
 }
 
 ::ng-deep.menu-item {
@@ -51,7 +56,9 @@
 
 .header-buttons {
   color: var(--white) !important;
-  margin: 32px;
+  margin: 0 32px;
+  /*border-bottom: var(--white) 1px solid;*/
+  /*border-radius: 0 !important;*/
 }
 
 .profile-button {

@@ -27,7 +27,8 @@ export class AppComponent {
   @ViewChild("interface", { read: ElementRef }) interfaceElement: ElementRef;
 
 
-  constructor(private http: HttpClient, private oauthService: OAuthService) {
+  constructor(private http: HttpClient,
+              private oauthService: OAuthService) {
     this.oauthService.configure(this.authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin()
     this.login()

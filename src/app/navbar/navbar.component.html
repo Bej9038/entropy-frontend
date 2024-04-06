@@ -4,10 +4,28 @@
       <span class="txt">Entropy Audio </span>
   </a>
 
-  <div class="homepage-links" *ngIf="router.url == '/'">
-    <a routerLink="mission" mat-button class="header-buttons">Mission</a>
-    <a routerLink="tech" mat-button class="header-buttons">Technology</a>
-    <a routerLink="news" mat-button class="header-buttons">News</a>
+  <div class="homepage-links">
+    <a *ngIf="router.url == '/'" routerLink="mission" mat-button class="header-buttons">
+      <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
+        Mission <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>
+      </div>
+    </a>
+    <a *ngIf="router.url == '/'" routerLink="tech" mat-button class="header-buttons">
+      <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
+        Tech <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>
+      </div>
+    </a>
+    <a *ngIf="router.url == '/'" routerLink="news" mat-button class="header-buttons">
+      <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
+        News <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>
+      </div>
+    </a>
+    <button [disabled]="!signedIn" [matMenuTriggerFor]="menu" class="header-buttons" mat-button (click)="openMenu()">
+      <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
+        Account
+<!--        <mat-icon *ngIf="signedIn">expand_more</mat-icon>-->
+      </div>
+    </button>
   </div>
 
 <!--  <mat-tab-group>-->
@@ -17,15 +35,9 @@
 <!--  </mat-tab-group>-->
 
 
-  <button [matMenuTriggerFor]="menu" *ngIf="signedIn" class="profile-button" mat-button (click)="openMenu()">
-    <mat-icon>
-      person
-    </mat-icon>
-  </button>
-
-  <mat-menu #menu class="matMenu">
-    <button class="menu-item" mat-menu-item> account </button>
-    <button class="menu-item" mat-menu-item> view credits </button>
+  <mat-menu #menu class="matMenu" xPosition="before">
+    <button class="menu-item" mat-menu-item> account info </button>
+    <button class="menu-item" mat-menu-item> credits </button>
     <a class="menu-item" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
   </mat-menu>
 </mat-toolbar>
