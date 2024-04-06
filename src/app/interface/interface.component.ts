@@ -146,6 +146,14 @@ export class InterfaceComponent implements OnInit {
     this.wavebox_ids = this.wavebox_ids.filter(number => id == number)
   }
 
+  storePreferenceData(id: number) {
+    let filenames: string[] = []
+    this.waveboxes.forEach(wb => {
+      filenames.push(wb.filename)
+    })
+    this.firestore.storePreferenceData(filenames, id)
+  }
+
   generate(){
     const rippleConfig = {
       centered: true,
@@ -226,8 +234,9 @@ export class InterfaceComponent implements OnInit {
               {
                 let wb = this.waveboxes.toArray()[i]
                 let base64 = response["output"][i]
-                let url = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
-                wb.initWaveSurfer(url, this.debug)
+                let res = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
+                wb.initWaveSurfer(res["url"], this.debug)
+                wb.filename = res["filename"]
               }
               this.stateService.setState(GenerationState.Displaying);
               clearInterval(intervalRef);

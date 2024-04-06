@@ -18,11 +18,11 @@ export class WaveboxComponent implements OnInit {
   @Input() parent: InterfaceComponent;
   // @ts-ignore
   @ViewChild('waveform') waveform: ElementRef;
-  wavesurfer: WaveSurfer | undefined;
-  focused = false;
-  progressBarMode: ProgressBarMode = "indeterminate";
-  grabbing = false;
-  selected = false;
+  wavesurfer: WaveSurfer | undefined
+  focused = false
+  progressBarMode: ProgressBarMode = "indeterminate"
+  grabbing = false
+  filename: string = ""
   rootStyle = getComputedStyle(this.document.documentElement);
   grey = this.rootStyle.getPropertyValue("--translucent-grey-2").trim()
   white = this.rootStyle.getPropertyValue("--white").trim()
@@ -69,6 +69,7 @@ export class WaveboxComponent implements OnInit {
     if(this.stateService.getCurrentState() == GenerationState.Displaying)
     {
       this.stateService.setState(GenerationState.Selected)
+      this.parent.storePreferenceData(this.audioID)
       this.parent.hideWaveboxesExcept(this.audioID)
     }
     else if(this.stateService.getCurrentState() == GenerationState.Selected)

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import {ReqService} from "./req.service";
+import {FirestoreService} from "./firestore.service";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class AudioService {
   src0_time = 0
   src1_time = 0
 
-  constructor(private sanitizer: DomSanitizer, private reqService: ReqService) {
+  constructor(private sanitizer: DomSanitizer, private firestore: FirestoreService) {
     this.src0.connect(this.audioContext.destination)
     this.src1.connect(this.audioContext.destination)
   }
@@ -124,9 +125,13 @@ export class AudioService {
     this.current_prompt = description
     const byteArray = this.convertBase64FileToRaw(base64)
     const audioBlob = new Blob([byteArray], { type: 'audio/wav' });
+    const filename = this.firestore.storePreferenceAudio(audioBlob, description)
     const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(audioBlob))
     this.assignbuffer(audioId, await this.audioContext.decodeAudioData(byteArray.buffer), url)
-    return url;
+    return {
+      "url": url,
+      "filename": filename
+    }
   }
 
   convertBase64FileToRaw(base64: string)
