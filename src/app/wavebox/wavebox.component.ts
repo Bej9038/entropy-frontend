@@ -69,29 +69,33 @@ export class WaveboxComponent implements OnInit {
     if(this.stateService.getCurrentState() == GenerationState.Displaying)
     {
       this.stateService.setState(GenerationState.Selected)
-      this.parent.storePreferenceData(this.audioID)
+      if(!this.stateService.isDebug()) {
+        this.parent.storePreferenceData(this.audioID)
+      }
       this.parent.hideWaveboxesExcept(this.audioID)
     }
     else if(this.stateService.getCurrentState() == GenerationState.Selected)
     {
-      this.audioService.downloadAudio(this.audioID)
+      if(!this.stateService.isDebug()) {
+        this.audioService.downloadAudio(this.audioID)
+      }
       this.stateService.setState(GenerationState.Idle)
       this.parent.resetWaveboxes()
     }
   }
 
-  initWaveSurfer(src: any, debug:boolean)
+  initWaveSurfer(src: any)
   {
     if(this.stateService.getCurrentState() != GenerationState.Displaying) {
       let height = 72
       let interact = false
-      let cursorWidth = 2
+      let cursorWidth = 0
       this.wavesurfer = WaveSurfer.create(
         {
           container: this.waveform.nativeElement,
           waveColor: this.dark,
           progressColor: this.noColor,
-          cursorWidth: 0,
+          cursorWidth: cursorWidth,
           interact: interact,
           fillParent: true,
           sampleRate: 48000,
@@ -100,7 +104,7 @@ export class WaveboxComponent implements OnInit {
           autoScroll: true
         }
       )
-      if (debug) {
+      if (this.stateService.isDebug()) {
         this.wavesurfer.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
       } else {
         this.wavesurfer.load((src as any).changingThisBreaksApplicationSecurity);

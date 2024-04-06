@@ -5,7 +5,7 @@ export enum GenerationState {
   Generating,
   Displaying,
   Selected,
-  Error
+  Error,
 }
 
 @Injectable({
@@ -15,6 +15,8 @@ export class StateService {
 
   state = GenerationState.Idle;
   prev = GenerationState.Idle;
+  debug = true;
+  // debug = false;
 
   constructor() { }
 
@@ -33,5 +35,9 @@ export class StateService {
       this.state = state;
       console.log("entering state: " + GenerationState[this.state])
     }
+  }
+
+  isDebug() {
+    return this.debug
   }
 }

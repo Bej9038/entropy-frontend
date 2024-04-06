@@ -1,14 +1,13 @@
-import {Component, ElementRef, Inject, OnInit, QueryList, Renderer2, ViewChild, ViewChildren,} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, QueryList, ViewChild, ViewChildren,} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AudioService} from "../services/audio.service";
-import {SafeUrl} from "@angular/platform-browser";
 import {ReqService} from "../services/req.service";
 import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
 import {WaveboxComponent} from "../wavebox/wavebox.component";
 import {FirestoreService} from "../services/firestore.service";
 import {GenerationState, StateService} from "../services/state.service";
-import {animate, transition, style, stagger, query, trigger} from "@angular/animations";
+import {animate, transition, style, query, trigger} from "@angular/animations";
 
 
 @Component({
@@ -51,8 +50,6 @@ export class InterfaceComponent implements OnInit {
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
   phInterval: any = undefined;
-  debug = false
-  // debug = true
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
@@ -78,8 +75,8 @@ export class InterfaceComponent implements OnInit {
               public reqService: ReqService,
               @Inject(DOCUMENT) private document: Document,
               private firestore: FirestoreService,
-              public stateService: StateService,
-              private renderer: Renderer2) {
+              public stateService: StateService
+  ) {
     this.setNumWaveboxes()
   }
 
@@ -90,10 +87,10 @@ export class InterfaceComponent implements OnInit {
 
   ngAfterViewInit() {
     this.nextPlaceholder()
-    if(this.debug)
+    if(this.stateService.isDebug())
     {
       this.waveboxes.forEach(wb => {
-        wb.initWaveSurfer(undefined, this.debug)
+        wb.initWaveSurfer(undefined)
       })
       this.stateService.setState(GenerationState.Displaying);
     }
@@ -162,7 +159,7 @@ export class InterfaceComponent implements OnInit {
     this.ripple.launch(0, 0, rippleConfig)
     if(this.stateService.getCurrentState() != GenerationState.Generating)
     {
-      if(this.debug)
+      if(this.stateService.isDebug())
       {
         this.clearWaveboxeVisuals();
         this.reqService.getReq();
@@ -235,7 +232,7 @@ export class InterfaceComponent implements OnInit {
                 let wb = this.waveboxes.toArray()[i]
                 let base64 = response["output"][i]
                 let res = await this.audioService.decodeBase64ToAudioURL(base64, i, this.reqService.description)
-                wb.initWaveSurfer(res["url"], this.debug)
+                wb.initWaveSurfer(res["url"])
                 wb.filename = res["filename"]
               }
               this.stateService.setState(GenerationState.Displaying);
