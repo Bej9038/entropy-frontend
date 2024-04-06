@@ -20,8 +20,7 @@ export class AudioService {
   }
 
   initBufferSources() {
-    for(let i = 0; i < this.num_sources; i++)
-    {
+    for(let i = 0; i < this.num_sources; i++) {
       this.srcs.set(i, this.audioContext.createBufferSource())
       // @ts-ignore
       this.srcs.get(i).connect(this.audioContext.destination)
@@ -37,11 +36,9 @@ export class AudioService {
       this.pauseAudio()
       this.playAudio(audioId)
     }
-
   }
 
-  playAudio(audioId: number): void
-  {
+  playAudio(audioId: number): void {
     this.initBufferSources()
     this.isPlaying.set(audioId, true)
     this.srcs.get(audioId)?.start()
@@ -69,8 +66,7 @@ export class AudioService {
     document.body.removeChild(a);
   }
 
-  assignBufferUrl(audioId: number, buffer: any, url: any)
-  {
+  assignBufferUrl(audioId: number, buffer: any, url: any) {
     this.urls.set(audioId, url)
     this.buffers.set(audioId, buffer)
   }
@@ -91,8 +87,7 @@ export class AudioService {
     }
   }
 
-  convertBase64FileToRaw(base64: string)
-  {
+  convertBase64FileToRaw(base64: string) {
     const byteCharacters = atob(base64);
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {
