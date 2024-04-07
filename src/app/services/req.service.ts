@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {StateService} from "./state.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ReqService {
   duration: number = 5
   loop: boolean = false;
 
-  constructor() { }
+  constructor(private stateService: StateService) { }
 
   reformatDescription()
   {
@@ -32,14 +33,14 @@ export class ReqService {
     {
       text += " " + this.key
     }
-    console.log(text)
+    this.stateService.print(text)
     return text
   }
 
   getReq()
   {
-      console.log(this.duration);
-      console.log(this.entropy);
+    this.stateService.print(this.duration);
+    this.stateService.print(this.entropy);
     return {
       "input": {
         "text":  this.reformatDescription(),

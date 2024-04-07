@@ -3,7 +3,7 @@ import {AudioService} from "../services/audio.service";
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import WaveSurfer from "wavesurfer.js";
 import {DOCUMENT} from "@angular/common";
-import {GenerationState, StateService} from "../services/state.service";
+import {DebugState, GenerationState, StateService} from "../services/state.service";
 import {InterfaceComponent} from "../interface/interface.component";
 
 
@@ -69,14 +69,14 @@ export class WaveboxComponent implements OnInit {
     {
       this.audioService.pauseAudio()
       this.stateService.setState(GenerationState.Selected)
-      if(!this.stateService.isDebug()) {
+      if(this.stateService.debug != DebugState.Debug) {
         this.parent.storePreferenceData(this.audioID)
       }
       this.parent.hideWaveboxesExcept(this.audioID)
     }
     else if(this.stateService.getCurrentState() == GenerationState.Selected)
     {
-      if(!this.stateService.isDebug()) {
+      if(this.stateService.debug != DebugState.Debug) {
         this.audioService.downloadAudio(this.audioID)
       }
       this.stateService.setState(GenerationState.Idle)
@@ -104,7 +104,7 @@ export class WaveboxComponent implements OnInit {
           autoScroll: true
         }
       )
-      if (this.stateService.isDebug()) {
+      if (this.stateService.debug == DebugState.Debug) {
         this.wavesurfer.load("assets/KSHMR_Full_Orchestra_Loop_07_124_Am.wav");
       } else {
         this.wavesurfer.load((src as any).changingThisBreaksApplicationSecurity);

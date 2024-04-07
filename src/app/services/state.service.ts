@@ -9,20 +9,28 @@ export enum GenerationState {
   Error,
 }
 
+export enum DebugState {
+  Debug,
+  Info,
+  Prod
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
 
-  state = GenerationState.Idle;
-  prev = GenerationState.Idle;
-  // debug = true;
-  debug = false;
+  state = GenerationState.Idle
+  prev = GenerationState.Idle
+  // debug = DebugState.Debug
+  debug = DebugState.Info
+  // debug = DebugState.Prod
+
 
   constructor() { }
 
   getCurrentState(): GenerationState {
-    return this.state;
+    return this.state
   }
 
   getPreviousState(): GenerationState {
@@ -34,11 +42,17 @@ export class StateService {
     {
       this.prev = this.state
       this.state = state;
-      console.log("entering state: " + GenerationState[this.state])
+      this.print("entering state: " + GenerationState[this.state])
     }
   }
 
-  isDebug() {
+  getDebugState() {
     return this.debug
+  }
+
+  print(text: any) {
+    if(this.debug == DebugState.Debug || this.debug == DebugState.Info) {
+      console.log(text)
+    }
   }
 }

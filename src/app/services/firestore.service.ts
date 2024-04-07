@@ -3,6 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import { finalize, Observable } from 'rxjs';
+import {StateService} from "./state.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class FirestoreService {
 
   constructor(private firestore: AngularFirestore,
               private auth: AngularFireAuth,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private stateService: StateService) {
     this.auth.authState.subscribe(user => {
       if (user) {
         this.currentUser = user;
@@ -59,7 +61,7 @@ export class FirestoreService {
     const filename = time + "_" + prompt
     const fp = this.dir + filename
     this.storage.upload(fp, audio);
-    console.log("upload started")
+    this.stateService.print("upload started")
     return filename
   }
 

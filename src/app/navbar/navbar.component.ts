@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
+import {StateService} from "../services/state.service";
 
 
 @Component({
@@ -12,7 +13,9 @@ export class NavbarComponent implements OnInit {
 
   signedIn = false;
 
-  constructor(private auth: AngularFireAuth, public router: Router) { }
+  constructor(private auth: AngularFireAuth,
+              public router: Router,
+              private stateService: StateService) { }
 
   ngOnInit(): void {
     this.auth.authState.subscribe(user => {
@@ -30,7 +33,7 @@ export class NavbarComponent implements OnInit {
 
   signOut(): void {
     this.auth.signOut().then(() => {
-      console.log("User signed out successfully");
+      this.stateService.print("User signed out successfully");
     });
   }
 }

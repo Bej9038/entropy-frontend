@@ -6,8 +6,8 @@ import {MatRipple} from "@angular/material/core";
 import {DOCUMENT} from "@angular/common";
 import {WaveboxComponent} from "../wavebox/wavebox.component";
 import {FirestoreService} from "../services/firestore.service";
-import {GenerationState, StateService} from "../services/state.service";
-import {animate, transition, style, query, trigger} from "@angular/animations";
+import {DebugState, GenerationState, StateService} from "../services/state.service";
+import {animate, query, style, transition, trigger} from "@angular/animations";
 
 
 @Component({
@@ -80,7 +80,7 @@ export class InterfaceComponent implements OnInit {
 
   ngAfterViewInit() {
     this.nextPlaceholder()
-    if(this.stateService.isDebug())
+    if(this.stateService.debug == DebugState.Debug)
     {
       this.waveboxes.forEach(wb => {
         wb.initWaveSurfer(undefined)
@@ -154,11 +154,11 @@ export class InterfaceComponent implements OnInit {
     {
       if(this.firestore.getCredits() <= 0)
       {
-        console.log("error, out of credits")
+        this.stateService.print("error, out of credits")
         return
       }
       this.firestore.consumeCredits(1)
-      if(this.stateService.isDebug())
+      if(this.stateService.debug == DebugState.Debug)
       {
         this.clearWaveboxVisuals();
         this.reqService.getReq();
@@ -177,11 +177,11 @@ export class InterfaceComponent implements OnInit {
 
   sendCancelReq()
   {
-    console.log("cancelling request")
+    this.stateService.print("cancelling request")
     this.missing_id = true;
     const headers = new HttpHeaders(this.gopher.data.h);
     let req = {"input": {}}
-    console.log(this.currentReqId)
+    this.stateService.print(this.currentReqId)
     this.http.post<any>(this.gopher.data.c + this.currentReqId, req, { headers })
       .subscribe(response =>
       {
@@ -193,7 +193,7 @@ export class InterfaceComponent implements OnInit {
 
   sendReq()
   {
-    console.log("sending request to server")
+    this.stateService.print("sending request to server")
     const req = this.reqService.getReq()
     this.clearWaveboxVisuals();
     // this.firestore.storePrompt(req)
@@ -207,12 +207,12 @@ export class InterfaceComponent implements OnInit {
     // send request and wait for
 
     let intervalRef = setInterval(() => {
-      console.log("checking status")
+      this.stateService.print("checking status")
       this.http.post<any>(this.gopher.data.s + this.currentReqId, req, { headers })
         .subscribe(async response => {
           if (response["status"] == "COMPLETED") {
             if(this.stateService.getCurrentState() != GenerationState.Displaying){
-              console.log("request complete")
+              this.stateService.print("request complete")
               for(let i = 0; i < this.wavebox_ids.length; i++)
               {
                 let wb = this.waveboxes.toArray()[i]
