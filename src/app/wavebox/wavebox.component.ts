@@ -67,6 +67,7 @@ export class WaveboxComponent implements OnInit {
   {
     if(this.stateService.getCurrentState() == GenerationState.Displaying)
     {
+      this.audioService.pauseAudio()
       this.stateService.setState(GenerationState.Selected)
       if(!this.stateService.isDebug()) {
         this.parent.storePreferenceData(this.audioID)

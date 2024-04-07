@@ -68,7 +68,7 @@ export class InterfaceComponent implements OnInit {
               public audioService: AudioService,
               public reqService: ReqService,
               @Inject(DOCUMENT) private document: Document,
-              private firestore: FirestoreService,
+              public firestore: FirestoreService,
               public stateService: StateService
   ) {}
 
@@ -152,6 +152,12 @@ export class InterfaceComponent implements OnInit {
     this.ripple.launch(0, 0, rippleConfig)
     if(this.stateService.getCurrentState() != GenerationState.Generating)
     {
+      if(this.firestore.getCredits() <= 0)
+      {
+        console.log("error, out of credits")
+        return
+      }
+      this.firestore.consumeCredits(1)
       if(this.stateService.isDebug())
       {
         this.clearWaveboxVisuals();
@@ -188,10 +194,9 @@ export class InterfaceComponent implements OnInit {
   sendReq()
   {
     console.log("sending request to server")
-
     const req = this.reqService.getReq()
     this.clearWaveboxVisuals();
-    this.firestore.storePrompt(req)
+    // this.firestore.storePrompt(req)
     const headers = new HttpHeaders(this.gopher.data.h);
     this.http.post<any>(this.gopher.data.ra, req, { headers })
       .subscribe(response =>

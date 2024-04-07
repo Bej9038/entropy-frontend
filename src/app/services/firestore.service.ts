@@ -10,6 +10,7 @@ import { finalize, Observable } from 'rxjs';
 export class FirestoreService {
 
   currentUser: any | undefined = undefined;
+  userCredits: number = 0;
   dir: string = "preference_data/"
 
   constructor(private firestore: AngularFirestore,
@@ -18,10 +19,39 @@ export class FirestoreService {
     this.auth.authState.subscribe(user => {
       if (user) {
         this.currentUser = user;
+        this.initCredits()
       } else {
         this.currentUser = null;
       }
     });
+  }
+
+  async initCredits() {
+    const docRef = this.firestore.collection("credits").doc(this.currentUser.uid)
+    docRef.get().subscribe(doc => {
+      if (!doc.exists) {
+        const data = {
+          "num_credits": 25,
+          "email": this.currentUser.email
+        }
+        this.firestore.collection("credits").doc(this.currentUser.uid).set(data)
+      }
+    })
+    docRef.valueChanges().subscribe(doc => {
+      // @ts-ignore
+      this.userCredits = doc["num_credits"]
+    })
+  }
+
+  consumeCredits(credits: number) {
+    const data = {
+      "num_credits": this.userCredits - credits
+    }
+    this.firestore.collection("credits").doc(this.currentUser.uid).update(data)
+  }
+
+  getCredits() {
+    return this.userCredits
   }
 
   storePreferenceAudio(audio: Blob, prompt: string){
