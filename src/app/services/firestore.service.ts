@@ -10,7 +10,6 @@ import { finalize, Observable } from 'rxjs';
 export class FirestoreService {
 
   currentUser: any | undefined = undefined;
-  gopher: any | undefined = undefined;
   dir: string = "preference_data/"
 
   constructor(private firestore: AngularFirestore,
@@ -57,13 +56,13 @@ export class FirestoreService {
     this.firestore.collection("prompts").add(data)
   }
 
-  accessGopher()
+  accessGopher(gopher: any)
   {
     this.firestore.collection("gopher")
       .doc("N23bBnhGNa2Ei0Wa1wBb")
       .get().subscribe(doc => {
-        // @ts-ignore
-      this.gopher = doc.data()["value"]
+        console.log(doc.data())
+        gopher.data = doc.data()
       })
   }
 }

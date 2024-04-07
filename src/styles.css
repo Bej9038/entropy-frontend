@@ -23,6 +23,8 @@
   --interface-width: 750px;
 
   --font-large: 1.7rem;
+
+  overflow-x: hidden;
 }
 
 @keyframes opacityFade {

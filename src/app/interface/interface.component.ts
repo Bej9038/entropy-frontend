@@ -32,6 +32,7 @@ export class InterfaceComponent implements OnInit {
   run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
   status: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
   cancel: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
+  gopher: any = {"data" : undefined}
   placeholders: string[] = [
     "acoustic hi-hat top loop",
     "trap snare drum",
@@ -45,7 +46,7 @@ export class InterfaceComponent implements OnInit {
   currentReqId: string = "";
   missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
-  phInterval: any = undefined;
+  placeholderIntervalRef: any = undefined;
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
@@ -77,7 +78,7 @@ export class InterfaceComponent implements OnInit {
 
   ngOnInit() {
     this.setNumWaveboxes()
-    this.firestore.accessGopher()
+    this.firestore.accessGopher(this.gopher)
     this.stateService.setState(GenerationState.Idle)
   }
 
@@ -100,7 +101,7 @@ export class InterfaceComponent implements OnInit {
     this.textLabel.nativeElement.style.transition="opacity 500ms cubic-bezier(0.25, 0.8, 0.25, 1)"
     setTimeout(function() {
       self.textLabel.nativeElement.style.opacity = 1;
-      self.phInterval = setInterval(() => {
+      self.placeholderIntervalRef = setInterval(() => {
         self.textLabel.nativeElement.style.opacity = 0;
         setTimeout(function() {
           self.placeholder = self.placeholders[i];
@@ -174,12 +175,9 @@ export class InterfaceComponent implements OnInit {
 
   sendCancelReq()
   {
-    this.missing_id = true;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF`
-    });
     console.log("cancelling request")
+    this.missing_id = true;
+    const headers = new HttpHeaders(this.gopher.data.h);
     let req = {"input": {}}
     console.log(this.currentReqId)
     this.http.post<any>(this.cancel + this.currentReqId, req, { headers })
@@ -193,21 +191,12 @@ export class InterfaceComponent implements OnInit {
 
   sendReq()
   {
+    console.log("sending request to server")
     const req = this.reqService.getReq()
     this.clearWaveboxeVisuals();
     this.firestore.storePrompt(req)
-    // console.log(this.firestore.gopher)
-    const x = this.firestore.gopher
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF`
-    });
-
-    console.log("sending request to server")
-
-    // get confirmation with request id
-
+    console.log(this.gopher.data.h)
+    const headers = new HttpHeaders(this.gopher.data.h);
     this.http.post<any>(this.run_async, req, { headers })
       .subscribe(response =>
       {
