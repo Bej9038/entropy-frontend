@@ -45,8 +45,7 @@ export class FirestoreService {
     this.firestore.collection("preference_scores").add(data)
   }
 
-  storePrompt(req: any)
-  {
+  storePrompt(req: any) {
     const data = {
       "prompt": req.input.text,
       "duration": req.input.duration,
@@ -56,8 +55,7 @@ export class FirestoreService {
     this.firestore.collection("prompts").add(data)
   }
 
-  accessGopher(gopher: any)
-  {
+  accessGopher(gopher: any) {
     this.firestore.collection("gopher")
       .doc("N23bBnhGNa2Ei0Wa1wBb")
       .get().subscribe(doc => {
