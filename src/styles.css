@@ -21,8 +21,8 @@
   --ripple2: var(--translucent-dark);
 
   --interface-width: 750px;
-  /*min-height: 127.2px;*/
-  /*min-width: 328.4px !important;*/
+
+  --font-large: 1.7rem;
 }
 
 @keyframes opacityFade {

@@ -37,7 +37,6 @@ import {
   MatExpansionPanelTitle
 } from "@angular/material/expansion";
 import {WaveboxComponent} from "./wavebox/wavebox.component";
-// import { ServiceWorkerModule } from '@angular/service-worker';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -91,10 +90,6 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatExpansionPanelTitle,
     MatExpansionPanelDescription,
     MatExpansionModule,
-    // ServiceWorkerModule.register('ngsw-worker.js', {
-    //   enabled: !isDevMode(),
-    //   registrationStrategy: 'registerWhenStable:30000'
-    // }),
   ],
   providers: [
     provideAnimations(),
