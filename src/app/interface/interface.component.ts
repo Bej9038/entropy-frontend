@@ -29,9 +29,6 @@ import {animate, transition, style, query, trigger} from "@angular/animations";
   ]
 })
 export class InterfaceComponent implements OnInit {
-  run_async: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
-  status: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
-  cancel: string = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
   gopher: any = {"data" : undefined}
   placeholders: string[] = [
     "acoustic hi-hat top loop",
@@ -73,8 +70,7 @@ export class InterfaceComponent implements OnInit {
               @Inject(DOCUMENT) private document: Document,
               private firestore: FirestoreService,
               public stateService: StateService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.setNumWaveboxes()
@@ -118,7 +114,7 @@ export class InterfaceComponent implements OnInit {
     this.checkRipple()
   }
 
-  clearWaveboxeVisuals() {
+  clearWaveboxVisuals() {
     this.waveboxes.forEach(wb => {
       wb.initialize()
     })
@@ -133,7 +129,7 @@ export class InterfaceComponent implements OnInit {
 
   resetWaveboxes() {
     this.setNumWaveboxes()
-    this.clearWaveboxeVisuals()
+    this.clearWaveboxVisuals()
   }
 
   hideWaveboxesExcept(id: number) {
@@ -158,7 +154,7 @@ export class InterfaceComponent implements OnInit {
     {
       if(this.stateService.isDebug())
       {
-        this.clearWaveboxeVisuals();
+        this.clearWaveboxVisuals();
         this.reqService.getReq();
       }
       else {
@@ -180,7 +176,7 @@ export class InterfaceComponent implements OnInit {
     const headers = new HttpHeaders(this.gopher.data.h);
     let req = {"input": {}}
     console.log(this.currentReqId)
-    this.http.post<any>(this.cancel + this.currentReqId, req, { headers })
+    this.http.post<any>(this.gopher.data.c + this.currentReqId, req, { headers })
       .subscribe(response =>
       {
         this.currentReqId = response["id"];
@@ -192,12 +188,12 @@ export class InterfaceComponent implements OnInit {
   sendReq()
   {
     console.log("sending request to server")
+
     const req = this.reqService.getReq()
-    this.clearWaveboxeVisuals();
+    this.clearWaveboxVisuals();
     this.firestore.storePrompt(req)
-    console.log(this.gopher.data.h)
     const headers = new HttpHeaders(this.gopher.data.h);
-    this.http.post<any>(this.run_async, req, { headers })
+    this.http.post<any>(this.gopher.data.ra, req, { headers })
       .subscribe(response =>
       {
         this.currentReqId = response["id"];
@@ -207,7 +203,7 @@ export class InterfaceComponent implements OnInit {
 
     let intervalRef = setInterval(() => {
       console.log("checking status")
-      this.http.post<any>(this.status + this.currentReqId, req, { headers })
+      this.http.post<any>(this.gopher.data.s + this.currentReqId, req, { headers })
         .subscribe(async response => {
           if (response["status"] == "COMPLETED") {
             if(this.stateService.getCurrentState() != GenerationState.Displaying){

@@ -61,7 +61,6 @@ export class FirestoreService {
     this.firestore.collection("gopher")
       .doc("N23bBnhGNa2Ei0Wa1wBb")
       .get().subscribe(doc => {
-        console.log(doc.data())
         gopher.data = doc.data()
       })
   }
