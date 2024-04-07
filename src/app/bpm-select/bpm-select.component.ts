@@ -25,8 +25,8 @@ export class BpmSelectComponent implements OnInit {
               @Inject(DOCUMENT) private document: Document) { }
 
   selectPlaceholder() {
-    this.reqService.bpm = "120"
-    this.bpm = "120"
+    this.reqService.bpm = ""
+    this.bpm = ""
     this.checkRipple()
   }
 
@@ -71,10 +71,7 @@ export class BpmSelectComponent implements OnInit {
       }
     }
     else {
-      if(this.bpm == "")
-      {
-        this.bpm = "120"
-      }
+      this.bpm = ""
       this.reqService.bpm = this.bpm
       this.checkRipple()
       if((this.numberInputControl.hasError('min') ||
