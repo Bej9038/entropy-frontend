@@ -52,14 +52,15 @@ export class FirestoreService {
   }
 
   consumeCredits(credits: number) {
-    const data = {
-      "num_credits": this.userCredits - credits
-    }
-    this.firestore.collection("credits").doc(this.currentUser.uid).update(data)
+    // const data = {
+    //   "num_credits": this.userCredits - credits
+    // }
+    // this.firestore.collection("credits").doc(this.currentUser.uid).update(data)
   }
 
   getCredits() {
-    return this.userCredits
+    return 25
+    // return this.userCredits
   }
 
   storePreferenceAudio(audio: Blob, prompt: string){
