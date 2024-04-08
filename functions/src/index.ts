@@ -17,11 +17,13 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 const corsHandler = cors({origin: true});
 
-export const helloWorld = functions.https.onRequest((request, response) => {
+exports.helloWorld = functions.https.onRequest((request, response) => {
   corsHandler(request, response, () => {
     response.send("Hello from Firebase!");
   });
 });
+
+// Credits
 
 exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
   const firestore = admin.firestore();
@@ -33,4 +35,20 @@ exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
       email: user.email,
     });
   }
+});
+
+exports.decrementCredit = functions.https.onRequest(async (request, response) => {
+  corsHandler(request, response, async () => {
+    const firestore = admin.firestore();
+    // @ts-ignore
+    const idToken = request.headers.authorization.split('Bearer ')[1];
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const uid = decodedToken.uid;
+    const creditsRef = firestore.collection("credits").doc(uid);
+    const doc = await creditsRef.get();
+    const creditsToDecrement = request.body.credits;
+    await creditsRef.update({
+      num_credits: doc.get("num_credits") - creditsToDecrement,
+    });
+  });
 });

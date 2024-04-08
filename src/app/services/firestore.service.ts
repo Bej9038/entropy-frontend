@@ -14,7 +14,6 @@ export class FirestoreService {
   currentUser: any | undefined = undefined;
   userCredits: number = 0;
   dir: string = "preference_data/"
-  functionsEndpoint = "https://us-central1-entropy-413416.cloudfunctions.net/helloWorld"
 
   constructor(private firestore: AngularFirestore,
               private auth: AngularFireAuth,
@@ -24,31 +23,10 @@ export class FirestoreService {
     this.auth.authState.subscribe(user => {
       if (user) {
         this.currentUser = user;
-        // console.log("hi")
-        // this.http.get(this.functionsEndpoint, { responseType: 'text' })
-        //   .toPromise().then(response => console.log(response))
-        // this.initCredits()
       } else {
         this.currentUser = null;
       }
     });
-  }
-
-  async initCredits() {
-    const docRef = this.firestore.collection("credits").doc(this.currentUser.uid)
-    docRef.get().subscribe(doc => {
-      if (!doc.exists) {
-        const data = {
-          "num_credits": 25,
-          "email": this.currentUser.email
-        }
-        this.firestore.collection("credits").doc(this.currentUser.uid).set(data)
-      }
-    })
-    docRef.valueChanges().subscribe(doc => {
-      // @ts-ignore
-      this.userCredits = doc["num_credits"]
-    })
   }
 
   consumeCredits(credits: number) {
@@ -59,7 +37,6 @@ export class FirestoreService {
   }
 
   getCredits() {
-    return 25
     // return this.userCredits
   }
 
