@@ -4,6 +4,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import { finalize, Observable } from 'rxjs';
 import {StateService} from "./state.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,20 @@ export class FirestoreService {
   currentUser: any | undefined = undefined;
   userCredits: number = 0;
   dir: string = "preference_data/"
+  functionsEndpoint = "https://us-central1-entropy-413416.cloudfunctions.net/helloWorld"
 
   constructor(private firestore: AngularFirestore,
               private auth: AngularFireAuth,
               private storage: AngularFireStorage,
-              private stateService: StateService) {
+              private stateService: StateService,
+              private http: HttpClient) {
     this.auth.authState.subscribe(user => {
       if (user) {
         this.currentUser = user;
-        this.initCredits()
+        // console.log("hi")
+        // this.http.get(this.functionsEndpoint, { responseType: 'text' })
+        //   .toPromise().then(response => console.log(response))
+        // this.initCredits()
       } else {
         this.currentUser = null;
       }

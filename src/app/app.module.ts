@@ -94,7 +94,6 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   providers: [
     provideAnimations(),
     provideOAuthClient(),
-    // provideRouter(routeConfig)
   ],
   exports: [
     NavbarComponent,
