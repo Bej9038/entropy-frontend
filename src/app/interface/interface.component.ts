@@ -145,6 +145,10 @@ export class InterfaceComponent implements OnInit {
   }
 
   generate(){
+    if(this.firestore.getCredits() <= 0) {
+      this.stateService.print("user ran out of credits")
+      return
+    }
     const rippleConfig = {
       centered: true,
       radius: 800,
@@ -152,25 +156,20 @@ export class InterfaceComponent implements OnInit {
     this.ripple.launch(0, 0, rippleConfig)
     if(this.stateService.getCurrentState() != GenerationState.Generating)
     {
-      if(this.firestore.getCredits() <= 0)
-      {
-        this.stateService.print("error, out of credits")
-        return
-      }
       this.firestore.consumeCredits(1)
       if(this.stateService.debug == DebugState.Debug)
       {
-        this.clearWaveboxVisuals();
-        this.reqService.getReq();
+        this.clearWaveboxVisuals()
+        this.reqService.getReq()
       }
       else {
-        this.stateService.setState(GenerationState.Generating);
+        this.stateService.setState(GenerationState.Generating)
         this.sendReq()
       }
     }
     else
     {
-      this.stateService.setState(GenerationState.Idle);
+      this.stateService.setState(GenerationState.Idle)
       this.sendCancelReq()
     }
   }

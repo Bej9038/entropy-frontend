@@ -22,8 +22,8 @@ export class StateService {
 
   state = GenerationState.Idle
   prev = GenerationState.Idle
-  // debug = DebugState.Debug
-  debug = DebugState.Info
+  debug = DebugState.Debug
+  // debug = DebugState.Info
   // debug = DebugState.Prod
 
 

@@ -17,12 +17,6 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 const corsHandler = cors({origin: true});
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  corsHandler(request, response, () => {
-    response.send("Hello from Firebase!");
-  });
-});
-
 // Credits
 
 exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
@@ -37,11 +31,10 @@ exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
   }
 });
 
-exports.decrementCredit = functions.https.onRequest(async (request, response) => {
+exports.consumeCredit = functions.https.onRequest(async (request, response) => {
   corsHandler(request, response, async () => {
     const firestore = admin.firestore();
-    // @ts-ignore
-    const idToken = request.headers.authorization.split('Bearer ')[1];
+    const idToken = request.headers.authorization?.slice(7) ?? "";
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     const uid = decodedToken.uid;
     const creditsRef = firestore.collection("credits").doc(uid);

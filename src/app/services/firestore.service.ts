@@ -23,21 +23,33 @@ export class FirestoreService {
     this.auth.authState.subscribe(user => {
       if (user) {
         this.currentUser = user;
+        this.readCredits()
       } else {
         this.currentUser = null;
       }
     });
   }
 
-  consumeCredits(credits: number) {
-    // const data = {
-    //   "num_credits": this.userCredits - credits
-    // }
-    // this.firestore.collection("credits").doc(this.currentUser.uid).update(data)
+  readCredits() {
+    const docRef = this.firestore.collection("credits").doc(this.currentUser.uid)
+    docRef.valueChanges().subscribe(doc => {
+      // @ts-ignore
+      this.userCredits = doc.num_credits
+    });
+  }
+
+  async consumeCredits(credits: number) {
+    const url = "https://us-central1-entropy-413416.cloudfunctions.net/consumeCredit"
+    const body = { credits: credits };
+    const id = await this.currentUser.getIdToken()
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${id}` };
+    this.http.post(url, body, { headers: headers }).subscribe();
   }
 
   getCredits() {
-    // return this.userCredits
+    return this.userCredits
   }
 
   storePreferenceAudio(audio: Blob, prompt: string){

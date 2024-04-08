@@ -2,9 +2,9 @@
       <div #outline class="textOutline" >
         <button disableRipple="true" [disabled]="stateService.getCurrentState() != GenerationState.Generating
                                               && (stateService.getCurrentState() == GenerationState.Error || reqService.description == ''
-                                              || firestore.getCredits() <= 0)"
+                                              || this.firestore.getCredits() <= 0)"
                                                   class="generateButton" (click)="generate()" mat-button>
-          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': firestore.getCredits() <= 0 || stateService.getCurrentState() == GenerationState.Error || reqService.description == ''}" *ngIf="stateService.getCurrentState() != GenerationState.Generating">play_arrow</mat-icon>
+          <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': stateService.getCurrentState() == GenerationState.Error || reqService.description == '' || this.firestore.getCredits() <= 0}" *ngIf="stateService.getCurrentState() != GenerationState.Generating">play_arrow</mat-icon>
           <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': stateService.getCurrentState() == GenerationState.Error || reqService.description == ''}" *ngIf="stateService.getCurrentState() == GenerationState.Generating">stop</mat-icon>
         </button>
 
