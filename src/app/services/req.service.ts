@@ -14,7 +14,7 @@ export class ReqService {
 
   constructor(private stateService: StateService) { }
 
-  reformatDescription()
+  formatDescription()
   {
     let text = this.description.replace(new RegExp('[-]', 'g'), " ");
     text = text.replace(new RegExp('[,.]', 'g'), "");
@@ -34,7 +34,7 @@ export class ReqService {
       text += " " + this.key
     }
     this.stateService.print(text)
-    return text
+    return text.toLowerCase()
   }
 
   getReq()
@@ -43,7 +43,7 @@ export class ReqService {
     this.stateService.print(this.entropy);
     return {
       "input": {
-        "text":  this.reformatDescription(),
+        "text":  this.formatDescription(),
         "entropy": this.entropy,
         "duration": this.duration,
         "stereo": 1,
