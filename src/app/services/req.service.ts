@@ -11,29 +11,41 @@ export class ReqService {
   entropy: number = 0.9
   duration: number = 5
   loop: boolean = false;
+  halfStepDownMap: Map<string, string> = new Map<string, string>();
 
-  constructor(private stateService: StateService) { }
+  constructor(private stateService: StateService) {
+    this.halfStepDownMap.set("c", "b")
+    this.halfStepDownMap.set("c#", "c")
+    this.halfStepDownMap.set("d", "c#")
+    this.halfStepDownMap.set("d#", "d")
+    this.halfStepDownMap.set("e", "d#")
+    this.halfStepDownMap.set("f", "e")
+    this.halfStepDownMap.set("f#", "f")
+    this.halfStepDownMap.set("g", "f#")
+    this.halfStepDownMap.set("g#", "g")
+    this.halfStepDownMap.set("a", "g#")
+    this.halfStepDownMap.set("a#", "a")
+    this.halfStepDownMap.set("b", "a#")
+    this.halfStepDownMap.set("", "")
+  }
+
 
   formatDescription()
   {
     let text = this.description.replace(new RegExp('[-]', 'g'), " ");
     text = text.replace(new RegExp('[,.]', 'g'), "");
 
-    if(this.loop && !text.includes("loop"))
-    {
+    if(this.loop && !text.includes("loop")) {
       text += " loop";
     }
 
-    if(this.bpm)
-    {
+    if(this.bpm) {
       text += " " + this.bpm + " bpm"
     }
 
-    if(this.key != "")
-    {
-      text += " " + this.key
+    if(this.key != "") {
+      text += " " + this.halfStepDownMap.get(<string>this.key)
     }
-    this.stateService.print(text)
     return text.toLowerCase()
   }
 
@@ -41,6 +53,7 @@ export class ReqService {
   {
     this.stateService.print(this.duration);
     this.stateService.print(this.entropy);
+    this.stateService.print(this.formatDescription())
     return {
       "input": {
         "text":  this.formatDescription(),

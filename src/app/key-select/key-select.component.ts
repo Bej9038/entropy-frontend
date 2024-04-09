@@ -15,7 +15,6 @@ export class KeySelectComponent implements OnInit {
   selectedKeyId: number = 7;
   sharpSelected = false;
   idKeyMap: Map<number, string> = new Map<number, string>();
-  halfStepDownMap: Map<string, string> = new Map<string, string>();
 
   row1_large: Key[] = [
     { id: 0, label: 'C' },
@@ -67,20 +66,6 @@ export class KeySelectComponent implements OnInit {
     this.idKeyMap.set(5, "a")
     this.idKeyMap.set(6, "b")
     this.idKeyMap.set(7, "")
-
-    this.halfStepDownMap.set("c", "b")
-    this.halfStepDownMap.set("c#", "c")
-    this.halfStepDownMap.set("d", "c#")
-    this.halfStepDownMap.set("d#", "d")
-    this.halfStepDownMap.set("e", "d#")
-    this.halfStepDownMap.set("f", "e")
-    this.halfStepDownMap.set("f#", "f")
-    this.halfStepDownMap.set("g", "f#")
-    this.halfStepDownMap.set("g#", "g")
-    this.halfStepDownMap.set("a", "g#")
-    this.halfStepDownMap.set("a#", "a")
-    this.halfStepDownMap.set("b", "a#")
-    this.halfStepDownMap.set("", "")
   }
 
   // @HostListener('window:resize', ['$event'])
@@ -112,26 +97,26 @@ export class KeySelectComponent implements OnInit {
     }
     else {
         this.reqService.key = this.idKeyMap.get(id);
-        if(this.sharpSelected)
-        {
-            this.reqService.key += "#"
+        if(this.sharpSelected) {
+            if(id == 2 || id == 6) {
+              this.sharpSelected = !this.sharpSelected;
+            }
+            else {
+              this.reqService.key += "#"
+            }
         }
-        this.reqService.key = this.halfStepDownMap.get(<string>this.reqService.key)
     }
   }
 
   toggleSharp(): void {
-    if(this.selectedKeyId != 7)
+    if(this.selectedKeyId != 7 && this.selectedKeyId != 2 && this.selectedKeyId != 6)
     {
       this.sharpSelected = !this.sharpSelected;
-      if(this.sharpSelected)
-      {
+      if(this.sharpSelected) {
         this.reqService.key += "#"
-        this.reqService.key = this.halfStepDownMap.get(<string>this.reqService.key)
       }
       else {
         this.reqService.key = this.reqService.key?.slice(0, -1)
-        this.reqService.key = this.halfStepDownMap.get(<string>this.reqService.key)
       }
     }
   }
