@@ -195,13 +195,18 @@ export class InterfaceComponent implements OnInit {
     this.stateService.print("sending request to server")
     const req = this.reqService.getReq()
     this.clearWaveboxVisuals();
-    // this.firestore.storePrompt(req)
-    const headers = new HttpHeaders(this.gopher.data.h);
-    this.http.post<any>(this.gopher.data.ra, req, { headers })
-      .subscribe(response =>
-      {
-        this.currentReqId = response["id"];
-      });
+
+    // CALL FUNCTIONS sendGenReq HERE
+
+    const url = "https://us-central1-entropy-413416.cloudfunctions.net/sendGenReq"
+    const body = { req: req };
+    const id = await this.currentUser.getIdToken()
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${id}` };
+    this.http.post(url, body, { headers: headers }).subscribe(id => {
+      this.currentReqId = id
+    });
 
     // send request and wait for
 
