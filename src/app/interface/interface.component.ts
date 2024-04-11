@@ -200,15 +200,18 @@ export class InterfaceComponent implements OnInit {
 
     const url = "https://us-central1-entropy-413416.cloudfunctions.net/sendGenReq"
     const body = { req: req };
-    const id = await this.currentUser.getIdToken()
-    const headers = {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${id}` };
-    this.http.post(url, body, { headers: headers }).subscribe(id => {
+    const header = {"Content-Type": "application/json"}
+    this.http.post(url, body, { headers: header }).subscribe((id: any) => {
+      console.log(id)
       this.currentReqId = id
-    });
+    })
 
     // send request and wait for
+
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF"
+    };
 
     let intervalRef = setInterval(() => {
       this.stateService.print("checking status")
