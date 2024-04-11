@@ -18,19 +18,19 @@ import axios from 'axios';
 admin.initializeApp();
 const corsHandler = cors({origin: true});
 
-exports.sendGenReq = functions.https.onRequest(async (request, response)) => {
+exports.sendGenReq = functions.https.onRequest(async (request, response) => {
   corsHandler(request, response, async () => {
-    const headers = new HttpHeaders({
+    const headers = {
       "Content-Type": "application/json",
       "Authorization": "Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF"
-    });
+    };
     const url = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run"
     const req = request.body.req
-    const axiosResponse = await axios.post(url, requestBody, { headers });
+    const axiosResponse = await axios.post(url, req, { headers });
     const currentReqId = axiosResponse.data.id;
     response.json({currentReqId: currentReqId});
   });
-}
+});
 
 // Credits
 
