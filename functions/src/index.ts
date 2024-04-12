@@ -18,22 +18,6 @@ import axios from "axios";
 admin.initializeApp();
 const corsHandler = cors({origin: true});
 
-exports.sendGenReq = functions.https.onRequest(async (request, response) => {
-  corsHandler(request, response, async () => {
-    const headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF",
-    };
-    const url = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
-    const req = request.body.req;
-    const axiosResponse = await axios.post(url, req, {headers});
-    const currentReqId = axiosResponse.data.id;
-    response.json({currentReqId: currentReqId});
-  });
-});
-
-// Credits
-
 exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
   const firestore = admin.firestore();
   const creditsRef = firestore.collection("credits").doc(user.uid);
@@ -58,5 +42,19 @@ exports.consumeCredit = functions.https.onRequest(async (request, response) => {
     await creditsRef.update({
       num_credits: doc.get("num_credits") - creditsToDecrement,
     });
+  });
+});
+
+exports.sendGenReq = functions.https.onRequest(async (request, response) => {
+  corsHandler(request, response, async () => {
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF",
+    };
+    const url = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
+    const req = request.body.req;
+    const axiosResponse = await axios.post(url, req, {headers});
+    const currentReqId = axiosResponse.data.id;
+    response.send({currentReqId: currentReqId});
   });
 });
