@@ -21,6 +21,7 @@ const corsHandler = cors({origin: true});
 const apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
 const runAsync = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
 const cancel = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
+const status = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/status/";
 const headers = {
   "Content-Type": "application/json",
   "Authorization": "Bearer " + apiKey,
@@ -60,6 +61,16 @@ exports.sendGenReq = functions.https.onRequest(async (request, response) => {
     const axiosResponse = await axios.post(url, req, {headers});
     const currentReqId = axiosResponse.data.id;
     response.send({currentReqId: currentReqId});
+  });
+});
+
+exports.checkReq = functions.https.onRequest(async (request, response) => {
+  corsHandler(request, response, async () => {
+    const url = status + request.body.reqId;
+    const req = {"input": {}};
+    const axiosResponse = await axios.post(url, req, {headers});
+    const statusResult = axiosResponse.data;
+    response.send(statusResult);
   });
 });
 

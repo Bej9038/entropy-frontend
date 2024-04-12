@@ -45,6 +45,9 @@ export class InterfaceComponent implements OnInit {
   rootStyle = getComputedStyle(this.document.documentElement);
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
+  cancel_url = "https://us-central1-entropy-413416.cloudfunctions.net/cancelReq"
+  send_url = "https://us-central1-entropy-413416.cloudfunctions.net/sendGenReq"
+  check_url = "https://us-central1-entropy-413416.cloudfunctions.net/checkReq"
 
   // @ts-ignore
   @ViewChildren("wavebox") waveboxes: QueryList<WaveboxComponent>;
@@ -154,8 +157,7 @@ export class InterfaceComponent implements OnInit {
     if(this.stateService.getCurrentState() != GenerationState.Generating)
     {
       this.firestore.consumeCredits(1)
-      if(this.stateService.debug == DebugState.Debug)
-      {
+      if(this.stateService.debug == DebugState.Debug) {
         this.clearWaveboxVisuals()
         this.reqService.getReq()
       }
@@ -174,14 +176,13 @@ export class InterfaceComponent implements OnInit {
   async sendCancelReq()
   {
     this.stateService.print("cancelling request")
-    const url = "https://us-central1-entropy-413416.cloudfunctions.net/cancelReq"
     const body = { reqId: this.currentReqId };
     const id = await this.firestore.currentUser.getIdToken()
     const headers = {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${id}`
     };
-    this.http.post(url, body, { headers: headers }).subscribe()
+    this.http.post(this.cancel_url, body, { headers: headers }).subscribe()
     this.currentReqId = "";
   }
 
@@ -191,51 +192,45 @@ export class InterfaceComponent implements OnInit {
     const req = this.reqService.getReq()
     this.clearWaveboxVisuals();
 
-    // CALL FUNCTIONS sendGenReq HERE
+    // Call SendGenReq
 
-    const url = "https://us-central1-entropy-413416.cloudfunctions.net/sendGenReq"
     const body = { req: req };
     const id = await this.firestore.currentUser.getIdToken()
     const headers = {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${id}` };
 
-    this.http.post(url, body, { headers: headers }).subscribe((response: any) => {
-      console.log(response.currentReqId)
+    this.http.post(this.send_url, body, { headers: headers }).subscribe((response: any) => {
+      this.stateService.print(response.currentReqId)
       this.currentReqId = response.currentReqId
     })
 
-    // send request and wait for
+    // Check Status
 
-    // headers = new HttpHeaders({
-    //   "Content-Type": "application/json",
-    //   "Authorization": "Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF"
-    // });
-
-    // let intervalRef = setInterval(() => {
-    //   this.stateService.print("checking status")
-    //   this.http.post<any>(this.gopher.data.s + this.currentReqId, req, { headers })
-    //     .subscribe(async response => {
-    //       if (response["status"] == "COMPLETED") {
-    //         if(this.stateService.getCurrentState() != GenerationState.Displaying){
-    //           this.stateService.print("request complete")
-    //           for(let i = 0; i < this.wavebox_ids.length; i++)
-    //           {
-    //             let wb = this.waveboxes.toArray()[i]
-    //             let base64 = response["output"][i]
-    //             let res = await this.audioService.decodeBase64ToAudioURL(base64, i, req.input.text)
-    //             wb.initWaveSurfer(res["url"])
-    //             wb.filename = res["filename"]
-    //           }
-    //           this.stateService.setState(GenerationState.Displaying);
-    //           clearInterval(intervalRef);
-    //           this.currentReqId = ""
-    //         }
-    //       } else if (response["status"] == "CANCELLED") {
-    //         clearInterval(intervalRef);
-    //       }
-    //     });
-    // }, 2000);
+    let intervalRef = setInterval(async() => {
+      this.stateService.print("checking status")
+      const body = { reqId: this.currentReqId };
+      this.http.post(this.check_url, body, { headers: headers }).subscribe(async (response: any) => {
+        this.stateService.print(response)
+        if (response["status"] == "COMPLETED") {
+          if(this.stateService.getCurrentState() != GenerationState.Displaying){
+            this.stateService.print("request complete")
+            for(let i = 0; i < this.wavebox_ids.length; i++) {
+              let wb = this.waveboxes.toArray()[i]
+              let base64 = response["output"][i]
+              let res = await this.audioService.decodeBase64ToAudioURL(base64, i, req.input.text)
+              wb.initWaveSurfer(res["url"])
+              wb.filename = res["filename"]
+            }
+            this.stateService.setState(GenerationState.Displaying);
+            clearInterval(intervalRef);
+            this.currentReqId = ""
+          }
+        } else if (response["status"] == "CANCELLED") {
+          clearInterval(intervalRef);
+        }
+      });
+    }, 5000);
   }
 
   checkRipple() {
