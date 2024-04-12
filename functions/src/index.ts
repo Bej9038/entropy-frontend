@@ -39,27 +39,27 @@ exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
   }
 });
 
-exports.consumeCredit = functions.https.onRequest(async (request, response) => {
+exports.sendGenReq = functions.https.onRequest(async (request, response) => {
   corsHandler(request, response, async () => {
+    // consume credit
+
     const firestore = admin.firestore();
     const idToken = request.headers.authorization?.slice(7) ?? "";
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     const uid = decodedToken.uid;
     const creditsRef = firestore.collection("credits").doc(uid);
     const doc = await creditsRef.get();
-    const creditsToDecrement = request.body.credits;
     await creditsRef.update({
-      num_credits: doc.get("num_credits") - creditsToDecrement,
+      num_credits: doc.get("num_credits") - request.body.credits,
     });
-  });
-});
 
-exports.sendGenReq = functions.https.onRequest(async (request, response) => {
-  corsHandler(request, response, async () => {
+    // send req, send back id
+
     const url = runAsync;
     const req = request.body.req;
     const axiosResponse = await axios.post(url, req, {headers});
     const currentReqId = axiosResponse.data.id;
+
     response.send({currentReqId: currentReqId});
   });
 });

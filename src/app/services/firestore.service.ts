@@ -38,15 +38,15 @@ export class FirestoreService {
     });
   }
 
-  async consumeCredits(credits: number) {
-    const url = "https://us-central1-entropy-413416.cloudfunctions.net/consumeCredit"
-    const body = { credits: credits };
-    const id = await this.currentUser.getIdToken()
-    const headers = {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${id}` };
-    this.http.post(url, body, { headers: headers }).subscribe();
-  }
+  // async consumeCredits(credits: number) {
+  //   const url = "https://us-central1-entropy-413416.cloudfunctions.net/consumeCredit"
+  //   const body = { credits: credits };
+  //   const id = await this.currentUser.getIdToken()
+  //   const headers = {
+  //     "Content-Type": "application/json",
+  //     "Authorization": `Bearer ${id}` };
+  //   this.http.post(url, body, { headers: headers }).subscribe();
+  // }
 
   getCredits() {
     return this.userCredits

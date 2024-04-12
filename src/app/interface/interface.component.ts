@@ -156,7 +156,6 @@ export class InterfaceComponent implements OnInit {
     this.ripple.launch(0, 0, rippleConfig)
     if(this.stateService.getCurrentState() != GenerationState.Generating)
     {
-      this.firestore.consumeCredits(1)
       if(this.stateService.debug == DebugState.Debug) {
         this.clearWaveboxVisuals()
         this.reqService.getReq()
@@ -194,7 +193,7 @@ export class InterfaceComponent implements OnInit {
 
     // Call SendGenReq
 
-    const body = { req: req };
+    const body = {req: req, credits: 1};
     const id = await this.firestore.currentUser.getIdToken()
     const headers = {
       "Content-Type": "application/json",
