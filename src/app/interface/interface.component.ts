@@ -1,5 +1,5 @@
 import {Component, ElementRef, Inject, OnInit, QueryList, ViewChild, ViewChildren,} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {AudioService} from "../services/audio.service";
 import {ReqService} from "../services/req.service";
 import {MatRipple} from "@angular/material/core";
@@ -29,7 +29,6 @@ import {animate, query, style, transition, trigger} from "@angular/animations";
   ]
 })
 export class InterfaceComponent implements OnInit {
-  gopher: any = {"data" : undefined}
   placeholders: string[] = [
     "acoustic hi-hat top loop",
     "trap snare drum",
@@ -73,7 +72,6 @@ export class InterfaceComponent implements OnInit {
 
   ngOnInit() {
     this.setNumWaveboxes()
-    this.firestore.accessGopher(this.gopher)
     this.stateService.setState(GenerationState.Idle)
   }
 

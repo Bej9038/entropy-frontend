@@ -13,7 +13,7 @@ export class FirestoreService {
 
   currentUser: any | undefined = undefined;
   userCredits: number = 0;
-  dir: string = "preference_data/"
+  pref_data_storage_dir: string = "preference_data/"
 
   constructor(private firestore: AngularFirestore,
               private auth: AngularFireAuth,
@@ -55,7 +55,7 @@ export class FirestoreService {
   storePreferenceAudio(audio: Blob, prompt: string){
     const time = new Date().getTime()
     const filename = time + "_" + prompt
-    const fp = this.dir + filename
+    const fp = this.pref_data_storage_dir + filename
     this.storage.upload(fp, audio);
     this.stateService.print("upload started")
     return filename
@@ -81,13 +81,5 @@ export class FirestoreService {
       "user": this.currentUser.email
     }
     this.firestore.collection("prompts").add(data)
-  }
-
-  accessGopher(gopher: any) {
-    this.firestore.collection("gopher")
-      .doc("N23bBnhGNa2Ei0Wa1wBb")
-      .get().subscribe(doc => {
-        gopher.data = doc.data()
-      })
   }
 }
