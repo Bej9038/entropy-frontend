@@ -18,6 +18,14 @@ import axios from "axios";
 admin.initializeApp();
 const corsHandler = cors({origin: true});
 
+const apiKey = "JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF";
+const runAsync = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
+const cancel = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/cancel/";
+const headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer " + apiKey,
+};
+
 exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
   const firestore = admin.firestore();
   const creditsRef = firestore.collection("credits").doc(user.uid);
@@ -47,14 +55,18 @@ exports.consumeCredit = functions.https.onRequest(async (request, response) => {
 
 exports.sendGenReq = functions.https.onRequest(async (request, response) => {
   corsHandler(request, response, async () => {
-    const headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer JZTOUADUXNL7BBELM84Y6INBGDHANBEOR81NU5TF",
-    };
-    const url = "https://api.runpod.ai/v2/5aiuk1jqxasy3v/run";
+    const url = runAsync;
     const req = request.body.req;
     const axiosResponse = await axios.post(url, req, {headers});
     const currentReqId = axiosResponse.data.id;
     response.send({currentReqId: currentReqId});
+  });
+});
+
+exports.cancelReq = functions.https.onRequest(async (request, response) => {
+  corsHandler(request, response, async () => {
+    const req = {"input": {}};
+    const url = cancel + request.body.reqId;
+    await axios.post(url, req, {headers});
   });
 });

@@ -41,7 +41,6 @@ export class InterfaceComponent implements OnInit {
   num_waveboxes = 2;
   wavebox_ids: number[] = [];
   currentReqId: string = "";
-  missing_id: boolean = false;
   placeholder: string = this.placeholders[0]
   placeholderIntervalRef: any = undefined;
   rootStyle = getComputedStyle(this.document.documentElement);
@@ -174,19 +173,17 @@ export class InterfaceComponent implements OnInit {
     }
   }
 
-  sendCancelReq()
+  async sendCancelReq()
   {
     this.stateService.print("cancelling request")
-    this.missing_id = true;
-    const headers = new HttpHeaders(this.gopher.data.h);
-    let req = {"input": {}}
-    this.stateService.print(this.currentReqId)
-    this.http.post<any>(this.gopher.data.c + this.currentReqId, req, { headers })
-      .subscribe(response =>
-      {
-        this.currentReqId = response["id"];
-        this.missing_id = false;
-      });
+    const url = "https://us-central1-entropy-413416.cloudfunctions.net/cancelReq"
+    const body = { reqId: this.currentReqId };
+    const id = await this.firestore.currentUser.getIdToken()
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${id}`
+    };
+    this.http.post(url, body, { headers: headers }).subscribe()
     this.currentReqId = "";
   }
 
