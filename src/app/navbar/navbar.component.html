@@ -20,7 +20,7 @@
         News <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>
       </div>
     </a>
-    <button [disabled]="!signedIn" [matMenuTriggerFor]="menu" class="header-buttons" mat-button (click)="openMenu()">
+    <button [disabled]="!signedIn" [matMenuTriggerFor]="menu" class="header-buttons" mat-button>
       <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
         Account
 <!--        <mat-icon *ngIf="signedIn">expand_more</mat-icon>-->
@@ -36,8 +36,22 @@
 
 
   <mat-menu #menu class="matMenu" xPosition="before">
-<!--    <button class="menu-item" mat-menu-item> account info </button>-->
-    <button class="menu-item" mat-menu-item> view credits </button>
-    <a class="menu-item" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
+    <div *ngIf="menuButtons">
+      <button class="menu-item" mat-menu-item> view credits </button>
+      <button (click)="openQuickSettings($event)" class="menu-item" mat-menu-item> settings </button>
+      <a class="menu-item" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
+    </div>
+
+    <div *ngIf="menuSettings">
+<!--      <button>-->
+<!--        <mat-icon>-->
+<!--          navigate_before-->
+<!--        </mat-icon>-->
+<!--      </button>-->
+      <button (click)="updateWaveboxes(2)" class="menu-item" mat-button>2</button>
+      <button (click)="updateWaveboxes(4)" class="menu-item" mat-button>4</button>
+    </div>
+
+
   </mat-menu>
 </mat-toolbar>

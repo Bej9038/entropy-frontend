@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {StateService} from "./state.service";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class ReqService {
   key: string | undefined = ""
   entropy: number = 0.9
   duration: number = 5
-  numAudio: number = 2
+  numAudio = new BehaviorSubject<number>(2)
+  numAudioObsv = this.numAudio.asObservable();
   loop: boolean = false;
   halfStepDownMap: Map<string, string> = new Map<string, string>();
 
@@ -30,9 +32,11 @@ export class ReqService {
     this.halfStepDownMap.set("", "")
   }
 
+  updateNumAudio(value: number) {
+    this.numAudio.next(value)
+  }
 
-  formatDescription()
-  {
+  formatDescription() {
     let text = this.description.replace(new RegExp('[-]', 'g'), " ");
     text = text.replace(new RegExp('[,.]', 'g'), "");
 

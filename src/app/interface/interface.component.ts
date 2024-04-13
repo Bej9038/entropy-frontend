@@ -8,6 +8,7 @@ import {WaveboxComponent} from "../wavebox/wavebox.component";
 import {FirestoreService} from "../services/firestore.service";
 import {DebugState, GenerationState, StateService} from "../services/state.service";
 import {animate, query, style, transition, trigger} from "@angular/animations";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -37,7 +38,8 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic arp",
   ];
-  num_waveboxes = 2;
+  // @ts-ignore
+  num_wavebox_subscription: Subscription;
   wavebox_ids: number[] = [];
   currentReqId: string = "";
   placeholder: string = this.placeholders[0]
@@ -74,7 +76,9 @@ export class InterfaceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.setNumWaveboxes(2)
+    this.num_wavebox_subscription = this.reqService.numAudioObsv.subscribe(newValue => {
+      this.setNumWaveboxes()
+    })
     this.stateService.setState(GenerationState.Idle)
   }
 
@@ -120,17 +124,17 @@ export class InterfaceComponent implements OnInit {
     })
   }
 
-  setNumWaveboxes(num: number) {
-    this.num_waveboxes = num
+  setNumWaveboxes() {
     this.wavebox_ids = []
-    for(let i = 0; i < this.num_waveboxes; i++) {
-      this.wavebox_ids.push(i)
-    }
-    this.reqService.numAudio = this.num_waveboxes
+    setTimeout(() => {
+      for(let i = 0; i < this.reqService.numAudio.value; i++) {
+        this.wavebox_ids.push(i)
+      }
+    }, 1000)
   }
 
   resetWaveboxes() {
-    this.setNumWaveboxes(this.num_waveboxes)
+    this.setNumWaveboxes()
     this.clearWaveboxVisuals()
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {StateService} from "../services/state.service";
+import {ReqService} from "../services/req.service";
 
 
 @Component({
@@ -11,11 +12,14 @@ import {StateService} from "../services/state.service";
 })
 export class NavbarComponent implements OnInit {
 
-  signedIn = false;
+  signedIn = false
+  menuButtons = true
+  menuSettings = false
 
   constructor(private auth: AngularFireAuth,
               public router: Router,
-              private stateService: StateService) { }
+              private stateService: StateService,
+              public reqService: ReqService) { }
 
   ngOnInit(): void {
     this.auth.authState.subscribe(user => {
@@ -27,8 +31,14 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  openMenu() {
+  openQuickSettings(event: any) {
+    event.stopPropagation();
+    this.menuSettings = true
+    this.menuButtons = false
+  }
 
+  updateWaveboxes(value: number) {
+    this.reqService.updateNumAudio(value)
   }
 
   signOut(): void {

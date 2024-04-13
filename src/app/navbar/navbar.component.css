@@ -51,6 +51,7 @@
 
 ::ng-deep.menu-item {
   color: var(--white) !important;
+  text-align: center !important;
 }
 
 

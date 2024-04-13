@@ -177,8 +177,10 @@
 .audio-container {
   display: flex;
   flex-direction: row;
-  /*align-content: center;*/
-  /*align-items: center;*/
+  min-height: 109.6px;
+  align-content: center;
+  align-items: center;
+  /*justify-content: space-around;*/
   justify-content: center;
   /*flex-wrap: wrap;*/
   /*width: 100%;*/
