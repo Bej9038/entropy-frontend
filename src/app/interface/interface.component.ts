@@ -74,7 +74,7 @@ export class InterfaceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.setNumWaveboxes()
+    this.setNumWaveboxes(2)
     this.stateService.setState(GenerationState.Idle)
   }
 
@@ -120,15 +120,17 @@ export class InterfaceComponent implements OnInit {
     })
   }
 
-  setNumWaveboxes() {
+  setNumWaveboxes(num: number) {
+    this.num_waveboxes = num
     this.wavebox_ids = []
     for(let i = 0; i < this.num_waveboxes; i++) {
       this.wavebox_ids.push(i)
     }
+    this.reqService.numAudio = this.num_waveboxes
   }
 
   resetWaveboxes() {
-    this.setNumWaveboxes()
+    this.setNumWaveboxes(this.num_waveboxes)
     this.clearWaveboxVisuals()
   }
 

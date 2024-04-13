@@ -10,6 +10,7 @@ export class ReqService {
   key: string | undefined = ""
   entropy: number = 0.9
   duration: number = 5
+  numAudio: number = 2
   loop: boolean = false;
   halfStepDownMap: Map<string, string> = new Map<string, string>();
 
@@ -60,7 +61,8 @@ export class ReqService {
         "entropy": this.entropy,
         "duration": this.duration,
         "stereo": 1,
-        "ping": 0
+        "ping": 0,
+        "num_audio": this.numAudio
       }
     };
   }
