@@ -66,7 +66,7 @@ export class ReqService {
         "duration": this.duration,
         "stereo": 1,
         "ping": 0,
-        "num_audio": this.numAudio
+        "num_audio": this.numAudio.value
       }
     };
   }

@@ -235,7 +235,7 @@ export class InterfaceComponent implements OnInit {
           clearInterval(intervalRef);
         }
       });
-    }, 5000);
+    }, 1000);
   }
 
   checkRipple() {
