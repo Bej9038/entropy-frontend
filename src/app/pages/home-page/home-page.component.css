@@ -22,7 +22,7 @@
   position: fixed;
   width: 400px;
   height: 220px;
-  /*padding-top: 32px;*/
+  min-height: 220px;
   /*margin-top: 240px;*/
   display: flex;
   justify-content: center;
@@ -32,6 +32,15 @@
   background-color: var(--translucent);
   color: white;
   border-radius: 8px;
+}
+
+firebase-ui {
+
+}
+
+::ng-deep #firebaseui-auth-container {
+  margin-top: 52px !important;
+  /*height: 160px;*/
 }
 
 .try-button {
