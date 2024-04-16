@@ -19,11 +19,11 @@ import {Subscription} from "rxjs";
     trigger('listAnimation', [
       transition('* => *', [
         query(':leave', [
-          animate('.5s ease-out', style({ opacity: 0, width: '0%'}))
+          animate('300ms ease-in', style({ opacity: 0, width: '0%'}))
         ], { optional: true }),
         query(':enter', [
           style({ opacity: 0, width: 0}),
-          animate('.5s ease-out', style({ opacity: 1, width: "*"}))
+          animate('300ms ease-in', style({ opacity: 1, width: "*"}))
         ], { optional: true }),
       ]),
     ])
@@ -39,12 +39,13 @@ export class InterfaceComponent implements OnInit {
     "sustained electronic arp",
   ];
   // @ts-ignore
-  num_wavebox_subscription: Subscription;
-  wavebox_ids: number[] = [];
-  currentReqId: string = "";
+  num_wavebox_subscription: Subscription
+  wavebox_ids: number[] = []
+  currentReqId: string = ""
   placeholder: string = this.placeholders[0]
-  placeholderIntervalRef: any = undefined;
-  rootStyle = getComputedStyle(this.document.documentElement);
+  placeholderIntervalRef: any = undefined
+  input_focus = false
+  rootStyle = getComputedStyle(this.document.documentElement)
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
   cancel_url = "https://us-central1-entropy-413416.cloudfunctions.net/cancelReq"

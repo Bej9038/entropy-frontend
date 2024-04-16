@@ -9,9 +9,9 @@
   width: 100%;
 
   /*background-image: url('src/assets/AdobeStock_74755985.jpeg');*/
-  background-image: url('src/assets/AdobeStock_2387440.jpeg');
+  /*background-image: url('src/assets/AdobeStock_2387440.jpeg');*/
   /*background-image: url('src/assets/AdobeStock_374806029.jpeg');*/
-  /*background-image: url('src/assets/AdobeStock_696681233.jpeg');*/
+  background-image: url('src/assets/AdobeStock_696681233.jpeg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -19,6 +19,7 @@
 }
 
 .signinCard {
+  animation: var(--defualt-fade);
   position: fixed;
   width: 400px;
   height: 220px;
@@ -35,18 +36,16 @@
 }
 
 firebase-ui {
-
+  animation: var(--defualt-fade);
 }
 
 ::ng-deep #firebaseui-auth-container {
-  margin-top: 52px !important;
+  margin-top: 44px !important;
   /*height: 160px;*/
 }
 
 .try-button {
-  /*animation: opacityFade 300ms forwards;*/
-  /*width: 140px;*/
-  /*height: 60px;*/
+  animation: var(--defualt-fade);
   height: 100%;
   width: 100%;
   text-align: center;

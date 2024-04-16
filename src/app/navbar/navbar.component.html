@@ -7,17 +7,20 @@
   <div class="homepage-links">
     <a *ngIf="router.url == '/'" routerLink="mission" mat-button class="header-buttons">
       <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
-        Mission <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>
+        Mission
+<!--        <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>-->
       </div>
     </a>
     <a *ngIf="router.url == '/'" routerLink="tech" mat-button class="header-buttons">
       <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
-        Tech <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>
+        Tech
+<!--        <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>-->
       </div>
     </a>
     <a *ngIf="router.url == '/'" routerLink="news" mat-button class="header-buttons">
       <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
-        News <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>
+        News
+<!--        <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>-->
       </div>
     </a>
     <button [disabled]="!signedIn" [matMenuTriggerFor]="menu" class="header-buttons" mat-button>

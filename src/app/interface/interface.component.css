@@ -42,7 +42,8 @@
 }
 
 ::ng-deep.mdc-text-field--filled .mdc-floating-label {
-  color: var(--translucent-dark) !important;
+  /*color: var(--translucent-dark) !important;*/
+  color: var(--translucent-grey-2) !important;
   font-size: var(--font-large) !important;
 }
 
