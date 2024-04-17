@@ -10,7 +10,7 @@
       (mousedown)="onMouseDown()"
       (mouseup)="onMouseUp()"
       class="cover"></div>
-    <mat-progress-bar *ngIf="stateService.getCurrentState() == GenerationState.Generating" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+    <mat-progress-bar *ngIf="stateService.getCurrentState() == GenerationState.Generating" [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Generating ? 1 : 0}" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
     <div class="waveform" #waveform></div>
   </div>
 

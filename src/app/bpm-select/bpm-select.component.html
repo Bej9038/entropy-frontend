@@ -3,7 +3,8 @@
 
   <mat-form-field class="bpm-form" >
 <!--      <mat-label class="bpm-add" *ngIf="!loopSelected">bpm</mat-label>-->
-      <mat-label class="bpm-add" *ngIf="loopSelected && bpm_input_focus && bpm == ''">bpm</mat-label>
+      <mat-label  [ngStyle]="{'opacity': (loopSelected && bpm_input_focus && bpm == '') ? 1 : 0}"
+                  class="bpm-add">bpm</mat-label>
       <input (blur)="bpm_input_focus = false" (focus)="bpm_input_focus = true" style="font-size: 1.4rem !important;" class="bpm-add" matInput  [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" maxlength="3"
              [(ngModel)]="bpm" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" (input)="updateBPM()">
   </mat-form-field>

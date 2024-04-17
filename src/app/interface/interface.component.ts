@@ -43,7 +43,6 @@ export class InterfaceComponent implements OnInit {
   wavebox_ids: number[] = []
   currentReqId: string = ""
   placeholder: string = this.placeholders[0]
-  placeholderIntervalRef: any = undefined
   input_focus = false
   rootStyle = getComputedStyle(this.document.documentElement)
   white = this.rootStyle.getPropertyValue("--white").trim()
@@ -84,7 +83,6 @@ export class InterfaceComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.nextPlaceholder()
     if(this.stateService.debug == DebugState.Debug)
     {
       this.waveboxes.forEach(wb => {
@@ -96,22 +94,7 @@ export class InterfaceComponent implements OnInit {
 
   nextPlaceholder() {
     let i = Math.floor(Math.random() * this.placeholders.length)
-    let seconds = 10
-    let self = this
-    this.textLabel.nativeElement.style.opacity = 0;
-    this.textLabel.nativeElement.style.transition="opacity 500ms cubic-bezier(0.25, 0.8, 0.25, 1)"
-    setTimeout(function() {
-      self.textLabel.nativeElement.style.opacity = 1;
-      self.placeholderIntervalRef = setInterval(() => {
-        self.textLabel.nativeElement.style.opacity = 0;
-        setTimeout(function() {
-          self.placeholder = self.placeholders[i];
-          self.textLabel.nativeElement.style.opacity = 1;
-        }, 500);
-        i = Math.floor(Math.random() * self.placeholders.length)
-      }, seconds * 1000);
-
-    }, 300);
+    this.placeholder = this.placeholders[i];
   }
 
   selectPlaceholder() {

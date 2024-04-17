@@ -9,8 +9,8 @@
         </button>
 
         <mat-form-field appearance="fill" class="textBar">
-          <mat-label #label>{{reqService.description == "" && input_focus? placeholder : ""}}</mat-label>
-          <input (blur)="input_focus = false" (focus)="input_focus = true" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description">
+          <mat-label [ngStyle]="{'opacity': (reqService.description == '' && input_focus) ? 1 : 0}" #label >{{placeholder}}</mat-label>
+          <input (blur)="input_focus = false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description">
         </mat-form-field>
 
         <button style="visibility: hidden" [disabled]="true" class="generateButton" mat-button>

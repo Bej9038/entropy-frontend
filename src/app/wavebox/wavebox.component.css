@@ -114,10 +114,12 @@
 
 ::ng-deep .mat-progress-bar {
   height: var(--line-size) !important;
+  transition: var(--default-transition) !important;
 }
 
 mat-progress-bar {
   border-radius: 8px;
+  transition: var(--default-transition) !important;
   /*color: var(--color-accent) !important;*/
   /*background-color: var(--color-accent) !important;*/
 }
