@@ -29,6 +29,7 @@
   justify-content: center;
   align-content: center;
   align-items: center;
+  text-align: center !important;
 }
 
 ::ng-deep.mdc-text-field--filled .mdc-text-field__input {
@@ -66,7 +67,29 @@
 
 ::ng-deep.mdc-text-field--filled.mdc-text-field--focused .mdc-floating-label, .mdc-text-field--filled.mdc-text-field--focused .mdc-floating-label--float-above {
   /*color: var(--translucent-grey-2) !important;*/
-  transform: translateY(-50%) !important;
+  /*transform: translateY(-50%) !important;*/
+}
+
+::ng-deep mat-label {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+::ng-deep.mdc-floating-label {
+  position: absolute !important;
+  text-align: center !important;
+  height: auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  transform: none !important;
+
+  margin: auto !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
 }
 
 
