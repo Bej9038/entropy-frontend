@@ -17,6 +17,7 @@ export class BpmSelectComponent implements OnInit {
     Validators.min(60),
     Validators.max(200),
   ]);
+  bpm_input_focus = false
   rootStyle = getComputedStyle(this.document.documentElement);
   dummyControl= new FormControl({value: '', disabled: true});
 
