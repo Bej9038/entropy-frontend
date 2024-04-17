@@ -142,6 +142,10 @@ export class InterfaceComponent implements OnInit {
     const rippleConfig = {
       centered: true,
       radius: 800,
+      animation: {
+        enterDuration: 300,
+        exitDuration: 300
+      }
     };
     this.ripple.launch(0, 0, rippleConfig)
     if(this.stateService.getCurrentState() != GenerationState.Generating)
