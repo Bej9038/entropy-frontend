@@ -199,7 +199,7 @@
 .audio-container {
   display: flex;
   flex-direction: row;
-  min-height: 109.6px;
+  min-height: 112px;
   align-content: center;
   align-items: center;
   /*justify-content: space-around;*/
