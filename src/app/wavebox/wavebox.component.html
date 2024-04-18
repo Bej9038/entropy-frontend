@@ -10,17 +10,11 @@
       (mousedown)="onMouseDown()"
       (mouseup)="onMouseUp()"
       class="cover"></div>
-    <mat-progress-bar *ngIf="stateService.getCurrentState() == GenerationState.Generating" [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Generating ? 1 : 0}" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-    <div class="waveform" #waveform></div>
+    <mat-progress-bar [ngClass]="{'show': stateService.getCurrentState() == GenerationState.Generating, 'hide': stateService.getCurrentState() != GenerationState.Generating}" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+    <div [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Displaying || stateService.getCurrentState() == GenerationState.Selected ? 1 : 0}" class="waveform" #waveform></div>
   </div>
 
-<!--  <div class="button-cont">-->
-<!--    <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.playOrPause(audioID)" mat-button>-->
-  <button *ngIf="stateService.getCurrentState() == GenerationState.Displaying" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.pauseAndPlay(audioID)" mat-button>
+  <button [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Displaying ? 1 : 0}" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.pauseAndPlay(audioID)" mat-button>
     <mat-icon>play_arrow</mat-icon>
   </button>
-<!--  <button *ngIf="selected"[disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton"  (click)="audioService.downloadAudio(audioID);" mat-button>-->
-<!--    <mat-icon [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying}">download</mat-icon>-->
-<!--  </button>-->
-<!--  </div>-->
 </div>

@@ -32,9 +32,9 @@ import {Subscription} from "rxjs";
 export class InterfaceComponent implements OnInit {
   placeholders: string[] = [
     "acoustic hi-hat top loop",
-    "trap snare drum",
+    "snappy snare drum",
     "pulsing synth chords",
-    "kick drum",
+    "hip hop kick drum",
     "distorted cinematic drum loop",
     "sustained electronic arp",
   ];
