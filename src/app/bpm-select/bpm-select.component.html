@@ -20,7 +20,7 @@
 <!--  </div>-->
 
   <div class="button-cont">
-    <button class="bpm-flexitem keyButton" [class.selected]="loopSelected" (click)="toggleBPM(); reqService.loop=true" mat-flat-button> loop </button>
+    <button class="bpm-flexitem keyButton" [class.selected]="loopSelected" (click)="toggleBPM()" mat-flat-button> loop </button>
 <!--    <button class="bpm-flexitem keyButton" [class.selected]="!loopSelected" (click)="toggleBPM(); reqService.loop=false" mat-flat-button> one shot </button>-->
     <!--  <button class="bpm-flexitem keyButton" [class.selected]="BPMSelected" (click)="toggleLoop() "mat-flat-button> loop </button>-->
   </div>

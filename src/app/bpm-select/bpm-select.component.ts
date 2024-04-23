@@ -66,21 +66,22 @@ export class BpmSelectComponent implements OnInit {
     {
         this.reqService.bpm = ""
         this.checkRipple()
-      if(this.stateService.getCurrentState() == GenerationState.Error)
-      {
+      if(this.stateService.getCurrentState() == GenerationState.Error) {
         this.stateService.setState(this.stateService.getPreviousState());
       }
+      this.reqService.loop = false
     }
-  else {
-    this.bpm = ""
-    this.reqService.bpm = this.bpm
-    this.checkRipple()
-    if((this.numberInputControl.hasError('min') ||
-        this.numberInputControl.hasError('max') ||
-        this.numberInputControl.hasError('pattern')) && this.stateService.getCurrentState() != GenerationState.Error)
-      {
+    else
+    {
+      this.bpm = ""
+      this.reqService.bpm = this.bpm
+      this.checkRipple()
+      if((this.numberInputControl.hasError('min') ||
+          this.numberInputControl.hasError('max') ||
+          this.numberInputControl.hasError('pattern')) && this.stateService.getCurrentState() != GenerationState.Error) {
         this.stateService.setState(GenerationState.Error)
       }
+      this.reqService.loop = true
     }
   }
 }
