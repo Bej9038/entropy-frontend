@@ -40,7 +40,7 @@ export class InterfaceComponent implements OnInit {
   ];
   // @ts-ignore
   num_wavebox_subscription: Subscription
-  wavebox_ids: number[] = []
+  wavebox_ids: number[] = [0, 1]
   currentReqId: string = ""
   placeholder: string = this.placeholders[0]
   input_focus = false
@@ -50,6 +50,7 @@ export class InterfaceComponent implements OnInit {
   cancel_url = "https://us-central1-entropy-413416.cloudfunctions.net/cancelReq"
   send_url = "https://us-central1-entropy-413416.cloudfunctions.net/sendGenReq"
   check_url = "https://us-central1-entropy-413416.cloudfunctions.net/checkReq"
+  animate_waveboxes = false
 
   // @ts-ignore
   @ViewChildren("wavebox") waveboxes: QueryList<WaveboxComponent>;
@@ -109,12 +110,14 @@ export class InterfaceComponent implements OnInit {
   }
 
   setNumWaveboxes() {
-    this.wavebox_ids = []
-    setTimeout(() => {
-      for(let i = 0; i < this.reqService.numAudio.value; i++) {
-        this.wavebox_ids.push(i)
-      }
-    }, 1000)
+    if(this.animate_waveboxes) {
+      this.wavebox_ids = []
+      setTimeout(() => {
+        for(let i = 0; i < this.reqService.numAudio.value; i++) {
+          this.wavebox_ids.push(i)
+        }
+      }, 1000)
+    }
   }
 
   resetWaveboxes() {
@@ -223,7 +226,7 @@ export class InterfaceComponent implements OnInit {
           clearInterval(intervalRef);
         }
       });
-    }, 1000);
+    }, 2000);
   }
 
   checkRipple() {

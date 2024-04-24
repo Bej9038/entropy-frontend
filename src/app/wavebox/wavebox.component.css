@@ -132,11 +132,11 @@ mat-progress-bar {
   /*background-color: var(--color-accent) !important;*/
 }
 
-::ng-deep.mdc-linear-progress__buffer-bar{
+::ng-deep.mdc-linear-progress__buffer-bar {
   background-color: var(--translucent-dark) !important;
 }
 
-::ng-deep.mdc-linear-progress__bar-inner{
+::ng-deep.mdc-linear-progress__bar-inner {
   border-radius: 8px;
   border-color: var(--color-accent) !important;
   opacity: .5;
