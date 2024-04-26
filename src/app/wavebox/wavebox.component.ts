@@ -65,7 +65,7 @@ export class WaveboxComponent implements OnInit {
 
   selectWavebox()
   {
-    this.parent.animate_waveboxes = true
+    // this.parent.animate_waveboxes = true
     if(this.stateService.getCurrentState() == GenerationState.Displaying)
     {
       this.audioService.pauseAudio()

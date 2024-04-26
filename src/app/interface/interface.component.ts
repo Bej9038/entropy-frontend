@@ -34,9 +34,8 @@ export class InterfaceComponent implements OnInit {
     "acoustic hi-hat top loop",
     "snappy snare drum",
     "pulsing synth chords",
-    "hip hop kick drum",
     "distorted cinematic drum loop",
-    "sustained electronic arp",
+    "sustained electronic synth arp",
   ];
   // @ts-ignore
   num_wavebox_subscription: Subscription
@@ -80,6 +79,9 @@ export class InterfaceComponent implements OnInit {
     this.num_wavebox_subscription = this.reqService.numAudioObsv.subscribe(newValue => {
       this.setNumWaveboxes()
     })
+    setTimeout(() => {
+      this.animate_waveboxes = true
+    }, 1000)
     this.stateService.setState(GenerationState.Idle)
   }
 
