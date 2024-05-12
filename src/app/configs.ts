@@ -22,9 +22,9 @@ export const routeConfig: Routes = [
     title: "Company"
   },
   {
-    path: "tech",
+    path: "entropy",
     component: TechPageComponent,
-    title: "Tech"
+    title: "Entropy"
   },
 ];
 
