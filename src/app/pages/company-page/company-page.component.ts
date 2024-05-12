@@ -62,13 +62,13 @@ export class CompanyPageComponent implements AfterViewInit {
         autoScroll: true
       }
     )
-    this.wavesurfer.load("assets/company-page-waveform.wav");
+    this.wavesurfer.load("assets/company-page-waveform.wav")
     this.keepFocus()
   }
 
   keepFocus() {
-    this.input.nativeElement.focus();
-    this.cd.detectChanges();
+    this.input.nativeElement.focus({ preventScroll: true })
+    this.cd.detectChanges()
   }
 
   @HostListener('window:resize', ['$event'])
