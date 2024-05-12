@@ -3,7 +3,10 @@
 <!--</video>-->
 <div class="home-container">
 <!--  <span  class="text"> ENTROPY </span>-->
-<!--  <span class="text"> THE FUTURE OF AUDIO </span>-->
+  <div class="text-container">
+    <span class="text"> Music is as much of a science as it is an art. </span>
+  </div>
+
   <mat-card class="signinCard">
     <firebase-ui *ngIf="!signedIn"
       (signInSuccessWithAuthResult)="onSignIn()">

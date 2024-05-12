@@ -5,16 +5,18 @@
   </a>
 
   <div class="homepage-links">
-    <a *ngIf="router.url == '/'" routerLink="company" mat-button class="header-buttons">
+
+    <a *ngIf="router.url == '/'" routerLink="tech" mat-button class="header-buttons">
       <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
-        Company
+        Entropy 1
 <!--        <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>-->
       </div>
     </a>
-    <a *ngIf="router.url == '/'" routerLink="tech" mat-button class="header-buttons">
+
+    <a *ngIf="router.url == '/'" routerLink="company" mat-button class="header-buttons">
       <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
-        Tech
-<!--        <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>-->
+        Company
+        <!--        <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>-->
       </div>
     </a>
 <!--    <a *ngIf="router.url == '/'" routerLink="news" mat-button class="header-buttons">-->
