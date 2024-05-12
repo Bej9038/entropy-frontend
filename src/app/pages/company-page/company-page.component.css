@@ -1,0 +1,32 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.title-container {
+  padding-top: 172px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.title {
+  color: var(--white);
+  font-size: 46px;
+  width: 420px;
+  text-align: center;
+}
+
+.sub-text {
+  padding-top: 28px;
+  color: var(--white);
+  font-size: 20px;
+  width: 600px;
+  line-height: 26px;
+  text-align: center;
+}

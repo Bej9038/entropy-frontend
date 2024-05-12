@@ -1,7 +1,7 @@
 import {Routes} from "@angular/router";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {AppPageComponent} from "./pages/app-page/app-page.component";
-import {MissionPageComponent} from "./pages/mission-page/mission-page.component";
+import {CompanyPageComponent} from "./pages/company-page/company-page.component";
 import {TechPageComponent} from "./pages/tech-page/tech-page.component";
 import {NewsPageComponent} from "./pages/news-page/news-page.component";
 
@@ -17,20 +17,15 @@ export const routeConfig: Routes = [
     title: "Entropy Audio"
   },
   {
-    path: "mission",
-    component: MissionPageComponent,
-    title: "Mission"
+    path: "company",
+    component: CompanyPageComponent,
+    title: "Company"
   },
   {
     path: "tech",
     component: TechPageComponent,
     title: "Tech"
   },
-  {
-    path: "news",
-    component: NewsPageComponent,
-    title: "News"
-  }
 ];
 
 export const firebaseConfig = {
