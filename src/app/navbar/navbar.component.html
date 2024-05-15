@@ -54,6 +54,12 @@
 <!--          navigate_before-->
 <!--        </mat-icon>-->
 <!--      </button>-->
+
+      <button (click)="returnToQuickSettings($event)" mat-button class="menu-item">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+
+
       <button (click)="updateWaveboxes(2)" class="menu-item" mat-button>2</button>
       <button (click)="updateWaveboxes(4)" class="menu-item" mat-button>4</button>
     </div>

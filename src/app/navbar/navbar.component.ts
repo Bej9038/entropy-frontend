@@ -37,6 +37,12 @@ export class NavbarComponent implements OnInit {
     this.menuButtons = false
   }
 
+  returnToQuickSettings(event: any) {
+    event.stopPropagation();
+    this.menuSettings = false
+    this.menuButtons = true
+  }
+
   updateWaveboxes(value: number) {
     this.reqService.updateNumAudio(value)
   }

@@ -18,6 +18,17 @@
   /*font-size: 1.5rem;*/
 }
 
+.header-buttons {
+  color: var(--white) !important;
+  margin: 0 32px;
+  /*border-bottom: var(--white) 1px solid;*/
+  /*border-radius: 0 !important;*/
+}
+
+.profile-button {
+  color: white !important;
+}
+
 .img {
   height: 1.9rem;
   padding-right: 12px;
@@ -44,6 +55,8 @@
   align-items: center;
 }
 
+/* Quick Settings */
+
 ::ng-deep.matMenu {
   background-color: var(--translucent) !important;
   /*left: 100px !important;*/
@@ -53,16 +66,4 @@
 ::ng-deep.menu-item {
   color: var(--white) !important;
   text-align: center !important;
-}
-
-
-.header-buttons {
-  color: var(--white) !important;
-  margin: 0 32px;
-  /*border-bottom: var(--white) 1px solid;*/
-  /*border-radius: 0 !important;*/
-}
-
-.profile-button {
-  color: white !important;
 }

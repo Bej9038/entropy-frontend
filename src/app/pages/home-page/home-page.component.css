@@ -84,7 +84,8 @@ video {
 }
 
 .text {
-  animation: opacityFade 4000ms forwards;
+  /*animation: var(--defualt-fade);*/
+  animation: opacityFade 2000ms forwards;
   /*top: 200px;*/
   /*position: fixed;*/
   /*padding-bottom: 560px;*/
