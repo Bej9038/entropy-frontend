@@ -25,8 +25,9 @@
 
 .sub-text {
   padding-top: 28px;
-  /*color: var(--white);*/
-  color: var(--color-accent);
+  color: var(--white);
+  /*color: var(--translucent-grey-2);*/
+  /*color: var(--color-accent);*/
   font-size: 20px;
   width: 600px;
   line-height: 26px;
@@ -44,18 +45,20 @@
 
 .horizontal-line1 {
   height: 1.6px;
-  background-color: var(--white);
-  width: 80%;
-  margin-top: 172px;
+  background-color: var(--translucent-grey-2);
+  /*background-color: var(--color-accent);*/
+  width: 90%;
+  margin-top: 98px;
   border-radius: 4px;
   text-align: center;
 }
 
 .horizontal-line2 {
   height: 1.6px;
-  background-color: var(--white);
-  width: 80%;
-  margin-bottom: 172px;
+  background-color: var(--translucent-grey-2);
+  /*background-color: var(--color-accent);*/
+  width: 90%;
+  margin-bottom: 98px;
   border-radius: 4px;
   text-align: center;
 }
@@ -146,7 +149,7 @@
 
 
 .textBar {
-  color: white;
+  color: var(--white);
   font-size: var(--font-large) !important;
   margin: 0 auto;
   flex-grow: 1;
@@ -178,7 +181,7 @@
 }
 
 ::ng-deep.mdc-text-field--filled .mdc-text-field__input {
-  caret-color: var(--translucent-grey-2) !important;
+  caret-color: var(--color-accent) !important;
   color: var(--white) !important;
   font-size: var(--font-large) !important;
   text-overflow: ellipsis;
@@ -188,7 +191,7 @@
 
 ::ng-deep.mdc-text-field--filled .mdc-floating-label {
   /*color: var(--translucent-dark) !important;*/
-  color: var(--translucent-grey-2) !important;
+  color: var(--color-accent) !important;
   font-size: var(--font-large) !important;
   transition: var(--default-transition) !important;
 }
@@ -200,7 +203,7 @@
 
 ::ng-deep.mdc-text-field--filled .mdc-line-ripple::after{
   border-bottom-width: var(--line-size) !important;
-  border-bottom-color: var(--translucent-grey-2) !important;
+  border-bottom-color: var(--color-accent) !important;
   border-radius: 4px;
   /*transition: var(--default-transition) !important;*/
 }

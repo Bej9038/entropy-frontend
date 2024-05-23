@@ -37,7 +37,7 @@ export class CompanyPageComponent implements AfterViewInit {
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
   noColor = this.rootStyle.getPropertyValue("--none").trim()
-
+  accent = this.rootStyle.getPropertyValue("--color-accent").trim()
   constructor(@Inject(DOCUMENT) private document: Document,
               private cd: ChangeDetectorRef) {}
 
@@ -50,7 +50,7 @@ export class CompanyPageComponent implements AfterViewInit {
     this.wavesurfer = WaveSurfer.create(
       {
         container: this.waveform.nativeElement,
-        waveColor: this.grey,
+        waveColor: this.accent,
         progressColor: this.noColor,
         cursorWidth: cursorWidth,
         barGap: 0,
