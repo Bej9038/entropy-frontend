@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import { finalize, Observable } from 'rxjs';
 import {StateService} from "./state.service";
 import {HttpClient} from "@angular/common/http";
 

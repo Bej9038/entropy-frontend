@@ -83,9 +83,9 @@ video {
   left: 0;
 }
 
-.text {
+.slogan-text {
   /*animation: var(--defualt-fade);*/
-  animation: opacityFade 2000ms forwards;
+  animation: opacityFadeSlogan 2000ms forwards;
   /*top: 200px;*/
   /*position: fixed;*/
   /*padding-bottom: 560px;*/
@@ -93,9 +93,9 @@ video {
   z-index: 0;
   text-align: center;
   font-size: 150px;
-  font-weight: 500;
+  font-weight: 540;
   letter-spacing: 10px;
-  opacity: .74;
+  /*opacity: .74;*/
   line-height: 182px;
 
   width: 1000px;
@@ -116,12 +116,12 @@ video {
   align-content: center;
 }
 
-@keyframes opacityFade {
+@keyframes opacityFadeSlogan {
   from {
     /*transform: scale(0.9);*/
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: .54;
   }
 }
