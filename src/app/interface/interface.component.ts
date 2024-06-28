@@ -11,6 +11,7 @@ import {animate, query, style, transition, trigger} from "@angular/animations";
 import {Subscription} from "rxjs";
 
 
+
 @Component({
   selector: 'app-interface',
   templateUrl: './interface.component.html',
