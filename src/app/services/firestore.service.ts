@@ -3,7 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {StateService} from "./state.service";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'

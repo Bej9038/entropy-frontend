@@ -1,5 +1,5 @@
 import {Component, ElementRef, Inject, OnInit, QueryList, ViewChild, ViewChildren,} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {AudioService} from "../services/audio.service";
 import {ReqService} from "../services/req.service";
 import {MatRipple} from "@angular/material/core";

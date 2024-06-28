@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {AuthConfig, OAuthModule, OAuthService} from 'angular-oauth2-oidc';
 import {RouterModule} from "@angular/router";
 

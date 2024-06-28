@@ -1,7 +1,7 @@
 import {NgModule, isDevMode} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms'; // Import FormsModule
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { InterfaceComponent } from './interface/interface.component';
 import { AppComponent } from './app.component';
 import { MatCardModule} from '@angular/material/card';
@@ -49,56 +49,50 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
 };
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    InterfaceComponent,
-    NavbarComponent,
-    KeySelectComponent,
-    BpmSelectComponent,
-    SliderComponent,
-    AppPageComponent,
-    HomePageComponent,
-    WaveboxComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MatCardModule,
-    MatInputModule,
-    MatSliderModule,
-    MatButtonToggleModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatRippleModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatMenuModule,
-    MatSnackBarModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    RouterModule.forRoot(routeConfig, {preloadingStrategy: PreloadAllModules}), // Use PreloadAllModules here
-    RouterOutlet,
-    RouterLink,
-    MatTabGroup,
-    MatTab,
-    MatExpansionPanel,
-    MatExpansionPanelTitle,
-    MatExpansionPanelDescription,
-    MatExpansionModule,
-  ],
-  providers: [
-    provideAnimations(),
-    provideOAuthClient(),
-  ],
-  exports: [
-    NavbarComponent,
-    InterfaceComponent
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        InterfaceComponent,
+        NavbarComponent,
+        KeySelectComponent,
+        BpmSelectComponent,
+        SliderComponent,
+        AppPageComponent,
+        HomePageComponent,
+        WaveboxComponent
+    ],
+    exports: [
+        NavbarComponent,
+        InterfaceComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        MatCardModule,
+        MatInputModule,
+        MatSliderModule,
+        MatButtonToggleModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatRippleModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatMenuModule,
+        MatSnackBarModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFireAuthModule,
+        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+        RouterModule.forRoot(routeConfig, { preloadingStrategy: PreloadAllModules }), // Use PreloadAllModules here
+        RouterOutlet,
+        RouterLink,
+        MatTabGroup,
+        MatTab,
+        MatExpansionPanel,
+        MatExpansionPanelTitle,
+        MatExpansionPanelDescription,
+        MatExpansionModule], providers: [
+        provideAnimations(),
+        provideOAuthClient(),
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
