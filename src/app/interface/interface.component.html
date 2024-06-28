@@ -8,9 +8,11 @@
           <mat-icon [ngClass]="{'button-active': reqService.description != '', 'button-inactive': stateService.getCurrentState() == GenerationState.Error || reqService.description == ''}" *ngIf="stateService.getCurrentState() == GenerationState.Generating">stop</mat-icon>
         </button>
 
-        <mat-form-field appearance="fill" class="textBar">
-          <mat-label [ngStyle]="{'opacity': (reqService.description == '' && input_focus) ? 1 : 0}" #label >{{placeholder}}</mat-label>
-          <input (blur)="input_focus = false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description">
+        <mat-form-field appearance="outline" class="textBar">
+<!--          <mat-label [ngStyle]="{'opacity': (reqService.description == '' && input_focus) ? 1 : 0}" #label >{{placeholder}}</mat-label>-->
+<!--          <textarea cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" cdkTextareaAutosize #autosize="cdkTextareaAutosize" (blur)="input_focus = false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description"></textarea>-->
+          <input (blur)="input_focus = false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description">
+
         </mat-form-field>
 
         <button style="visibility: hidden" [disabled]="true" class="generateButton" mat-button>
