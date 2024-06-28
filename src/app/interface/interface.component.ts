@@ -59,12 +59,6 @@ export class InterfaceComponent implements OnInit {
   // @ts-ignore
   @ViewChild('outline') textOutline: ElementRef;
   // @ts-ignore
-  @ViewChild('slider') sliderElement: ElementRef;
-  // @ts-ignore
-  @ViewChild('key') keyElement: ElementRef;
-  // @ts-ignore
-  @ViewChild('bpm') bpmElement: ElementRef;
-  // @ts-ignore
   @ViewChild('label', { read: ElementRef }) textLabel: ElementRef;
 
   constructor(private elementRef: ElementRef,

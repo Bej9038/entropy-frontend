@@ -26,11 +26,11 @@ export class SliderComponent implements OnInit {
     if(this.name == "entropy")
     {
       this.reqService.entropy = this.value;
-      if(!this.entropyWarning) {
-        let msg = "warning: altering the system's entropy may yield unexpected results"
-        this.snackbar.open(msg, "ok", {panelClass: 'my-custom-snackbar'})
-        this.entropyWarning = true;
-      }
+      // if(!this.entropyWarning) {
+      //   let msg = "warning: altering the system's entropy may yield unexpected results"
+      //   this.snackbar.open(msg, "ok", {panelClass: 'my-custom-snackbar'})
+      //   this.entropyWarning = true;
+      // }
     }
     else {
       this.reqService.duration = this.value;
