@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16vh;
+  margin-bottom: 10vh;
   /*justify-content: end;*/
   gap: 10px;
   animation: var(--defualt-fade);
