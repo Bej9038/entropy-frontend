@@ -1,9 +1,9 @@
 
-<mat-card class="textCard">
-  <div class="audio-container" [@listAnimation]="wavebox_ids.length" [@.disabled]="!animate_waveboxes">
-    <app-wavebox #wavebox *ngFor="let audioID of wavebox_ids" [audioID]="audioID" [parent]="this"></app-wavebox>
-  </div>
-</mat-card>
+<!--<mat-card class="textCard">-->
+<!--  <div class="audio-container" [@listAnimation]="wavebox_ids.length" [@.disabled]="!animate_waveboxes">-->
+<!--    <app-wavebox #wavebox *ngFor="let audioID of wavebox_ids" [audioID]="audioID" [parent]="this"></app-wavebox>-->
+<!--  </div>-->
+<!--</mat-card>-->
 
 <mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
 
@@ -43,12 +43,11 @@
       </div>
     </div>
   </div>
-
-
 </mat-card>
 
 
-
-
-
-
+<mat-card class="textCard">
+  <div class="audio-container" [@listAnimation]="wavebox_ids.length" [@.disabled]="!animate_waveboxes">
+    <app-wavebox #wavebox *ngFor="let audioID of wavebox_ids" [audioID]="audioID" [parent]="this"></app-wavebox>
+  </div>
+</mat-card>

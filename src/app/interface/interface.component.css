@@ -8,6 +8,9 @@
   padding: 0 !important;
 }
 
+input {
+  color: white !important;
+}
 ::ng-deep .mdc-text-field--filled {
   background-color: rgba(0, 0, 0, 0) !important;
 }
