@@ -18,6 +18,7 @@ textarea {
   color: var(--white) !important;
   caret-color: var(--color-accent) !important;
   text-align: center !important;
+  min-height: 34.4px;
 }
 
 input::selection {
