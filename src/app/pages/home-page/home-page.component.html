@@ -10,9 +10,9 @@
 <!--  </mat-card>-->
 
   <mat-card class="signinCard">
-    <firebase-ui *ngIf="!signedIn"
-      (signInSuccessWithAuthResult)="onSignIn()">
-    </firebase-ui>
+<!--    <firebase-ui *ngIf="!signedIn"-->
+<!--      (signInSuccessWithAuthResult)="onSignIn()">-->
+<!--    </firebase-ui>-->
     <a class="try-button" mat-button routerLink="/app" *ngIf="signedIn"> Start Creating </a>
   </mat-card>
 </div>

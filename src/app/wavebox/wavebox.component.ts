@@ -6,7 +6,6 @@ import {DOCUMENT} from "@angular/common";
 import {DebugState, GenerationState, StateService} from "../services/state.service";
 import {InterfaceComponent} from "../interface/interface.component";
 
-
 @Component({
   selector: 'app-wavebox',
   templateUrl: './wavebox.component.html',

@@ -23,7 +23,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { provideOAuthClient } from "angular-oauth2-oidc";
 import { AngularFireModule} from "@angular/fire/compat";
 import { MatSnackBarModule} from "@angular/material/snack-bar";
-import { firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
+// import { firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {AppPageComponent} from "./pages/app-page/app-page.component";
@@ -37,17 +37,19 @@ import {
   MatExpansionPanelTitle
 } from "@angular/material/expansion";
 import {WaveboxComponent} from "./wavebox/wavebox.component";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-const firebaseUiAuthConfig: firebaseui.auth.Config = {
-  signInFlow: 'popup',
-    signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
-  ],
-    tosUrl: '<your-tos-link>',
-    privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
-    credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
-};
+// const firebaseUiAuthConfig: firebaseui.auth.Config = {
+//   signInFlow: 'popup',
+//     signInOptions: [
+//     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//     firebase.auth.EmailAuthProvider.PROVIDER_ID
+//   ],
+//     tosUrl: '<your-tos-link>',
+//     privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+//     credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+// };
 
 @NgModule({ declarations: [
         AppComponent,
@@ -81,7 +83,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         MatSnackBarModule,
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
-        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+        // FirebaseUIModule.forRoot(firebaseUiAuthConfig),
         RouterModule.forRoot(routeConfig, { preloadingStrategy: PreloadAllModules }), // Use PreloadAllModules here
         RouterOutlet,
         RouterLink,
@@ -90,9 +92,16 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         MatExpansionPanel,
         MatExpansionPanelTitle,
         MatExpansionPanelDescription,
-        MatExpansionModule], providers: [
+        MatExpansionModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: !isDevMode(),
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        })], providers: [
         provideAnimations(),
         provideOAuthClient(),
         provideHttpClient(withInterceptorsFromDi()),
+        provideAnimationsAsync(),
     ] })
 export class AppModule {}
