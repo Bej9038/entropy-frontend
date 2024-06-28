@@ -65,3 +65,36 @@ app-navbar:hover {
   align-items: center;
   align-content: center;
 }
+
+/*WAVE BOXES*/
+
+.audio-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 112px;
+  align-content: center;
+  align-items: center;
+  /*justify-content: space-around;*/
+  justify-content: center;
+  /*flex-wrap: wrap;*/
+  /*width: 100%;*/
+}
+
+app-wavebox {
+  width: 50%;
+}
+
+.textCard {
+  /*width: 75%;*/
+  width: var(--interface-width);
+  padding: 16px;
+  position: relative;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--translucent);
+  color: white;
+  border-radius: 8px;
+}
