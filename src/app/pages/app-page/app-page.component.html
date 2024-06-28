@@ -2,13 +2,27 @@
 <!--  <span class="text"> Music is as much of a science as it is an art. </span>-->
 <!--</div>-->
 
-<mat-card class="textCard">
-  <div class="audio-container" [@listAnimation]="interface.wavebox_ids.length" [@.disabled]="!interface.animate_waveboxes">
-    <app-wavebox #wavebox *ngFor="let audioID of interface.wavebox_ids" [audioID]="audioID" [parent]="interface"></app-wavebox>
-  </div>
-</mat-card>
+
 
 <div class="interface-cont">
+  <div class="generation-list">
+    <div class="audio-container" [@listAnimation]="interface.wavebox_ids.length" [@.disabled]="!interface.animate_waveboxes">
+      <app-wavebox #wavebox *ngFor="let audioID of interface.wavebox_ids" [audioID]="audioID" [parent]="interface"></app-wavebox>
+    </div>
+    <div class="audio-container" [@listAnimation]="interface.wavebox_ids.length" [@.disabled]="!interface.animate_waveboxes">
+      <app-wavebox #wavebox *ngFor="let audioID of interface.wavebox_ids" [audioID]="audioID" [parent]="interface"></app-wavebox>
+    </div>
+    <div class="audio-container" [@listAnimation]="interface.wavebox_ids.length" [@.disabled]="!interface.animate_waveboxes">
+      <app-wavebox #wavebox *ngFor="let audioID of interface.wavebox_ids" [audioID]="audioID" [parent]="interface"></app-wavebox>
+    </div>
+    <div class="audio-container" [@listAnimation]="interface.wavebox_ids.length" [@.disabled]="!interface.animate_waveboxes">
+      <app-wavebox #wavebox *ngFor="let audioID of interface.wavebox_ids" [audioID]="audioID" [parent]="interface"></app-wavebox>
+    </div>
+    <div class="audio-container" [@listAnimation]="interface.wavebox_ids.length" [@.disabled]="!interface.animate_waveboxes">
+      <app-wavebox #wavebox *ngFor="let audioID of interface.wavebox_ids" [audioID]="audioID" [parent]="interface"></app-wavebox>
+    </div>
+  </div>
+
   <app-interface #interface></app-interface>
 </div>
 

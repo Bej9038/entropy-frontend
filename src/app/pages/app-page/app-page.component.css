@@ -5,7 +5,6 @@
   align-items: center;
   margin-bottom: 10vh;
   /*justify-content: end;*/
-  gap: 10px;
   animation: var(--defualt-fade);
   transition: var(--default-transition);
 }
@@ -16,6 +15,7 @@ app-navbar:hover {
 }
 
 .interface-cont {
+  gap: 16px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -84,8 +84,9 @@ app-wavebox {
   width: 50%;
 }
 
-.textCard {
+.generation-list {
   /*width: 75%;*/
+  overflow-y: auto;
   width: var(--interface-width);
   padding: 16px;
   position: relative;
@@ -94,7 +95,26 @@ app-wavebox {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: var(--translucent);
+  background-color: rgba(0, 0, 0, 0);
   color: white;
   border-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--translucent-dark) var(--translucent-dark);
+}
+
+.generation-list::-webkit-scrollbar {
+  width: 8px;
+}
+.generation-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+  border-radius: 10px;
+}
+
+.generation-list::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px;
+}
+
+.generation-list::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
 }
