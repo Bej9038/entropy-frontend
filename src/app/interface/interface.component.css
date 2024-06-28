@@ -11,6 +11,7 @@
 input {
   color: var(--white) !important;
   caret-color: var(--color-accent) !important;
+  text-align: center !important;
 }
 
 input::selection {
