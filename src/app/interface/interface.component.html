@@ -6,6 +6,8 @@
 <!--</mat-card>-->
 
 <mat-card class="textCard" #rippleCard matRipple [matRippleDisabled]="true">
+
+
   <div #outline class="textOutline" >
     <button disableRipple="true" [disabled]="stateService.getCurrentState() != GenerationState.Generating
                                           && (stateService.getCurrentState() == GenerationState.Error || reqService.description == ''
@@ -17,8 +19,8 @@
 
     <mat-form-field appearance="outline" class="textBar">
 <!--          <mat-label [ngStyle]="{'opacity': (reqService.description == '' && input_focus) ? 1 : 0}" #label >{{placeholder}}</mat-label>-->
-<!--          <textarea cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" cdkTextareaAutosize #autosize="cdkTextareaAutosize" (blur)="input_focus = false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description"></textarea>-->
-      <input (blur)="input_focus = false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description">
+<!--      <textarea spellcheck="false" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" cdkTextareaAutosize (blur)="input_focus = false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description"></textarea>-->
+      <input (blur)="input_focus = false" spellcheck="false" (focus)="nextPlaceholder(); input_focus = true;" (input)="checkRipple()" matInput class="input" (keydown.tab)="selectPlaceholder()" [disabled]="stateService.getCurrentState() == GenerationState.Error" maxlength="100" [(ngModel)]="reqService.description">
 
     </mat-form-field>
 

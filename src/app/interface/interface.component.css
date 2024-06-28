@@ -14,7 +14,17 @@ input {
   text-align: center !important;
 }
 
+textarea {
+  color: var(--white) !important;
+  caret-color: var(--color-accent) !important;
+  text-align: center !important;
+}
+
 input::selection {
+  background: var(--color-accent-2) !important;
+}
+
+textarea::selection {
   background: var(--color-accent-2) !important;
 }
 
