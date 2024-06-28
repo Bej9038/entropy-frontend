@@ -9,8 +9,14 @@
 }
 
 input {
-  color: white !important;
+  color: var(--white) !important;
+  caret-color: var(--color-accent) !important;
 }
+
+input::selection {
+  background: var(--color-accent-2) !important;
+}
+
 ::ng-deep .mdc-text-field--filled {
   background-color: rgba(0, 0, 0, 0) !important;
 }

@@ -16,6 +16,11 @@
   --line-size: 3px;
   --line-size-2: 6px;
   --color-accent: rgba(222, 123, 106, 0.6);
+  --color-accent-2: rgba(222, 123, 106, 0.2);
+
+  /*--color-accent: rgba(10, 59, 227, 0.6);*/
+  /*--color-accent-2: rgba(10, 59, 227, 0.2);*/
+
   /*--color-accent: #ff4040;*/
   --ripple: var(--translucent-dark);
   --ripple2: var(--translucent-dark);
