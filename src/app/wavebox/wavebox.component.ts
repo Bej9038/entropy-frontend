@@ -27,6 +27,7 @@ export class WaveboxComponent implements OnInit {
   white = this.rootStyle.getPropertyValue("--white").trim()
   dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
   noColor = this.rootStyle.getPropertyValue("--none").trim()
+  accent = this.rootStyle.getPropertyValue("--color-accent").trim()
 
   constructor(public audioService: AudioService,
               public stateService: StateService,
@@ -64,23 +65,25 @@ export class WaveboxComponent implements OnInit {
 
   selectWavebox()
   {
-    // this.parent.animate_waveboxes = true
+
     if(this.stateService.getCurrentState() == GenerationState.Displaying)
     {
       this.audioService.pauseAudio()
       this.stateService.setState(GenerationState.Selected)
       if(this.stateService.debug != DebugState.Debug) {
         this.parent.storePreferenceData(this.audioID)
+        this.audioService.downloadAudio(this.audioID)
       }
       this.parent.hideWaveboxesExcept(this.audioID)
     }
+
     else if(this.stateService.getCurrentState() == GenerationState.Selected)
     {
       if(this.stateService.debug != DebugState.Debug) {
         this.audioService.downloadAudio(this.audioID)
       }
       this.stateService.setState(GenerationState.Idle)
-      this.parent.resetWaveboxes()
+      // this.parent.resetWaveboxes()
     }
   }
 
@@ -93,7 +96,7 @@ export class WaveboxComponent implements OnInit {
       this.wavesurfer = WaveSurfer.create(
         {
           container: this.waveform.nativeElement,
-          waveColor: this.dark,
+          waveColor: this.grey,
           progressColor: this.noColor,
           cursorWidth: cursorWidth,
           interact: interact,
