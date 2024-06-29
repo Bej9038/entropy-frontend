@@ -195,22 +195,27 @@ textarea::selection {
   margin-bottom: 6vh;
 }
 
-.key-col {
+.keycol {
   height: 138px !important;
 }
 
-.bpm-col {
+.bpmcol {
   height: 138px !important;
 }
 
 
-.slider-col {
+.slidercol {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
   height: 138px !important;
+  gap: 6px !important;
+}
+
+app-slider {
+  margin: 5px;
 }
 
 .up {
