@@ -2,7 +2,6 @@
 
 .textBar {
   color: white !important;
-  font-size: var(--font-large) !important;
   margin: 0 !important;
   flex-grow: 1;
   padding: 0 !important;
@@ -13,7 +12,7 @@ input {
   caret-color: var(--color-accent) !important;
   text-align: center !important;
   height: 32px !important;
-
+  font-size: var(--font-large) !important;
 }
 
 textarea {
@@ -52,16 +51,6 @@ textarea::selection {
   padding: 0 !important;
 }
 
-::ng-deep.mdc-text-field--filled .mdc-text-field__input {
-  caret-color: var(--white) !important;
-  color: var(--white) !important;
-  font-size: var(--font-large) !important;
-  text-align: center !important;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 ::ng-deep.mdc-text-field--filled .mdc-line-ripple::after{
   border-bottom-width: var(--line-size) !important;
   border-bottom-color: var(--white) !important;
@@ -98,11 +87,27 @@ textarea::selection {
   transition: var(--default-transition) !important;
 }
 
+::ng-deep .textOutline {
+  border: var(--line-size) solid;
+  position: relative;
+  color: var(--translucent-grey-2);
+  border-radius: 8px;
+  display: flex;
+  /*align-content: center;*/
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: auto;
+  /*min-width: 280px;*/
+  /*padding: 16px;*/
+  margin: 16px !important;
+}
+
 
 /* BUTTON */
 
 ::ng-deep .generateButton {
-  /*font-size: 1.8rem;*/
   width: 24px !important;
   min-width: 32px !important;
   height: 32px !important;
@@ -154,22 +159,6 @@ textarea::selection {
   width: 100% !important;
 }
 
-::ng-deep .textOutline {
-  border: var(--line-size) solid;
-  position: relative;
-  color: var(--translucent-grey-2);
-  border-radius: 8px;
-  display: flex;
-  /*align-content: center;*/
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  height: auto;
-  /*min-width: 280px;*/
-  /*padding: 16px;*/
-  margin: 16px !important;
-}
 
 .controls-row {
   display: flex;
@@ -206,12 +195,22 @@ textarea::selection {
   margin-bottom: 6vh;
 }
 
+.key-col {
+  height: 138px !important;
+}
+
+.bpm-col {
+  height: 138px !important;
+}
+
+
 .slider-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
+  height: 138px !important;
 }
 
 .up {

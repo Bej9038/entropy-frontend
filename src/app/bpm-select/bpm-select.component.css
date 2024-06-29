@@ -12,27 +12,14 @@
   margin: 5px;
 }
 
-::ng-deep .bpmForm {
-  color: white !important;
-  font-size: var(--font-small) !important;
-  margin: 0 !important;
-  flex-grow: 1;
-  padding: 0 !important;
-}
-
 .bpm-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-}
-
-.bpm-flexitem {
-  display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
+  height: 138px !important;
+  gap: 10px;
 }
 
 .mat-error {
@@ -41,22 +28,53 @@
   font-size: .6rem;
 }
 
+.button-cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  /*margin-top: 8px;*/
+  /*margin-bottom: 16.6px;*/
+}
+
+.selected {
+  background-color: var(--white);
+  color: var(--translucent-dark);
+}
+
+
+/* LOOP BUTTON */
+
+.loopButton {
+  width: 92px !important;
+}
+
+/* TEXT FORM */
+
 input {
   color: var(--white) !important;
   caret-color: var(--color-accent) !important;
   text-align: center !important;
-}
-
-textarea {
-  color: var(--white) !important;
-  caret-color: var(--color-accent) !important;
-  text-align: center !important;
-  min-height: 34.4px;
+  height: 32px !important;
+  font-size: 18px !important;
 }
 
 input::selection {
   background: var(--color-accent-2) !important;
 }
+
+::ng-deep .mat-mdc-form-field-infix {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: auto !important;
+}
+
+
 
 /*.error-cont {*/
 /*  height: 16px;*/
@@ -65,20 +83,13 @@ input::selection {
 /*  margin-top: 8px;*/
 /*}*/
 
-.button-cont {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  /*margin-top: 8px;*/
-  margin-bottom: 16.6px;
+::ng-deep .bpmOutline {
+  width: 128px !important;
+  /*padding: 16px;*/
+  height: 36px !important;
+  margin: 0px !important;
 }
 
-.selected {
-  background-color: var(--white);
-  color: var(--translucent-dark);
-}
 
 ::ng-deep.mat-mdc-form-field-error{
   /*color: var(--warning) !important;*/

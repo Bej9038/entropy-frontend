@@ -31,22 +31,37 @@ export class KeySelectComponent implements OnInit {
     { id: 7, label: '_' },
   ];
 
-  row1_small: Key[] = [
-    { id: 0, label: 'C' },
-    { id: 1, label: 'D' },
-    { id: 2, label: 'E' },
-  ];
+  // row1_large: Key[] = [
+  //   { id: 0, label: 'c' },
+  //   { id: 1, label: 'd' },
+  //   { id: 2, label: 'e' },
+  //   { id: 3, label: 'f' },
+  // ];
+  // row2_large: Key[] = [
+  //   { id: 4, label: 'g' },
+  //   { id: 5, label: 'a' },
+  //   { id: 6, label: 'b' },
+  // ];
+  // row3_large: Key[] = [
+  //   { id: 7, label: '_' },
+  // ];
 
-  row2_small: Key[] = [
-    { id: 3, label: 'F' },
-    { id: 4, label: 'G' },
-    { id: 5, label: 'A' },
-  ];
-
-  row3_small: Key[] = [
-    { id: 6, label: 'B' },
-    { id: 7, label: 'B' },
-  ];
+  // row1_small: Key[] = [
+  //   { id: 0, label: 'C' },
+  //   { id: 1, label: 'D' },
+  //   { id: 2, label: 'E' },
+  // ];
+  //
+  // row2_small: Key[] = [
+  //   { id: 3, label: 'F' },
+  //   { id: 4, label: 'G' },
+  //   { id: 5, label: 'A' },
+  // ];
+  //
+  // row3_small: Key[] = [
+  //   { id: 6, label: 'B' },
+  //   { id: 7, label: 'B' },
+  // ];
 
   row1 = this.row1_large
   row2 = this.row2_large
