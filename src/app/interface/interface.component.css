@@ -187,8 +187,8 @@ textarea::selection {
 
 .textCard {
   /*width: 75%;*/
-  /*height: 100%;*/
-  /*height: 329.80px;*/
+  flex-grow: 0;
+  flex-shrink: 0;
   width: var(--interface-width);
   padding: 16px;
   position: relative;
@@ -322,7 +322,7 @@ app-wavebox {
 }
 
 .generation-list {
-  height: 50%;
+  flex-grow: 1;
   overflow-y: auto;
   width: var(--interface-width);
   padding: 16px;

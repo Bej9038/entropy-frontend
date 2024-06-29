@@ -82,7 +82,7 @@ export class WaveboxComponent implements OnInit {
       if(this.stateService.debug != DebugState.Debug) {
         this.audioService.downloadAudio(this.audioID)
       }
-      this.stateService.setState(GenerationState.Idle)
+      // this.stateService.setState(GenerationState.Idle)
       // this.parent.resetWaveboxes()
     }
   }
