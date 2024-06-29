@@ -5,31 +5,33 @@
   align-items: center;
   align-content: center;
   animation: var(--defualt-fade) !important;
+  padding-top: 172px;
+  padding-bottom: 120px;
 }
 
 .title-container {
-  padding-top: 172px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: center;
+  height: 180px !important;
 }
 
 .title {
   color: var(--white);
   font-size: 54px;
-  width: 460px;
-  text-align: center;
+  /*width: 460px;*/
+  /*text-align: center;*/
 }
 
 .sub-text {
   padding-top: 28px;
-  color: var(--white);
-  /*color: var(--translucent-grey-2);*/
+  /*color: var(--white);*/
+  color: var(--translucent-grey-2);
   /*color: var(--color-accent);*/
   font-size: 20px;
-  width: 600px;
+  width: 620px;
   line-height: 26px;
   text-align: center;
 }
