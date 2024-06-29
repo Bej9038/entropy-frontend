@@ -19,8 +19,16 @@
   overflow: hidden;
 }
 
-/* SIGNIN */
 
+.appButton {
+  width: 100%;
+  height: 100%;
+  color: var(--white);
+  /*background-color: var(--translucent-dark);*/
+  text-align: center;
+}
+
+/* SIGNIN */
 
 .entropyLogo {
   height: 32px;
@@ -31,8 +39,9 @@
   animation: var(--defualt-fade);
   position: fixed;
   width: 352px;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  height: 360px;
+  /*padding-top: 32px;*/
+  /*padding-bottom: 32px;*/
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -162,8 +171,8 @@ video {
 }
 
 .slogan-text {
-  /*animation: var(--defualt-fade);*/
-  animation: opacityFadeSlogan 2000ms forwards;
+  animation: var(--defualt-fade);
+  /*animation: opacityFadeSlogan 2000ms forwards;*/
   /*top: 200px;*/
   /*position: fixed;*/
   /*padding-bottom: 560px;*/

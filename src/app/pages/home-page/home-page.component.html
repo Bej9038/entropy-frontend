@@ -10,7 +10,7 @@
   <mat-card class="signinCard">
 <!--    <div class="signinOptionsContainer">-->
 
-      <img src="assets/image (8).svg" class="entropyLogo">
+      <img src="assets/image (8).svg" class="entropyLogo" *ngIf="!authService.user">
 
 <!--      <div> Login </div>-->
 
@@ -22,19 +22,19 @@
       </button>
 
 
-    <div class="line-container">
-      <div class="horizontal-line"></div>
-      <div class="or">or</div>
-      <div class="horizontal-line"></div>
-    </div>
+      <div class="line-container" *ngIf="!authService.user">
+        <div class="horizontal-line"></div>
+        <div class="or">or</div>
+        <div class="horizontal-line"></div>
+      </div>
 
-      <mat-form-field class="emailForm" appearance="outline">
+      <mat-form-field class="emailForm" appearance="outline" *ngIf="!authService.user">
         <input spellcheck="false" matInput placeholder="Enter Email">
       </mat-form-field>
 
       <button class="loginButton" mat-flat-button (click)="authService.login('', '')" *ngIf="!authService.user"> Continue </button>
 
 
-    <!--    <a class="try-button" mat-button routerLink="/app" *ngIf="authService.user"> Start Creating </a>-->
+      <a class="appButton" mat-button routerLink="/app" *ngIf="authService.user"> Start Creating </a>
   </mat-card>
 </div>
