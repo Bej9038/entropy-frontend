@@ -28,6 +28,15 @@
   font-size: .6rem;
 }
 
+
+.selected {
+  background-color: var(--white);
+  color: var(--translucent-dark);
+}
+
+
+/* LOOP BUTTON */
+
 .button-cont {
   display: flex;
   flex-direction: row;
@@ -38,13 +47,6 @@
   /*margin-bottom: 16.6px;*/
 }
 
-.selected {
-  background-color: var(--white);
-  color: var(--translucent-dark);
-}
-
-
-/* LOOP BUTTON */
 
 .loopButton {
   width: 92px !important;

@@ -17,8 +17,8 @@ export class FirestoreService {
   constructor(private firestore: AngularFirestore,
               private auth: AngularFireAuth,
               private storage: AngularFireStorage,
-              private stateService: StateService,
-              private http: HttpClient) {
+              private stateService: StateService) {
+
     this.auth.authState.subscribe(user => {
       if (user) {
         this.currentUser = user;

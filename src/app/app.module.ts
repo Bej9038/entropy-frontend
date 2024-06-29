@@ -20,23 +20,21 @@ import { MatRippleModule} from "@angular/material/core";
 import { MatIconModule} from "@angular/material/icon";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatMenuModule } from "@angular/material/menu";
-import { provideOAuthClient } from "angular-oauth2-oidc";
-import { AngularFireModule} from "@angular/fire/compat";
-import { MatSnackBarModule} from "@angular/material/snack-bar";
-// import { firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
-import { AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {HomePageComponent} from "./pages/home-page/home-page.component";
-import {AppPageComponent} from "./pages/app-page/app-page.component";
-import {PreloadAllModules, provideRouter, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
-import {routeConfig, firebaseConfig} from "./configs";
-import {MatTab, MatTabGroup} from "@angular/material/tabs";
+import { AngularFireModule } from "@angular/fire/compat";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { HomePageComponent } from "./pages/home-page/home-page.component";
+import { AppPageComponent } from "./pages/app-page/app-page.component";
+import { PreloadAllModules, provideRouter, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
+import { routeConfig, firebaseConfig } from "./configs";
+import { MatTab, MatTabGroup} from "@angular/material/tabs";
 import {
   MatExpansionModule,
   MatExpansionPanel,
   MatExpansionPanelDescription,
   MatExpansionPanelTitle
 } from "@angular/material/expansion";
-import {WaveboxComponent} from "./wavebox/wavebox.component";
+import { WaveboxComponent } from "./wavebox/wavebox.component";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -100,7 +98,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
           registrationStrategy: 'registerWhenStable:30000'
         })], providers: [
         provideAnimations(),
-        provideOAuthClient(),
+        // provideOAuthClient(),
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimationsAsync(),
     ] })

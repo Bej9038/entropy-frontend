@@ -6,13 +6,9 @@
     <span class="slogan-text"> Music is as much of a science as it is an art. </span>
   </div>
 
-<!--  <mat-card class="signinCardCover">-->
-<!--  </mat-card>-->
 
   <mat-card class="signinCard">
-<!--    <firebase-ui *ngIf="!signedIn"-->
-<!--      (signInSuccessWithAuthResult)="onSignIn()">-->
-<!--    </firebase-ui>-->
-    <a class="try-button" mat-button routerLink="/app" *ngIf="signedIn"> Start Creating </a>
+    <button class="try-button" mat-button (click)="authService.loginWithGoogle()" *ngIf="!authService.user"> Login </button>
+    <a class="try-button" mat-button routerLink="/app" *ngIf="authService.user"> Start Creating </a>
   </mat-card>
 </div>
