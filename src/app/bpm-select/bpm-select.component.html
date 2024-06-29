@@ -5,7 +5,7 @@
     <mat-form-field appearance="outline" class="textBar">
 <!--        <mat-label [ngStyle]="{'opacity': (loopSelected && bpm == '') ? 0 : 1}"-->
 <!--                    class="bpm-add">bpm</mat-label>-->
-        <input (blur)="bpm_input_focus = false" (focus)="bpm_input_focus = true" matInput  [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" maxlength="3"
+        <input [ngStyle]="{'color': stateService.getCurrentState() == GenerationState.Error ? 'var(--error)' : 'var(--white)'}" (blur)="bpm_input_focus = false" spellcheck="false" (focus)="bpm_input_focus = true" matInput [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" maxlength="3"
                [(ngModel)]="bpm" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" (input)="updateBPM()">
     </mat-form-field>
   </div>
@@ -22,7 +22,7 @@
 <!--  </div>-->
 
   <div class="button-cont">
-    <button class="loopButton keyButton" [class.selected]="loopSelected" (click)="toggleBPM()" mat-flat-button> loop </button>
+    <button class="loopButton keyButton" [class.selected]="loopSelected" (click)="toggleLoop()" mat-flat-button> loop </button>
 <!--    <button class="bpm-flexitem keyButton" [class.selected]="!loopSelected" (click)="toggleBPM(); reqService.loop=false" mat-flat-button> one shot </button>-->
     <!--  <button class="bpm-flexitem keyButton" [class.selected]="BPMSelected" (click)="toggleLoop() "mat-flat-button> loop </button>-->
   </div>

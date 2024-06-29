@@ -19,7 +19,7 @@
   align-items: center;
   align-content: center;
   height: 138px !important;
-  gap: 10px;
+  gap: 20px;
 }
 
 .mat-error {
@@ -53,11 +53,11 @@
 /* TEXT FORM */
 
 input {
-  color: var(--white) !important;
+  color: var(--white);
   caret-color: var(--color-accent) !important;
   text-align: center !important;
   height: 32px !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
 }
 
 input::selection {
@@ -73,7 +73,6 @@ input::selection {
   justify-content: center !important;
   width: auto !important;
 }
-
 
 
 /*.error-cont {*/

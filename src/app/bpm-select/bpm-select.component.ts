@@ -28,44 +28,42 @@ export class BpmSelectComponent implements OnInit {
   selectPlaceholder() {
     this.reqService.bpm = ""
     this.bpm = ""
-    this.checkRipple()
+    // this.checkRipple()
   }
 
   ngOnInit(): void {
   }
 
-  updateBPM()
-  {
+  updateBPM() {
     this.reqService.bpm = this.bpm
-    if(this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern'))
-    {
+    if(this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern')) {
       this.stateService.setState(GenerationState.Error)
     }
     else if(this.stateService.getCurrentState() == GenerationState.Error) {
       this.stateService.setState(this.stateService.getPreviousState());
     }
-    this.checkRipple()
+    // this.checkRipple()
   }
+  //
+  // checkRipple(){
+  //   if(this.reqService.bpm != "")
+  //   {
+  //     const whiteValue = this.rootStyle.getPropertyValue('--white').trim();
+  //     this.document.documentElement.style.setProperty('--ripple2', whiteValue);
+  //   }
+  //   else {
+  //     const dark = this.rootStyle.getPropertyValue('--transluscent-dark').trim();
+  //     this.document.documentElement.style.setProperty('--ripple2', dark);
+  //   }
+  // }
 
-  checkRipple(){
-    if(this.reqService.bpm != "")
-    {
-      const whiteValue = this.rootStyle.getPropertyValue('--white').trim();
-      this.document.documentElement.style.setProperty('--ripple2', whiteValue);
-    }
-    else {
-      const dark = this.rootStyle.getPropertyValue('--transluscent-dark').trim();
-      this.document.documentElement.style.setProperty('--ripple2', dark);
-    }
-  }
-
-  toggleBPM()
+  toggleLoop()
   {
     this.loopSelected = !this.loopSelected;
     if(!this.loopSelected)
     {
         this.reqService.bpm = ""
-        this.checkRipple()
+        // this.checkRipple()
       if(this.stateService.getCurrentState() == GenerationState.Error) {
         this.stateService.setState(this.stateService.getPreviousState());
       }
@@ -75,7 +73,7 @@ export class BpmSelectComponent implements OnInit {
     {
       this.bpm = ""
       this.reqService.bpm = this.bpm
-      this.checkRipple()
+      // this.checkRipple()
       if((this.numberInputControl.hasError('min') ||
           this.numberInputControl.hasError('max') ||
           this.numberInputControl.hasError('pattern')) && this.stateService.getCurrentState() != GenerationState.Error) {
@@ -84,4 +82,6 @@ export class BpmSelectComponent implements OnInit {
       this.reqService.loop = true
     }
   }
+
+  protected readonly GenerationState = GenerationState;
 }
