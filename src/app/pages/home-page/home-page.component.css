@@ -24,6 +24,7 @@
   width: 100%;
   height: 100%;
   color: var(--white);
+  font-size: var(--font-large);
   /*background-color: var(--translucent-dark);*/
   text-align: center;
 }
