@@ -19,10 +19,10 @@
   overflow: hidden;
 }
 
-
 .appButton {
   width: 100%;
   height: 100%;
+  /*height: 128px;*/
   color: var(--white);
   font-size: var(--font-large);
   /*background-color: var(--translucent-dark);*/
@@ -131,6 +131,7 @@ input {
   color: var(--white) !important;
   caret-color: var(--color-accent) !important;
   height: 44px !important;
+  text-align: center !important;
 }
 
 input::placeholder {

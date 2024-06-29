@@ -7,5 +7,6 @@
     "entropy-413416": {
       "extensionInstances": {}
     }
-  }
+  },
+  "dataconnectEmulatorConfig": {}
 }

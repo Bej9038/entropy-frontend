@@ -23,7 +23,7 @@
     }
   ],
   "hosting": {
-    "public": "dist/entropy-frontend",
+    "public": "dist/entropy-frontend/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
