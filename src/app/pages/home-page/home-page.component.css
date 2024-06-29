@@ -52,6 +52,86 @@
   height: 44px;
 }
 
+::ng-deep .emailForm {
+  width: 80%;
+  height: 44px !important;
+  color: white !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.or {
+  color: var(--translucent-grey-2);
+}
+
+.horizontal-line {
+  height: 1.6px;
+  background-color: var(--translucent-grey-2);
+  width: 40%;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.line-container {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+
+::ng-deep .mdc-notched-outline__leading {
+  border-color: var(--translucent-grey-2) !important;
+}
+
+::ng-deep .mdc-notched-outline__trailing {
+  border-color: var(--translucent-grey-2) !important;
+}
+
+/*::ng-deep .mdc-notched-outline__leading {*/
+/*  border-color: var(--color-accent) !important;*/
+/*}*/
+
+/*::ng-deep .mdc-notched-outline__trailing {*/
+/*  border-color: var(--color-accent) !important;*/
+/*}*/
+
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+::ng-deep .mat-mdc-form-field-infix {
+  height: 44px !important;
+  min-height: 0px !important;
+}
+::ng-deep .mat-mdc-text-field-wrapper {
+  height: 44px !important;
+}
+::ng-deep .mat-mdc-form-field-flex {
+  height: 44px !important;
+}
+::ng-deep .mat-mdc-form-field-infix {
+  padding: 0 !important;
+}
+
+input {
+  color: var(--white) !important;
+  caret-color: var(--color-accent) !important;
+  height: 44px !important;
+}
+
+input::placeholder {
+  color: var(--translucent-grey-2) !important;
+  text-align: center !important;
+}
+
+input::selection {
+  background: var(--color-accent-2) !important;
+}
+
 ::ng-deep .mdc-button__label{
   width: 100%;
 }
