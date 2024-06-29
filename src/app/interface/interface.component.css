@@ -187,6 +187,8 @@ textarea::selection {
 
 .textCard {
   /*width: 75%;*/
+  /*height: 100%;*/
+  /*height: 329.80px;*/
   width: var(--interface-width);
   padding: 16px;
   position: relative;
@@ -198,6 +200,7 @@ textarea::selection {
   background-color: var(--translucent);
   color: white;
   border-radius: 8px;
+  margin-bottom: 6vh;
 }
 
 .slider-col {
@@ -235,4 +238,122 @@ textarea::selection {
 
 app-wavebox {
   width: 50%;
+}
+
+
+
+/* APP PAGE */
+
+
+
+app-navbar:hover {
+  opacity: 1;
+}
+
+.invisible {
+  opacity: 0;
+  transition: all 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.opaque {
+  opacity: 1;
+  transition: all 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.text {
+  animation: opacityFade 4000ms forwards;
+  /*top: 200px;*/
+  /*position: fixed;*/
+  /*padding-bottom: 560px;*/
+  color: var(--translucent-dark);
+  z-index: 0;
+  text-align: center;
+  font-size: 150px;
+  font-weight: 500;
+  letter-spacing: 10px;
+  opacity: .74;
+  line-height: 182px;
+
+  width: 1000px;
+  /*height: 400px;*/
+  text-overflow: clip;
+  /*z-index:-1*/
+  user-select: none;
+}
+
+.text-container {
+  position: absolute !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+/*WAVE BOXES*/
+
+.interface-cont {
+  gap: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-content: center;
+  align-items: center;
+}
+
+
+.audio-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 112px;
+  align-content: center;
+  align-items: center;
+  /*justify-content: space-around;*/
+  justify-content: center;
+  /*flex-wrap: wrap;*/
+  /*width: 100%;*/
+}
+
+app-wavebox {
+  width: 50%;
+}
+
+.generation-list {
+  height: 50%;
+  overflow-y: auto;
+  width: var(--interface-width);
+  padding: 16px;
+  position: relative;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  /*align-content: center;*/
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--translucent-dark) var(--translucent-dark);
+}
+
+.generation-list::-webkit-scrollbar {
+  width: 8px;
+}
+.generation-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+  border-radius: 10px;
+}
+
+.generation-list::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px;
+}
+
+.generation-list::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
 }

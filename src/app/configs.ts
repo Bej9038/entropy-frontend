@@ -4,6 +4,7 @@ import {AppPageComponent} from "./pages/app-page/app-page.component";
 import {CompanyPageComponent} from "./pages/company-page/company-page.component";
 import {TechPageComponent} from "./pages/tech-page/tech-page.component";
 import {NewsPageComponent} from "./pages/news-page/news-page.component";
+import {InterfaceComponent} from "./interface/interface.component";
 
 export const routeConfig: Routes = [
   {
