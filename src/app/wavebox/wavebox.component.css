@@ -84,7 +84,7 @@
   /*margin: 16px;*/
   width: 90%;
   transition: var(--default-transition) !important;
-  opacity: 0;
+  /*opacity: 0;*/
 }
 
 .progressBar {

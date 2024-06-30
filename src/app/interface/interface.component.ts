@@ -57,8 +57,12 @@ export class InterfaceComponent implements OnInit {
   check_url = "https://us-central1-entropy-413416.cloudfunctions.net/checkReq"
   animate_waveboxes = false
 
+
   // @ts-ignore
-  @ViewChildren("wavebox") waveboxes: QueryList<WaveboxComponent>;
+  @ViewChildren("wavebox") allWaveboxes: QueryList<WaveboxComponent>;
+
+  currentWaveboxes: WaveboxComponent[] = [];
+
   // @ts-ignore
   @ViewChild(MatRipple) ripple: MatRipple;
   // @ts-ignore
@@ -85,10 +89,20 @@ export class InterfaceComponent implements OnInit {
     this.stateService.setState(GenerationState.Idle)
   }
 
+  filterWaveboxesByGenID() {
+    this.currentWaveboxes = this.allWaveboxes.toArray().filter(wavebox => wavebox.genID === (this.generation_list.length-1));
+    console.log(this.currentWaveboxes)
+  }
+
   ngAfterViewInit() {
+    this.filterWaveboxesByGenID()
+    this.allWaveboxes.changes.subscribe(() => {
+      this.filterWaveboxesByGenID()
+    });
+
     if(this.stateService.debug == DebugState.Debug)
     {
-      this.waveboxes.forEach(wb => {
+      this.allWaveboxes.forEach(wb => {
         wb.initWaveSurfer(undefined)
       })
       this.stateService.setState(GenerationState.Displaying);
@@ -106,7 +120,7 @@ export class InterfaceComponent implements OnInit {
   }
 
   clearWaveboxVisuals() {
-    this.waveboxes.forEach(wb => {
+    this.currentWaveboxes.forEach(wb => {
       wb.initialize()
     })
   }
@@ -124,7 +138,6 @@ export class InterfaceComponent implements OnInit {
 
   resetWaveboxes() {
     this.generation_list.push([])
-    console.log(this.generation_list)
     this.setNumWaveboxes()
     // this.clearWaveboxVisuals()
   }
@@ -135,7 +148,7 @@ export class InterfaceComponent implements OnInit {
 
   storePreferenceData(id: number) {
     let filenames: string[] = []
-    this.waveboxes.forEach(wb => {
+    this.currentWaveboxes.forEach(wb => {
       filenames.push(wb.filename)
     })
     this.firestore.storePreferenceData(filenames, id)
@@ -216,7 +229,7 @@ export class InterfaceComponent implements OnInit {
           if(this.stateService.getCurrentState() != GenerationState.Displaying){
             this.stateService.print("request complete")
             for(let i = 0; i < this.generation_list[this.generation_list.length-1].length; i++) {
-              let wb = this.waveboxes.toArray()[i]
+              let wb = this.currentWaveboxes[i]
               let base64 = response["output"][i]
               let res = await this.audioService.decodeBase64ToAudioURL(base64, i, req.input.text)
               wb.initWaveSurfer(res["url"])

@@ -13,6 +13,7 @@ import {InterfaceComponent} from "../interface/interface.component";
 })
 export class WaveboxComponent implements OnInit {
   @Input() audioID = 0;
+  @Input() genID = 0;
   // @ts-ignore
   @Input() parent: InterfaceComponent;
   // @ts-ignore
@@ -70,13 +71,15 @@ export class WaveboxComponent implements OnInit {
     {
       this.audioService.pauseAudio()
       this.stateService.setState(GenerationState.Selected)
+
       if(this.stateService.debug != DebugState.Debug) {
         this.parent.storePreferenceData(this.audioID)
         this.audioService.downloadAudio(this.audioID)
       }
+
       this.parent.hideWaveboxesExcept(this.audioID)
-      this.stateService.setState(GenerationState.Idle)
       this.parent.resetWaveboxes()
+      this.stateService.setState(GenerationState.Idle)
     }
 
     // else if(this.stateService.getCurrentState() == GenerationState.Selected)
