@@ -38,9 +38,14 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic synth arp",
   ];
+
   // @ts-ignore
   num_wavebox_subscription: Subscription
-  wavebox_ids: number[] = [0, 1]
+
+
+  generation_list: number[][] = [[0, 1]]
+
+
   currentReqId: string = ""
   placeholder: string = this.placeholders[0]
   input_focus = false
@@ -108,22 +113,24 @@ export class InterfaceComponent implements OnInit {
 
   setNumWaveboxes() {
     if(this.animate_waveboxes) {
-      this.wavebox_ids = []
+      this.generation_list[this.generation_list.length-1] = []
       setTimeout(() => {
         for(let i = 0; i < this.reqService.numAudio.value; i++) {
-          this.wavebox_ids.push(i)
+          this.generation_list[this.generation_list.length-1].push(i)
         }
       }, 1000)
     }
   }
 
   resetWaveboxes() {
+    this.generation_list.push([])
+    console.log(this.generation_list)
     this.setNumWaveboxes()
-    this.clearWaveboxVisuals()
+    // this.clearWaveboxVisuals()
   }
 
   hideWaveboxesExcept(id: number) {
-    this.wavebox_ids = this.wavebox_ids.filter(number => id == number)
+    this.generation_list[this.generation_list.length-1] = this.generation_list[this.generation_list.length-1].filter(number => id == number)
   }
 
   storePreferenceData(id: number) {
@@ -208,7 +215,7 @@ export class InterfaceComponent implements OnInit {
         if (response["status"] == "COMPLETED") {
           if(this.stateService.getCurrentState() != GenerationState.Displaying){
             this.stateService.print("request complete")
-            for(let i = 0; i < this.wavebox_ids.length; i++) {
+            for(let i = 0; i < this.generation_list[this.generation_list.length-1].length; i++) {
               let wb = this.waveboxes.toArray()[i]
               let base64 = response["output"][i]
               let res = await this.audioService.decodeBase64ToAudioURL(base64, i, req.input.text)

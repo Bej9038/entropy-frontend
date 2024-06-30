@@ -75,16 +75,19 @@ export class WaveboxComponent implements OnInit {
         this.audioService.downloadAudio(this.audioID)
       }
       this.parent.hideWaveboxesExcept(this.audioID)
+      this.stateService.setState(GenerationState.Idle)
+      this.parent.resetWaveboxes()
     }
 
-    else if(this.stateService.getCurrentState() == GenerationState.Selected)
-    {
-      if(this.stateService.debug != DebugState.Debug) {
-        this.audioService.downloadAudio(this.audioID)
-      }
-      // this.stateService.setState(GenerationState.Idle)
-      // this.parent.resetWaveboxes()
-    }
+    // else if(this.stateService.getCurrentState() == GenerationState.Selected)
+    // {
+    //   if(this.stateService.debug != DebugState.Debug) {
+    //     this.audioService.downloadAudio(this.audioID)
+    //   }
+    //
+    //   this.stateService.setState(GenerationState.Idle)
+    //   this.parent.resetWaveboxes()
+    // }
   }
 
   initWaveSurfer(src: any)
