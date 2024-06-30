@@ -78,8 +78,8 @@ export class WaveboxComponent implements OnInit {
       }
 
       this.parent.hideWaveboxesExcept(this.audioID)
-      // this.parent.resetWaveboxes()
-      // this.stateService.setState(GenerationState.Idle)
+      this.parent.resetWaveboxes()
+      this.stateService.setState(GenerationState.Idle)
     }
 
     // else if(this.stateService.getCurrentState() == GenerationState.Selected)

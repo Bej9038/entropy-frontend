@@ -38,14 +38,9 @@ export class InterfaceComponent implements OnInit {
     "distorted cinematic drum loop",
     "sustained electronic synth arp",
   ];
-
   // @ts-ignore
   num_wavebox_subscription: Subscription
-
-
-  generation_list: number[][] = [[0, 1]]
-
-
+  wavebox_ids: number[] = [0, 1]
   currentReqId: string = ""
   placeholder: string = this.placeholders[0]
   input_focus = false
@@ -57,15 +52,8 @@ export class InterfaceComponent implements OnInit {
   check_url = "https://us-central1-entropy-413416.cloudfunctions.net/checkReq"
   animate_waveboxes = false
 
-
   // @ts-ignore
-  @ViewChildren("wavebox") allWaveboxes: QueryList<WaveboxComponent>;
-
-  currentWaveboxes: WaveboxComponent[] = [];
-
-  // @ts-ignore
-  @ViewChild('generationList') generationListContainer: ElementRef;
-
+  @ViewChildren("wavebox") waveboxes: QueryList<WaveboxComponent>;
   // @ts-ignore
   @ViewChild(MatRipple) ripple: MatRipple;
   // @ts-ignore
@@ -92,31 +80,14 @@ export class InterfaceComponent implements OnInit {
     this.stateService.setState(GenerationState.Idle)
   }
 
-  filterWaveboxesByGenID() {
-    this.currentWaveboxes = this.allWaveboxes.toArray().filter(wavebox => wavebox.genID === (this.generation_list.length-1));
-    console.log(this.currentWaveboxes)
-  }
-
   ngAfterViewInit() {
-    this.filterWaveboxesByGenID()
-    this.allWaveboxes.changes.subscribe(() => {
-      this.filterWaveboxesByGenID()
-    });
-
     if(this.stateService.debug == DebugState.Debug)
     {
-      this.allWaveboxes.forEach(wb => {
+      this.waveboxes.forEach(wb => {
         wb.initWaveSurfer(undefined)
       })
       this.stateService.setState(GenerationState.Displaying);
     }
-  }
-
-  ngAfterViewChecked() {
-    this.generationListContainer.nativeElement.scrollTo({
-      top: this.generationListContainer.nativeElement.scrollHeight,
-      behavior: 'smooth'
-    });
   }
 
   nextPlaceholder() {
@@ -130,35 +101,34 @@ export class InterfaceComponent implements OnInit {
   }
 
   clearWaveboxVisuals() {
-    this.currentWaveboxes.forEach(wb => {
+    this.waveboxes.forEach(wb => {
       wb.initialize()
     })
   }
 
   setNumWaveboxes() {
     if(this.animate_waveboxes) {
-      this.generation_list[this.generation_list.length-1] = []
+      this.wavebox_ids = []
       setTimeout(() => {
         for(let i = 0; i < this.reqService.numAudio.value; i++) {
-          this.generation_list[this.generation_list.length-1].push(i)
+          this.wavebox_ids.push(i)
         }
       }, 1000)
     }
   }
 
   resetWaveboxes() {
-    this.generation_list.push([])
     this.setNumWaveboxes()
-    // this.clearWaveboxVisuals()
+    this.clearWaveboxVisuals()
   }
 
   hideWaveboxesExcept(id: number) {
-    this.generation_list[this.generation_list.length-1] = this.generation_list[this.generation_list.length-1].filter(number => id == number)
+    this.wavebox_ids = this.wavebox_ids.filter(number => id == number)
   }
 
   storePreferenceData(id: number) {
     let filenames: string[] = []
-    this.currentWaveboxes.forEach(wb => {
+    this.waveboxes.forEach(wb => {
       filenames.push(wb.filename)
     })
     this.firestore.storePreferenceData(filenames, id)
@@ -238,8 +208,8 @@ export class InterfaceComponent implements OnInit {
         if (response["status"] == "COMPLETED") {
           if(this.stateService.getCurrentState() != GenerationState.Displaying){
             this.stateService.print("request complete")
-            for(let i = 0; i < this.generation_list[this.generation_list.length-1].length; i++) {
-              let wb = this.currentWaveboxes[i]
+            for(let i = 0; i < this.wavebox_ids.length; i++) {
+              let wb = this.waveboxes.toArray()[i]
               let base64 = response["output"][i]
               let res = await this.audioService.decodeBase64ToAudioURL(base64, i, req.input.text)
               wb.initWaveSurfer(res["url"])

@@ -3,14 +3,11 @@
 <div class="interface-cont">
   <div #generationList class="generation-list">
 
-
-    <div *ngFor="let wavebox_set of generation_list; let i = index"
-         class="audio-container"
-         [@listAnimation]="wavebox_set.length"
+    <div class="audio-container"
+         [@listAnimation]="wavebox_ids.length"
          [@.disabled]="!animate_waveboxes">
-      <app-wavebox #wavebox *ngFor="let audioID of wavebox_set" [genID]="i" [audioID]="audioID" [parent]="this"></app-wavebox>
+      <app-wavebox #wavebox *ngFor="let audioID of wavebox_ids" [audioID]="audioID" [parent]="this"></app-wavebox>
     </div>
-
 
   </div>
 

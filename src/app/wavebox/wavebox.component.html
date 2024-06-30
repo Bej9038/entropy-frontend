@@ -1,23 +1,20 @@
 <div class="waveform-component">
   <div (mouseenter)="onFocus()"
        (mouseleave)="unFocus()"
-       [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying, 'up2':focused && stateService.getCurrentState() == GenerationState.Selected, 'noBorder': genID != parent.generation_list.length-1}"
-       class="waveform-cont noBorder">
+       [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying,
+       'up2':focused && stateService.getCurrentState() == GenerationState.Selected}"
+       class="waveform-cont">
     <div
       [ngClass]="{'grabbing': grabbing, 'grab': stateService.getCurrentState() == GenerationState.Displaying || stateService.getCurrentState() == GenerationState.Selected}"
       (click)="selectWavebox()"
       (mousedown)="onMouseDown()"
       (mouseup)="onMouseUp()"
       class="cover"></div>
-
-    <mat-progress-bar [ngClass]="{'show': stateService.getCurrentState() == GenerationState.Generating && genID==parent.generation_list.length-1, 'hide': stateService.getCurrentState() != GenerationState.Generating}" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
-
-    <div class="waveform" #waveform></div>
-<!--    <div [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Displaying || stateService.getCurrentState() == GenerationState.Selected || genID < parent.generation_list.length-1 ? 1 : 0}" class="waveform" #waveform></div>-->
-
+    <mat-progress-bar [ngClass]="{'show': stateService.getCurrentState() == GenerationState.Generating, 'hide': stateService.getCurrentState() != GenerationState.Generating}" class="progressBar" [mode]="progressBarMode"></mat-progress-bar>
+    <div [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Displaying || stateService.getCurrentState() == GenerationState.Selected ? 1 : 0}" class="waveform" #waveform></div>
   </div>
 
-  <button [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Displaying && genID==parent.generation_list.length-1? 1 : 0}" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.pauseAndPlay(audioID)" mat-button>
+  <button [ngStyle]="{'opacity': stateService.getCurrentState() == GenerationState.Displaying ? 1 : 0}" [disabled]="stateService.getCurrentState() != GenerationState.Displaying" class="playButton" (click)="audioService.pauseAndPlay(audioID)" mat-button>
     <mat-icon>play_arrow</mat-icon>
   </button>
 </div>
