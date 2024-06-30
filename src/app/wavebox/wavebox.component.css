@@ -35,6 +35,11 @@
   transition: var(--default-transition) !important;
 }
 
+.noBorder {
+  transition: var(--default-transition) !important;
+  border: none !important;
+}
+
 .up {
   color: var(--white) !important;
   border-color: var(--white);

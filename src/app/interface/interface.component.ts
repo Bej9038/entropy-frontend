@@ -64,6 +64,9 @@ export class InterfaceComponent implements OnInit {
   currentWaveboxes: WaveboxComponent[] = [];
 
   // @ts-ignore
+  @ViewChild('generationList') generationListContainer: ElementRef;
+
+  // @ts-ignore
   @ViewChild(MatRipple) ripple: MatRipple;
   // @ts-ignore
   @ViewChild('outline') textOutline: ElementRef;
@@ -107,6 +110,13 @@ export class InterfaceComponent implements OnInit {
       })
       this.stateService.setState(GenerationState.Displaying);
     }
+  }
+
+  ngAfterViewChecked() {
+    this.generationListContainer.nativeElement.scrollTo({
+      top: this.generationListContainer.nativeElement.scrollHeight,
+      behavior: 'smooth'
+    });
   }
 
   nextPlaceholder() {
