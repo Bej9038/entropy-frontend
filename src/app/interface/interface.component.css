@@ -336,7 +336,7 @@ app-wavebox {
 
 .generation-list {
   flex-grow: 1;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   width: var(--interface-width);
   padding: 16px;
   position: relative;
