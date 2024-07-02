@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {ReqService} from "../services/req.service";
 import {FormControl, Validators} from '@angular/forms';
 import {DOCUMENT} from "@angular/common";
@@ -22,6 +22,10 @@ export class BpmSelectComponent implements OnInit {
   bpm_input_focus = false
   rootStyle = getComputedStyle(this.document.documentElement);
   dummyControl= new FormControl({value: '', disabled: true});
+
+  // @ts-ignore
+  @ViewChild('bpmForm') bpmForm: ElementRef;
+
 
   constructor(public reqService: ReqService,
               public stateService: StateService,
@@ -91,6 +95,7 @@ export class BpmSelectComponent implements OnInit {
         this.stateService.setState(GenerationState.Error)
       }
       this.reqService.loop = true
+      this.bpmForm.nativeElement.focus();
     }
   }
 
