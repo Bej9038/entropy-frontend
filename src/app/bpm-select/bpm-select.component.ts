@@ -12,6 +12,8 @@ import {GenerationState, StateService} from "../services/state.service";
 export class BpmSelectComponent implements OnInit {
   loopSelected: boolean = false
   bpm: string = this.reqService.bpm
+  min = 60
+  max = 200
   numberInputControl= new FormControl('', [
     Validators.pattern('^[0-9]+$'),
     Validators.min(60),
@@ -34,6 +36,27 @@ export class BpmSelectComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  incrementUp() {
+    if(parseInt(this.bpm) < 200 && parseInt(this.bpm) >= 60) {
+      this.bpm = (parseInt(this.bpm) + 1).toString()
+      this.updateBPM()
+    }
+  }
+  incrementDown() {
+    if(parseInt(this.bpm) > 60 && parseInt(this.bpm) <= 200) {
+      this.bpm = (parseInt(this.bpm) - 1).toString()
+      this.updateBPM()
+    }
+  }
+
+  onScroll(event: WheelEvent): void {
+    if (event.deltaY < 0) {
+      this.incrementUp()
+    } else {
+      this.incrementDown()
+    }
+  }
+
   updateBPM() {
     this.reqService.bpm = this.bpm
     if(this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern')) {
@@ -44,18 +67,6 @@ export class BpmSelectComponent implements OnInit {
     }
     // this.checkRipple()
   }
-  //
-  // checkRipple(){
-  //   if(this.reqService.bpm != "")
-  //   {
-  //     const whiteValue = this.rootStyle.getPropertyValue('--white').trim();
-  //     this.document.documentElement.style.setProperty('--ripple2', whiteValue);
-  //   }
-  //   else {
-  //     const dark = this.rootStyle.getPropertyValue('--transluscent-dark').trim();
-  //     this.document.documentElement.style.setProperty('--ripple2', dark);
-  //   }
-  // }
 
   toggleLoop()
   {

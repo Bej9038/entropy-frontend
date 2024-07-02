@@ -1,14 +1,31 @@
 
 <div class="bpm-container">
+  <div class="textAndIncr">
 
-  <div class="textOutline bpmOutline">
-    <mat-form-field appearance="outline" class="textBar">
-<!--        <mat-label [ngStyle]="{'opacity': (loopSelected && bpm == '') ? 0 : 1}"-->
-<!--                    class="bpm-add">bpm</mat-label>-->
+    <div class="spacer"></div>
+
+    <div class="textOutline bpmOutline">
+
+      <mat-form-field appearance="outline" class="textBar">
+        <!--        <mat-label [ngStyle]="{'opacity': (loopSelected && bpm == '') ? 0 : 1}"-->
+        <!--                    class="bpm-add">bpm</mat-label>-->
         <input [ngStyle]="{'color': stateService.getCurrentState() == GenerationState.Error ? 'var(--error)' : 'var(--white)'}" (blur)="bpm_input_focus = false" spellcheck="false" (focus)="bpm_input_focus = true" matInput [disabled]="!loopSelected" [formControl]="loopSelected ? numberInputControl : dummyControl" maxlength="3"
                [(ngModel)]="bpm" (keydown.tab)="selectPlaceholder()" (keydown.enter)="selectPlaceholder()" (input)="updateBPM()">
-    </mat-form-field>
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="incrementor spacer" (wheel)="onScroll($event)">
+      <button (click)="incrementUp()" [disabled]="bpm == '' || stateService.getCurrentState() == GenerationState.Error || !loopSelected" mat-button class="incBtn scroll">
+        <mat-icon class="incArrow">keyboard_arrow_up</mat-icon>
+      </button>
+      <button (click)="incrementDown()" [disabled]="bpm == '' || stateService.getCurrentState() == GenerationState.Error || !loopSelected" mat-button class="incBtn scroll">
+        <mat-icon class="incArrow">keyboard_arrow_down</mat-icon>
+      </button>
+    </div>
   </div>
+
 
 <!--  <div class="error-cont">-->
 <!--    <mat-error class="bpm-flexitem" *ngIf="(numberInputControl.hasError('min') || numberInputControl.hasError('max'))-->
