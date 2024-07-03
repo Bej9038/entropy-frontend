@@ -77,7 +77,16 @@
   height: 36px !important;
   min-width: 36px !important;
   min-height: 36px !important;
+  color: var(--white) !important;
+}
 
+::ng-deep .waveboxBtn {
+  padding: 0 !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  color: var(--white) !important;
 }
 
 mat-icon {
@@ -92,14 +101,37 @@ mat-icon {
 
 .audioSettings {
   margin: 16px;
+  width: 224px !important;
+}
+
+.valueSelector {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 16px;
+}
+
+.audioSettingsTitle {
+  font-size: var(--font-large);
+  width: 160px !important;
+}
+
+.subTitle {
+  color: var(--translucent-grey-2);
+  padding-top: 8px;
 }
 
 .creditsMenu {
   margin: 16px;
+  width: 224px !important;
 }
 
 .creditsDisplay {
   padding-top: 16px;
+  text-align: center;
 }
 
 .subscriptionTier {

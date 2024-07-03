@@ -43,21 +43,21 @@
 
   <mat-menu #menu class="matMenu" xPosition="before">
     <div *ngIf="settingsMenu">
-      <button (click)="openCreditsMenu($event)" class="menuItem" mat-menu-item> view credits </button>
-      <button (click)="openAudioSettings($event)" class="menuItem" mat-menu-item> settings </button>
+      <button (click)="openCreditsMenu($event)" class="menuItem" mat-menu-item> View Credits </button>
+      <button (click)="openAudioSettings($event)" class="menuItem" mat-menu-item> App Settings </button>
 <!--      <button class="menu-item" mat-menu-item> history </button>-->
-      <a class="menuItem" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
+      <a class="menuItem" routerLink="/" mat-menu-item (click)="signOut()"> Sign Out </a>
     </div>
 
-    <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="menuItem backBtn">
+    <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="backBtn">
       <mat-icon>navigate_before</mat-icon>
     </button>
 
     <div class="subMenu" *ngIf="creditsMenu">
       <div class="creditsMenu">
         <div>
-          <div class="subscriptionTier">Free</div>
-          <div style="color: var(--translucent-grey-2)">Subscription Tier</div>
+          <div class="subscriptionTier"> Free</div>
+          <div class="subTitle">Subscription Tier</div>
         </div>
         <div class="creditsDisplay">Credits: {{firestore.getCredits()}} / 25</div>
       </div>
@@ -65,8 +65,14 @@
 
     <div class="subMenu" *ngIf="audioSettings">
       <div class="audioSettings">
-        <button (click)="updateWaveboxes(2)" class="menuItem" mat-button>2</button>
-        <button (click)="updateWaveboxes(4)" class="menuItem" mat-button>4</button>
+        <div>
+          <div class="audioSettingsTitle"> Generations Per Prompt</div>
+          <div class="subTitle">Increasing generations uses more credits per prompt.</div>
+        </div>
+        <div class="valueSelector">
+          <button (click)="updateWaveboxes(2)" class="waveboxBtn" mat-button>2</button>
+          <button (click)="updateWaveboxes(4)" class="waveboxBtn" mat-button>4</button>
+        </div>
       </div>
     </div>
 
