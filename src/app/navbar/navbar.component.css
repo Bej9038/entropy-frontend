@@ -59,7 +59,8 @@
 ::ng-deep .matMenu {
   background-color: var(--translucent) !important;
   color: var(--white) !important;
-  transform: translateX(22.51px) !important;
+  transform: translateX(22.51px) translateY(16px) !important;
+
 }
 
 ::ng-deep .mat-mdc-menu-content {
