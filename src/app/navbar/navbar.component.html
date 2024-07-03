@@ -41,41 +41,50 @@
 <!--  </mat-tab-group>-->
 
 
-  <mat-menu #menu class="matMenu" xPosition="before">
-    <div *ngIf="settingsMenu">
-      <button (click)="openCreditsMenu($event)" class="menuItem" mat-menu-item> View Credits </button>
-      <button (click)="openAudioSettings($event)" class="menuItem" mat-menu-item> App Settings </button>
-<!--      <button class="menu-item" mat-menu-item> history </button>-->
-      <a class="menuItem" routerLink="/" mat-menu-item (click)="signOut()"> Sign Out </a>
-    </div>
-
-    <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="backBtn">
-      <mat-icon>navigate_before</mat-icon>
-    </button>
-
-    <div class="subMenu" *ngIf="creditsMenu">
-      <div class="creditsMenu">
-        <div>
-          <div class="subscriptionTier"> Free</div>
-          <div class="subTitle">Subscription Tier</div>
-        </div>
-        <div class="creditsDisplay">Credits: {{firestore.getCredits()}} / 25</div>
+  <mat-menu [hasBackdrop]="false" #menu class="matMenu" xPosition="before">
+    <div (click)="$event.stopPropagation()">
+      <div *ngIf="settingsMenu">
+        <button (click)="openCreditsMenu($event)" class="menuItem" mat-menu-item> View Credits </button>
+        <button (click)="openAudioSettings($event)" class="menuItem" mat-menu-item> App Settings </button>
+        <!--      <button class="menu-item" mat-menu-item> history </button>-->
+        <a class="menuItem" routerLink="/" mat-menu-item (click)="signOut()"> Sign Out </a>
       </div>
-    </div>
 
-    <div class="subMenu" *ngIf="audioSettings">
-      <div class="audioSettings">
-        <div>
-          <div class="audioSettingsTitle"> Generations Per Prompt</div>
-          <div class="subTitle">Increasing generations uses more credits per prompt.</div>
-        </div>
-        <div class="valueSelector">
-          <button (click)="updateWaveboxes(2)" class="waveboxBtn" mat-button>2</button>
-          <button (click)="updateWaveboxes(4)" class="waveboxBtn" mat-button>4</button>
+
+      <div class="menuNavBtns">
+        <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="backBtn">
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+
+        <!--      <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="backBtn" style="font-size: 15px !important;">-->
+        <!--        <mat-icon>close</mat-icon>-->
+        <!--      </button>-->
+      </div>
+
+
+      <div class="subMenu" *ngIf="creditsMenu">
+        <div class="creditsMenu">
+          <div>
+            <div class="subscriptionTier"> Free</div>
+            <div class="subTitle">Subscription Tier</div>
+          </div>
+          <div class="creditsDisplay">Credits: {{firestore.getCredits()}} / 25</div>
         </div>
       </div>
-    </div>
 
+      <div class="subMenu" *ngIf="audioSettings">
+        <div class="audioSettings">
+          <div>
+            <div class="audioSettingsTitle"> Generations Per Prompt</div>
+            <div class="subTitle">Increasing generations uses more credits per prompt.</div>
+          </div>
+          <div class="valueSelector">
+            <button (click)="updateWaveboxes(2)" class="waveboxBtn" mat-button>2</button>
+            <button (click)="updateWaveboxes(4)" class="waveboxBtn" mat-button>4</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </mat-menu>
 </mat-toolbar>
