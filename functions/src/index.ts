@@ -42,20 +42,19 @@ exports.initCreditsOnSignUp = functions.auth.user().onCreate(async (user) => {
 exports.sendGenReq = functions.https.onRequest(async (request, response) => {
   corsHandler(request, response, async () => {
     const firestore = admin.firestore();
+    const req = request.body.req;
     const idToken = request.headers.authorization?.slice(7) ?? "";
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     const uid = decodedToken.uid;
     const creditsRef = firestore.collection("credits").doc(uid);
     const doc = await creditsRef.get();
-    const creditsConsumed = request.body.num_audio / 2;
     await creditsRef.update({
-      num_credits: doc.get("num_credits") - creditsConsumed,
+      num_credits: doc.get("num_credits") - req.input.num_audio/2,
     });
 
     // send req, send back id
 
     const url = runAsync;
-    const req = request.body.req;
     const axiosResponse = await axios.post(url, req, {headers});
     const currentReqId = axiosResponse.data.id;
 

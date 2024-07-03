@@ -59,6 +59,7 @@ export class ReqService {
     this.stateService.print(this.duration);
     this.stateService.print(this.entropy);
     this.stateService.print(this.formatDescription())
+    this.stateService.print(this.numAudio.value/2)
     return {
       "input": {
         "text":  this.formatDescription(),
