@@ -54,7 +54,9 @@ export class NavbarComponent implements OnInit {
   }
 
   updateWaveboxes(value: number) {
-    this.reqService.updateNumAudio(value)
+    if(this.reqService.numAudio.value != value) {
+      this.reqService.updateNumAudio(value)
+    }
   }
 
   signOut(): void {
