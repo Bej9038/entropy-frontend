@@ -58,7 +58,7 @@
 .loginButton {
   width: 80%;
   color: var(--white);
-  background-color: var(--translucent-dark);
+  background-color: var(--translucent-dark-1);
   height: 44px;
 }
 
@@ -178,7 +178,7 @@ video {
   /*top: 200px;*/
   /*position: fixed;*/
   /*padding-bottom: 560px;*/
-  color: var(--translucent-dark);
+  color: var(--translucent-dark-1);
   z-index: 0;
   text-align: center;
   font-size: 150px;

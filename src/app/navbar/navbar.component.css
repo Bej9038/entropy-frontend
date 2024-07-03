@@ -5,7 +5,6 @@
   align-content: center !important;
   position: absolute !important;
   z-index: 10 !important;
-  /*background-color: var(--test) !important;*/
   background-color: rgba(0,0,0,0)!important;
   color: var(--white) !important;
 }
@@ -70,6 +69,30 @@
 ::ng-deep .menuItem {
   color: var(--white) !important;
   text-align: center !important;
+}
+
+::ng-deep .backBtn {
+  padding: 0 !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+
+}
+
+mat-icon {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-size: var(--font-large) !important;
+}
+
+.audioSettings {
+  margin: 16px;
 }
 
 .creditsMenu {

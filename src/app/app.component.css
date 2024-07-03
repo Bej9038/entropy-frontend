@@ -16,7 +16,7 @@ app-navbar {
 }
 
 ::ng-deep.mat-snack-bar-container {
-  background-color: var(--translucent-dark) !important;
+  background-color: var(--translucent-dark-1) !important;
   color: var(--white);
   text-align: center;
 }

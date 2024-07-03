@@ -46,7 +46,7 @@ export class InterfaceComponent implements OnInit {
   input_focus = false
   rootStyle = getComputedStyle(this.document.documentElement)
   white = this.rootStyle.getPropertyValue("--white").trim()
-  dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
+  dark = this.rootStyle.getPropertyValue("--translucent-dark-1").trim()
   cancel_url = "https://us-central1-entropy-413416.cloudfunctions.net/cancelReq"
   send_url = "https://us-central1-entropy-413416.cloudfunctions.net/sendGenReq"
   check_url = "https://us-central1-entropy-413416.cloudfunctions.net/checkReq"

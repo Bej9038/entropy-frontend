@@ -44,7 +44,7 @@ entropyColor {
 }
 
 ::ng-deep.mat-mdc-slider .mdc-slider__track--inactive {
-  background-color: var(--translucent-dark) !important;
+  background-color: var(--translucent-dark-1) !important;
   opacity: 1 !important;
   height: var(--line-size) !important;
 }

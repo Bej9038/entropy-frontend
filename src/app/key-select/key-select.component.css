@@ -1,6 +1,6 @@
 .keyButton {
   color: white;
-  background-color: var(--translucent-dark);
+  background-color: var(--translucent-dark-1);
   margin: 5px;
   padding: 0;
   height: 36px;
@@ -20,7 +20,7 @@
 
 .selected {
   background-color: var(--white);
-  color: var(--translucent-dark);
+  color: var(--translucent-dark-1);
 }
 
 .key-container {

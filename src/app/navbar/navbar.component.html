@@ -49,7 +49,7 @@
       <a class="menuItem" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
     </div>
 
-    <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="menuItem">
+    <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="menuItem backBtn">
       <mat-icon>navigate_before</mat-icon>
     </button>
 
@@ -57,15 +57,17 @@
       <div class="creditsMenu">
         <div>
           <div class="subscriptionTier">Free</div>
-          Subscription Tier
+          <div style="color: var(--translucent-grey-2)">Subscription Tier</div>
         </div>
         <div class="creditsDisplay">Credits: {{firestore.getCredits()}} / 25</div>
       </div>
     </div>
 
     <div class="subMenu" *ngIf="audioSettings">
-      <button (click)="updateWaveboxes(2)" class="menuItem" mat-button>2</button>
-      <button (click)="updateWaveboxes(4)" class="menuItem" mat-button>4</button>
+      <div class="audioSettings">
+        <button (click)="updateWaveboxes(2)" class="menuItem" mat-button>2</button>
+        <button (click)="updateWaveboxes(4)" class="menuItem" mat-button>4</button>
+      </div>
     </div>
 
 

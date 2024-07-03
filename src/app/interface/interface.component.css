@@ -161,7 +161,6 @@ textarea::selection {
 .button-inactive {
   transition: var(--default-transition);
   color: var(--translucent-grey-2) !important;
-  /*color: var(--translucent-dark) !important;*/
 }
 
 ::ng-deep.mat-mdc-button-touch-target{
@@ -282,7 +281,7 @@ app-navbar:hover {
   /*top: 200px;*/
   /*position: fixed;*/
   /*padding-bottom: 560px;*/
-  color: var(--translucent-dark);
+  color: var(--translucent-dark-1);
   z-index: 0;
   text-align: center;
   font-size: 150px;
@@ -356,7 +355,7 @@ app-wavebox {
   color: white;
   border-radius: 8px;
   scrollbar-width: thin;
-  scrollbar-color: var(--translucent-dark) var(--translucent-dark);
+  scrollbar-color: var(--translucent-dark-1) var(--translucent-dark-1);
 }
 
 .generation-list::-webkit-scrollbar {

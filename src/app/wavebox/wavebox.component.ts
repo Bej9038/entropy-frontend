@@ -26,7 +26,7 @@ export class WaveboxComponent implements OnInit {
   rootStyle = getComputedStyle(this.document.documentElement);
   grey = this.rootStyle.getPropertyValue("--translucent-grey-2").trim()
   white = this.rootStyle.getPropertyValue("--white").trim()
-  dark = this.rootStyle.getPropertyValue("--translucent-dark").trim()
+  dark = this.rootStyle.getPropertyValue("--translucent-dark-1").trim()
   noColor = this.rootStyle.getPropertyValue("--none").trim()
   accent = this.rootStyle.getPropertyValue("--color-accent").trim()
 

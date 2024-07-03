@@ -2,7 +2,7 @@
   /*height: 50%;*/
   /*width: 80px;*/
   color: white;
-  background-color: var(--translucent-dark);
+  background-color: var(--translucent-dark-1);
   transition: var(--default-transition) !important;
   height: 36px;
   width: 72px;
@@ -31,7 +31,7 @@
 
 .selected {
   background-color: var(--white);
-  color: var(--translucent-dark);
+  color: var(--translucent-dark-1);
 }
 
 

@@ -182,7 +182,6 @@
 }
 
 ::ng-deep.mdc-text-field--filled .mdc-floating-label {
-  /*color: var(--translucent-dark) !important;*/
   color: var(--color-accent) !important;
   font-size: var(--font-large) !important;
   transition: var(--default-transition) !important;
