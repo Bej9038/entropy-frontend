@@ -42,27 +42,30 @@
 
 
   <mat-menu #menu class="matMenu" xPosition="before">
-    <div *ngIf="menuButtons">
-      <button class="menu-item" mat-menu-item> view credits </button>
-      <button (click)="openQuickSettings($event)" class="menu-item" mat-menu-item> settings </button>
-      <button class="menu-item" mat-menu-item> history </button>
-      <a class="menu-item" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
+    <div *ngIf="settingsMenu">
+      <button (click)="openCreditsMenu($event)" class="menuItem" mat-menu-item> view credits </button>
+      <button (click)="openAudioSettings($event)" class="menuItem" mat-menu-item> settings </button>
+<!--      <button class="menu-item" mat-menu-item> history </button>-->
+      <a class="menuItem" routerLink="/" mat-menu-item (click)="signOut()"> sign out </a>
     </div>
 
-    <div *ngIf="menuSettings">
-<!--      <button>-->
-<!--        <mat-icon>-->
-<!--          navigate_before-->
-<!--        </mat-icon>-->
-<!--      </button>-->
+    <button *ngIf="!settingsMenu" (click)="returnToSettingsMenu($event)" mat-button class="menuItem">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
 
-      <button (click)="returnToQuickSettings($event)" mat-button class="menu-item">
-        <mat-icon>navigate_before</mat-icon>
-      </button>
+    <div class="subMenu" *ngIf="creditsMenu">
+      <div class="creditsMenu">
+        <div>
+          <div class="subscriptionTier">Free</div>
+          Subscription Tier
+        </div>
+        <div class="creditsDisplay">Credits: {{firestore.getCredits()}} / 25</div>
+      </div>
+    </div>
 
-
-      <button (click)="updateWaveboxes(2)" class="menu-item" mat-button>2</button>
-      <button (click)="updateWaveboxes(4)" class="menu-item" mat-button>4</button>
+    <div class="subMenu" *ngIf="audioSettings">
+      <button (click)="updateWaveboxes(2)" class="menuItem" mat-button>2</button>
+      <button (click)="updateWaveboxes(4)" class="menuItem" mat-button>4</button>
     </div>
 
 

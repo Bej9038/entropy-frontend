@@ -141,12 +141,16 @@ textarea::selection {
   vertical-align: middle;
   width: 32px !important;
   height: 32px !important;
+  min-height: 32px !important;
+  min-width: 32px !important;
   z-index: 200 !important;
 }
 
 ::ng-deep .mat-icon {
   width: 32px !important;
   height: 32px !important;
+  /*min-height: 32px !important;*/
+  /*min-width: 32px !important;*/
 }
 
 .button-active {

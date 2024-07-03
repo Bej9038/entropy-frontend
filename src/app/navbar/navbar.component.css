@@ -57,13 +57,29 @@
 
 /* Quick Settings */
 
-::ng-deep.matMenu {
+::ng-deep .matMenu {
   background-color: var(--translucent) !important;
-  /*left: 100px !important;*/
+  color: var(--white) !important;
   transform: translateX(22.51px) !important;
 }
 
-::ng-deep.menu-item {
+::ng-deep .mat-mdc-menu-content {
+  padding: 0 !important;
+}
+
+::ng-deep .menuItem {
   color: var(--white) !important;
   text-align: center !important;
+}
+
+.creditsMenu {
+  margin: 16px;
+}
+
+.creditsDisplay {
+  padding-top: 16px;
+}
+
+.subscriptionTier {
+  font-size: var(--font-large);
 }

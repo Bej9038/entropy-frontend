@@ -3,6 +3,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {StateService} from "../services/state.service";
 import {ReqService} from "../services/req.service";
+import {FirestoreService} from "../services/firestore.service";
 
 
 @Component({
@@ -13,13 +14,15 @@ import {ReqService} from "../services/req.service";
 export class NavbarComponent implements OnInit {
 
   signedIn = false
-  menuButtons = true
-  menuSettings = false
+  settingsMenu = true
+  audioSettings = false
+  creditsMenu = false
 
   constructor(private auth: AngularFireAuth,
               public router: Router,
               private stateService: StateService,
-              public reqService: ReqService) { }
+              public reqService: ReqService,
+              public firestore: FirestoreService) { }
 
   ngOnInit(): void {
     this.auth.authState.subscribe(user => {
@@ -31,16 +34,23 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  openQuickSettings(event: any) {
-    event.stopPropagation();
-    this.menuSettings = true
-    this.menuButtons = false
+  openAudioSettings(event: any) {
+    event.stopPropagation()
+    this.audioSettings = true
+    this.settingsMenu = false
   }
 
-  returnToQuickSettings(event: any) {
+  openCreditsMenu(event: any) {
+    event.stopPropagation()
+    this.creditsMenu = true
+    this.settingsMenu = false
+  }
+
+  returnToSettingsMenu(event: any) {
     event.stopPropagation();
-    this.menuSettings = false
-    this.menuButtons = true
+    this.audioSettings = false
+    this.creditsMenu = false
+    this.settingsMenu = true
   }
 
   updateWaveboxes(value: number) {
