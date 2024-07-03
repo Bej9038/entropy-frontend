@@ -21,7 +21,7 @@
 
 .appButton {
   width: 100%;
-  height: 100%;
+  height: 180px;
   /*height: 128px;*/
   color: var(--white);
   font-size: var(--font-large);
@@ -34,13 +34,14 @@
 .entropyLogo {
   height: 32px;
   margin-bottom: 16px;
+  margin-top: 32px;
 }
 
 .signinCard {
   animation: var(--defualt-fade);
   position: fixed;
   width: 352px;
-  height: 360px;
+  /*height: 360px;*/
   /*padding-top: 32px;*/
   /*padding-bottom: 32px;*/
   display: flex;
@@ -60,6 +61,7 @@
   color: var(--white);
   background-color: var(--translucent-dark-1);
   height: 44px;
+  margin-bottom: 32px;
 }
 
 ::ng-deep .emailForm {

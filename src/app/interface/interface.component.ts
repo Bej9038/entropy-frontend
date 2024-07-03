@@ -187,7 +187,7 @@ export class InterfaceComponent implements OnInit {
 
     // Call SendGenReq
 
-    const body = {req: req, credits: 1};
+    const body = {req: req};
     const id = await this.firestore.currentUser.getIdToken()
     const headers = {
       "Content-Type": "application/json",
