@@ -1,7 +1,8 @@
 .playButton {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
   position: absolute;
   z-index: 10;
   color: var(--white);
@@ -17,6 +18,16 @@
   align-items: center;
   margin: 16px;
   /*margin: 0px 16px 16px 16px;*/
+}
+
+mat-icon {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  font-size: var(--font-large) !important;
 }
 
 .waveform-cont
