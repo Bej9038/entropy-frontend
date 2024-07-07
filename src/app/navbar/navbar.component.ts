@@ -15,7 +15,7 @@ import {MatMenu} from "@angular/material/menu";
 export class NavbarComponent implements OnInit {
 
   signedIn = false
-  settingsMenu = true
+  settingsMenu = false
   audioSettings = false
   creditsMenu = false
 

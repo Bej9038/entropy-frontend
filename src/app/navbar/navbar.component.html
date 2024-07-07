@@ -26,7 +26,7 @@
 <!--&lt;!&ndash;        <mat-icon style="transform: rotate(-45deg);">navigate_next</mat-icon>&ndash;&gt;-->
 <!--      </div>-->
 <!--    </a>-->
-    <button [disabled]="!signedIn" [matMenuTriggerFor]="menu" class="header-buttons" mat-button>
+    <button [disabled]="!signedIn" (click)="settingsMenu = true" [matMenuTriggerFor]="menu" class="header-buttons" mat-button>
       <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center">
         Account
 <!--        <mat-icon *ngIf="signedIn">expand_more</mat-icon>-->

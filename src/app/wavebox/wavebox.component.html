@@ -1,8 +1,7 @@
 <div class="waveform-component">
   <div (mouseenter)="onFocus()"
        (mouseleave)="unFocus()"
-       [ngClass]="{'up': focused && stateService.getCurrentState() == GenerationState.Displaying,
-       'up2':focused && stateService.getCurrentState() == GenerationState.Selected}"
+       [ngClass]="{'up2': focused && stateService.getCurrentState() == GenerationState.Displaying}"
        class="waveform-cont">
     <div
       [ngClass]="{'grabbing': grabbing, 'grab': stateService.getCurrentState() == GenerationState.Displaying || stateService.getCurrentState() == GenerationState.Selected}"
