@@ -6,35 +6,38 @@
     <span class="slogan-text"> Music is as much of a science as it is an art. </span>
   </div>
 
-
   <mat-card class="signinCard">
-<!--    <div class="signinOptionsContainer">-->
+    <!--    <div class="signinOptionsContainer">-->
 
-      <img src="assets/image (8).svg" class="entropyLogo" *ngIf="!authService.user">
+    <img src="assets/image (8).svg" class="entropyLogo" *ngIf="!authService.user">
 
-<!--      <div> Login </div>-->
+    <!--      <div> Login </div>-->
 
-      <button class="loginButton" mat-flat-button (click)="authService.loginWithGoogle()" *ngIf="!authService.user">
-        <div class="btnInnerContainer">
-          <img src="assets/google-logo-NePEveMl%20(openai).svg" class="providerLogo">
-          Signin with Google
-        </div>
-      </button>
-
-
-      <div class="line-container" *ngIf="!authService.user">
-        <div class="horizontal-line"></div>
-        <div class="or">or</div>
-        <div class="horizontal-line"></div>
+    <button class="loginButton" mat-flat-button (click)="authService.loginWithGoogle()" *ngIf="!authService.user">
+      <div class="btnInnerContainer">
+        <img src="assets/google-logo-NePEveMl%20(openai).svg" class="providerLogo">
+        Signin with Google
       </div>
-
-      <mat-form-field class="emailForm" appearance="outline" *ngIf="!authService.user">
-        <input spellcheck="false" matInput placeholder="Enter Email">
-      </mat-form-field>
-
-      <button class="loginButton" mat-flat-button (click)="authService.login('', '')" *ngIf="!authService.user"> Continue </button>
+    </button>
 
 
-      <a class="appButton" mat-button routerLink="/app" *ngIf="authService.user"> Start Creating </a>
+    <div class="line-container" *ngIf="!authService.user">
+      <div class="horizontal-line"></div>
+      <div class="or">or</div>
+      <div class="horizontal-line"></div>
+    </div>
+
+    <mat-form-field class="emailForm" appearance="outline" *ngIf="!authService.user">
+      <input spellcheck="false" matInput placeholder="Enter Email">
+    </mat-form-field>
+
+    <button class="loginButton" mat-flat-button (click)="authService.login('', '')" *ngIf="!authService.user"> Continue </button>
+
+
+    <a class="appButton" mat-button routerLink="/app" *ngIf="authService.user"> Start Creating </a>
   </mat-card>
+
+  <div class="bottomSection">
+    <div class="name">Entropy Audio &#64; 2024</div>
+  </div>
 </div>

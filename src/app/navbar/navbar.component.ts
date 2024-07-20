@@ -38,12 +38,14 @@ export class NavbarComponent implements OnInit {
   openAudioSettings(event: any) {
     event.stopPropagation()
     this.audioSettings = true
+    this.creditsMenu = false
     this.settingsMenu = false
   }
 
   openCreditsMenu(event: any) {
     event.stopPropagation()
     this.creditsMenu = true
+    this.audioSettings = false
     this.settingsMenu = false
   }
 
@@ -52,6 +54,23 @@ export class NavbarComponent implements OnInit {
     this.audioSettings = false
     this.creditsMenu = false
     this.settingsMenu = true
+  }
+
+  returnToSettingsMenuDelay(event: any) {
+    event.stopPropagation();
+    console.log(this.settingsMenu)
+    if(this.creditsMenu || this.audioSettings){
+      setTimeout(() => {
+        this.audioSettings = false
+        this.creditsMenu = false
+        this.settingsMenu = false
+      }, 250);
+    }
+    else {
+      this.audioSettings = false
+      this.creditsMenu = false
+      this.settingsMenu = true
+    }
   }
 
   updateWaveboxes(value: number) {

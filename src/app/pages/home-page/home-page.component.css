@@ -39,7 +39,7 @@
 
 .signinCard {
   animation: var(--defualt-fade);
-  position: fixed;
+  /*position: fixed;*/
   width: 352px;
   /*height: 360px;*/
   /*padding-top: 32px;*/
@@ -54,6 +54,17 @@
   border-radius: 8px;
   z-index: 10;
   gap: 16px;
+}
+
+.signin-container {
+  position: absolute !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .loginButton {
@@ -201,6 +212,25 @@ video {
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+/* Bottom Section*/
+
+.bottomSection {
+  height: 64px;
+  background-color: var(--translucent-dark-1);
+  position: absolute;
+  bottom: -64px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  color: var(--translucent-grey-2);
+  padding-left: 16px;
 }
 
 @keyframes opacityFadeSlogan {
