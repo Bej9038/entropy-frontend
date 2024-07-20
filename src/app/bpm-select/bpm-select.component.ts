@@ -11,7 +11,7 @@ import {GenerationState, StateService} from "../services/state.service";
 })
 export class BpmSelectComponent implements OnInit {
   loopSelected: boolean = false
-  bpm: string = this.reqService.bpm
+  prev: string = "128"
   min = 60
   max = 200
   numberInputControl= new FormControl('', [
@@ -20,12 +20,10 @@ export class BpmSelectComponent implements OnInit {
     Validators.max(200),
   ]);
   bpm_input_focus = false
-  rootStyle = getComputedStyle(this.document.documentElement);
   dummyControl= new FormControl({value: '', disabled: true});
 
   // @ts-ignore
   @ViewChild('bpmForm') bpmForm: ElementRef;
-
 
   constructor(public reqService: ReqService,
               public stateService: StateService,
@@ -33,22 +31,21 @@ export class BpmSelectComponent implements OnInit {
 
   selectPlaceholder() {
     this.reqService.bpm = ""
-    this.bpm = ""
-    // this.checkRipple()
   }
 
   ngOnInit(): void {
   }
 
   incrementUp() {
-    if(parseInt(this.bpm) < 200 && parseInt(this.bpm) >= 60) {
-      this.bpm = (parseInt(this.bpm) + 1).toString()
+    if(parseInt(this.reqService.bpm) < 200 && parseInt(this.reqService.bpm) >= 60) {
+      this.reqService.bpm = (parseInt(this.reqService.bpm) + 1).toString()
       this.updateBPM()
     }
   }
+
   incrementDown() {
-    if(parseInt(this.bpm) > 60 && parseInt(this.bpm) <= 200) {
-      this.bpm = (parseInt(this.bpm) - 1).toString()
+    if(parseInt(this.reqService.bpm) > 60 && parseInt(this.reqService.bpm) <= 200) {
+      this.reqService.bpm = (parseInt(this.reqService.bpm) - 1).toString()
       this.updateBPM()
     }
   }
@@ -62,33 +59,29 @@ export class BpmSelectComponent implements OnInit {
   }
 
   updateBPM() {
-    this.reqService.bpm = this.bpm
     if(this.numberInputControl.hasError('min') || this.numberInputControl.hasError('max') || this.numberInputControl.hasError('pattern')) {
       this.stateService.setState(GenerationState.Error)
     }
     else if(this.stateService.getCurrentState() == GenerationState.Error) {
       this.stateService.setState(this.stateService.getPreviousState());
     }
-    // this.checkRipple()
   }
 
   toggleLoop()
   {
     this.loopSelected = !this.loopSelected;
-    if(!this.loopSelected)
-    {
-        this.reqService.bpm = ""
-        // this.checkRipple()
+    if(!this.loopSelected) {
+      // Turning loop off
+      this.prev = this.reqService.bpm
+      this.reqService.bpm = ""
       if(this.stateService.getCurrentState() == GenerationState.Error) {
         this.stateService.setState(this.stateService.getPreviousState());
       }
       this.reqService.loop = false
     }
-    else
-    {
-      this.bpm = ""
-      this.reqService.bpm = this.bpm
-      // this.checkRipple()
+    else {
+      // Turning loop on
+      this.reqService.bpm = this.prev
       if((this.numberInputControl.hasError('min') ||
           this.numberInputControl.hasError('max') ||
           this.numberInputControl.hasError('pattern')) && this.stateService.getCurrentState() != GenerationState.Error) {
