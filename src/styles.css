@@ -71,7 +71,6 @@ html, body {
 }
 
 .svg {
-  background-image: url("assets/image.svg");
   height: 50px;
   width: 50px;
   margin-right: 16px;

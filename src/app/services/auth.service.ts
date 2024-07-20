@@ -40,6 +40,6 @@ export class AuthService {
   loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     return this.auth.signInWithPopup(provider);
+    // return this.auth.signInWithRedirect(provider);
   }
-
 }
