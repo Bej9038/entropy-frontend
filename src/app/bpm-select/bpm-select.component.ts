@@ -9,6 +9,7 @@ import {GenerationState, StateService} from "../services/state.service";
   templateUrl: './bpm-select.component.html',
   styleUrls: ['./bpm-select.component.css']
 })
+
 export class BpmSelectComponent implements OnInit {
   loopSelected: boolean = false
   prev: string = "128"
