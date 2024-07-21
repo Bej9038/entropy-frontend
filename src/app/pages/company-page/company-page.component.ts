@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  OnInit,
   Inject,
   ViewChild,
   AfterViewInit,
@@ -14,17 +13,19 @@ import {FormsModule} from "@angular/forms";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {BottomLinksComponent} from "../../bottom-links/bottom-links.component";
+import {MatCard} from "@angular/material/card";
 
 @Component({
   selector: 'app-company-page',
   standalone: true,
-    imports: [
-        FormsModule,
-        MatFormField,
-        MatInput,
-        MatLabel,
-        BottomLinksComponent
-    ],
+  imports: [
+    FormsModule,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    BottomLinksComponent,
+    MatCard,
+  ],
   templateUrl: './company-page.component.html',
   styleUrl: './company-page.component.css'
 })
