@@ -201,7 +201,7 @@ textarea::selection {
   background-color: var(--translucent);
   color: white;
   border-radius: 8px;
-  margin-bottom: 6vh;
+  margin-bottom: 6.2vh;
   /*margin-bottom: 40px;*/
 }
 
@@ -311,9 +311,10 @@ app-navbar:hover {
 
 /*WAVE BOXES*/
 
-.interface-cont {
+.container {
   gap: 16px;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: end;
