@@ -201,7 +201,7 @@ textarea::selection {
   background-color: var(--translucent);
   color: white;
   border-radius: 8px;
-  margin-bottom: 6.2vh;
+  margin-bottom: 6.4vh;
   /*margin-bottom: 40px;*/
 }
 
