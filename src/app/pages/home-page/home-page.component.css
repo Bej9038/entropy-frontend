@@ -176,7 +176,6 @@ video {
   /*position: fixed;*/
   /*padding-bottom: 560px;*/
   color: var(--translucent-dark-1);
-  z-index: 0;
   text-align: center;
   font-size: 150px;
   font-weight: 540;
@@ -192,7 +191,8 @@ video {
 }
 
 .text-container {
-  position: absolute !important;
+  z-index: 0;
+  position: fixed;
   width: 100%;
   height: 100%;
   display: flex;
