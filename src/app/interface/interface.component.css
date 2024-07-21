@@ -202,6 +202,7 @@ textarea::selection {
   color: white;
   border-radius: 8px;
   margin-bottom: 6vh;
+  /*margin-bottom: 40px;*/
 }
 
 .keycol {

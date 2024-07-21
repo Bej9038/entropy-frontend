@@ -7,34 +7,32 @@
   </div>
 
   <mat-card class="signinCard">
-    <!--    <div class="signinOptionsContainer">-->
 
-    <img src="assets/logo_icon.svg" class="entropyLogo" *ngIf="!authService.user">
+    <div class="signin-container" *ngIf="!authService.user">
+      <img src="assets/logo_icon.svg" class="entropyLogo" >
 
-    <!--      <div> Login </div>-->
+      <button class="loginButton" mat-flat-button (click)="authService.loginWithGoogle()">
+        <div class="btnInnerContainer">
+          <img src="assets/google-logo-NePEveMl%20(openai).svg" class="providerLogo">
+          Signin with Google
+        </div>
+      </button>
 
-    <button class="loginButton" mat-flat-button (click)="authService.loginWithGoogle()" *ngIf="!authService.user">
-      <div class="btnInnerContainer">
-        <img src="assets/google-logo-NePEveMl%20(openai).svg" class="providerLogo">
-        Signin with Google
+      <div class="line-container">
+        <div class="horizontal-line"></div>
+        <div class="or">or</div>
+        <div class="horizontal-line"></div>
       </div>
-    </button>
 
+      <mat-form-field class="emailForm" appearance="outline">
+        <input spellcheck="false" matInput placeholder="Enter Email">
+      </mat-form-field>
 
-    <div class="line-container" *ngIf="!authService.user">
-      <div class="horizontal-line"></div>
-      <div class="or">or</div>
-      <div class="horizontal-line"></div>
+      <button class="loginButton" mat-flat-button (click)="authService.login('', '')"> Continue </button>
     </div>
 
-    <mat-form-field class="emailForm" appearance="outline" *ngIf="!authService.user">
-      <input spellcheck="false" matInput placeholder="Enter Email">
-    </mat-form-field>
-
-    <button class="loginButton" mat-flat-button (click)="authService.login('', '')" *ngIf="!authService.user"> Continue </button>
-
-
     <a class="appButton" mat-button routerLink="/app" *ngIf="authService.user"> Start Creating </a>
+
   </mat-card>
 
   <div class="bottomSection">
