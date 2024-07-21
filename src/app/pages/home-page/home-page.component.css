@@ -1,4 +1,4 @@
-.home-container {
+.container {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -209,24 +209,6 @@ video {
   align-content: center;
 }
 
-/* Bottom Section*/
-
-.bottomSection {
-  height: 64px;
-  background-color: var(--translucent-dark-1);
-  position: absolute;
-  bottom: -64px;
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.name {
-  color: var(--translucent-grey-2);
-  padding-left: 16px;
-}
 
 @keyframes opacityFadeSlogan {
   from {

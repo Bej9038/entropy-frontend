@@ -37,6 +37,7 @@ import {
 import { WaveboxComponent } from "./wavebox/wavebox.component";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {BottomLinksComponent} from "./bottom-links/bottom-links.component";
 
 // const firebaseUiAuthConfig: firebaseui.auth.Config = {
 //   signInFlow: 'popup',
@@ -82,7 +83,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
         // FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-        RouterModule.forRoot(routeConfig, { preloadingStrategy: PreloadAllModules }), // Use PreloadAllModules here
+        RouterModule.forRoot(routeConfig, {preloadingStrategy: PreloadAllModules}), // Use PreloadAllModules here
         RouterOutlet,
         RouterLink,
         MatTabGroup,
@@ -92,11 +93,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
         MatExpansionPanelDescription,
         MatExpansionModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: !isDevMode(),
-          // Register the ServiceWorker as soon as the application is stable
-          // or after 30 seconds (whichever comes first).
-          registrationStrategy: 'registerWhenStable:30000'
-        })], providers: [
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }), BottomLinksComponent], providers: [
         provideAnimations(),
         // provideOAuthClient(),
         provideHttpClient(withInterceptorsFromDi()),
