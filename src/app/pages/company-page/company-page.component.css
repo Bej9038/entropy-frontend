@@ -13,7 +13,8 @@
 
 .card-section {
   height: 320px;
-  width: 80%;
+  width: 50%;
+  min-width: var(--interface-width);
   background-color: var(--translucent-dark-1);
 
   display: flex;
@@ -88,7 +89,7 @@
   padding-top: 28px;
   color: var(--translucent-grey-2);
   font-size: 22px;
-  width: 620px;
+  width: var(--interface-width);
   line-height: 32px;
   text-align: center;
 }
